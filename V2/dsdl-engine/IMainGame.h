@@ -5,6 +5,7 @@
 #include "DsdlEngine.h"
 #include "Window.h"
 #include "InputManager.h"
+#include "Timing.h"
 
 #include <memory>
 
@@ -42,8 +43,10 @@ namespace DsdlEngine{
 		IScene* m_pCurrentRunning = nullptr;
 		bool m_bIsRunning = false;
 		float m_fFps = 0;
+		//float m_fTime = 0;
 		Window m_Window;
 		InputManager m_InputManager;
+		//FpsLimiter fpsLimit;
 	};
 }
 

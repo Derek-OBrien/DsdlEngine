@@ -98,6 +98,7 @@
     <ClInclude Include="IScene.h" />
     <ClInclude Include="IMainGame.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Timing.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +107,7 @@
     <ClCompile Include="IMainGame.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Timing.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

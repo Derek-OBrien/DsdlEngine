@@ -39,12 +39,12 @@ void GameplayScene::onExitScene(){
 }
 
 void GameplayScene::updateScene(){
-	std::cout << "Update\n";
+//	std::cout << "Update\n";
 	checkInput();
 }
 
 void GameplayScene::drawScene(){
-	std::cout << "Draw\n";
+//	std::cout << "Draw\n";
 }
 
 

@@ -4,11 +4,12 @@
 
 #include "App.h"
 
+#include "../project.win32/project.win32/MainGame.h"
 
 int main(int argc, char** argv){
 	
-	App app;
-	app.run();
+	MainGame mainGame;
+	mainGame.run();
 
 	return 0;
 }
