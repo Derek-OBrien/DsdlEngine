@@ -24,7 +24,7 @@
     <ClCompile Include="..\..\classes\GameplayScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MainGame.cpp">
+    <ClCompile Include="..\..\classes\mainGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -35,7 +35,7 @@
     <ClInclude Include="..\..\classes\GameplayScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MainGame.h">
+    <ClInclude Include="..\..\classes\mainGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

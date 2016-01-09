@@ -23,6 +23,7 @@ namespace DsdlEngine{
 		void destroy();
 
 		IScene* getCurrentScene();
+	
 	protected:
 		IMainGame* m_pGame = nullptr;
 		std::vector<IScene*> m_pScenes;

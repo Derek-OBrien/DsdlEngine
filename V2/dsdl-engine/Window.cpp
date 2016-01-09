@@ -2,6 +2,7 @@
 
 #include "EngineError.h"
 
+#include <SDL_image.h>
 
 namespace DsdlEngine{
 
@@ -18,21 +19,18 @@ namespace DsdlEngine{
 		if (m_pSdlWindow == nullptr)
 			dsdl_error("SDL Window not created");
 
+		m_pScreenSurface = SDL_GetWindowSurface(m_pSdlWindow);
+
 		m_pSdlRenderer = SDL_CreateRenderer(m_pSdlWindow, -1, SDL_RENDERER_ACCELERATED);
 		if (m_pSdlRenderer == nullptr)
 			dsdl_error("SDL Renderer not created");
 
 		SDL_SetRenderDrawColor(m_pSdlRenderer, 0, 0, 0, 255);
-
-
-		//Set up our OpenGL context
-		SDL_GLContext glContext = SDL_GL_CreateContext(m_pSdlWindow);
-		if (glContext == nullptr) 
-			dsdl_error("SDL_GL context could not be created!");
-
-
-		//Set VSYNC
-		SDL_GL_SetSwapInterval(0);
+		
+		//Initialize PNG loading
+		int imgFlags = IMG_INIT_PNG;
+		if (!(IMG_Init(imgFlags) & imgFlags))
+			printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
 
 		return 0;
 	}

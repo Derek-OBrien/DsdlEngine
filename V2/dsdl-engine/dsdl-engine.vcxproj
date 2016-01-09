@@ -62,7 +62,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -95,9 +95,12 @@
     <ClInclude Include="EngineError.h" />
     <ClInclude Include="Include.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="IOManager.h" />
     <ClInclude Include="IScene.h" />
     <ClInclude Include="IMainGame.h" />
+    <ClInclude Include="ResourceTexture.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Sprite.h" />
     <ClInclude Include="Timing.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
@@ -106,9 +109,15 @@
     <ClCompile Include="EngineError.cpp" />
     <ClCompile Include="IMainGame.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="IOManager.cpp" />
+    <ClCompile Include="ResourceTexture.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Timing.cpp" />
     <ClCompile Include="Window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

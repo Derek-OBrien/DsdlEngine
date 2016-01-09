@@ -5,8 +5,6 @@
 namespace DsdlEngine{
 	SceneManager::SceneManager(IMainGame* game) :
 		m_pGame(game) {
-
-
 	}
 
 	SceneManager::~SceneManager(){

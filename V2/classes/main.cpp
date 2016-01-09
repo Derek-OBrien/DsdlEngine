@@ -4,7 +4,7 @@
 
 #include "App.h"
 
-#include "../project.win32/project.win32/MainGame.h"
+#include "mainGame.h"
 
 int main(int argc, char** argv){
 	

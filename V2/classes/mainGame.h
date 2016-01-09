@@ -1,33 +1,45 @@
-#ifndef _MAINGAME_
-#define _MAINGAME_
+#pragma once
 
-#include <Include.h>
+#include <DsdlEngine.h>
+#include <Window.h>
+#include <Timing.h>
+#include <InputManager.h>
+#include <Sprite.h>
 
-enum class eGameState{ PLAY, EXIT };
+enum class GameState{
+	PLAY,
+	EXIT
+};
 
-class MainGame
-{
+class MainGame{
 public:
 	MainGame();
 	~MainGame();
 
 	void run();
-	
 private:
-	void initSys();
-	void processInput();
+
+	/// Initializes the core systems
+	void initSystems();
+
+	/// Initializes the level and sets up everything
+	void initLevel();
+
+	/// Main game loop for the program
 	void gameLoop();
-	void drawGame();
+
+	/// Handles input processing
+	void processInput();
+
+	/// Member Variables
+	DsdlEngine::Window m_window; ///< The game window
+	DsdlEngine::InputManager m_inputManager;
+	DsdlEngine::Sprite m_Player;
+	int m_screenWidth = 1024;
+	int m_screenHeight = 768;
+
+	float m_fps;
 
 
-	DsdlEngine::Window _pWindow;
-
-	int _iScreenWidth;
-	int _iScreenHeight;
-
-
-	eGameState _eGameState;
+	GameState m_gameState;
 };
-
-
-#endif

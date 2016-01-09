@@ -10,12 +10,9 @@ namespace DsdlEngine{
 		m_pSceneManager = std::make_unique<SceneManager>(this);
 	}
 
-	IMainGame::~IMainGame(){
-
-	}
+	IMainGame::~IMainGame(){}
 	
 	void IMainGame::run(){
-
 		if (!init()) return;
 
 		FpsLimiter fpsLimit;
@@ -29,13 +26,6 @@ namespace DsdlEngine{
 			draw();
 
 			m_fFps = fpsLimit.end();
-
-			/*static int framecounter = 0;
-			framecounter++;
-			if (framecounter == 10){
-				std::cout << m_fFps << std::endl;
-				framecounter = 0;
-			}*/
 			m_Window.swapBuffer();
 		}
 	}
@@ -91,7 +81,7 @@ namespace DsdlEngine{
 
 	bool IMainGame::initSystems(){
 		m_Window.createWindow("Dsdl Engine", 1024, 680, SDL_WINDOW_OPENGL);
-
+		
 		return true;
 	}
 
