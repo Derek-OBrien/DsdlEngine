@@ -95,7 +95,6 @@
     <ClInclude Include="EngineError.h" />
     <ClInclude Include="Include.h" />
     <ClInclude Include="InputManager.h" />
-    <ClInclude Include="IOManager.h" />
     <ClInclude Include="IScene.h" />
     <ClInclude Include="IMainGame.h" />
     <ClInclude Include="ResourceTexture.h" />
@@ -109,7 +108,6 @@
     <ClCompile Include="EngineError.cpp" />
     <ClCompile Include="IMainGame.cpp" />
     <ClCompile Include="InputManager.cpp" />
-    <ClCompile Include="IOManager.cpp" />
     <ClCompile Include="ResourceTexture.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Sprite.cpp" />

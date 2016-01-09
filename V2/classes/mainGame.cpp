@@ -98,4 +98,21 @@ void MainGame::processInput(){
 			break;
 		}
 	}
+
+	//Test input manager and player mvement
+	if (m_inputManager.isKeyDown(SDLK_d)) {
+		m_Player.setPosX(10);
+	}
+
+	if (m_inputManager.isKeyDown(SDLK_a)){
+		m_Player.setPosX(-10);
+	}
+
+	if (m_inputManager.isKeyDown(SDLK_s)) {
+		m_Player.setPosY(10);
+	}
+
+	if (m_inputManager.isKeyDown(SDLK_w)){
+		m_Player.setPosY(-10);
+	}
 }
