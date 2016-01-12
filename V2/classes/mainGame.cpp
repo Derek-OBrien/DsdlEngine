@@ -1,5 +1,7 @@
 
 #include "mainGame.h"
+#include <EngineError.h>
+
 
 MainGame::MainGame() :
 m_screenHeight(600),
@@ -16,7 +18,6 @@ MainGame::~MainGame(){}
 void MainGame::run(){
 
 	initSystems();
-
 	gameLoop();
 }
 
@@ -25,7 +26,7 @@ void MainGame::initSystems(){
 
 	m_window.createWindow("TestGame", m_screenWidth, m_screenHeight, 2);
 
-	m_Player.createSprite(100.0f, 200.0f, 73.0f, 79.0f,"../../assets/Character.png", m_window.getRenderer());
+	m_Player.createSprite(100.0, 200.0, 73.0, 79.0,"../../assets/Character.png", m_window.getRenderer());
 }
 
 
@@ -55,16 +56,12 @@ void MainGame::gameLoop(){
 		float totalDeltaTime = frameTime / DESIRED_FRAMETIME;
 
 
-		m_inputManager.update();
 
 		processInput();
-		SDL_RenderClear(m_window.getRenderer());
 
-		m_Player.draw(m_window.getRenderer());
+		draw();
 
 
-		//Update screen
-		SDL_RenderPresent(m_window.getRenderer());
 		// End the frame, limit the FPS, and get the current FPS.
 		m_fps = fpsLimiter.end();
 	//	std::cout << m_fps << std::endl;
@@ -74,6 +71,9 @@ void MainGame::gameLoop(){
 
 /// Handles input processing
 void MainGame::processInput(){
+
+	m_inputManager.update();
+
 	SDL_Event evnt;
 	//Will keep looping until there are no more events to process
 	while (SDL_PollEvent(&evnt)) {
@@ -115,4 +115,16 @@ void MainGame::processInput(){
 	if (m_inputManager.isKeyDown(SDLK_w)){
 		m_Player.setPosY(-10);
 	}
+}
+
+
+void MainGame::draw(){
+	SDL_RenderClear(m_window.getRenderer());
+
+	// Draw palyer
+	m_Player.draw(m_window.getRenderer());
+
+	m_window.swapBuffer();
+	SDL_SetRenderDrawColor(m_window.getRenderer(), 0x00, 0x00, 0x00, 0xff);
+	SDL_RenderPresent(m_window.getRenderer());
 }

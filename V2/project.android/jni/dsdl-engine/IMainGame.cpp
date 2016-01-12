@@ -7,7 +7,7 @@
 
 namespace DsdlEngine{
 	IMainGame::IMainGame(){
-		m_pSceneManager->getInstance();
+		m_pSceneManager = std::make_unique<SceneManager>(this);
 	}
 
 	IMainGame::~IMainGame(){}
@@ -15,39 +15,18 @@ namespace DsdlEngine{
 	void IMainGame::run(){
 		if (!init()) return;
 
-		const float DESIRED_FPS = 60.0f;
-		const float MS_PER_SECOND = 1000;
-
-		const float DESIRED_FRAMETIME = MS_PER_SECOND / DESIRED_FPS; // The desired frame time per frame
-		const float MAX_DELTA_TIME = 1.0f; // Maximum size of deltaTime
-
-
 		FpsLimiter fpsLimit;
 		fpsLimit.setMaxFPS(60.0f);
-
-		// Start our previousTicks variable
-		float previousTicks = SDL_GetTicks();
 
 		m_bIsRunning = true;
 
 		while (m_bIsRunning){
-			fpsLimit.begin();
-			float newTicks = SDL_GetTicks();
-			float frameTime = newTicks - previousTicks;
-			previousTicks = newTicks; // Store newTicks in previousTicks so we can use it next frame
-			// Get the total delta time
-			float totalDeltaTime = frameTime / DESIRED_FRAMETIME;
-
-
-
 			m_InputManager.update();
 			update();
 			draw();
 
 			m_fFps = fpsLimit.end();
-			std::cout << m_fFps << std::endl;
-
-		//	m_Window.swapBuffer();
+			m_Window.swapBuffer();
 		}
 	}
 
@@ -55,8 +34,8 @@ namespace DsdlEngine{
 
 		m_pCurrentRunning->onExitScene();
 
-		if (m_pSceneManager->getInstance()){
-			m_pSceneManager->getInstance()->destroy();
+		if (m_pSceneManager){
+			m_pSceneManager->destroy();
 		}
 		m_bIsRunning = false;
 	}
@@ -93,7 +72,7 @@ namespace DsdlEngine{
 		onInit();
 		addScenes();
 
-		m_pCurrentRunning = m_pSceneManager->getInstance()->getCurrentScene();
+		m_pCurrentRunning = m_pSceneManager->getCurrentScene();
 		m_pCurrentRunning->onEntryScene();
 		m_pCurrentRunning->setSceneRunning();
 
@@ -101,9 +80,8 @@ namespace DsdlEngine{
 	}
 
 	bool IMainGame::initSystems(){
-	//	m_Window.createWindow("Dsdl Engine", 1024, 680, SDL_WINDOW_OPENGL);
+		m_Window.createWindow("Dsdl Engine", 1024, 680, SDL_WINDOW_OPENGL);
 		
-	//	m_pGameRenderer = m_Window.getRenderer();
 		return true;
 	}
 
@@ -144,16 +122,7 @@ namespace DsdlEngine{
 	
 	void IMainGame::draw(){
 		if (m_pCurrentRunning && m_pCurrentRunning->getSceneState() == SceneState::RUNNING){
-			
-			//SDL_RenderClear(m_window.getRenderer());
-
-
 			m_pCurrentRunning->drawScene();
-
-			//m_window.swapBuffer();
-			//SDL_SetRenderDrawColor(m_window.getRenderer(), 0x00, 0x00, 0x00, 0xff);
-			//SDL_RenderPresent(m_window.getRenderer());
-
 		}
 
 	}

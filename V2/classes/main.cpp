@@ -8,7 +8,7 @@
 
 int main(int argc, char** argv){
 	
-	MainGame mainGame;
+	App mainGame;
 	mainGame.run();
 
 	return 0;

@@ -26,7 +26,9 @@ namespace DsdlEngine{
 		virtual void addScenes() = 0;
 		virtual void onExit() = 0;
 
-		const float getFps() const{return m_fFps;}
+		const float getFps() const{
+			return m_fFps;
+		}
 		
 		void onSDLEvent(SDL_Event& evnt);
 
@@ -37,17 +39,14 @@ namespace DsdlEngine{
 		bool init();
 		bool initSystems();
 
-		//SDL_Renderer* getGameRenderer(){ return m_pGameRenderer; }
-		
-		SceneManager* m_pSceneManager;
-
+		std::unique_ptr<SceneManager> m_pSceneManager = nullptr;
 		IScene* m_pCurrentRunning = nullptr;
 		bool m_bIsRunning = false;
 		float m_fFps = 0;
-
-		//Window m_Window;
-		//SDL_Renderer* m_pGameRenderer;
+		//float m_fTime = 0;
+		Window m_Window;
 		InputManager m_InputManager;
+		//FpsLimiter fpsLimit;
 	};
 }
 

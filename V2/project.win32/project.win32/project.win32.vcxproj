@@ -21,6 +21,9 @@
     <ClInclude Include="..\..\classes\GameplayScene.h" />
     <ClInclude Include="..\..\classes\mainGame.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{8B364CE5-3F01-4088-83C2-A19A425E4A18}</ProjectGuid>
     <RootNamespace>projectwin32</RootNamespace>
@@ -51,11 +54,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(SolutionDir)..\dsdl-engine;$(SolutionDir)..\dependenciesSDL2\SDL_mixer\include;$(SolutionDir)..\dependenciesSDL2\SDL_ttf\include;$(SolutionDir)..\dependenciesSDL2\SDL_image\include;$(SolutionDir)..\dependencies\SDL2\SDL\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)..\dependencies\SDL2\SDL_mixer\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL_ttf\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL_image\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL\lib\x86;$(SolutionDir)\Debug;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)..\dependencies\SDL2\SDL_mixer\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL_ttf\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL_image\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL\lib\x86;C:\Users\Derek\Desktop\FYP SDL Engine\V2\dsdl-engine\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)..\dependenciesSDL2\SDL_mixer\include;$(SolutionDir)..\dependenciesSDL2\SDL_ttf\include;$(SolutionDir)..\dependenciesSDL2\SDL_image\include;$(SolutionDir)..\dependencies\SDL2\SDL\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)..\dependencies\SDL2\SDL_mixer\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL_ttf\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL_image\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)..\dependenciesSDL2\SDL_mixer\include;$(SolutionDir)..\dependenciesSDL2\SDL_ttf\include;$(SolutionDir)..\dependenciesSDL2\SDL_image\include;$(SolutionDir)..\dependencies\SDL2\SDL\include;$(SolutionDir)..\dsdl-engine\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)..\dsdl-engine\lib;$(SolutionDir)..\dependencies\SDL2\SDL_mixer\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL_ttf\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL_image\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -81,7 +84,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;DsdlEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>

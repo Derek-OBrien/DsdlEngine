@@ -1,23 +1,20 @@
 #include "App.h"
 #include <SceneManager.h>
 
-App::App(){
+App::App(){}
 
-}
-
-App::~App(){
-
-}
+App::~App(){}
 
 void App::onInit(){
 
+	///m_pWindow.createWindow("Test Scene Manager", 1024, 512, 2);
+	//m_pGameplayScene->buildScene();
 }
 
 void App::addScenes(){
-	m_pGameplayScene = std::make_unique<GameplayScene>();
-	m_pSceneManager->addScene(m_pGameplayScene.get());
-	m_pSceneManager->setScene(m_pGameplayScene->getSceneIndex());
 
+	m_pSceneManager->getInstance()->addScene(m_pGameplayScene);
+	m_pSceneManager->getInstance()->setScene(m_pGameplayScene->getSceneIndex());
 }
 
 void App::onExit(){

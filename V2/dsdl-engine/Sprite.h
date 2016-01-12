@@ -1,0 +1,62 @@
+#ifndef _SPRITE_
+#define _SPRITE_
+
+#include "ResourceTexture.h"
+
+#include "EngineDefines.h"
+
+namespace DsdlEngine{
+
+	class Sprite
+	{
+	public:
+		Sprite();
+		~Sprite();
+
+		/*Create Basic Sprite
+			x = x position
+			y = y position
+			w = sprite width
+			h = sprite heigth
+			texturePath = file path to sprite assest
+			r = pointer to window renderer
+		*/
+		void createSprite(int x, int y, int w, int h, std::string texturePath, SDL_Renderer* r);
+
+		/*Create Sprite with Bounding Box
+		x = x position
+		y = y position
+		w = sprite width
+		h = sprite heigth
+		texturePath = file path to sprite assest
+		r = pointer to window renderer
+		*/
+		void createSpriteWithBB(int x, int y, int w, int h, std::string texturePath, SDL_Renderer* r);
+		
+		
+		void createSpriteWithAnimation( SDL_Renderer* r);
+
+
+		void draw(SDL_Renderer* renderer);
+
+
+		void setPosX(int x){ m_fPosX += x; objectBoundingBox.x += x; }
+		void setPosY(int y){ m_fPosY += y; objectBoundingBox.y += y; }
+	private:
+
+		int m_fPosX;
+		int m_fPosY;
+		int m_fWidth;
+		int m_fHeight;
+
+		int m_iFrames = 1;
+		ResourceTexture m_SpriteTexture;
+		
+		SDL_Rect m_gSpriteClips[30];	//frames for animation
+		
+		SDL_Rect* m_currentFrame;		//current animation frame
+		SDL_Rect objectBoundingBox;
+	};
+}
+
+#endif

@@ -1,7 +1,6 @@
 #ifndef _ISCENE_
 #define _ISCENE_
 
-
 #define SCENE_INDEX_NO_SCENE -1
 
 namespace DsdlEngine{
@@ -36,22 +35,19 @@ namespace DsdlEngine{
 		virtual void updateScene() = 0;
 		virtual void drawScene() = 0;
 
-		virtual void addChild() = 0;
-
 		int getSceneIndex() const{ return m_iSceneIndex; }
 
 		SceneState getSceneState() const { return m_eCurrentState; }
-		//void setParentGame(IMainGame* game){ m_pGame = game; }
+		void setParentGame(IMainGame* game){ m_pGame = game; }
 		void setSceneRunning(){ m_eCurrentState = SceneState::RUNNING; }
 
-		//IMainGame* getParentGame(){ return m_pGame; }
-
 	protected:
-
 		SceneState m_eCurrentState = SceneState::NONE;
-		//IMainGame* m_pGame = nullptr;
+		IMainGame* m_pGame = nullptr;
+
 
 		int m_iSceneIndex = SCENE_INDEX_NO_SCENE;
+
 	};
 }
 

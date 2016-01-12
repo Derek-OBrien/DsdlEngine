@@ -1,5 +1,6 @@
 #pragma once
 
+#include <DsdlEngine.h>
 #include <IMainGame.h>
 #include "GameplayScene.h"
 
@@ -14,5 +15,6 @@ public:
 
 private:
 
-	std::unique_ptr<GameplayScene> m_pGameplayScene = nullptr;
+	//DsdlEngine::Window m_pWindow;
+	GameplayScene* m_pGameplayScene = new GameplayScene();
 };

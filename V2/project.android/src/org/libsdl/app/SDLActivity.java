@@ -82,7 +82,6 @@ public class SDLActivity extends Activity {
     public void loadLibraries() {
        for (String lib : getLibraries()) {
           System.loadLibrary(lib);
-          System.loadLibrary(glew);
        }
     }
 

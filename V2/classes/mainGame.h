@@ -6,6 +6,8 @@
 #include <InputManager.h>
 #include <Sprite.h>
 
+
+#include <SDL.h>
 enum class GameState{
 	PLAY,
 	EXIT
@@ -31,10 +33,15 @@ private:
 	/// Handles input processing
 	void processInput();
 
+	/// Render Everyting
+	void draw();
+
 	/// Member Variables
 	DsdlEngine::Window m_window; ///< The game window
 	DsdlEngine::InputManager m_inputManager;
 	DsdlEngine::Sprite m_Player;
+
+
 	int m_screenWidth = 1024;
 	int m_screenHeight = 768;
 
