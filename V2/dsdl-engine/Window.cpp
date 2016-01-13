@@ -30,7 +30,7 @@ namespace DsdlEngine{
 		//Initialize PNG loading
 		int imgFlags = IMG_INIT_PNG;
 		if (!(IMG_Init(imgFlags) & imgFlags))
-			DEBUG_MSG("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
+			DEBUG_MSG("SDL_image could not initialize! SDL_image Error:" + std::string(IMG_GetError()));
 
 
 		return 0;

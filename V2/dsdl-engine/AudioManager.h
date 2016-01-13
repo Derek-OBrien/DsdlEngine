@@ -6,29 +6,48 @@
 #include <SDL_mixer.h>
 
 namespace DsdlEngine{
-	class AudioManager{
+	class SFX{
 	public:
-		static AudioManager* getInstance();
+		friend class AudioManager;
+		void play(int loop = 0);
+	private:
+		Mix_Chunk* m_Chunk = nullptr;
+	};
 
-		bool audioLoad(std::string audio, audio_type type);
+	class Music{
+	public:
+		friend class AudioManager;
 
-		bool audioLoadBg(std::string audioPath, Mix_Music * aduio);
-
-		void audioPlayBG();
-		void audioPlaySFX(std::string audioPath);
-
+		void play(int loop = 0){ Mix_PlayMusic(m_Music, loop); };
 		void audioPauseBG(){ Mix_PauseMusic(); };
 		void audioResumeBG(){ Mix_ResumeMusic(); };
 		void audioStopBG(){ Mix_HaltMusic(); };
 
 	private:
+		Mix_Music* m_Music = nullptr;
+	};
 
-		AudioManager();
-		~AudioManager(){};
+
+	class AudioManager{
+	public:
+		static AudioManager* getInstance();
+
+		void init();
+		void destroy();
 		
-		Mix_Music* m_pBGAudio;
-		Mix_Chunk* m_pSFXAudio;
+		SFX loadSFX(std::string audioPath);
+		Music loadMusic(std::string audioPath);
+
+	private:
+
+		AudioManager(){ init(); };
+		~AudioManager(){ destroy(); };
 		
+		//Maps to chache audio files so they are not loaded more than once
+		std::map<std::string, Mix_Chunk*> m_sfxAudioMap;
+		std::map<std::string, Mix_Music*> m_bgAudioMap;
+
+		bool m_bisInitialized = false;
 	};
 }
 

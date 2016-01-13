@@ -3,7 +3,7 @@
 
 namespace DsdlEngine{
 
-
+	//Create as singleton
 	static AudioManager* instance = 0;
 	AudioManager* AudioManager::getInstance(){
 		if (instance == 0)
@@ -12,49 +12,92 @@ namespace DsdlEngine{
 		return instance;
 	}
 
-	AudioManager::AudioManager(){
-		Mix_OpenAudio(22050, AUDIO_S16, 2, (4096 / 2));
+
+	//init audio manager
+	void AudioManager::init(){
+
+		if (Mix_Init(MIX_INIT_MP3 | MIX_INIT_OGG) == -1) {
+			DEBUG_MSG("Mix_Init error: " + std::string(Mix_GetError()));
+		}
+
+		if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 1024) == -1) {
+			DEBUG_MSG("Mix_OpenAudio error: " + std::string(Mix_GetError()));
+		}
+
+		m_bisInitialized = true;
 	}
 
-	bool AudioManager::audioLoad(std::string audio, audio_type type){
-	
-		if (type == BG_){
-			//Load Bg music (Mix_Music)
-			if ((m_pBGAudio = Mix_LoadMUS(audio.c_str()) )== NULL){
-				DEBUG_MSG("Failed to load Audio" , Mix_GetError());
-				return false;
-			}
+	void AudioManager::destroy(){
+		if (m_bisInitialized)
+			m_bisInitialized = false;
+
+		for (auto it : m_sfxAudioMap){
+			Mix_FreeChunk(it.second);
 		}
-		else if (type == SFX_){
-			//Load SFX music (Mix_Chunk)
-			if ((m_pSFXAudio = Mix_LoadWAV(audio.c_str())) == NULL){
-				DEBUG_MSG("Failed to load Audio", Mix_GetError());
-				return false;
-			}
+
+		for (auto it : m_bgAudioMap){
+			Mix_FreeMusic(it.second);
 		}
-		return true;
+
+		m_bgAudioMap.clear();
+		m_sfxAudioMap.clear();
+
+		Mix_CloseAudio();
+		Mix_Quit();
 	}
 
-	
-	void AudioManager::audioPlayBG(){
-		if (Mix_PlayingMusic() == 0){
-			Mix_PlayMusic(m_pBGAudio, -1);
+	//Play sound effect
+	void SFX::play(int loop) {
+		if (Mix_PlayChannel(-1, m_Chunk, loop) == -1) {
+			if (Mix_PlayChannel(0, m_Chunk, loop) == -1) {
+				DEBUG_MSG("Mix_PlayChannel error: " + std::string(Mix_GetError()));
+			}
 		}
+	}
+
+	//load sound effect
+	SFX AudioManager::loadSFX(std::string audioPath){
+		//Load SFX music (Mix_Chunk)
+		SFX sfx;
+		Mix_Chunk* sfxChunk = nullptr;
+		//Check if allready cached
+		auto it = m_sfxAudioMap.find(audioPath);
+
+		//Not cached so load and cahe it
+		if (it == m_sfxAudioMap.end()){
+			if ((sfxChunk = Mix_LoadWAV(audioPath.c_str())) == NULL){
+				DEBUG_MSG("Mix_LoadWAV: Failed to load Audio" + std::string(Mix_GetError()));
+			}
+			sfx.m_Chunk = sfxChunk;
+			m_sfxAudioMap[audioPath] = sfxChunk;
+		}
+		//it is cached 
 		else{
-			if (Mix_PausedMusic() == 1){
-				audioResumeBG();
-			}
-			else{
-				audioPauseBG();
-			}
+			sfx.m_Chunk = it->second;
 		}
+		return sfx;
 	}
 
+	//load music
+	Music AudioManager::loadMusic(std::string audioPath){
+		//Check if allready cached
+		auto it = m_bgAudioMap.find(audioPath);
 
-	void AudioManager::audioPlaySFX(std::string audioPath){
-		//loadaudio first
-		audioLoad(audioPath, SFX_);
-		Mix_PlayChannel(-1, m_pSFXAudio, 0);
+		Music music;
+		Mix_Music* mix = nullptr;
+		//Not cached so load and cahe it
+		if (it == m_bgAudioMap.end()){
+			if ((mix = Mix_LoadMUS(audioPath.c_str())) == NULL){
+				DEBUG_MSG("Mix_LoadMUS: Failed to load Audio" + std::string(Mix_GetError()));
+			}
+			music.m_Music = mix;
+			m_bgAudioMap[audioPath] = mix;
+		}
+		//it is cached 
+		else{
+			music.m_Music = it->second;
+		}
+		return music;
 	}
 }
 

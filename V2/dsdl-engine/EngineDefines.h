@@ -12,17 +12,11 @@
 #include <iostream>
 #include <memory>
 #include <vector>
+#include <map>
 
 #include "EngineError.h"
 
 
 ///Engine Enums
-
-/*
-	Type of audio to play
-	BG_ = Mix_Music = baground music 
-	SFX_ = Mix_Chunk = Sound Effect
-*/
-typedef enum{ BG_, SFX_ }audio_type;
 
 #endif
