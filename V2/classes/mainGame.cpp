@@ -1,6 +1,6 @@
 
 #include "mainGame.h"
-#include <EngineError.h>
+#include <dsdl-engine/EngineError.h>
 
 
 MainGame::MainGame() :
@@ -26,7 +26,7 @@ void MainGame::initSystems(){
 
 	m_window.createWindow("TestGame", m_screenWidth, m_screenHeight, 2);
 
-	m_Player.createSprite(100.0, 200.0, 73.0, 79.0,"../../assets/Character.png", m_window.getRenderer());
+	m_Player.createSprite(100, 200, 73, 79,"../../assets/Character.png", m_window.getRenderer());
 }
 
 

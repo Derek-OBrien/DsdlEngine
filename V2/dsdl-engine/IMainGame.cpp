@@ -26,14 +26,14 @@ namespace DsdlEngine{
 		fpsLimit.setMaxFPS(60.0f);
 
 		// Start our previousTicks variable
-		float previousTicks = SDL_GetTicks();
+		Uint32 previousTicks = SDL_GetTicks();
 
 		m_bIsRunning = true;
 
 		while (m_bIsRunning){
 			fpsLimit.begin();
-			float newTicks = SDL_GetTicks();
-			float frameTime = newTicks - previousTicks;
+			Uint32 newTicks = SDL_GetTicks();
+			Uint32 frameTime = newTicks - previousTicks;
 			previousTicks = newTicks; // Store newTicks in previousTicks so we can use it next frame
 			// Get the total delta time
 			float totalDeltaTime = frameTime / DESIRED_FRAMETIME;

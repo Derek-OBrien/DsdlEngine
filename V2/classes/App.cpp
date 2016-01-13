@@ -1,5 +1,5 @@
 #include "App.h"
-#include <SceneManager.h>
+#include <dsdl-engine/SceneManager.h>
 
 App::App(){}
 

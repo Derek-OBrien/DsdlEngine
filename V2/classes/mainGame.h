@@ -1,13 +1,11 @@
 #pragma once
 
-#include <DsdlEngine.h>
-#include <Window.h>
-#include <Timing.h>
-#include <InputManager.h>
-#include <Sprite.h>
+#include <dsdl-engine/DsdlEngine.h>
+#include <dsdl-engine/Window.h>
+#include <dsdl-engine/Timing.h>
+#include <dsdl-engine/InputManager.h>
+#include <dsdl-engine/Sprite.h>
 
-
-#include <SDL.h>
 enum class GameState{
 	PLAY,
 	EXIT

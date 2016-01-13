@@ -1,7 +1,7 @@
 #pragma once
 
-#include <DsdlEngine.h>
-#include <IMainGame.h>
+#include <dsdl-engine/DsdlEngine.h>
+#include <dsdl-engine/IMainGame.h>
 #include "GameplayScene.h"
 
 class App : public DsdlEngine::IMainGame{

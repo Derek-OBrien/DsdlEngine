@@ -43,7 +43,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(SolutionDir)..\dependencies\SDL2\SDL_ttf\include;$(SolutionDir)..\dependencies\SDL2\SDL_mixer\include;$(SolutionDir)..\dependencies\SDL2\SDL_image\include;$(SolutionDir)..\dependencies\SDL2\SDL\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)..\dependencies\SDL2\SDL_ttf\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL_mixer\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL_image\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL\lib\x86;$(LibraryPath)</LibraryPath>
-    <OutDir>.\lib</OutDir>
+    <OutDir>.\lib\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(SolutionDir)..\dependencies\SDL2\SDL_ttf\include;$(SolutionDir)..\dependencies\SDL2\SDL_mixer\include;$(SolutionDir)..\dependencies\SDL2\SDL_image\include;$(SolutionDir)..\dependencies\SDL2\SDL\include;$(IncludePath)</IncludePath>
@@ -64,8 +64,11 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -92,6 +95,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AudioManager.h" />
     <ClInclude Include="DsdlEngine.h" />
     <ClInclude Include="EngineDefines.h" />
     <ClInclude Include="EngineError.h" />
@@ -106,6 +110,7 @@
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="DsdlEngine.cpp" />
     <ClCompile Include="EngineError.cpp" />
     <ClCompile Include="IMainGame.cpp" />

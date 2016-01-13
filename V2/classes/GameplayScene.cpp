@@ -1,6 +1,6 @@
 
 #include "GameplayScene.h"
-#include <IMainGame.h>
+#include <dsdl-engine/IMainGame.h>
 #include <iostream>
 #include <SDL.h>
 
