@@ -1,11 +1,20 @@
 #pragma once
-
-#include <dsdl-engine/DsdlEngine.h>
-#include <dsdl-engine/Window.h>
-#include <dsdl-engine/Timing.h>
-#include <dsdl-engine/InputManager.h>
-#include <dsdl-engine/Sprite.h>
+/*/
+#include <dsdl-engine\DsdlEngine.h>
+#include "dsdl-engine\Window.h"
+#include <dsdl-engine\Timing.h>
+#include <dsdl-engine\InputManager.h>
+#include <dsdl-engine\Sprite.h>
 #include <dsdl-engine\AudioManager.h>
+*/
+
+//Needed this type include for android build to complete???
+#include "../dsdl-engine/AudioManager.h"
+#include "../dsdl-engine/DsdlEngine.h"
+#include "../dsdl-engine/InputManager.h"
+#include "../dsdl-engine/Sprite.h"	
+#include "../dsdl-engine/Timing.h"
+#include "../dsdl-engine/Window.h"
 
 enum class GameState{
 	PLAY,

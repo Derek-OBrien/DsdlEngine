@@ -1,9 +1,8 @@
 
 #include "ResourceTexture.h"
+#include "EngineError.h"
 #include <string>
 #include <iostream>
-
-#include "EngineError.h"
 #include <SDL_image.h>
 
 

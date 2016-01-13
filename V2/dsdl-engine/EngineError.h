@@ -9,7 +9,6 @@ namespace DsdlEngine{
 	#define DEBUG 1
 	#if defined DEBUG 
 		#if (DEBUG ==1)
-			//extern void dsdl_error(std::string errorString);
 		#define DEBUG_MSG(x) (std::cout << (x) <<std::endl)
 		#else
 		#define DEBUG_MSG(x)
