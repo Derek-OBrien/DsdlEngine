@@ -24,40 +24,42 @@ namespace DsdlEngine{
 
 	bool ResourceTexture::loadFromFile(std::string texturePath, SDL_Renderer* r){
 
-		const char* path = texturePath.c_str();
-
-		if (m_Texture != NULL){
-			SDL_DestroyTexture(m_Texture);
-			m_Texture = NULL;
-			m_iWidth = 0;
-			m_iHeight = 0;
-		}
+		auto it = m_TextureMap.find(texturePath);
 
 		SDL_Texture* newTexture = NULL;
+		SDL_Surface* loadedSurface = NULL;
 
-		//Load image at specified path
-		SDL_Surface* loadedSurface = IMG_Load(texturePath.c_str());
-		if (loadedSurface == NULL)
-			std::cout << "Unable to load image " << path << "\n SDL_image Error : " << IMG_GetError() << std::endl;
-		else{
-			DEBUG_MSG("Flie loaded");
-			//Color key image
-			SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0xFF, 0xFF));
+		if (it == m_TextureMap.end()){
+			//Load image at specified path
+			loadedSurface = IMG_Load(texturePath.c_str());
 
-			//Create texture from surface pixels
-			newTexture = SDL_CreateTextureFromSurface(r, loadedSurface);
-			if (newTexture == NULL){
-				std::cout << "\nUnable to create texture from %s!\n SDL Error: %s" << path << SDL_GetError() << std::endl;
-			}
+
+			if (loadedSurface == NULL)
+				DEBUG_MSG("SDL_image Error : " + std::string(IMG_GetError()));
 			else{
-				//Get image dimensions
-				m_iWidth = loadedSurface->w;
-				m_iHeight = loadedSurface->h;
-			}
-			//Get rid of old loaded surface
-			SDL_FreeSurface(loadedSurface);
-		}
+				DEBUG_MSG("Flie loaded");
+				//Color key image
+				SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0xFF, 0xFF));
 
+				//Create texture from surface pixels
+				newTexture = SDL_CreateTextureFromSurface(r, loadedSurface);
+				if (newTexture == NULL){
+					DEBUG_MSG("SDL_CreateTextureFromSurface Error : " + std::string(IMG_GetError()));
+				}
+				else{
+					//Get image dimensions
+					m_iWidth = loadedSurface->w;
+					m_iHeight = loadedSurface->h;
+				}
+				//Get rid of old loaded surface
+				SDL_FreeSurface(loadedSurface);
+			}
+			 
+			m_TextureMap[texturePath] = newTexture;
+		}
+		else{
+			newTexture = it->second;
+		}
 		//Return success
 		m_Texture = newTexture;
 		return newTexture != NULL;
@@ -78,4 +80,17 @@ namespace DsdlEngine{
 		SDL_RenderCopy(r, m_Texture, clip, &renderQuad);
 	}
 
+
+	void ResourceTexture::destroy(){
+		if (m_Texture != NULL){
+			SDL_DestroyTexture(m_Texture);
+			m_Texture = NULL;
+			m_iWidth = 0;
+			m_iHeight = 0;
+		}
+
+		for (auto& it : m_TextureMap){
+			SDL_DestroyTexture(it.second);
+		}
+	}
 }

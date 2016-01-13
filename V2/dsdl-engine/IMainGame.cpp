@@ -38,14 +38,13 @@ namespace DsdlEngine{
 			// Get the total delta time
 			float totalDeltaTime = frameTime / DESIRED_FRAMETIME;
 
-
-
+			
 			m_InputManager.update();
 			update();
 			draw();
 
 			m_fFps = fpsLimit.end();
-			std::cout << m_fFps << std::endl;
+			//std::cout << m_fFps << std::endl;
 
 		//	m_Window.swapBuffer();
 		}
@@ -88,6 +87,9 @@ namespace DsdlEngine{
 
 	bool IMainGame::init(){
 		DsdlEngine::init();
+		m_audioManager.init();
+
+
 
 		if (!initSystems()) return false;
 		onInit();

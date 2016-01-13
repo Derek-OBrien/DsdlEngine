@@ -6,6 +6,7 @@
 #include "Window.h"
 #include "InputManager.h"
 #include "Timing.h"
+#include "AudioManager.h"
 
 #include <memory>
 
@@ -48,6 +49,7 @@ namespace DsdlEngine{
 		//Window m_Window;
 		//SDL_Renderer* m_pGameRenderer;
 		InputManager m_InputManager;
+		AudioManager m_audioManager;
 	};
 }
 

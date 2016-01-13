@@ -3,16 +3,6 @@
 
 namespace DsdlEngine{
 
-	//Create as singleton
-	static AudioManager* instance = 0;
-	AudioManager* AudioManager::getInstance(){
-		if (instance == 0)
-			instance = new AudioManager();
-
-		return instance;
-	}
-
-
 	//init audio manager
 	void AudioManager::init(){
 
@@ -31,11 +21,11 @@ namespace DsdlEngine{
 		if (m_bisInitialized)
 			m_bisInitialized = false;
 
-		for (auto it : m_sfxAudioMap){
+		for (auto& it : m_sfxAudioMap){
 			Mix_FreeChunk(it.second);
 		}
 
-		for (auto it : m_bgAudioMap){
+		for (auto& it : m_bgAudioMap){
 			Mix_FreeMusic(it.second);
 		}
 

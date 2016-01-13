@@ -3,7 +3,7 @@
 
 #include <SDL.h>
 
-#include <string>
+#include "EngineDefines.h"
 
 namespace DsdlEngine{
 
@@ -17,9 +17,11 @@ namespace DsdlEngine{
 		bool loadFromFile(std::string texturePath, SDL_Renderer* r);
 		void render(int x, int y, SDL_Rect* clip, SDL_Renderer* r);
 
+		void destroy();
 	private:
 	
-		SDL_Texture* m_Texture = NULL;
+		SDL_Texture* m_Texture;
+		std::map<std::string,SDL_Texture*> m_TextureMap;
 
 		int m_iWidth = 0;
 		int m_iHeight = 0;

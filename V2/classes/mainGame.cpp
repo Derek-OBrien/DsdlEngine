@@ -18,11 +18,15 @@ MainGame::~MainGame(){}
 void MainGame::run(){
 
 	initSystems();
+
+	DsdlEngine::Music music = m_AudioManager.loadMusic("../../assets/Sound/XYZ.ogg");
+	music.play(-1);
 	gameLoop();
 }
 
 void MainGame::initSystems(){
 	DsdlEngine::init();
+	m_AudioManager.init();
 
 	m_window.createWindow("TestGame", m_screenWidth, m_screenHeight, 2);
 
@@ -43,8 +47,7 @@ void MainGame::gameLoop(){
 
 	// Start our previousTicks variable
 	float previousTicks = SDL_GetTicks();
-
-
+	
 	while (m_gameState == GameState::PLAY)
 	{
 		fpsLimiter.begin();
@@ -54,7 +57,6 @@ void MainGame::gameLoop(){
 		previousTicks = newTicks; // Store newTicks in previousTicks so we can use it next frame
 		// Get the total delta time
 		float totalDeltaTime = frameTime / DESIRED_FRAMETIME;
-
 
 
 		processInput();

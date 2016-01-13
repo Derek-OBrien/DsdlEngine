@@ -22,6 +22,7 @@ void GameplayScene::buildScene(){
 	m_iSceneIndex = 0;
 	setSceneRunning();
 	m_Player.createSprite(100.0, 200.0, 73.0, 79.0, "../../assets/Character.png", m_window.getRenderer());
+
 }
 
 

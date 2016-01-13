@@ -5,6 +5,7 @@
 #include <dsdl-engine/Timing.h>
 #include <dsdl-engine/InputManager.h>
 #include <dsdl-engine/Sprite.h>
+#include <dsdl-engine\AudioManager.h>
 
 enum class GameState{
 	PLAY,
@@ -38,7 +39,7 @@ private:
 	DsdlEngine::Window m_window; ///< The game window
 	DsdlEngine::InputManager m_inputManager;
 	DsdlEngine::Sprite m_Player;
-
+	DsdlEngine::AudioManager m_AudioManager;
 
 	int m_screenWidth = 1024;
 	int m_screenHeight = 768;
