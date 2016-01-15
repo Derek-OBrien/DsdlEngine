@@ -1,7 +1,6 @@
 
+#include "EngineDefines.h"
 #include "Timing.h"
-
-#include <SDL.h>
 
 namespace DsdlEngine{
 

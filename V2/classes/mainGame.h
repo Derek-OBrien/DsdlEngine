@@ -15,6 +15,7 @@
 #include "../dsdl-engine/Sprite.h"	
 #include "../dsdl-engine/Timing.h"
 #include "../dsdl-engine/Window.h"
+#include "../dsdl-engine/Label.h"
 
 enum class GameState{
 	PLAY,
@@ -49,6 +50,8 @@ private:
 	DsdlEngine::InputManager m_inputManager;
 	DsdlEngine::Sprite m_Player;
 	DsdlEngine::AudioManager m_AudioManager;
+	DsdlEngine::Label m_Label;
+	DsdlEngine::Label m_Label2;
 
 	int m_screenWidth = 1024;
 	int m_screenHeight = 768;

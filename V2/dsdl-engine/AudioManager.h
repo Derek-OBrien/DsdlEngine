@@ -3,8 +3,7 @@
 #define _AUDIOMANAGER_
 
 #include "EngineDefines.h"
-//#include <SDL_mixer.h>
-#include "../dependencies/SDL2/SDL_mixer/SDL_mixer.h"
+
 namespace DsdlEngine{
 	class SFX{
 	public:

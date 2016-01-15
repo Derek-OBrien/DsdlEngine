@@ -11,18 +11,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\classes\App.cpp" />
-    <ClCompile Include="..\..\classes\GameplayScene.cpp" />
     <ClCompile Include="..\..\classes\main.cpp" />
     <ClCompile Include="..\..\classes\mainGame.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\classes\App.h" />
-    <ClInclude Include="..\..\classes\GameplayScene.h" />
     <ClInclude Include="..\..\classes\mainGame.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{8B364CE5-3F01-4088-83C2-A19A425E4A18}</ProjectGuid>

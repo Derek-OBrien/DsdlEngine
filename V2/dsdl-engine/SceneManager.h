@@ -1,7 +1,6 @@
 #ifndef _SCREENMANAGER_
 #define _SCREENMANAGER_
-
-#include <vector>
+#include "EngineDefines.h"
 
 namespace DsdlEngine{
 

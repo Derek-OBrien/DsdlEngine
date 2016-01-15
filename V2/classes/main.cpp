@@ -2,7 +2,6 @@
 	Main Running Function
 */
 
-//#include "App.h"
 
 #include "mainGame.h"
 

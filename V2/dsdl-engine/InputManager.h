@@ -1,7 +1,8 @@
 #ifndef _INPUTMANAGER_
 #define _INPUTMANAGER_
 
-#include <unordered_map>
+#include "EngineDefines.h"
+
 
 namespace DsdlEngine{
 	class InputManager{

@@ -2,13 +2,13 @@
 #ifndef _MAINGAME_
 #define _MAINGAME_
 
+#include "EngineDefines.h"
 #include "DsdlEngine.h"
 #include "Window.h"
 #include "InputManager.h"
 #include "Timing.h"
 #include "AudioManager.h"
 
-#include <memory>
 
 namespace DsdlEngine{
 	

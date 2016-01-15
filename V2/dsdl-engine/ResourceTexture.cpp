@@ -1,9 +1,7 @@
 
 #include "ResourceTexture.h"
 #include "EngineError.h"
-#include <string>
-#include <iostream>
-#include <SDL_image.h>
+
 
 
 namespace DsdlEngine{
@@ -11,7 +9,7 @@ namespace DsdlEngine{
 	ResourceTexture::ResourceTexture(){}
 	ResourceTexture::~ResourceTexture(){}
 
-
+	//Load Texture
 	ResourceTexture ResourceTexture::loadTexture(std::string texturePath, SDL_Renderer* r){
 		ResourceTexture texture;
 		if (!texture.loadFromFile(texturePath, r))
@@ -21,6 +19,7 @@ namespace DsdlEngine{
 	}
 
 
+	//Load Sprite from file
 	bool ResourceTexture::loadFromFile(std::string texturePath, SDL_Renderer* r){
 
 		auto it = m_TextureMap.find(texturePath);
@@ -65,7 +64,33 @@ namespace DsdlEngine{
 	}
 
 
-	void ResourceTexture::render(int x, int y, SDL_Rect* clip, SDL_Renderer* r){
+	//Load ttf
+	bool ResourceTexture::loadTTF(std::string text, SDL_Color color, TTF_Font* font, SDL_Renderer* r){
+
+		SDL_Surface* textSurface = TTF_RenderText_Blended(font, text.c_str(), color);
+
+		SDL_Texture* newTexture = NULL;
+		if (textSurface == NULL){
+			DEBUG_MSG("TTF_RenderText_Blended Error : " + std::string(TTF_GetError()));
+		}
+		else{
+			newTexture = SDL_CreateTextureFromSurface(r, textSurface);
+			if (newTexture == NULL){
+				DEBUG_MSG("TTF_RenderText_Blended Error : " + std::string(TTF_GetError()));
+			}
+			else{
+				m_iWidth = textSurface->w;
+				m_iHeight = textSurface->h;
+			}
+
+			SDL_FreeSurface(textSurface);
+		}
+		m_Texture = newTexture;
+		return m_Texture != NULL;
+	}
+
+	//Basic render
+	void ResourceTexture::render(int x, int y, SDL_Renderer* r, SDL_Rect* clip){
 		//Set rendering space and render to screen
 		SDL_Rect renderQuad = { x, y, m_iWidth, m_iHeight };
 
@@ -80,6 +105,7 @@ namespace DsdlEngine{
 	}
 
 
+	//Clean up 
 	void ResourceTexture::destroy(){
 		if (m_Texture != NULL){
 			SDL_DestroyTexture(m_Texture);

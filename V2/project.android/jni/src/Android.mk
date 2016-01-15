@@ -31,6 +31,7 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.c\
 	../../../dsdl-engine/Sprite.cpp\
 	../../../dsdl-engine/Timing.cpp\
 	../../../dsdl-engine/Window.cpp\
+	../../../dsdl-engine/Label.cpp\
 	../../../classes/main.cpp\
 	../../../classes/mainGame.cpp
 

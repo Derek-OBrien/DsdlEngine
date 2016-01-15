@@ -1,5 +1,5 @@
 
-#include <SDL.h>
+#include "EngineDefines.h"
 #include "DsdlEngine.h"
 
 namespace DsdlEngine{
@@ -8,6 +8,7 @@ namespace DsdlEngine{
 		//Initialize SDL
 		SDL_Init(SDL_INIT_EVERYTHING);
 		
+		TTF_Init();
 
 		//SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
 

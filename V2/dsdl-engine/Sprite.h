@@ -1,9 +1,9 @@
 #ifndef _SPRITE_
 #define _SPRITE_
 
-#include "ResourceTexture.h"
 
 #include "EngineDefines.h"
+#include "ResourceTexture.h"
 
 namespace DsdlEngine{
 
@@ -31,7 +31,7 @@ namespace DsdlEngine{
 		texturePath = file path to sprite assest
 		r = pointer to window renderer
 		*/
-		void createSpriteWithBB(int x, int y, int w, int h, std::string texturePath, SDL_Renderer* r);
+		void createSpriteWithSpriteSheet(int x, int y, int w, int h, int f, int o, std::string texturePath, SDL_Renderer* r);
 		
 		
 		void createSpriteWithAnimation( SDL_Renderer* r);
@@ -49,7 +49,7 @@ namespace DsdlEngine{
 		int m_fWidth;
 		int m_fHeight;
 
-		int m_iFrames = 1;
+		int m_iFrames;
 		ResourceTexture m_SpriteTexture;
 		
 		SDL_Rect m_gSpriteClips[30];	//frames for animation

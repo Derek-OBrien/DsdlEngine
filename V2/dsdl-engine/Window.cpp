@@ -2,8 +2,6 @@
 
 #include "EngineError.h"
 
-#include <SDL_image.h>
-
 namespace DsdlEngine{
 
 	Window::Window(){}
@@ -17,12 +15,12 @@ namespace DsdlEngine{
 		//Load Window
 		m_pSdlWindow = SDL_CreateWindow(windowName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screenWidth, screenHeight, flag);
 		if (m_pSdlWindow == nullptr)
-			DEBUG_MSG("SDL Window not created");
+			DEBUG_MSG("SDL_CreateWindow Error : " + std::string(SDL_GetError()));
 
 		//Load Window renderer
 		m_pSdlRenderer = SDL_CreateRenderer(m_pSdlWindow, -1, SDL_RENDERER_ACCELERATED);
 		if (m_pSdlRenderer == nullptr)
-			DEBUG_MSG("SDL Renderer not created");
+			DEBUG_MSG("SDL_CreateRenderer Error : " + std::string(SDL_GetError()));
 
 		//Set initial draw color
 		SDL_SetRenderDrawColor(m_pSdlRenderer, 0, 0, 0, 255);
