@@ -4,13 +4,7 @@
 
 namespace DsdlEngine{
 
-	//Create Singleton
-	static SceneManager* SceneManagerInstance = 0;
-	SceneManager* SceneManager::getInstance(){
-		if (SceneManagerInstance == 0){
-			SceneManagerInstance = new SceneManager();
-		}
-		return SceneManagerInstance;
+	SceneManager::SceneManager(IMainGame* game) : m_pGame(game){
 	}
 
 	//Move to next scene
@@ -52,7 +46,6 @@ namespace DsdlEngine{
 		}
 		m_pScenes.resize(0);
 		m_iCurrentSceneIndex = SCENE_INDEX_NO_SCENE;
-		delete SceneManagerInstance;
 	}
 
 	//Return the current scene

@@ -3,11 +3,17 @@
 */
 
 
-#include "mainGame.h"
+//#include "mainGame.h"
+
+
+#include "Example\App.h"
 
 int main(int argc, char** argv){
 	
-	MainGame mainGame;
+
+	//SDL_Log("Entering Main\n");
+
+	App mainGame;
 	mainGame.run();
 
 	return 0;

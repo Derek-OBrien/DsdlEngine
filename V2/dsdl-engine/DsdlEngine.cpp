@@ -6,7 +6,11 @@ namespace DsdlEngine{
 
 	int init(){
 		//Initialize SDL
-		SDL_Init(SDL_INIT_EVERYTHING);
+		SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
+			
+		
+		SDL_Log("Log Print SDL Finised Init!\n");
+		
 		
 		TTF_Init();
 

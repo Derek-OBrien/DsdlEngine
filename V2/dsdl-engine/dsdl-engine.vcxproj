@@ -96,9 +96,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AudioManager.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="DsdlEngine.h" />
     <ClInclude Include="EngineDefines.h" />
     <ClInclude Include="EngineError.h" />
+    <ClInclude Include="Gui.h" />
     <ClInclude Include="Include.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="IScene.h" />
@@ -112,8 +114,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AudioManager.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="DsdlEngine.cpp" />
     <ClCompile Include="EngineError.cpp" />
+    <ClCompile Include="Gui.cpp" />
     <ClCompile Include="IMainGame.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Label.cpp" />

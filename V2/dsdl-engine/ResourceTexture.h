@@ -17,6 +17,9 @@ namespace DsdlEngine{
 		bool loadTTF(std::string text, SDL_Color color, TTF_Font* myFont, SDL_Renderer* r);
 		void render(int x, int y, SDL_Renderer* r, SDL_Rect* clip = NULL);
 
+		void setBlendMode(SDL_BlendMode blending);
+		void setAlpha(Uint8 alpha);
+
 		void destroy();
 	private:
 

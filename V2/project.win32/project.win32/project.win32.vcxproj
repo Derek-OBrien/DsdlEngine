@@ -11,10 +11,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\classes\Example\App.cpp" />
+    <ClCompile Include="..\..\classes\Example\GamePlayScene.cpp" />
+    <ClCompile Include="..\..\classes\Example\MainMenuScene.cpp" />
     <ClCompile Include="..\..\classes\main.cpp" />
     <ClCompile Include="..\..\classes\mainGame.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\classes\Example\App.h" />
+    <ClInclude Include="..\..\classes\Example\GameDefines.h" />
+    <ClInclude Include="..\..\classes\Example\GamePlayScene.h" />
+    <ClInclude Include="..\..\classes\Example\MainMenuScene.h" />
     <ClInclude Include="..\..\classes\mainGame.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

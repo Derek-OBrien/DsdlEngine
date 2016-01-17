@@ -118,4 +118,14 @@ namespace DsdlEngine{
 			SDL_DestroyTexture(it.second);
 		}
 	}
+
+	void ResourceTexture::setBlendMode(SDL_BlendMode blend){
+		SDL_SetTextureBlendMode(m_Texture, blend);
+	}
+
+	void ResourceTexture::setAlpha(Uint8 alpha){
+		//Modulate texture alpha
+		SDL_SetTextureAlphaMod(m_Texture, alpha);
+	}
+
 }

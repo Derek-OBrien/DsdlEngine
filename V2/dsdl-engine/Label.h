@@ -24,6 +24,8 @@ namespace DsdlEngine{
 		int m_fHeight;
 
 		int m_iFrames;
+		//Font
+		TTF_Font* font = NULL;
 
 
 		std::map<std::string, TTF_Font*> m_FontMap;

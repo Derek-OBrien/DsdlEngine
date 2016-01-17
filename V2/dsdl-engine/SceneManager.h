@@ -9,9 +9,9 @@ namespace DsdlEngine{
 
 	class SceneManager{
 	public:
-		static SceneManager* getInstance();
+	
 
-
+		SceneManager(IMainGame* game);
 		~SceneManager(){ destroy(); };
 
 		IScene* moveNext();
@@ -29,9 +29,7 @@ namespace DsdlEngine{
 		std::vector<IScene*> m_pScenes;
 		int m_iCurrentSceneIndex = -1;
 	
-	private:
-		SceneManager(){ m_iCurrentSceneIndex = 0; };
-
+	
 	};
 }
 #endif

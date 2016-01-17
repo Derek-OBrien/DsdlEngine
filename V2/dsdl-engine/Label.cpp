@@ -3,9 +3,6 @@
 
 namespace DsdlEngine{
 
-	//Font
-	TTF_Font* font = NULL;
-
 	Label::Label(){}
 
 	Label::~Label(){}

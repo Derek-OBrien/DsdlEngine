@@ -7,7 +7,7 @@
 
 namespace DsdlEngine{
 	IMainGame::IMainGame(){
-		m_pSceneManager->getInstance();
+		m_pSceneManager = std::make_unique<SceneManager>(this);
 	}
 
 	IMainGame::~IMainGame(){}
@@ -54,11 +54,13 @@ namespace DsdlEngine{
 
 		m_pCurrentRunning->onExitScene();
 
-		if (m_pSceneManager->getInstance()){
-			m_pSceneManager->getInstance()->destroy();
+		if (m_pSceneManager){
+			m_pSceneManager->destroy();
+			m_pSceneManager.reset();
 		}
 		m_bIsRunning = false;
 	}
+
 
 	void IMainGame::onSDLEvent(SDL_Event& evnt){
 
@@ -95,7 +97,7 @@ namespace DsdlEngine{
 		onInit();
 		addScenes();
 
-		m_pCurrentRunning = m_pSceneManager->getInstance()->getCurrentScene();
+		m_pCurrentRunning = m_pSceneManager->getCurrentScene();
 		m_pCurrentRunning->onEntryScene();
 		m_pCurrentRunning->setSceneRunning();
 
@@ -103,9 +105,9 @@ namespace DsdlEngine{
 	}
 
 	bool IMainGame::initSystems(){
-	//	m_Window.createWindow("Dsdl Engine", 1024, 680, SDL_WINDOW_OPENGL);
+		m_Window.createWindow("Dsdl Engine", 1024, 680, SDL_WINDOW_OPENGL);
 		
-	//	m_pGameRenderer = m_Window.getRenderer();
+		m_pGameRenderer = m_Window.getRenderer();
 		return true;
 	}
 
@@ -147,14 +149,14 @@ namespace DsdlEngine{
 	void IMainGame::draw(){
 		if (m_pCurrentRunning && m_pCurrentRunning->getSceneState() == SceneState::RUNNING){
 			
-			//SDL_RenderClear(m_window.getRenderer());
+			SDL_RenderClear(m_Window.getRenderer());
 
 
 			m_pCurrentRunning->drawScene();
 
-			//m_window.swapBuffer();
-			//SDL_SetRenderDrawColor(m_window.getRenderer(), 0x00, 0x00, 0x00, 0xff);
-			//SDL_RenderPresent(m_window.getRenderer());
+			m_Window.swapBuffer();
+			SDL_SetRenderDrawColor(m_Window.getRenderer(), 0x00, 0x00, 0x00, 0xff);
+			SDL_RenderPresent(m_Window.getRenderer());
 
 		}
 
