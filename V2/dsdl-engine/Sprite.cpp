@@ -7,7 +7,7 @@ namespace DsdlEngine{
 
 	Sprite::~Sprite(){}
 
-	void Sprite::createSprite(int x, int y, int w, int h, std::string texturePath, SDL_Renderer* r){
+	ResourceTexture* Sprite::createSprite(int x, int y, int w, int h, std::string texturePath, SDL_Renderer* r){
 
 		m_fPosX = x;
 		m_fPosY = y;
@@ -33,6 +33,8 @@ namespace DsdlEngine{
 			objectBoundingBox.h = m_fHeight;
 
 		}
+
+		return &m_SpriteTexture;
 	}
 
 

@@ -17,7 +17,6 @@ namespace DsdlEngine{
 		m_BtnPosX = posX;
 		m_BtnPosY = posY;
 
-		m_pButtonTexture = m_label.create(buttonText, textSize, textColor, fontPath, r);
 
 		rect.h = m_BtnHeight;
 		rect.w = m_BtnWidth;
@@ -26,12 +25,23 @@ namespace DsdlEngine{
 
 		buttonbg = bgColor;
 
+
+		m_pButtonTexture = m_label.create(buttonText, textSize, textColor, fontPath, r);
 	}
 
 
-	void Button::createSpriteButton(int width, int height, SDL_Renderer* r, std::string imagePath){
-		
-		//m_pButtonTexture = m_spriteBtn.createSprite(width, height, width, height, imagePath, r);
+	void Button::createSpriteButton(int posX, int posY, int width, int height, SDL_Renderer* r, std::string imagePath){
+		m_BtnHeight = height;
+		m_BtnWidth = width;
+		m_BtnPosX = posX;
+		m_BtnPosY = posY;
+
+		rect.h = m_BtnHeight;
+		rect.w = m_BtnWidth;
+		rect.x = m_BtnPosX;
+		rect.y = m_BtnPosY;
+
+		m_pButtonTexture = m_spriteBtn.createSprite(m_BtnPosX, m_BtnPosY, m_BtnWidth, m_BtnHeight, imagePath, r);
 	}
 
 
