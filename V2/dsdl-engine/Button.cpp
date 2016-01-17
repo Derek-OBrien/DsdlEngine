@@ -26,7 +26,7 @@ namespace DsdlEngine{
 		buttonbg = bgColor;
 
 
-		m_pButtonTexture = m_label.create(buttonText, textSize, textColor, fontPath, r);
+		m_pButtonTexture = m_label.create(posX, posY, buttonText, textSize, textColor, fontPath, r);
 	}
 
 
@@ -74,7 +74,6 @@ namespace DsdlEngine{
 	//Set State to Pressd, Preform Action
 	void Button::onClicked(){
 		m_eCurrentState = ButtonState::PRESSED;
-
 		DEBUG_MSG("Pressed button");
 	}
 

@@ -28,6 +28,8 @@ namespace DsdlEngine{
 		virtual void onExit() = 0;
 
 
+		void setupWindow(int w, int h, std::string windowName);
+
 		const float getFps() const{return m_fFps;}
 		void onSDLEvent(SDL_Event& evnt);
 
@@ -38,9 +40,10 @@ namespace DsdlEngine{
 		bool init();
 		bool initSystems();
 
-		//SDL_Renderer* getGameRenderer(){ return m_pGameRenderer; }
-		
-		//SceneManager* m_pSceneManager;
+		int m_windowWidth;
+		int m_windowHeight;
+		std::string windowtitle;
+
 		std::unique_ptr<SceneManager> m_pSceneManager = nullptr;
 
 		IScene* m_pCurrentRunning = nullptr;

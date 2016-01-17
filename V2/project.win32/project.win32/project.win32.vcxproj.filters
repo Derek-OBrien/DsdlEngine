@@ -30,6 +30,9 @@
     <ClCompile Include="..\..\classes\Example\GamePlayScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\classes\Example\Box.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\classes\mainGame.h">
@@ -45,6 +48,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\classes\Example\GamePlayScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\classes\Example\Box.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

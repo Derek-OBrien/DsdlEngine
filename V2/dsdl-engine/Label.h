@@ -1,17 +1,19 @@
 #ifndef _LABEL_
 #define _LABEL_
 
-#include "EngineDefines.h"
-#include "ResourceTexture.h"
+#include "EngineBaseNode.h"
+
 namespace DsdlEngine{
-	class Label
+	class Label : public EngineBaseNode
 	{
 	public:
 		Label();
 		~Label();
 
-		ResourceTexture* create(std::string text, int size, SDL_Color color, std::string fontPath, SDL_Renderer* r);
-		void render(int x, int y, SDL_Renderer* r);
+		ResourceTexture* create(int x, int y,std::string text, int size, SDL_Color color, std::string fontPath, SDL_Renderer* r);
+	
+		
+		void render(SDL_Renderer* r) override;
 
 		//ResourceTexture* loadTTF(std::string text, int size, SDL_Color color);
 	private:

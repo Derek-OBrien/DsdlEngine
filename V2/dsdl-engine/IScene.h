@@ -1,7 +1,6 @@
 #ifndef _ISCENE_
 #define _ISCENE_
 
-
 #define SCENE_INDEX_NO_SCENE -1
 
 namespace DsdlEngine{
@@ -37,6 +36,10 @@ namespace DsdlEngine{
 		virtual void drawScene() = 0;
 
 		virtual void addChild() = 0;
+
+		virtual void renderChildNodes() = 0;
+
+
 
 		int getSceneIndex() const{ return m_iSceneIndex; }
 

@@ -1,26 +1,27 @@
 #ifndef _BUTTON_
 #define _BUTTON_
 
-#include "EngineDefines.h"
-#include "ResourceTexture.h"
+#include "EngineBaseNode.h"
+
 #include "Label.h"
 #include "Sprite.h"
 
-#include <functional>
-
 namespace DsdlEngine{
-	
 
-	class Label;
-	class Sprite;
+	//call bacck function
+	typedef std::function<void(const int&)> buttonCallBack;
+
 
 	enum class ButtonState{
 		NORMAL,
 		PRESSED,
 		HOVERING
 	};
-	class Button{
+
+
+	class Button : public EngineBaseNode{
 	public:
+
 		Button();
 		~Button();
 
@@ -29,7 +30,11 @@ namespace DsdlEngine{
 
 		void createSpriteButton(int posX, int posY, int width, int height, SDL_Renderer* r, std::string imagePath);
 
-		void render( SDL_Renderer* r);
+		//void render(SDL_Renderer* r) ; // override;
+
+
+		void render(SDL_Renderer* r) override;
+
 		//Set State to Hovering
 		void onMouseEnters();
 

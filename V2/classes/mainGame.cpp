@@ -31,9 +31,9 @@ void MainGame::initSystems(){
 
 	m_Player.createSpriteWithSpriteSheet(100, 200, 70, 79,5,0,  "../../assets/blue_ninja.png", m_window.getRenderer());
 
-	m_Label.create("Dsdl Engine Demo", 70, SDL_Color{ 255, 0, 0 }, "../../assets/fonts/font.ttf", m_window.getRenderer());
+	m_Label.create(100,100,"Dsdl Engine Demo", 70, SDL_Color{ 255, 0, 0 }, "../../assets/fonts/font.ttf", m_window.getRenderer());
 
-	m_Label2.create("Dsdl Engine Demo 2", 70, SDL_Color{ 255, 0, 0 }, "../../assets/fonts/font.ttf", m_window.getRenderer());
+	m_Label2.create(200,200,"Dsdl Engine Demo 2", 70, SDL_Color{ 255, 0, 0 }, "../../assets/fonts/font.ttf", m_window.getRenderer());
 
 }
 
@@ -127,12 +127,12 @@ void MainGame::processInput(){
 void MainGame::draw(){
 	SDL_RenderClear(m_window.getRenderer());
 
-	m_Label.render(200, 50, m_window.getRenderer());
+	m_Label.render( m_window.getRenderer());
 
 	// Draw palyer
-	m_Player.draw(m_window.getRenderer());
+	m_Player.render(m_window.getRenderer());
 
-	m_Label2.render(200, 400, m_window.getRenderer());
+	m_Label2.render(m_window.getRenderer());
 
 	m_window.swapBuffer();
 	SDL_SetRenderDrawColor(m_window.getRenderer(), 0x00, 0x00, 0x00, 0xff);

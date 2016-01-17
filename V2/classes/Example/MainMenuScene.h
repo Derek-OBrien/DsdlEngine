@@ -29,6 +29,7 @@ public:
 
 	virtual void addChild() override;
 
+	virtual void renderChildNodes() override;
 
 private:
 

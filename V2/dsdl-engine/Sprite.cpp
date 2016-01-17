@@ -52,7 +52,7 @@ namespace DsdlEngine{
 	}
 
 
-	void Sprite::draw(SDL_Renderer* r){
+	void Sprite::render(SDL_Renderer* r){
 		createSpriteWithAnimation(r);
 		m_SpriteTexture.render(m_fPosX, m_fPosY, r, m_gSpriteClips);
 

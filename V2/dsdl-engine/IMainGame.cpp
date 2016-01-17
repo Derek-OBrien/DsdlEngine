@@ -46,7 +46,7 @@ namespace DsdlEngine{
 			m_fFps = fpsLimit.end();
 			//std::cout << m_fFps << std::endl;
 
-		//	m_Window.swapBuffer();
+		m_Window.swapBuffer();
 		}
 	}
 
@@ -87,14 +87,20 @@ namespace DsdlEngine{
 		}
 	}
 
+	void IMainGame::setupWindow(int w, int h, std::string windowName){
+		m_windowWidth = w;
+		m_windowHeight = h;
+
+		windowtitle = windowName;
+	}
+
 	bool IMainGame::init(){
 		DsdlEngine::init();
 		m_audioManager.init();
-
+		onInit();
 
 
 		if (!initSystems()) return false;
-		onInit();
 		addScenes();
 
 		m_pCurrentRunning = m_pSceneManager->getCurrentScene();
@@ -105,7 +111,7 @@ namespace DsdlEngine{
 	}
 
 	bool IMainGame::initSystems(){
-		m_Window.createWindow("Dsdl Engine", 1024, 680, SDL_WINDOW_OPENGL);
+		m_Window.createWindow(windowtitle, m_windowWidth, m_windowHeight, SDL_WINDOW_OPENGL);
 		
 		m_pGameRenderer = m_Window.getRenderer();
 		return true;

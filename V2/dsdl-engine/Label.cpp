@@ -8,7 +8,10 @@ namespace DsdlEngine{
 	Label::~Label(){}
 
 	//// Load and Create text texture
-	ResourceTexture* Label::create(std::string text, int size, SDL_Color color, std::string fontPath, SDL_Renderer* r){
+	ResourceTexture* Label::create(int x, int y, std::string text, int size, SDL_Color color, std::string fontPath, SDL_Renderer* r){
+
+		m_fPosX = x;
+		m_fPosY = y;
 
 		if (!TTF_WasInit()){
 			TTF_Init();
@@ -43,8 +46,8 @@ namespace DsdlEngine{
 	}
 
 
-	void Label::render(int x, int y, SDL_Renderer* r){
+	void Label::render( SDL_Renderer* r){
 
-		m_pTextTexture->render(x, y, r);
+		m_pTextTexture->render(m_fPosX, m_fPosY, r);
 	}
 }

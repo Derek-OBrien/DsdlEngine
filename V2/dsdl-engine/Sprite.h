@@ -1,13 +1,11 @@
 #ifndef _SPRITE_
 #define _SPRITE_
 
-
-#include "EngineDefines.h"
-#include "ResourceTexture.h"
+#include "EngineBaseNode.h"
 
 namespace DsdlEngine{
 
-	class Sprite
+	class Sprite :public EngineBaseNode
 	{
 	public:
 		Sprite();
@@ -37,8 +35,10 @@ namespace DsdlEngine{
 		void createSpriteWithAnimation( SDL_Renderer* r);
 
 
-		void draw(SDL_Renderer* renderer);
+		//void draw(SDL_Renderer* renderer);
 
+
+		void render(SDL_Renderer* r) override;
 
 		void setPosX(int x){ m_fPosX += x; objectBoundingBox.x += x; }
 		void setPosY(int y){ m_fPosY += y; objectBoundingBox.y += y; }

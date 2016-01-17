@@ -9,6 +9,8 @@
 #include <dsdl-engine\Label.h>
 #include <dsdl-engine\InputManager.h>
 
+#include "Box.h"
+
 
 class GamePlayScene : public DsdlEngine::IScene{
 public:
@@ -28,6 +30,7 @@ public:
 	virtual void drawScene() override;
 
 	virtual void addChild() override;
+	virtual void renderChildNodes() override;
 
 private:
 
@@ -39,9 +42,15 @@ private:
 	DsdlEngine::Sprite m_sprite;
 	DsdlEngine::Window* m_window;
 	DsdlEngine::Label m_label;
+	DsdlEngine::InputManager m_inputManager;
 
+	std::unique_ptr<b2World> m_World;
 
+	std::vector<Box> boxes;
+	Box newBox;
 };
+
+
 
 
 
