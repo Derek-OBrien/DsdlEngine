@@ -87,12 +87,6 @@ void MainMenuScene::checkInput(){
 			break;
 		}
 	}
-
-	if (m_inputManager.isKeyDown(SDLK_a)){
-		onNewGameClicked();
-		DEBUG_MSG("A button pressed Should Change scene");
-	}
-
 }
 
 bool MainMenuScene::onNewGameClicked(){

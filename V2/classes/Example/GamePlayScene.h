@@ -50,7 +50,7 @@ private:
 	DsdlEngine::ResourceTexture m_texture;
 
 
-	std::unique_ptr<b2World> m_World;
+	b2World* m_World;
 	std::vector<Box> boxes;
 };
 

@@ -7,7 +7,16 @@ Box::~Box(){}
 
 void Box::init(b2World* world, float x, float y, float w, float h, DsdlEngine::ResourceTexture tex){
 	m_tex = tex;
-	
+
+
+	posX = x;
+	posY = y;
+
+	rect.x = x;
+	rect.y = y;
+	rect.w = w;
+	rect.h = h;
+
 	b2BodyDef bodyDef;
 
 
@@ -27,20 +36,13 @@ void Box::init(b2World* world, float x, float y, float w, float h, DsdlEngine::R
 
 	fixture = body->CreateFixture(&fixtureDef);
 
-	posX = x;
-	posY = y;
-
-	rect.x = x;
-	rect.y = y;
-	rect.w = w;
-	rect.h = h;
 }
 
 void Box::draw(SDL_Renderer* r){
 
-	m_tex.render(posX, posY, r, 0);
+	m_tex.render(body->GetPosition().x, body->GetPosition().y, r, 0);
 
-	SDL_SetRenderDrawColor(r, 0x00, 0xff, 0x00, 0xff);
-	SDL_RenderDrawRect(r, &rect);
+	//SDL_SetRenderDrawColor(r, 0x00, 0xff, 0x00, 0xff);
+	//SDL_RenderDrawRect(r, &rect);
 
 }

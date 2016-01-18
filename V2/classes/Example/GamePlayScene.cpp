@@ -26,8 +26,8 @@ void GamePlayScene::destroyScene(){
 
 void GamePlayScene::onEntryScene(){
 
-	b2Vec2 gravity(0.0f, -25.8f);
-	m_World = std::make_unique<b2World>(gravity);
+	b2Vec2 gravity(0.0f, 25.8f);
+	m_World = new b2World(gravity);
 
 	m_texture = m_texture.loadTexture("../../assets/bricks.png", m_window->getRenderer());
 
@@ -35,23 +35,26 @@ void GamePlayScene::onEntryScene(){
 
 	// Make the ground
 	b2BodyDef groundBodyDef;
+	groundBodyDef.type = b2_staticBody;
+
 	groundBodyDef.position.Set(0.0f, 25.0f);
 	b2Body* groundBody = m_World->CreateBody(&groundBodyDef);
+
 	// Make the ground fixture
 	b2PolygonShape groundBox;
-	groundBox.SetAsBox(50.0f, 10.0f);
-	groundBody->CreateFixture(&groundBox, 0.0f);
+	groundBox.SetAsBox(1024.0f, 100.0f);
+	groundBody->CreateFixture(&groundBox, 1.0f);
 
 
 	// Make a bunch of boxes
 	std::mt19937 randGenerator;
-	std::uniform_real_distribution<float> xPos(0, m_window->getScreenWidth() - 300);
-	std::uniform_real_distribution<float> yPos(0, m_window->getScreenHeight() - 300);
-	const int NUM_BOXES = 100;
+	std::uniform_real_distribution<float> xPos(100, m_window->getScreenWidth() - 300);
+	std::uniform_real_distribution<float> yPos(20, m_window->getScreenHeight() - 300);
+	const int NUM_BOXES = 20;
 
 	for (int i = 0; i < NUM_BOXES; i++) {
 		Box newBox;
-		newBox.init(m_World.get(), xPos(randGenerator), yPos(randGenerator), 20, 20, m_texture);
+		newBox.init(m_World, xPos(randGenerator), yPos(randGenerator), 50, 50, m_texture);
 		boxes.push_back(newBox);
 	}
 }
@@ -67,6 +70,14 @@ void GamePlayScene::updateScene(){
 	// Update the physics simulation
 	m_World->Step(1.0f / 60.0f, 6, 2);
 
+	for (int i = 0; i < boxes.size(); i++){
+		// Now print the position and angle of the body.
+		b2Vec2 position = boxes.at(i).getbody()->GetPosition();
+		float32 angle = boxes.at(i).getbody()->GetAngle();
+
+		printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
+
+	}
 }
 
 void GamePlayScene::drawScene(){
