@@ -9,8 +9,7 @@
 namespace DsdlEngine{
 
 	//call bacck function
-	typedef std::function<void(const int&)> buttonCallBack;
-
+	typedef bool(*buttonCallBack)(bool func());
 
 	enum class ButtonState{
 		NORMAL,
@@ -42,7 +41,7 @@ namespace DsdlEngine{
 		void onMouseLeaves();
 
 		//Set State to Pressd, Preform Action
-		void onClicked();
+		void onClicked(buttonCallBack);
 
 		//Check for mouse input on a button
 		void checkInput(SDL_Event& e);

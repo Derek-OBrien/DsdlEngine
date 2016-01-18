@@ -72,9 +72,11 @@ namespace DsdlEngine{
 	}
 
 	//Set State to Pressd, Preform Action
-	void Button::onClicked(){
+	void Button::onClicked(buttonCallBack){
 		m_eCurrentState = ButtonState::PRESSED;
 		DEBUG_MSG("Pressed button");
+
+		buttonCallBack();
 	}
 
 
@@ -118,7 +120,7 @@ namespace DsdlEngine{
 					onMouseEnters();
 					break;
 				case SDL_MOUSEBUTTONDOWN:
-					onClicked();
+					onClicked(buttonCallBack());
 					break;
 				default:
 					break;

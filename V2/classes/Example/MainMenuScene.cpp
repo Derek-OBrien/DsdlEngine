@@ -83,6 +83,7 @@ void MainMenuScene::checkInput(){
 			break;
 		case SDL_MOUSEBUTTONUP:
 			m_inputManager.releaseKey(evnt.button.button);
+			m_button.onClicked(DsdlEngine::buttonCallBack(onNewGameClicked()));
 			break;
 		}
 	}

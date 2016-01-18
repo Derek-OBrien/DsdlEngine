@@ -10,6 +10,8 @@
 #include <dsdl-engine\InputManager.h>
 
 #include "Box.h"
+#include <Box2D\Box2D.h>
+#include <random>
 
 
 class GamePlayScene : public DsdlEngine::IScene{
@@ -38,16 +40,18 @@ private:
 	void checkInput();
 
 	int m_sceneIndex = SCENE_INDEX_NO_SCENE;
+
+
 	//DsdlEngine::InputManager m_input;
 	DsdlEngine::Sprite m_sprite;
 	DsdlEngine::Window* m_window;
 	DsdlEngine::Label m_label;
 	DsdlEngine::InputManager m_inputManager;
+	DsdlEngine::ResourceTexture m_texture;
+
 
 	std::unique_ptr<b2World> m_World;
-
 	std::vector<Box> boxes;
-	Box newBox;
 };
 
 
