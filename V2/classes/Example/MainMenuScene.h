@@ -25,11 +25,12 @@ public:
 	virtual void onExitScene() override;
 
 	virtual void updateScene() override;
+
 	virtual void drawScene() override;
 
-	virtual void addChild() override;
+	//virtual void addChild() override;
 
-	virtual void renderChildNodes() override;
+	//virtual void renderChildNodes() override;
 
 private:
 

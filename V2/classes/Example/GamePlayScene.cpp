@@ -32,6 +32,7 @@ void GamePlayScene::onEntryScene(){
 	m_texture = m_texture.loadTexture("bricks.png", m_window->getRenderer());
 
 	m_label.create(100, 100,"GamePlay Scene", 70, SDL_Color{ 200, 200, 0 }, "fonts/font.ttf", m_window->getRenderer());
+	addChild(m_label);
 
 	// Make the ground
 	b2BodyDef groundBodyDef;
@@ -56,6 +57,7 @@ void GamePlayScene::onEntryScene(){
 		Box newBox;
 		newBox.init(m_World, xPos(randGenerator), yPos(randGenerator), 50, 50, m_texture);
 		boxes.push_back(newBox);
+		
 	}
 }
 
@@ -82,7 +84,6 @@ void GamePlayScene::updateScene(){
 
 void GamePlayScene::drawScene(){
 
-	m_label.render( m_window->getRenderer());
 
 	for (int i = 0; i < boxes.size(); i++){
 
@@ -91,13 +92,18 @@ void GamePlayScene::drawScene(){
 }
 
 
-void GamePlayScene::addChild(){
+/*void GamePlayScene::addChild(){
 
+	sceneChildren.push_back(m_label);
+	
 }
 
 void GamePlayScene::renderChildNodes(){
 
-}
+	for (int i = 0; i < sceneChildren.size(); i++){
+		sceneChildren.at(i).render(m_window->getRenderer());
+	}
+}*/
 
 void GamePlayScene::checkInput(){
 

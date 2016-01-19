@@ -37,21 +37,23 @@ namespace DsdlEngine{
 		virtual void updateScene() = 0;
 		virtual void drawScene() = 0;
 
-		virtual void addChild() = 0;
+		//Add all game nodes to the scene
+		void addChild(EngineBaseNode node) { sceneChildren.push_back(node); }
 
-		virtual void renderChildNodes() = 0;
+		//virtual void renderChildNodes() = 0;
 
 
 
 		int getSceneIndex() const{ return m_iSceneIndex; }
 
 		SceneState getSceneState() const { return m_eCurrentState; }
-		//void setParentGame(IMainGame* game){ m_pGame = game; }
 		void setSceneRunning(){ m_eCurrentState = SceneState::RUNNING; }
 
+
+		//void setParentGame(IMainGame* game){ m_pGame = game; }
 		//IMainGame* getParentGame(){ return m_pGame; }
 
-
+		//Vector tp hold game nodes
 		std::vector<EngineBaseNode> sceneChildren;
 
 	protected:

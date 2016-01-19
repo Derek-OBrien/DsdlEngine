@@ -12,6 +12,9 @@ namespace DsdlEngine{
 
 	IMainGame::~IMainGame(){}
 	
+	/*
+		Main engine Game Loop
+	*/
 	void IMainGame::run(){
 		if (!init()) return;
 
@@ -50,16 +53,6 @@ namespace DsdlEngine{
 		}
 	}
 
-	void IMainGame::exitGame(){
-
-		m_pCurrentRunning->onExitScene();
-
-		if (m_pSceneManager){
-			m_pSceneManager->destroy();
-			m_pSceneManager.reset();
-		}
-		m_bIsRunning = false;
-	}
 
 
 	void IMainGame::onSDLEvent(SDL_Event& evnt){
@@ -105,7 +98,6 @@ namespace DsdlEngine{
 		
 		m_pCurrentRunning = m_pSceneManager->getCurrentScene();
 		m_pCurrentRunning->onEntryScene();
-		m_pCurrentRunning->addChild();
 		m_pCurrentRunning->setSceneRunning();
 
 		return true;
@@ -117,6 +109,7 @@ namespace DsdlEngine{
 		m_pGameRenderer = m_Window.getRenderer();
 		return true;
 	}
+
 
 
 	void IMainGame::update(){
@@ -153,6 +146,8 @@ namespace DsdlEngine{
 		}
 	}
 	
+
+
 	void IMainGame::draw(){
 		if (m_pCurrentRunning && m_pCurrentRunning->getSceneState() == SceneState::RUNNING){
 			
@@ -161,11 +156,31 @@ namespace DsdlEngine{
 
 			m_pCurrentRunning->drawScene();
 
+			//for running scene 
+			//render each node that is in the child vector
+			for (int i = 0; i < m_pCurrentRunning->sceneChildren.size(); i++){
+				m_pCurrentRunning->sceneChildren.at(i).render(m_Window.getRenderer());
+			}
+
+
 			m_Window.swapBuffer();
 			SDL_SetRenderDrawColor(m_Window.getRenderer(), 0x00, 0x00, 0x00, 0xff);
 			SDL_RenderPresent(m_Window.getRenderer());
 
 		}
 
+	}
+
+
+
+	void IMainGame::exitGame(){
+
+		m_pCurrentRunning->onExitScene();
+
+		if (m_pSceneManager){
+			m_pSceneManager->destroy();
+			m_pSceneManager.reset();
+		}
+		m_bIsRunning = false;
 	}
 }

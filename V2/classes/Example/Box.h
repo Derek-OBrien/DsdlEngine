@@ -19,7 +19,7 @@ public:
 
 	SDL_Rect getboxRect(){ return rect; }
 
-
+	DsdlEngine::ResourceTexture getTexture() { return m_tex; }
 	void draw(SDL_Renderer* r);
 private:
 	SDL_Rect rect;
