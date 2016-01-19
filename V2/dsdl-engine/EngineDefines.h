@@ -11,7 +11,9 @@
 //#include <SDL_mixer.h>
 
 
-#include <Box2D\Box2D.h>
+//#include <Box2D\Box2D.h>
+
+#include "../dependencies/Box2D/Box2D/Box2D/Box2D.h"
 
 #include <string>
 #include <iostream>

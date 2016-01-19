@@ -15,7 +15,7 @@ namespace DsdlEngine{
 
 		ResourceTexture* create(std::string texturePath, SDL_Renderer* r);
 
-		void render(SDL_Renderer* r) override;
+		void render(SDL_Renderer* r);
 
 
 	private:

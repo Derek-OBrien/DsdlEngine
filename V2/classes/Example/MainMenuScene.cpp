@@ -26,9 +26,9 @@ void MainMenuScene::destroyScene(){
 }
 
 void MainMenuScene::onEntryScene(){
-	m_label.create(300,200,"Main Menu", 70, SDL_Color{ 200, 200, 0 }, "../../assets/fonts/font.ttf", m_window->getRenderer());
-	m_button.createTextButton(200, 300, 200, 50, 30, "New Game", m_window->getRenderer(), "../../assets/fonts/font.ttf", SDL_Color{ 255, 0, 0 }, SDL_Color{ NULL, NULL, NULL });
-	m_SpriteButton.createSpriteButton(400, 400, 100, 100, m_window->getRenderer(), "../../assets/Character.png");
+	m_label.create(300,200,"Main Menu", 70, SDL_Color{ 200, 200, 0 }, "fonts/font.ttf", m_window->getRenderer());
+	m_button.createTextButton(200, 300, 200, 50, 30, "New Game", m_window->getRenderer(), "fonts/font.ttf", SDL_Color{ 255, 0, 0 }, SDL_Color{ NULL, NULL, NULL });
+	//m_SpriteButton.createSpriteButton(400, 400, 100, 100, m_window->getRenderer(), "Character.png");
 }
 
 void MainMenuScene::onExitScene(){
@@ -42,17 +42,26 @@ void MainMenuScene::updateScene(){
 }
 
 void MainMenuScene::drawScene(){
-	m_label.render(m_window->getRenderer());
-	m_button.render( m_window->getRenderer());
-	m_SpriteButton.render(m_window->getRenderer());
+	
+	renderChildNodes();
+
+	//m_label.render(m_window->getRenderer());
+	//m_button.render( m_window->getRenderer());
+	//m_SpriteButton.render(m_window->getRenderer());
 }
 
 void MainMenuScene::addChild(){
 
+	sceneChildren.push_back(m_label);
+	sceneChildren.push_back(m_button);
+	//sceneChildren.push_back(m_SpriteButton);
 }
 
 void MainMenuScene::renderChildNodes(){
 
+	for (int i = 0; i < sceneChildren.size(); i ++){
+		sceneChildren.at(i).render(m_window->getRenderer());
+	}
 }
 
 void MainMenuScene::checkInput(){

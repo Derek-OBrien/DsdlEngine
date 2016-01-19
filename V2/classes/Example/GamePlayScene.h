@@ -10,7 +10,8 @@
 #include <dsdl-engine\InputManager.h>
 
 #include "Box.h"
-#include <Box2D\Box2D.h>
+//#include <Box2D\Box2D.h>
+#include "../../dependencies/Box2D/Box2D/Box2D/Box2D.h"
 #include <random>
 
 

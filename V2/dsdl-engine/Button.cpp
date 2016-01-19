@@ -14,8 +14,8 @@ namespace DsdlEngine{
 
 		m_BtnHeight = height;
 		m_BtnWidth = width;
-		m_BtnPosX = posX;
-		m_BtnPosY = posY;
+		m_posX = posX;
+		m_posY = posY;
 
 
 		rect.h = m_BtnHeight;
@@ -26,22 +26,22 @@ namespace DsdlEngine{
 		buttonbg = bgColor;
 
 
-		m_pButtonTexture = m_label.create(posX, posY, buttonText, textSize, textColor, fontPath, r);
+		engineTexture = m_label.create(m_posX, m_posY, buttonText, textSize, textColor, fontPath, r);
 	}
 
 
 	void Button::createSpriteButton(int posX, int posY, int width, int height, SDL_Renderer* r, std::string imagePath){
 		m_BtnHeight = height;
 		m_BtnWidth = width;
-		m_BtnPosX = posX;
-		m_BtnPosY = posY;
+		m_posX = posX;
+		m_posY = posY;
 
 		rect.h = m_BtnHeight;
 		rect.w = m_BtnWidth;
 		rect.x = m_BtnPosX;
 		rect.y = m_BtnPosY;
 
-		m_pButtonTexture = m_spriteBtn.createSprite(m_BtnPosX, m_BtnPosY, m_BtnWidth, m_BtnHeight, imagePath, r);
+		engineTexture = m_spriteBtn.createSprite(m_posX, m_posY, m_BtnWidth, m_BtnHeight, imagePath, r);
 	}
 
 
@@ -56,7 +56,7 @@ namespace DsdlEngine{
 		SDL_RenderDrawRect(r, &rect);
 
 
-		m_pButtonTexture->render(m_BtnPosX, m_BtnPosY, r);
+		engineTexture->render(m_posX, m_posY, r);
 	}
 
 
@@ -94,16 +94,16 @@ namespace DsdlEngine{
 			bool inside = true;
 
 			//Check if mouse inside button
-			if (x < m_BtnPosX){
+			if (x < m_posX){
 				inside = false;
 			}
-			else if (x > m_BtnPosX + m_BtnWidth){
+			else if (x > m_posX + m_BtnWidth){
 				inside = false;
 			}
-			else if (y < m_BtnPosY){
+			else if (y < m_posY){
 				inside = false;
 			}
-			else if (y > m_BtnPosY + m_BtnHeight){
+			else if (y > m_posY + m_BtnHeight){
 				inside = false;
 			}
 

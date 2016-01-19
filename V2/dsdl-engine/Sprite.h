@@ -38,7 +38,7 @@ namespace DsdlEngine{
 		//void draw(SDL_Renderer* renderer);
 
 
-		void render(SDL_Renderer* r) override;
+		void render(SDL_Renderer* r);
 
 		void setPosX(int x){ m_fPosX += x; objectBoundingBox.x += x; }
 		void setPosY(int y){ m_fPosY += y; objectBoundingBox.y += y; }

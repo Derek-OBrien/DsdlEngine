@@ -10,44 +10,47 @@ namespace DsdlEngine{
 	//// Load and Create text texture
 	ResourceTexture* Label::create(int x, int y, std::string text, int size, SDL_Color color, std::string fontPath, SDL_Renderer* r){
 
-		m_fPosX = x;
-		m_fPosY = y;
+		m_posX = x;
+		m_posY = y;
 
 		if (!TTF_WasInit()){
 			TTF_Init();
 		}
 
+		std::string temp = "../../assets/" + fontPath;
+
+
 		//Check if font in chache
-		auto it = m_FontMap.find(fontPath);
+		auto it = m_FontMap.find(temp);
 
 
-		m_pTextTexture = new ResourceTexture();
+		engineTexture = new ResourceTexture();
 
 		// if not load and create texture
 		if (it == m_FontMap.end()){
 
 			//open font
-			font = TTF_OpenFont(fontPath.c_str(), size);
+			font = TTF_OpenFont(temp.c_str(), size);
 			if (font == NULL){
 				DEBUG_MSG("TTF_OpenFont Error : " + std::string(TTF_GetError()));
 			}
 
-			m_pTextTexture->loadTTF(text, color, font, r);
+			engineTexture->loadTTF(text, color, font, r);
 
-			m_FontMap[fontPath] = font;
+			m_FontMap[temp] = font;
 		}
 		else{//create texture
 			font = it->second;
-			m_pTextTexture->loadTTF(text, color, font, r);
+			engineTexture->loadTTF(text, color, font, r);
 
 		}
 
-		return m_pTextTexture;
+		return engineTexture;
 	}
 
 
 	void Label::render( SDL_Renderer* r){
 
-		m_pTextTexture->render(m_fPosX, m_fPosY, r);
+		engineTexture->render(m_posX, m_posY, r);
 	}
 }

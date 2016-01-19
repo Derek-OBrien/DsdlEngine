@@ -12,10 +12,13 @@ namespace DsdlEngine{
 		EngineBaseNode();
 		~EngineBaseNode();
 		
-		virtual void render(SDL_Renderer* r) = 0;
+		void render(SDL_Renderer* r);
 
-	private:
+	protected:
 
+		ResourceTexture* engineTexture ;
+		int m_posX = 0;
+		int m_posY = 0;
 	};
 }
 

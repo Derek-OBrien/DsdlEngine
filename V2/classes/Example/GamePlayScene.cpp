@@ -29,9 +29,9 @@ void GamePlayScene::onEntryScene(){
 	b2Vec2 gravity(0.0f, 25.8f);
 	m_World = new b2World(gravity);
 
-	m_texture = m_texture.loadTexture("../../assets/bricks.png", m_window->getRenderer());
+	m_texture = m_texture.loadTexture("bricks.png", m_window->getRenderer());
 
-	m_label.create(100, 100,"GamePlay Scene", 70, SDL_Color{ 200, 200, 0 }, "../../assets/fonts/font.ttf", m_window->getRenderer());
+	m_label.create(100, 100,"GamePlay Scene", 70, SDL_Color{ 200, 200, 0 }, "fonts/font.ttf", m_window->getRenderer());
 
 	// Make the ground
 	b2BodyDef groundBodyDef;

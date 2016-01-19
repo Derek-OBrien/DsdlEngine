@@ -29,11 +29,11 @@ void MainGame::initSystems(){
 
 	m_window.createWindow("TestGame", m_screenWidth, m_screenHeight, 2);
 
-	m_Player.createSpriteWithSpriteSheet(100, 200, 70, 79,5,0,  "../../assets/blue_ninja.png", m_window.getRenderer());
+	m_Player.createSpriteWithSpriteSheet(100, 200, 70, 79,5,0,  "blue_ninja.png", m_window.getRenderer());
 
-	m_Label.create(100,100,"Dsdl Engine Demo", 70, SDL_Color{ 255, 0, 0 }, "../../assets/fonts/font.ttf", m_window.getRenderer());
+	m_Label.create(100,100,"Dsdl Engine Demo", 70, SDL_Color{ 255, 0, 0 }, "fonts/font.ttf", m_window.getRenderer());
 
-	m_Label2.create(200,200,"Dsdl Engine Demo 2", 70, SDL_Color{ 255, 0, 0 }, "../../assets/fonts/font.ttf", m_window.getRenderer());
+	m_Label2.create(200,200,"Dsdl Engine Demo 2", 70, SDL_Color{ 255, 0, 0 }, "fonts/font.ttf", m_window.getRenderer());
 
 }
 

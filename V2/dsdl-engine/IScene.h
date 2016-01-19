@@ -3,6 +3,8 @@
 
 #define SCENE_INDEX_NO_SCENE -1
 
+#include "EngineBaseNode.h"
+
 namespace DsdlEngine{
 
 	class IMainGame;
@@ -48,6 +50,9 @@ namespace DsdlEngine{
 		void setSceneRunning(){ m_eCurrentState = SceneState::RUNNING; }
 
 		//IMainGame* getParentGame(){ return m_pGame; }
+
+
+		std::vector<EngineBaseNode> sceneChildren;
 
 	protected:
 

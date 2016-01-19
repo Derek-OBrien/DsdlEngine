@@ -13,7 +13,7 @@ namespace DsdlEngine{
 		ResourceTexture* create(int x, int y,std::string text, int size, SDL_Color color, std::string fontPath, SDL_Renderer* r);
 	
 		
-		void render(SDL_Renderer* r) override;
+		void render(SDL_Renderer* r);
 
 		//ResourceTexture* loadTTF(std::string text, int size, SDL_Color color);
 	private:

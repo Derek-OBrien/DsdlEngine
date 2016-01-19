@@ -22,14 +22,16 @@ namespace DsdlEngine{
 	//Load Sprite from file
 	bool ResourceTexture::loadFromFile(std::string texturePath, SDL_Renderer* r){
 
-		auto it = m_TextureMap.find(texturePath);
+		std::string temp = "../../assets/" + texturePath;
+
+		auto it = m_TextureMap.find(temp);
 
 		SDL_Texture* newTexture = NULL;
 		SDL_Surface* loadedSurface = NULL;
 
 		if (it == m_TextureMap.end()){
 			//Load image at specified path
-			loadedSurface = IMG_Load(texturePath.c_str());
+			loadedSurface = IMG_Load(temp.c_str());
 
 
 			if (loadedSurface == NULL)
@@ -53,7 +55,7 @@ namespace DsdlEngine{
 				SDL_FreeSurface(loadedSurface);
 			}
 			 
-			m_TextureMap[texturePath] = newTexture;
+			m_TextureMap[temp] = newTexture;
 		}
 		else{
 			newTexture = it->second;

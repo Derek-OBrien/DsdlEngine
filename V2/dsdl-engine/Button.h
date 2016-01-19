@@ -32,7 +32,7 @@ namespace DsdlEngine{
 		//void render(SDL_Renderer* r) ; // override;
 
 
-		void render(SDL_Renderer* r) override;
+		void render(SDL_Renderer* r);
 
 		//Set State to Hovering
 		void onMouseEnters();

@@ -102,9 +102,10 @@ namespace DsdlEngine{
 
 		if (!initSystems()) return false;
 		addScenes();
-
+		
 		m_pCurrentRunning = m_pSceneManager->getCurrentScene();
 		m_pCurrentRunning->onEntryScene();
+		m_pCurrentRunning->addChild();
 		m_pCurrentRunning->setSceneRunning();
 
 		return true;

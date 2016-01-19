@@ -9,12 +9,12 @@ namespace DsdlEngine{
 
 	ResourceTexture* Sprite::createSprite(int x, int y, int w, int h, std::string texturePath, SDL_Renderer* r){
 
-		m_fPosX = x;
-		m_fPosY = y;
+		m_posX = x;
+		m_posY = y;
 		m_fWidth = w;
 		m_fHeight = h;
 
-		if (!m_SpriteTexture.loadFromFile(texturePath, r))
+		if (!engineTexture->loadFromFile(texturePath, r))
 			DEBUG_MSG("Faild to load sprite");
 
 		else{
@@ -27,14 +27,14 @@ namespace DsdlEngine{
 				m_gSpriteClips[i].h = m_fHeight;
 			}
 
-			objectBoundingBox.x = m_fPosX;
-			objectBoundingBox.y = m_fPosY;
+			objectBoundingBox.x = m_posX;
+			objectBoundingBox.y = m_posY;
 			objectBoundingBox.w = m_fWidth;
 			objectBoundingBox.h = m_fHeight;
 
 		}
 
-		return &m_SpriteTexture;
+		return engineTexture;
 	}
 
 
@@ -44,7 +44,7 @@ namespace DsdlEngine{
 	void Sprite::createSpriteWithAnimation(SDL_Renderer* r){
 
 		m_currentFrame = &m_gSpriteClips[m_iFrames / 5];
-		m_SpriteTexture.render(m_fPosX, m_fPosY, r, m_currentFrame);
+		engineTexture->render(m_posX, m_posY, r, m_currentFrame);
 
 		++m_iFrames;
 		if (m_iFrames / 5 >= m_iFrames)
@@ -54,7 +54,7 @@ namespace DsdlEngine{
 
 	void Sprite::render(SDL_Renderer* r){
 		createSpriteWithAnimation(r);
-		m_SpriteTexture.render(m_fPosX, m_fPosY, r, m_gSpriteClips);
+		engineTexture->render(m_posX, m_posY, r, m_gSpriteClips);
 
 		SDL_SetRenderDrawColor(r, 0x00, 0xff, 0x00, 0xff);
 		SDL_RenderDrawRect(r, &objectBoundingBox);
@@ -64,12 +64,12 @@ namespace DsdlEngine{
 
 	void Sprite::createSpriteWithSpriteSheet(int x, int y, int w, int h, int f, int o, std::string texturePath, SDL_Renderer* r){
 
-		m_fPosX = x;
-		m_fPosY = y;
+		m_posX = x;
+		m_posY = y;
 		m_fWidth = w;
 		m_fHeight = h;
 		m_iFrames = f;
-		if (!m_SpriteTexture.loadFromFile(texturePath, r))
+		if (!engineTexture->loadFromFile(texturePath, r))
 			DEBUG_MSG("Faild to load sprite");
 
 		else{
@@ -84,8 +84,8 @@ namespace DsdlEngine{
 				o += m_fWidth;
 			}
 
-			objectBoundingBox.x = m_fPosX;
-			objectBoundingBox.y = m_fPosY;
+			objectBoundingBox.x = m_posX;
+			objectBoundingBox.y = m_posY;
 			objectBoundingBox.w = m_fWidth;
 			objectBoundingBox.h = m_fHeight;
 
