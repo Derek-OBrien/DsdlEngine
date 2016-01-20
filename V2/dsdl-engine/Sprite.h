@@ -19,7 +19,7 @@ namespace DsdlEngine{
 			texturePath = file path to sprite assest
 			r = pointer to window renderer
 		*/
-		ResourceTexture* createSprite(int x, int y, int w, int h, std::string texturePath, SDL_Renderer* r);
+		ResourceTexture* createSprite(int w, int h, std::string texturePath, SDL_Renderer* r);
 
 		/*Create Sprite with Bounding Box
 		x = x position
@@ -29,7 +29,7 @@ namespace DsdlEngine{
 		texturePath = file path to sprite assest
 		r = pointer to window renderer
 		*/
-		void createSpriteWithSpriteSheet(int x, int y, int w, int h, int f, int o, std::string texturePath, SDL_Renderer* r);
+		void createSpriteWithSpriteSheet(int w, int h, int f, int o, std::string texturePath, SDL_Renderer* r);
 		
 		
 		void createSpriteWithAnimation( SDL_Renderer* r);
@@ -50,7 +50,7 @@ namespace DsdlEngine{
 		int m_fHeight;
 
 		int m_iFrames;
-		ResourceTexture m_SpriteTexture;
+		//ResourceTexture* m_SpriteTexture = nullptr;
 		
 		SDL_Rect m_gSpriteClips[30];	//frames for animation
 		

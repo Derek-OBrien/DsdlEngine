@@ -12,13 +12,19 @@ namespace DsdlEngine{
 		EngineBaseNode();
 		~EngineBaseNode();
 		
+		//Render Node
 		void render(SDL_Renderer* r);
+
+		//Set position of node
+		void setPosition(const Vec2& pos){ position.x_ = pos.x_, position.y_ = pos.y_; };
 
 	protected:
 
 		ResourceTexture* engineTexture ;
-		int m_posX = 0;
-		int m_posY = 0;
+		SDL_Rect objectBoundingBox;
+
+		//nodes position Vec2
+		Vec2 position;
 	};
 }
 

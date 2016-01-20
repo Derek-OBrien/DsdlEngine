@@ -10,13 +10,11 @@ namespace DsdlEngine{
 	Button::~Button(){}
 
 
-	void Button::createTextButton(int posX, int posY, int width, int height, int textSize, std::string buttonText, SDL_Renderer* r, std::string fontPath, SDL_Color textColor, SDL_Color bgColor ){
+	void Button::createTextButton(int width, int height, int textSize, std::string buttonText, SDL_Renderer* r, std::string fontPath, SDL_Color textColor, SDL_Color bgColor ){
 
 		m_BtnHeight = height;
 		m_BtnWidth = width;
-		m_posX = posX;
-		m_posY = posY;
-
+		
 
 		rect.h = m_BtnHeight;
 		rect.w = m_BtnWidth;
@@ -26,26 +24,24 @@ namespace DsdlEngine{
 		buttonbg = bgColor;
 
 
-		engineTexture = m_label.create(m_posX, m_posY, buttonText, textSize, textColor, fontPath, r);
+		engineTexture = m_label.create(buttonText, textSize, textColor, fontPath, r);
 	}
 
 
-	void Button::createSpriteButton(int posX, int posY, int width, int height, SDL_Renderer* r, std::string imagePath){
+	void Button::createSpriteButton(int width, int height, SDL_Renderer* r, std::string imagePath){
 		m_BtnHeight = height;
 		m_BtnWidth = width;
-		m_posX = posX;
-		m_posY = posY;
-
+		
 		rect.h = m_BtnHeight;
 		rect.w = m_BtnWidth;
 		rect.x = m_BtnPosX;
 		rect.y = m_BtnPosY;
 
-		engineTexture = m_spriteBtn.createSprite(m_posX, m_posY, m_BtnWidth, m_BtnHeight, imagePath, r);
+		engineTexture = m_spriteBtn.createSprite( m_BtnWidth, m_BtnHeight, imagePath, r);
 	}
 
 
-	void Button::render( SDL_Renderer* r){
+	/*void Button::render( SDL_Renderer* r){
 
 		//render button bg
 		SDL_SetRenderDrawColor(r, buttonbg.r, buttonbg.g, buttonbg.b, buttonbg.a);
@@ -57,7 +53,7 @@ namespace DsdlEngine{
 
 
 		engineTexture->render(m_posX, m_posY, r);
-	}
+	}*/
 
 
 	//Set State to Hovering
@@ -94,16 +90,16 @@ namespace DsdlEngine{
 			bool inside = true;
 
 			//Check if mouse inside button
-			if (x < m_posX){
+			if (x < position.x_){
 				inside = false;
 			}
-			else if (x > m_posX + m_BtnWidth){
+			else if (x > position.x_ + m_BtnWidth){
 				inside = false;
 			}
-			else if (y < m_posY){
+			else if (y < position.y_){
 				inside = false;
 			}
-			else if (y > m_posY + m_BtnHeight){
+			else if (y > position.y_ + m_BtnHeight){
 				inside = false;
 			}
 

@@ -72,6 +72,9 @@
     <ClInclude Include="Layer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="EngineMath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Window.cpp">
@@ -117,6 +120,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Layer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineMath.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

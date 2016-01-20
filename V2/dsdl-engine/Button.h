@@ -25,14 +25,11 @@ namespace DsdlEngine{
 		~Button();
 
 
-		void createTextButton(int posX, int posY, int width, int height, int textSize, std::string buttonText, SDL_Renderer* r, std::string fontPath, SDL_Color textColor, SDL_Color bgColor);
+		void createTextButton(int width, int height, int textSize, std::string buttonText, SDL_Renderer* r, std::string fontPath, SDL_Color textColor, SDL_Color bgColor);
 
-		void createSpriteButton(int posX, int posY, int width, int height, SDL_Renderer* r, std::string imagePath);
+		void createSpriteButton(int width, int height, SDL_Renderer* r, std::string imagePath);
 
-		//void render(SDL_Renderer* r) ; // override;
-
-
-		void render(SDL_Renderer* r);
+		//void render(SDL_Renderer* r);
 
 		//Set State to Hovering
 		void onMouseEnters();
@@ -48,7 +45,7 @@ namespace DsdlEngine{
 
 	private:
 
-		ResourceTexture* m_pButtonTexture = nullptr;
+		//ResourceTexture* m_pButtonTexture = nullptr;
 		Label m_label;
 		Sprite m_spriteBtn;
 

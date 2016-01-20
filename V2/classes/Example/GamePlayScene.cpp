@@ -31,39 +31,40 @@ void GamePlayScene::onEntryScene(){
 	music.play(-1);
 
 
-	b2Vec2 gravity(0.0f, 25.8f);
-	m_World = new b2World(gravity);
+	//b2Vec2 gravity(0.0f, 25.8f);
+	//m_World = new b2World(gravity);
 
 	m_texture = m_texture.loadTexture("bricks.png", m_window->getRenderer());
 
-	m_label.create(100, 100,"GamePlay Scene", 70, SDL_Color{ 200, 200, 0 }, "fonts/font.ttf", m_window->getRenderer());
+	m_label.create("GamePlay Scene", 70, SDL_Color{ 200, 200, 0 }, "fonts/font.ttf", m_window->getRenderer());
+	m_label.setPosition(DsdlEngine::Vec2(20, 20));
 	addChild(m_label);
 
 	// Make the ground
-	b2BodyDef groundBodyDef;
-	groundBodyDef.type = b2_staticBody;
+	//b2BodyDef groundBodyDef;
+	//groundBodyDef.type = b2_staticBody;
 
-	groundBodyDef.position.Set(0.0f, 25.0f);
-	b2Body* groundBody = m_World->CreateBody(&groundBodyDef);
+	//groundBodyDef.position.Set(0.0f, 25.0f);
+	//b2Body* groundBody = m_World->CreateBody(&groundBodyDef);
 
 	// Make the ground fixture
-	b2PolygonShape groundBox;
-	groundBox.SetAsBox(1024.0f, 100.0f);
-	groundBody->CreateFixture(&groundBox, 1.0f);
+	//b2PolygonShape groundBox;
+	//groundBox.SetAsBox(1024.0f, 100.0f);
+	//groundBody->CreateFixture(&groundBox, 1.0f);
 
 
 	// Make a bunch of boxes
-	std::mt19937 randGenerator;
-	std::uniform_real_distribution<float> xPos(100, m_window->getScreenWidth() - 300);
-	std::uniform_real_distribution<float> yPos(20, m_window->getScreenHeight() - 300);
-	const int NUM_BOXES = 20;
+	//std::mt19937 randGenerator;
+	//std::uniform_real_distribution<float> xPos(100, m_window->getScreenWidth() - 300);
+	//std::uniform_real_distribution<float> yPos(20, m_window->getScreenHeight() - 300);
+	//const int NUM_BOXES = 20;
 
-	for (int i = 0; i < NUM_BOXES; i++) {
+	/*for (int i = 0; i < NUM_BOXES; i++) {
 		Box newBox;
 		newBox.init(m_World, xPos(randGenerator), yPos(randGenerator), 50, 50, m_texture);
 		boxes.push_back(newBox);
 		
-	}
+	}*/
 }
 
 void GamePlayScene::onExitScene(){
@@ -75,7 +76,7 @@ void GamePlayScene::updateScene(){
 	checkInput();
 
 	// Update the physics simulation
-	m_World->Step(1.0f / 60.0f, 6, 2);
+	/*m_World->Step(1.0f / 60.0f, 6, 2);
 
 	for (int i = 0; i < boxes.size(); i++){
 		// Now print the position and angle of the body.
@@ -84,16 +85,16 @@ void GamePlayScene::updateScene(){
 
 		printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
 
-	}
+	}*/
 }
 
 void GamePlayScene::drawScene(){
 
 
-	for (int i = 0; i < boxes.size(); i++){
+	/*for (int i = 0; i < boxes.size(); i++){
 
 		boxes.at(i).draw(m_window->getRenderer());
-	}
+	}*/
 }
 
 

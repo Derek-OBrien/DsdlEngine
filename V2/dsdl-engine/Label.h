@@ -10,15 +10,15 @@ namespace DsdlEngine{
 		Label();
 		~Label();
 
-		ResourceTexture* create(int x, int y,std::string text, int size, SDL_Color color, std::string fontPath, SDL_Renderer* r);
+		ResourceTexture* create(std::string text, int size, SDL_Color color, std::string fontPath, SDL_Renderer* r);
 	
 		
-		void render(SDL_Renderer* r);
+		//void render(SDL_Renderer* r);
 
 		//ResourceTexture* loadTTF(std::string text, int size, SDL_Color color);
 	private:
 
-		ResourceTexture* m_pTextTexture = nullptr;
+		//ResourceTexture* m_pTextTexture = nullptr;
 
 		int m_fPosX;
 		int m_fPosY;

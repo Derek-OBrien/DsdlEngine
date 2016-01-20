@@ -45,5 +45,5 @@ private:
 	DsdlEngine::Label m_label;
 	DsdlEngine::InputManager m_inputManager;
 	DsdlEngine::Button m_button;
-	DsdlEngine::Button m_SpriteButton;
+//	DsdlEngine::Sprite m_sprite;
 };

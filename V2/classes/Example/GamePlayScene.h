@@ -10,9 +10,9 @@
 #include <dsdl-engine\InputManager.h>
 #include <dsdl-engine\AudioManager.h>
 
-#include "Box.h"
+//#include "Box.h"
 //#include <Box2D\Box2D.h>
-#include "../../dependencies/Box2D/Box2D/Box2D/Box2D.h"
+//#include "../../dependencies/Box2D/Box2D/Box2D/Box2D.h"
 #include <random>
 
 
@@ -44,16 +44,14 @@ private:
 	int m_sceneIndex = SCENE_INDEX_NO_SCENE;
 
 
-	//DsdlEngine::InputManager m_input;
-	DsdlEngine::Sprite m_sprite;
 	DsdlEngine::Window* m_window;
 	DsdlEngine::Label m_label;
 	DsdlEngine::InputManager m_inputManager;
 	DsdlEngine::ResourceTexture m_texture;
 	DsdlEngine::AudioManager m_AudioManager;
 
-	b2World* m_World;
-	std::vector<Box> boxes;
+	//b2World* m_World;
+	//std::vector<Box> boxes;
 };
 
 

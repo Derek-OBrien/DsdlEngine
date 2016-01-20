@@ -23,7 +23,7 @@ namespace DsdlEngine{
 		}
 
 		//Load Window
-		m_pSdlWindow = SDL_CreateWindow(windowName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,/* gScreenRect.w, gScreenRect.h,*/ m_screenWidth, m_screenHeight, flag);
+		m_pSdlWindow = SDL_CreateWindow(windowName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, m_screenWidth, m_screenHeight, flag);
 		if (m_pSdlWindow == nullptr){
 			DEBUG_MSG("SDL_CreateWindow Error : " + std::string(SDL_GetError()));
 			SDL_Log("Window could not be created! SDL Error: %s\n", SDL_GetError());

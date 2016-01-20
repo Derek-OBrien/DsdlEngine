@@ -17,7 +17,7 @@ namespace DsdlEngine{
 		//@param loops == -1 : loop forever, 0 : loop once, 1+ : loop that many times
 		void play(int loop = 0);
 	private:
-		Mix_Chunk* m_Chunk = nullptr;
+		Mix_Chunk* m_Chunk;
 	};
 
 	class Music{
@@ -30,7 +30,7 @@ namespace DsdlEngine{
 		void audioStopBG(){ Mix_HaltMusic(); };
 
 	private:
-		Mix_Music* m_Music = nullptr;
+		Mix_Music* m_Music;
 	};
 
 
@@ -50,7 +50,7 @@ namespace DsdlEngine{
 		std::map<std::string, Mix_Chunk*> m_sfxAudioMap;
 		std::map<std::string, Mix_Music*> m_bgAudioMap;
 
-		bool m_bisInitialized = false;
+		bool m_bisInitialized;
 	};
 }
 

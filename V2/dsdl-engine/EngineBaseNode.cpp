@@ -10,6 +10,6 @@ namespace DsdlEngine{
 
 	void EngineBaseNode::render(SDL_Renderer* r){
 
-		engineTexture->render(m_posX, m_posY, r);
+		engineTexture->render(position.x_, position.y_, r);
 	}
 }

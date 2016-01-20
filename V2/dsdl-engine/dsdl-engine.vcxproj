@@ -101,6 +101,7 @@
     <ClInclude Include="EngineDefines.h" />
     <ClInclude Include="EngineError.h" />
     <ClInclude Include="EngineBaseNode.h" />
+    <ClInclude Include="EngineMath.h" />
     <ClInclude Include="Gui.h" />
     <ClInclude Include="Include.h" />
     <ClInclude Include="InputManager.h" />
@@ -120,6 +121,7 @@
     <ClCompile Include="DsdlEngine.cpp" />
     <ClCompile Include="EngineError.cpp" />
     <ClCompile Include="EngineBaseNode.cpp" />
+    <ClCompile Include="EngineMath.cpp" />
     <ClCompile Include="Gui.cpp" />
     <ClCompile Include="IMainGame.cpp" />
     <ClCompile Include="InputManager.cpp" />
