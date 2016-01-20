@@ -47,19 +47,22 @@ namespace DsdlEngine{
 
 	//load sound effect
 	SFX AudioManager::loadSFX(std::string audioPath){
+
+		std::string temp = "../../assets/" + audioPath;
+
 		//Load SFX music (Mix_Chunk)
 		SFX sfx;
 		Mix_Chunk* sfxChunk = nullptr;
 		//Check if allready cached
-		auto it = m_sfxAudioMap.find(audioPath);
+		auto it = m_sfxAudioMap.find(temp);
 
 		//Not cached so load and cahe it
 		if (it == m_sfxAudioMap.end()){
-			if ((sfxChunk = Mix_LoadWAV(audioPath.c_str())) == NULL){
+			if ((sfxChunk = Mix_LoadWAV(temp.c_str())) == NULL){
 				DEBUG_MSG("Mix_LoadWAV: Failed to load Audio" + std::string(Mix_GetError()));
 			}
 			sfx.m_Chunk = sfxChunk;
-			m_sfxAudioMap[audioPath] = sfxChunk;
+			m_sfxAudioMap[temp] = sfxChunk;
 		}
 		//it is cached 
 		else{
@@ -70,18 +73,22 @@ namespace DsdlEngine{
 
 	//load music
 	Music AudioManager::loadMusic(std::string audioPath){
+		
+		std::string temp = "../../assets/" + audioPath;
+
+		
 		//Check if allready cached
-		auto it = m_bgAudioMap.find(audioPath);
+		auto it = m_bgAudioMap.find(temp);
 
 		Music music;
 		Mix_Music* mix = nullptr;
 		//Not cached so load and cahe it
 		if (it == m_bgAudioMap.end()){
-			if ((mix = Mix_LoadMUS(audioPath.c_str())) == NULL){
+			if ((mix = Mix_LoadMUS(temp.c_str())) == NULL){
 				DEBUG_MSG("Mix_LoadMUS: Failed to load Audio" + std::string(Mix_GetError()));
 			}
 			music.m_Music = mix;
-			m_bgAudioMap[audioPath] = mix;
+			m_bgAudioMap[temp] = mix;
 		}
 		//it is cached 
 		else{

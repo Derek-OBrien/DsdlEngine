@@ -1,9 +1,6 @@
 /*
-	Main Running Function
+	Main Running
 */
-
-
-//#include "mainGame.h"
 
 
 #include "Example\App.h"

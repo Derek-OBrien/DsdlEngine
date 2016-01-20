@@ -26,6 +26,11 @@ void GamePlayScene::destroyScene(){
 
 void GamePlayScene::onEntryScene(){
 
+
+	DsdlEngine::Music music = m_AudioManager.loadMusic("Sound/XYZ.ogg");
+	music.play(-1);
+
+
 	b2Vec2 gravity(0.0f, 25.8f);
 	m_World = new b2World(gravity);
 

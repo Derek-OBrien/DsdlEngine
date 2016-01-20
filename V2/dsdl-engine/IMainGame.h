@@ -20,26 +20,27 @@ namespace DsdlEngine{
 		IMainGame();
 		virtual ~IMainGame();
 		
+		/*
+			User MUST call to run game
+		*/
 		void run();
-		void exitGame();
 
+		/*
+			Functions user can use to customize game window and fps
+		*/
+		void setupWindow(int w, int h, std::string windowName, unsigned int flag);
+		void setFps(float fps){ m_fFps = fps; }
+
+		/*
+			Functions User must over ride when creating a game
+		*/
 		virtual void onInit() = 0;
 		virtual void addScenes() = 0;
 		virtual void onExit() = 0;
 
 
-		void setupWindow(int w, int h, std::string windowName);
-
-		const float getFps() const{return m_fFps;}
-		void onSDLEvent(SDL_Event& evnt);
-
 	protected:
-		virtual void update();
-		virtual void draw();
-
-		bool init();
-		bool initSystems();
-
+		unsigned int windowFlag;
 		int m_windowWidth;
 		int m_windowHeight;
 		std::string windowtitle;
@@ -51,9 +52,22 @@ namespace DsdlEngine{
 		float m_fFps = 0;
 
 		Window m_Window;
-		SDL_Renderer* m_pGameRenderer;
+		SDL_Renderer* m_pGameRenderer = nullptr;
 		InputManager m_InputManager;
 		AudioManager m_audioManager;
+
+	private:
+		void exitGame();
+
+		void update();
+		void draw();
+
+		bool init();
+		bool initSystems();
+
+		const float getFps() const{ return m_fFps; }
+		void onSDLEvent(SDL_Event& evnt);
+
 	};
 }
 

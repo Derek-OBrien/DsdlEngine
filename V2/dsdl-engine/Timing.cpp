@@ -74,7 +74,7 @@ namespace DsdlEngine{
 			m_fFps = 1000.0f / frameTimeAverage;
 		}
 		else {
-			m_fFps = 60.0f;
+			m_fFps = 60.0f;	//MAX ALLOWED 
 		}
 	}
 }

@@ -8,6 +8,7 @@
 #include <dsdl-engine\Sprite.h>
 #include <dsdl-engine\Label.h>
 #include <dsdl-engine\InputManager.h>
+#include <dsdl-engine\AudioManager.h>
 
 #include "Box.h"
 //#include <Box2D\Box2D.h>
@@ -49,7 +50,7 @@ private:
 	DsdlEngine::Label m_label;
 	DsdlEngine::InputManager m_inputManager;
 	DsdlEngine::ResourceTexture m_texture;
-
+	DsdlEngine::AudioManager m_AudioManager;
 
 	b2World* m_World;
 	std::vector<Box> boxes;

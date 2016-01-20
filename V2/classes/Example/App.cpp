@@ -2,16 +2,13 @@
 #include "App.h"
 #include <dsdl-engine\SceneManager.h>
 
-App::App() {
+App::App() {}
 
-}
-
-App::~App() {
-
-}
+App::~App() {}
 
 void App::onInit() {
-	setupWindow(1024,800, "SDL Engine Example Game");
+	setupWindow(1024,800, "SDL Engine Example Game", 2);
+	setFps(20);
 }
 
 void App::addScenes() {
@@ -26,5 +23,5 @@ void App::addScenes() {
 
 
 void App::onExit() {
-
+	m_pSceneManager->destroy();
 }

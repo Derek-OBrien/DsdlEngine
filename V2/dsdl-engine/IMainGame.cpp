@@ -12,6 +12,7 @@ namespace DsdlEngine{
 
 	IMainGame::~IMainGame(){}
 	
+
 	/*
 		Main engine Game Loop
 	*/
@@ -26,7 +27,7 @@ namespace DsdlEngine{
 
 
 		FpsLimiter fpsLimit;
-		fpsLimit.setMaxFPS(60.0f);
+		fpsLimit.setMaxFPS(m_fFps);
 
 		// Start our previousTicks variable
 		Uint32 previousTicks = SDL_GetTicks();
@@ -47,13 +48,13 @@ namespace DsdlEngine{
 			draw();
 
 			m_fFps = fpsLimit.end();
-			//std::cout << m_fFps << std::endl;
-
-		m_Window.swapBuffer();
+			std::cout << m_fFps << std::endl;
 		}
 	}
 
-
+	/*
+		Main Inputmanager control
+	*/
 
 	void IMainGame::onSDLEvent(SDL_Event& evnt){
 
@@ -80,13 +81,21 @@ namespace DsdlEngine{
 		}
 	}
 
-	void IMainGame::setupWindow(int w, int h, std::string windowName){
+	/*
+		Get users window information
+	*/
+	void IMainGame::setupWindow(int w, int h, std::string windowName, unsigned int flag){
 		m_windowWidth = w;
 		m_windowHeight = h;
-
 		windowtitle = windowName;
+		windowFlag = flag;
 	}
 
+
+	/*
+	
+		Init all Engine elements
+	*/
 	bool IMainGame::init(){
 		DsdlEngine::init();
 		m_audioManager.init();
@@ -103,14 +112,22 @@ namespace DsdlEngine{
 		return true;
 	}
 
+	/*
+		InitSystem 
+		Create window and get window render
+	*/
 	bool IMainGame::initSystems(){
-		m_Window.createWindow(windowtitle, m_windowWidth, m_windowHeight, SDL_WINDOW_OPENGL);
+		m_Window.createWindow(windowtitle, m_windowWidth, m_windowHeight, windowFlag);
 		
 		m_pGameRenderer = m_Window.getRenderer();
 		return true;
 	}
 
 
+	/*
+		Call current scenes update
+		Handel switching between scenes
+	*/
 
 	void IMainGame::update(){
 		if (m_pCurrentRunning){
@@ -147,11 +164,15 @@ namespace DsdlEngine{
 	}
 	
 
+	/*
+		Render all Scene nodes to screen
+	
+	*/
 
 	void IMainGame::draw(){
 		if (m_pCurrentRunning && m_pCurrentRunning->getSceneState() == SceneState::RUNNING){
 			
-			SDL_RenderClear(m_Window.getRenderer());
+			SDL_RenderClear(m_pGameRenderer);
 
 
 			m_pCurrentRunning->drawScene();
@@ -159,13 +180,13 @@ namespace DsdlEngine{
 			//for running scene 
 			//render each node that is in the child vector
 			for (int i = 0; i < m_pCurrentRunning->sceneChildren.size(); i++){
-				m_pCurrentRunning->sceneChildren.at(i).render(m_Window.getRenderer());
+				m_pCurrentRunning->sceneChildren.at(i).render(m_pGameRenderer);
 			}
 
 
 			m_Window.swapBuffer();
-			SDL_SetRenderDrawColor(m_Window.getRenderer(), 0x00, 0x00, 0x00, 0xff);
-			SDL_RenderPresent(m_Window.getRenderer());
+			SDL_SetRenderDrawColor(m_pGameRenderer, 0x00, 0x00, 0x00, 0xff);
+			SDL_RenderPresent(m_pGameRenderer);
 
 		}
 

@@ -1,3 +1,8 @@
+/*
+	Base Scene Class
+
+*/
+
 #ifndef _ISCENE_
 #define _ISCENE_
 
@@ -37,15 +42,11 @@ namespace DsdlEngine{
 		virtual void updateScene() = 0;
 		virtual void drawScene() = 0;
 
-		//Add all game nodes to the scene
+		//Add node as child of scene
 		void addChild(EngineBaseNode node) { sceneChildren.push_back(node); }
-
-		//virtual void renderChildNodes() = 0;
-
 
 
 		int getSceneIndex() const{ return m_iSceneIndex; }
-
 		SceneState getSceneState() const { return m_eCurrentState; }
 		void setSceneRunning(){ m_eCurrentState = SceneState::RUNNING; }
 
@@ -53,7 +54,7 @@ namespace DsdlEngine{
 		//void setParentGame(IMainGame* game){ m_pGame = game; }
 		//IMainGame* getParentGame(){ return m_pGame; }
 
-		//Vector tp hold game nodes
+		//Vector t0 hold game nodes
 		std::vector<EngineBaseNode> sceneChildren;
 
 	protected:
