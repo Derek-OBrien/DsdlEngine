@@ -4,26 +4,28 @@
 namespace DsdlEngine{
 
 
-	EngineBaseNode::EngineBaseNode(){}
+	EngineBaseNode::EngineBaseNode(){
+		setEngineNodeType(NodeType::BASENODE);
+	}
 
 	EngineBaseNode::~EngineBaseNode(){}
 
 
 
-	void EngineBaseNode::create(int w, int h, std::string path){
+	/*void EngineBaseNode::create(int w, int h, std::string path){
 		setAssetPath(path);
 
 		width = w;
 		height = h;
 
-	}
+	}*/
 
 
 	void EngineBaseNode::render(SDL_Renderer* r){
 		if (nodeType == NodeType::SPRITE){
 			engineTexture->render(position.x_, position.y_, r, m_gSpriteClips);
 		}
-		else if (nodeType == NodeType::LABEL){
+		else if (nodeType == NodeType::LABEL || nodeType == NodeType::BUTTON){
 			engineTexture->render(position.x_, position.y_, r);
 		}
 	}
@@ -56,21 +58,19 @@ namespace DsdlEngine{
 			}
 			return true;
 		}
-		else if (nodeType == NodeType::LABEL){
+		else if (nodeType == NodeType::LABEL || nodeType == NodeType::BUTTON){
 
 
 			if (!TTF_WasInit()){
 				TTF_Init();
 			}
 
-			std::string temp = "../../assets/" + fontPath;
+			std::string temp = "../../assets/" + m_assetPath;
 
 
 			//Check if font in chache
 			auto it = m_FontMap.find(temp);
 
-
-			engineTexture = new ResourceTexture();
 
 			// if not load and create texture
 			if (it == m_FontMap.end()){

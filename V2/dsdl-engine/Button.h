@@ -25,9 +25,9 @@ namespace DsdlEngine{
 		~Button();
 
 
-		void createTextButton(int width, int height, int textSize, std::string buttonText, SDL_Renderer* r, std::string fontPath, SDL_Color textColor, SDL_Color bgColor);
+		void createTextButton(int width, int height, int textSize, std::string buttonText, std::string fontPath, SDL_Color textColor, SDL_Color bgColor);
 
-		void createSpriteButton(int width, int height, SDL_Renderer* r, std::string imagePath);
+		void createSpriteButton(int width, int height, std::string imagePath);
 
 		//void render(SDL_Renderer* r);
 
@@ -46,14 +46,14 @@ namespace DsdlEngine{
 	private:
 
 		//ResourceTexture* m_pButtonTexture = nullptr;
-		Label m_label;
+		Label* m_label;
 		Sprite m_spriteBtn;
 
-		SDL_Rect rect;
+		/*SDL_Rect rect;
 		SDL_Color buttonbg;
 		int m_BtnHeight;
 		int m_BtnWidth;
-
+		*/
 		ButtonState m_eCurrentState;// = ButtonState::NORMAL;
 	};
 }

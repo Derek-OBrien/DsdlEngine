@@ -11,17 +11,17 @@ namespace DsdlEngine{
 
 
 
-	void Label::create(std::string text, int size, SDL_Color color, std::string path){
+	void Label::create(std::string text, int size, SDL_Color color, std::string fontFilePath){
 
 		labelText = text;
 		textSize = size;
 		textColor = color;
-		fontPath = path;
+		setAssetPath(fontFilePath);
 	}
 
 
 	//// Load and Create text texture
-	bool Label::load(SDL_Renderer* r){
+	/*bool Label::load(SDL_Renderer* r){
 
 		//m_posX = x;
 		//m_posY = y;

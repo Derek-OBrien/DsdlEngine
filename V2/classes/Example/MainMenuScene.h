@@ -50,7 +50,7 @@ private:
 	Window* m_window;
 	Label* m_label;
 	InputManager m_inputManager;
-	Button m_button;
+	Button* m_button;
 
 	Character* myChar;
 

@@ -10,10 +10,18 @@ namespace DsdlEngine{
 		Label();
 		~Label();
 
+		/**
+		* Create a TTF label
+		*
+		* @param text The initial text.
+		* @param fontFilePath A font file.
+		* @param fontSize The font size. This value must be > 0.
+		* @param color The Color of the label
+		*/
 
-		void create(std::string text, int size, SDL_Color color, std::string path);
+		void create(std::string text, int fontSize, SDL_Color color, std::string fontFilePath);
 
-		bool load(SDL_Renderer* r);
+		//bool load(SDL_Renderer* r);
 
 		//ResourceTexture* create(std::string text, int size, SDL_Color color, std::string fontPath);
 	

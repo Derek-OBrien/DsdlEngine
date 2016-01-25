@@ -118,17 +118,17 @@ namespace DsdlEngine{
 
 		//Load all scene Children nodes
 		for (int i = 0; i < m_pCurrentRunning->sceneChildren.size(); i++){
-			switch (m_pCurrentRunning->sceneChildren.at(i)->getNodeType())
-			{
-			case NodeType::SPRITE:
+			//switch (m_pCurrentRunning->sceneChildren.at(i)->getNodeType())
+			//{
+			//case NodeType::SPRITE:
 				m_pCurrentRunning->sceneChildren.at(i)->load(m_pGameRenderer);
-				break;
-			case NodeType::LABEL:
-				m_pCurrentRunning->sceneChildren.at(i)->load(m_pGameRenderer);
-				break;
-			default:
-				break;
-			}
+			//	break;
+			//case NodeType::LABEL:
+			//	m_pCurrentRunning->sceneChildren.at(i)->load(m_pGameRenderer);
+			//	break;
+		//	default:
+			//	break;
+			//}
 
 		}
 
@@ -205,20 +205,9 @@ namespace DsdlEngine{
 			//render each node that is in the child vector
 			for (int i = 0; i < m_pCurrentRunning->sceneChildren.size(); i++){
 
-				//NodeType type = m_pCurrentRunning->sceneChildren.at(i)->getNodeType();
 
-				switch (m_pCurrentRunning->sceneChildren.at(i)->getNodeType())
-				{
-				case NodeType::SPRITE:
 					m_pCurrentRunning->sceneChildren.at(i)->render(m_pGameRenderer);
-					break;
-				case NodeType::LABEL:
-					m_pCurrentRunning->sceneChildren.at(i)->render(m_pGameRenderer);
-
-					break;
-				default:
-					break;
-				}
+	
 			}
 
 

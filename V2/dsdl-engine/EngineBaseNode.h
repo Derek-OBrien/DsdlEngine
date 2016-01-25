@@ -21,7 +21,8 @@ namespace DsdlEngine{
 		EngineBaseNode();
 		~EngineBaseNode();
 		
-		void create(int width, int height, std::string path);
+		//void create(int width, int height, std::string path);
+
 		//Render Node
 		void render(SDL_Renderer* r);
 		bool load(SDL_Renderer * r);
@@ -37,10 +38,14 @@ namespace DsdlEngine{
 		void setAssetPath(std::string path){ m_assetPath = path; }
 		std::string getAssetsPath(){ return m_assetPath; }
 
+		//Get And Set Node Type
 		NodeType getNodeType(){ return nodeType; }
 		void setEngineNodeType(NodeType type){ nodeType = type; }
 
-
+		//Set Dimensions
+		void setWidth(){};
+		void setHeight(){};
+		
 	protected:
 
 		NodeType nodeType = NodeType::BASENODE;
@@ -57,19 +62,24 @@ namespace DsdlEngine{
 
 
 		// For labels
-		TTF_Font* font;
-
-
-		std::map<std::string, TTF_Font*> m_FontMap;
 		std::string labelText;
-		std::string fontPath;
 		int textSize;
 		SDL_Color textColor;
 
 
+		SDL_Rect rect;
+		SDL_Color buttonbg;
+		int m_BtnHeight;
+		int m_BtnWidth;
+
 	private:
 
 		std::string m_assetPath;
+
+
+		TTF_Font* font;
+
+		std::map<std::string, TTF_Font*> m_FontMap;
 	};
 }
 

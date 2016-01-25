@@ -63,6 +63,13 @@ void MainMenuScene::onEntryScene(){
 
 	addChild(m_label, 5);
 
+
+	m_button = new Button();
+	m_button->createTextButton(100, 100, 60, "Button", "fonts/font.ttf", SDL_Color{ 0, 255, 0 }, SDL_Color{ 0, 0, 255 });
+	m_button->setPosition(DsdlEngine::Vec2(0, 500));
+
+	addChild(m_button, 4);
+
 }
 
 void MainMenuScene::onExitScene(){
@@ -109,7 +116,7 @@ void MainMenuScene::checkInput(){
 	SDL_Event evnt;
 	while (SDL_PollEvent(&evnt)) {
 		
-	//	m_button.checkInput(evnt);
+		m_button->checkInput(evnt);
 		switch (evnt.type) {
 		case SDL_QUIT:
 			exit(1);
@@ -128,7 +135,7 @@ void MainMenuScene::checkInput(){
 			break;
 		case SDL_MOUSEBUTTONUP:
 			m_inputManager.releaseKey(evnt.button.button);
-		//	m_button.onClicked(DsdlEngine::buttonCallBack(onNewGameClicked()));
+			m_button->onClicked(DsdlEngine::buttonCallBack(onNewGameClicked()));
 			break;
 		}
 	}

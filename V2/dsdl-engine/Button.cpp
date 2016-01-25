@@ -5,12 +5,15 @@ namespace DsdlEngine{
 
 
 
-	Button::Button(){}
+	Button::Button(){
+		setEngineNodeType(NodeType::BUTTON);
+		m_eCurrentState = ButtonState::NORMAL;
+	}
 
 	Button::~Button(){}
 
 
-	void Button::createTextButton(int width, int height, int textSize, std::string buttonText, SDL_Renderer* r, std::string fontPath, SDL_Color textColor, SDL_Color bgColor){
+	void Button::createTextButton(int width, int height, int size, std::string buttonText, std::string fontPath, SDL_Color color, SDL_Color bgColor){
 
 		m_BtnHeight = height;
 		m_BtnWidth = width;
@@ -23,12 +26,17 @@ namespace DsdlEngine{
 
 		buttonbg = bgColor;
 
+		labelText = buttonText;
+		textSize = size;
+		textColor = color;
+		setAssetPath(fontPath);
 
-//		engineTexture = m_label.create(buttonText, textSize, textColor, fontPath, r);
+		m_label = new Label();
+		m_label->create(labelText, textSize, textColor, fontPath);
 	}
 
 
-	void Button::createSpriteButton(int width, int height, SDL_Renderer* r, std::string imagePath){
+	void Button::createSpriteButton(int width, int height, std::string imagePath){
 		m_BtnHeight = height;
 		m_BtnWidth = width;
 
@@ -37,7 +45,7 @@ namespace DsdlEngine{
 		rect.x = position.x_;
 		rect.y = position.y_;
 
-		engineTexture = m_spriteBtn.createSprite(m_BtnWidth, m_BtnHeight, imagePath, r);
+		m_spriteBtn.create(m_BtnWidth, m_BtnHeight, imagePath);
 	}
 
 
