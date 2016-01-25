@@ -8,6 +8,12 @@
 
 #include "GameDefines.h"
 
+#include "Character.h"
+
+#include "Enemy.h"
+
+USING_NS_DSDL;
+
 class MainMenuScene : public DsdlEngine::IScene{
 
 public:
@@ -41,9 +47,15 @@ private:
 
 	int m_nextScreenIndex = SCENE_INDEX_GAMEPLAY;
 
-	DsdlEngine::Window* m_window;
-	DsdlEngine::Label m_label;
-	DsdlEngine::InputManager m_inputManager;
-	DsdlEngine::Button m_button;
+	Window* m_window;
+	Label m_label;
+	InputManager m_inputManager;
+	Button m_button;
+
+	Character* myChar;
+
+	Enemy* myChar2;
+
+
 //	DsdlEngine::Sprite m_sprite;
 };

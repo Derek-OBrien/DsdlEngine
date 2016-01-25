@@ -15,6 +15,7 @@
 //#include "../../dependencies/Box2D/Box2D/Box2D/Box2D.h"
 #include <random>
 
+#include "Character.h"
 
 class GamePlayScene : public DsdlEngine::IScene{
 public:
@@ -49,6 +50,7 @@ private:
 	DsdlEngine::InputManager m_inputManager;
 	DsdlEngine::ResourceTexture m_texture;
 	DsdlEngine::AudioManager m_AudioManager;
+	DsdlEngine::Sprite m_sprite;
 
 	//b2World* m_World;
 	//std::vector<Box> boxes;

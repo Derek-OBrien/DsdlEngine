@@ -34,12 +34,28 @@ void GamePlayScene::onEntryScene(){
 	//b2Vec2 gravity(0.0f, 25.8f);
 	//m_World = new b2World(gravity);
 
-	m_texture = m_texture.loadTexture("bricks.png", m_window->getRenderer());
+	//m_texture = m_texture.loadTexture("bricks.png", m_window->getRenderer());
 
-	m_label.create("GamePlay Scene", 70, SDL_Color{ 200, 200, 0 }, "fonts/font.ttf", m_window->getRenderer());
-	m_label.setPosition(DsdlEngine::Vec2(20, 20));
-	addChild(m_label);
 
+//	m_sprite.create("Character.png", 70, 70);
+
+	//m_label.create("GamePlay Scene", 70, SDL_Color{ 200, 200, 0 }, "fonts/font.ttf", m_window->getRenderer());
+	//m_label.setPosition(DsdlEngine::Vec2(20, 20));
+	//addChild(m_label,1);
+
+
+	//m_sprite.createSprite(100, 100, "Character.png", m_window->getRenderer());
+	//m_sprite.setPosition(DsdlEngine::Vec2(600, 50));
+
+
+//	addChild(m_sprite, 0);
+
+
+
+	//m_char.init();
+	//m_char.m_sprite.setPosition(DsdlEngine::Vec2(100, 100));
+
+	//addChild(m_char.m_sprite, 1);
 	// Make the ground
 	//b2BodyDef groundBodyDef;
 	//groundBodyDef.type = b2_staticBody;
@@ -140,5 +156,19 @@ void GamePlayScene::checkInput(){
 			break;
 		}
 	}
+
+	if (m_inputManager.isKeyDown(SDLK_w)) {
+		m_sprite.setPositionX(10);
+	}
+	else if (m_inputManager.isKeyDown(SDLK_s)) {
+		m_sprite.setPositionX(-10);
+	}
+	if (m_inputManager.isKeyDown(SDLK_a)) {
+		m_sprite.setPositionY(10);
+	}
+	else if (m_inputManager.isKeyDown(SDLK_d)) {
+		m_sprite.setPositionY(-10);
+	}
+
 
 }
