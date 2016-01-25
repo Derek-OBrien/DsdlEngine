@@ -51,12 +51,10 @@ namespace DsdlEngine{
 
 		SDL_Rect rect;
 		SDL_Color buttonbg;
-		int m_BtnHeight = 0;
-		int m_BtnWidth = 0;
-		int m_BtnPosX = 0;
-		int m_BtnPosY = 0;
+		int m_BtnHeight;
+		int m_BtnWidth;
 
-		ButtonState m_eCurrentState = ButtonState::NORMAL;
+		ButtonState m_eCurrentState;// = ButtonState::NORMAL;
 	};
 }
 

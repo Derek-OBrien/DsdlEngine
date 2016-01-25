@@ -25,9 +25,9 @@ namespace DsdlEngine{
 		IScene* getCurrentScene();
 	
 	protected:
-		IMainGame* m_pGame = nullptr;
+		IMainGame* m_pGame;
 		std::vector<IScene*> m_pScenes;
-		int m_iCurrentSceneIndex = -1;
+		int m_iCurrentSceneIndex;
 	
 	
 	};

@@ -24,8 +24,8 @@ namespace DsdlEngine{
 	}
 
 
-	void Layer::render(SDL_Renderer* r){
+	/*void Layer::render(SDL_Renderer* r){
 
 		m_LayerTexture.render(0, 0, r);
-	}
+	}*/
 }

@@ -8,7 +8,7 @@
 #include "InputManager.h"
 #include "Timing.h"
 #include "AudioManager.h"
-
+#include "ResourceTexture.h"
 
 namespace DsdlEngine{
 	
@@ -16,6 +16,7 @@ namespace DsdlEngine{
 	class IScene;
 
 	class IMainGame{
+
 	public:
 		IMainGame();
 		virtual ~IMainGame();
@@ -45,17 +46,19 @@ namespace DsdlEngine{
 		int m_windowHeight;
 		std::string windowtitle;
 
-		std::unique_ptr<SceneManager> m_pSceneManager = nullptr;
+		std::unique_ptr<SceneManager> m_pSceneManager;
 
-		IScene* m_pCurrentRunning = nullptr;
-		bool m_bIsRunning = false;
-		float m_fFps = 0;
+		IScene* m_pCurrentRunning;
+		bool m_bIsRunning;
+		float m_fFps;
 
 		Window m_Window;
-		SDL_Renderer* m_pGameRenderer = nullptr;
+		SDL_Renderer* m_pGameRenderer;
+
+
 		InputManager m_InputManager;
 		AudioManager m_audioManager;
-
+		ResourceTexture m_resourceManager;
 	private:
 		void exitGame();
 

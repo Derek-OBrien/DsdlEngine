@@ -30,4 +30,9 @@
 
 
 
+//Set Macro Defines for Namespace
+#define USING_NS_DSDL	using namespace DsdlEngine
+#define NS_DSDL_START	namespace DsdlEngine{
+#define NS_DSDL_END		}
+
 #endif

@@ -28,22 +28,6 @@ void MainMenuScene::destroyScene(){
 }
 
 void MainMenuScene::onEntryScene(){
-	//m_label.create("Main Menu", 70, SDL_Color{ 200, 200, 0 }, "fonts/font.ttf", m_window->getRenderer());
-	//m_label.setPosition(DsdlEngine::Vec2::ZERO);
-
-	//m_button.createTextButton( 200, 50, 30, "New Game", m_window->getRenderer(), "fonts/font.ttf", SDL_Color{ 255, 0, 0 }, SDL_Color{ NULL, NULL, NULL });
-
-	//Vec2 position = Vec2(m_window->getScreenWidth() / 2, m_window->getScreenHeight() / 2);
-	//m_button.setPosition(position);
-
-
-	//m_sprite.createSprite(100, 200, 50, 50, "Character.png", m_window->getRenderer());
-
-	//addChild(m_label,1);
-	//addChild(m_button,1);
-	//addChild(m_button);
-
-
 
 	myChar = new Character();
 	myChar->init();
@@ -55,6 +39,29 @@ void MainMenuScene::onEntryScene(){
 	myChar2->createEnemy();
 
 	addChild(myChar2->enemy, 2);
+
+
+	myChar2 = new Enemy();
+	myChar2->createEnemy();
+	myChar2->setPosition(DsdlEngine::Vec2(600,600));
+	addChild(myChar2->enemy, 2);
+
+
+
+	m_label = new Label();
+	m_label->create("Main Menu", 50, SDL_Color{ 255, 0, 0 }, "fonts/font.ttf");
+	m_label->setPosition(DsdlEngine::Vec2(600,600));
+
+
+	addChild(m_label, 1);
+
+
+
+	m_label = new Label();
+	m_label->create("Main Menu fdsfdk", 50, SDL_Color{ 255, 0, 0 }, "fonts/font.ttf");
+	m_label->setPosition(DsdlEngine::Vec2::ZERO);
+
+	addChild(m_label, 5);
 
 }
 

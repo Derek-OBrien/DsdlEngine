@@ -9,6 +9,7 @@
 #define SCENE_INDEX_NO_SCENE -1
 
 #include "EngineBaseNode.h"
+#include "Sprite.h"
 
 namespace DsdlEngine{
 
@@ -43,26 +44,20 @@ namespace DsdlEngine{
 		virtual void drawScene() = 0;
 
 		//Add node as child of scene
-		void addChild(EngineBaseNode node) { sceneChildren.push_back(node); }
+		void addChild(EngineBaseNode* node, int zOrder) { sceneChildren.push_back(node); }
 
 
 		int getSceneIndex() const{ return m_iSceneIndex; }
 		SceneState getSceneState() const { return m_eCurrentState; }
 		void setSceneRunning(){ m_eCurrentState = SceneState::RUNNING; }
 
-
-		//void setParentGame(IMainGame* game){ m_pGame = game; }
-		//IMainGame* getParentGame(){ return m_pGame; }
-
-		//Vector t0 hold game nodes
-		std::vector<EngineBaseNode> sceneChildren;
+		//Vector to hold game nodes
+		std::vector<EngineBaseNode*> sceneChildren;
 
 	protected:
 
-		SceneState m_eCurrentState = SceneState::NONE;
-		//IMainGame* m_pGame = nullptr;
-
-		int m_iSceneIndex = SCENE_INDEX_NO_SCENE;
+		SceneState m_eCurrentState;// = SceneState::NONE;
+		int m_iSceneIndex;// = SCENE_INDEX_NO_SCENE;
 	};
 }
 

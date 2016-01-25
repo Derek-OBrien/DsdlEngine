@@ -5,7 +5,6 @@
 #include "ResourceTexture.h"
 
 namespace DsdlEngine{
-
 	class Layer : public EngineBaseNode
 	{
 	public:
@@ -15,7 +14,7 @@ namespace DsdlEngine{
 
 		ResourceTexture* create(std::string texturePath, SDL_Renderer* r);
 
-		void render(SDL_Renderer* r);
+		//void render(SDL_Renderer* r);
 
 
 	private:
@@ -23,7 +22,5 @@ namespace DsdlEngine{
 		ResourceTexture m_LayerTexture;
 
 	};
-
 }
-
 #endif

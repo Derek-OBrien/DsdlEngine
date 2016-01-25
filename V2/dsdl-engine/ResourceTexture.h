@@ -26,8 +26,8 @@ namespace DsdlEngine{
 		SDL_Texture* m_Texture;
 		std::map<std::string,SDL_Texture*> m_TextureMap;
 
-		int m_iWidth = 0;
-		int m_iHeight = 0;
+		int m_iWidth;
+		int m_iHeight;
 	};
 }
 

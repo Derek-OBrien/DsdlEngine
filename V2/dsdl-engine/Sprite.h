@@ -11,6 +11,8 @@ namespace DsdlEngine{
 		Sprite();
 		~Sprite();
 
+
+		//void create(std::string path, int w, int h);
 		/*Create Basic Sprite
 			x = x position
 			y = y position
@@ -38,14 +40,13 @@ namespace DsdlEngine{
 		//void draw(SDL_Renderer* renderer);
 
 
-		void render(SDL_Renderer* r);
+		//void render(SDL_Renderer* r);
+		void setPosition(Vec2 pos){ position.x_ = pos.x_; position.y_ = pos.y_; }
+		void setPosX(int x){ position.x_ += x; objectBoundingBox.x += x; }
+		void setPosY(int y){ position.y_ += y; objectBoundingBox.y += y; }
 
-		void setPosX(int x){ m_fPosX += x; objectBoundingBox.x += x; }
-		void setPosY(int y){ m_fPosY += y; objectBoundingBox.y += y; }
 	private:
 
-		int m_fPosX;
-		int m_fPosY;
 		int m_fWidth;
 		int m_fHeight;
 

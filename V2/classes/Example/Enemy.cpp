@@ -8,6 +8,6 @@ void Enemy::createEnemy(){
 
 	enemy->create(50, 50, "bricks.png");
 
-	enemy->setPosition(DsdlEngine::Vec2(600, 600));
+	//enemy->setPosition(DsdlEngine::Vec2(600, 600));
 
 }

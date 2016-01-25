@@ -48,7 +48,7 @@ private:
 	int m_nextScreenIndex = SCENE_INDEX_GAMEPLAY;
 
 	Window* m_window;
-	Label m_label;
+	Label* m_label;
 	InputManager m_inputManager;
 	Button m_button;
 

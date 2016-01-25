@@ -3,15 +3,21 @@
 
 namespace DsdlEngine{
 
-	Sprite::Sprite(){}
+	Sprite::Sprite(){
+	
+		setEngineNodeType(NodeType::SPRITE);
+	}
 
 	Sprite::~Sprite(){}
+
 
 	ResourceTexture* Sprite::createSprite(int w, int h, std::string texturePath, SDL_Renderer* r){
 
 		m_fWidth = w;
 		m_fHeight = h;
 
+		engineTexture = new ResourceTexture();
+		
 		if (!engineTexture->loadFromFile(texturePath, r))
 			DEBUG_MSG("Faild to load sprite");
 
@@ -25,8 +31,8 @@ namespace DsdlEngine{
 				m_gSpriteClips[i].h = m_fHeight;
 			}
 
-			//objectBoundingBox.x = m_posX;
-			//objectBoundingBox.y = m_posY;
+			objectBoundingBox.x = position.x_;
+			objectBoundingBox.y = position.y_;
 			objectBoundingBox.w = m_fWidth;
 			objectBoundingBox.h = m_fHeight;
 
@@ -40,7 +46,7 @@ namespace DsdlEngine{
 	void Sprite::createSpriteWithAnimation(SDL_Renderer* r){
 
 		m_currentFrame = &m_gSpriteClips[m_iFrames / 5];
-		//engineTexture->render(m_posX, m_posY, r, m_currentFrame);
+		engineTexture->render(position.x_, position.y_, r, m_currentFrame);
 
 		++m_iFrames;
 		if (m_iFrames / 5 >= m_iFrames)
@@ -48,13 +54,13 @@ namespace DsdlEngine{
 	}
 
 
-	void Sprite::render(SDL_Renderer* r){
+	/*void Sprite::render(SDL_Renderer* r){
 		createSpriteWithAnimation(r);
-		//engineTexture->render(m_posX, m_posY, r, m_gSpriteClips);
+		engineTexture->render(position.x_, position.y_, r, m_gSpriteClips);
 
 		SDL_SetRenderDrawColor(r, 0x00, 0xff, 0x00, 0xff);
 		SDL_RenderDrawRect(r, &objectBoundingBox);
-	}
+	}*/
 
 
 
@@ -67,7 +73,7 @@ namespace DsdlEngine{
 		m_iFrames = f;
 
 
-		if (!engineTexture->loadFromFile(texturePath, r))
+		if (!engineTexture->loadFromFile(texturePath , r))
 			DEBUG_MSG("Faild to load sprite");
 
 		else{
@@ -82,8 +88,8 @@ namespace DsdlEngine{
 				o += m_fWidth;
 			}
 
-			//objectBoundingBox.x = m_posX;
-			//objectBoundingBox.y = m_posY;
+			objectBoundingBox.x = position.x_;
+			objectBoundingBox.y = position.y_;
 			objectBoundingBox.w = m_fWidth;
 			objectBoundingBox.h = m_fHeight;
 

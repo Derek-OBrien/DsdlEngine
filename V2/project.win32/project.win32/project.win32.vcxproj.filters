@@ -18,9 +18,6 @@
     <ClCompile Include="..\..\classes\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\classes\mainGame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\classes\Example\App.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -30,14 +27,14 @@
     <ClCompile Include="..\..\classes\Example\GamePlayScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\classes\Example\Box.cpp">
+    <ClCompile Include="..\..\classes\Example\Character.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\classes\Example\Enemy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\classes\mainGame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\classes\Example\App.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -50,7 +47,10 @@
     <ClInclude Include="..\..\classes\Example\GamePlayScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\classes\Example\Box.h">
+    <ClInclude Include="..\..\classes\Example\Character.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\classes\Example\Enemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

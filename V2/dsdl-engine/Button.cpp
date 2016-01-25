@@ -1,7 +1,7 @@
 #include "Button.h"
 
 namespace DsdlEngine{
-
+	//NS_DSDL_START
 
 
 
@@ -10,34 +10,34 @@ namespace DsdlEngine{
 	Button::~Button(){}
 
 
-	void Button::createTextButton(int width, int height, int textSize, std::string buttonText, SDL_Renderer* r, std::string fontPath, SDL_Color textColor, SDL_Color bgColor ){
+	void Button::createTextButton(int width, int height, int textSize, std::string buttonText, SDL_Renderer* r, std::string fontPath, SDL_Color textColor, SDL_Color bgColor){
 
 		m_BtnHeight = height;
 		m_BtnWidth = width;
-		
+
 
 		rect.h = m_BtnHeight;
 		rect.w = m_BtnWidth;
-		rect.x = m_BtnPosX;
-		rect.y = m_BtnPosY;
+		rect.x = position.x_;
+		rect.y = position.y_;
 
 		buttonbg = bgColor;
 
 
-		engineTexture = m_label.create(buttonText, textSize, textColor, fontPath, r);
+//		engineTexture = m_label.create(buttonText, textSize, textColor, fontPath, r);
 	}
 
 
 	void Button::createSpriteButton(int width, int height, SDL_Renderer* r, std::string imagePath){
 		m_BtnHeight = height;
 		m_BtnWidth = width;
-		
+
 		rect.h = m_BtnHeight;
 		rect.w = m_BtnWidth;
-		rect.x = m_BtnPosX;
-		rect.y = m_BtnPosY;
+		rect.x = position.x_;
+		rect.y = position.y_;
 
-		engineTexture = m_spriteBtn.createSprite( m_BtnWidth, m_BtnHeight, imagePath, r);
+		engineTexture = m_spriteBtn.createSprite(m_BtnWidth, m_BtnHeight, imagePath, r);
 	}
 
 
@@ -45,7 +45,7 @@ namespace DsdlEngine{
 
 		//render button bg
 		SDL_SetRenderDrawColor(r, buttonbg.r, buttonbg.g, buttonbg.b, buttonbg.a);
-		SDL_RenderFillRect(r, &rect); 
+		SDL_RenderFillRect(r, &rect);
 
 		//render button outline
 		SDL_SetRenderDrawColor(r, buttonbg.r, buttonbg.g, buttonbg.b, buttonbg.a);
@@ -53,7 +53,7 @@ namespace DsdlEngine{
 
 
 		engineTexture->render(m_posX, m_posY, r);
-	}*/
+		}*/
 
 
 	//Set State to Hovering
@@ -126,3 +126,4 @@ namespace DsdlEngine{
 
 	}
 }
+//NS_DSDL_END

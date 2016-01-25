@@ -12,19 +12,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\classes\Example\App.cpp" />
-    <ClCompile Include="..\..\classes\Example\Box.cpp" />
+    <ClCompile Include="..\..\classes\Example\Character.cpp" />
+    <ClCompile Include="..\..\classes\Example\Enemy.cpp" />
     <ClCompile Include="..\..\classes\Example\GamePlayScene.cpp" />
     <ClCompile Include="..\..\classes\Example\MainMenuScene.cpp" />
     <ClCompile Include="..\..\classes\main.cpp" />
-    <ClCompile Include="..\..\classes\mainGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\classes\Example\App.h" />
-    <ClInclude Include="..\..\classes\Example\Box.h" />
+    <ClInclude Include="..\..\classes\Example\Character.h" />
+    <ClInclude Include="..\..\classes\Example\Enemy.h" />
     <ClInclude Include="..\..\classes\Example\GameDefines.h" />
     <ClInclude Include="..\..\classes\Example\GamePlayScene.h" />
     <ClInclude Include="..\..\classes\Example\MainMenuScene.h" />
-    <ClInclude Include="..\..\classes\mainGame.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{8B364CE5-3F01-4088-83C2-A19A425E4A18}</ProjectGuid>

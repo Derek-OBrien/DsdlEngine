@@ -3,12 +3,25 @@
 
 namespace DsdlEngine{
 
-	Label::Label(){}
+	Label::Label(){
+		setEngineNodeType(NodeType::LABEL);
+	}
 
 	Label::~Label(){}
 
+
+
+	void Label::create(std::string text, int size, SDL_Color color, std::string path){
+
+		labelText = text;
+		textSize = size;
+		textColor = color;
+		fontPath = path;
+	}
+
+
 	//// Load and Create text texture
-	ResourceTexture* Label::create(std::string text, int size, SDL_Color color, std::string fontPath, SDL_Renderer* r){
+	bool Label::load(SDL_Renderer* r){
 
 		//m_posX = x;
 		//m_posY = y;
@@ -30,18 +43,18 @@ namespace DsdlEngine{
 		if (it == m_FontMap.end()){
 
 			//open font
-			font = TTF_OpenFont(temp.c_str(), size);
+			font = TTF_OpenFont(temp.c_str(), textSize);
 			if (font == NULL){
 				DEBUG_MSG("TTF_OpenFont Error : " + std::string(TTF_GetError()));
 			}
 
-			engineTexture->loadTTF(text, color, font, r);
+			engineTexture->loadTTF(labelText, textColor, font, r);
 
 			m_FontMap[temp] = font;
 		}
 		else{//create texture
 			font = it->second;
-			engineTexture->loadTTF(text, color, font, r);
+			engineTexture->loadTTF(labelText, textColor, font, r);
 
 		}
 

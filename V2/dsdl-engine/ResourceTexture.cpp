@@ -1,4 +1,13 @@
 
+/*
+	Engine Texture
+	Handles all the loading for different textures in the engine
+	Handles main call to render texture
+
+	Link between ( Engine / Game ) and SDL Textures
+*/
+
+
 #include "ResourceTexture.h"
 #include "EngineError.h"
 
