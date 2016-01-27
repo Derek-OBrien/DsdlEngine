@@ -74,8 +74,6 @@ public class SDLActivity extends Activity {
             "SDL2_mixer",
             // "SDL2_net",
             "SDL2_ttf",
-            "box2d_static"
-            "box2d"
             "main"
         };
     }
@@ -87,9 +85,6 @@ public class SDLActivity extends Activity {
        }
     }
 
-    static { 
-        System.loadLibrary("box2d_static")
-    }
     /**
      * This method is called by SDL before starting the native application thread.
      * It can be overridden to provide the arguments after the application name.

@@ -1,8 +1,9 @@
 
 #include "MainMenuScene.h"
 
-#include <dsdl-engine\EngineMath.h>
+//#include <dsdl-engine\EngineMath.h>
 
+#include "../../dsdl-engine/EngineMath.h"
 
 MainMenuScene::MainMenuScene(DsdlEngine::Window* window) : m_window(window){
 
@@ -38,7 +39,7 @@ void MainMenuScene::onEntryScene(){
 	myChar2 = new Enemy();
 	myChar2->createEnemy();
 
-	addChild(myChar2->enemy, 2);
+	addChild(myChar2->enemy, 8);
 
 
 	myChar2 = new Enemy();
@@ -61,7 +62,7 @@ void MainMenuScene::onEntryScene(){
 	m_label->create("Main Menu fdsfdk", 50, SDL_Color{ 255, 0, 0 }, "fonts/font.ttf");
 	m_label->setPosition(DsdlEngine::Vec2::ZERO);
 
-	addChild(m_label, 5);
+	addChild(m_label, 0);
 
 
 	m_button = new Button();

@@ -16,4 +16,13 @@ namespace DsdlEngine{
 		height = h;
 	}
 
+
+	void Sprite::create(int w, int h, std::string path, int nf){
+		setAssetPath(path);
+
+		width = w;
+		height = h;
+		m_numFrames = nf;
+	}
+
 }

@@ -1,7 +1,8 @@
 #pragma once
 
-#include <dsdl-engine\Sprite.h>
+//#include <dsdl-engine\Sprite.h>
 
+#include "../../dsdl-engine/Sprite.h"
 USING_NS_DSDL;
 
 

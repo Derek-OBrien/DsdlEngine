@@ -5,10 +5,10 @@
 
 #include "Example\App.h"
 
-int main(int argc, char** argv){
+int main(int argc, char* argv[]){
 
-	App mainGame;
-	mainGame.run();
+	App* mainGame = new App();
+	mainGame->run();
 
 	return 0;
 }

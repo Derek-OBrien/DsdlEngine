@@ -11,7 +11,7 @@ void Character::init(){
 
 	m_sprite = new Sprite();
 
-	m_sprite->create(79, 79, "Character.png");
+	m_sprite->create(90, 125, "player2.png", 14);
 	m_sprite->setPosition(Vec2(200,200));
 
 

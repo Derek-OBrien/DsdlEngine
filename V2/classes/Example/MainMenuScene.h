@@ -1,10 +1,22 @@
 #pragma once
 
-#include <dsdl-engine\Window.h>
-#include <dsdl-engine\IScene.h>
-#include <dsdl-engine\Label.h>
-#include <dsdl-engine\InputManager.h>
-#include <dsdl-engine\Button.h>
+//#include <dsdl-engine\Window.h>
+//#include <dsdl-engine\IScene.h>
+//#include <dsdl-engine\Label.h>
+//#include <dsdl-engine\InputManager.h>
+//#include <dsdl-engine\Button.h>
+
+
+
+#include "../../dsdl-engine/IMainGame.h"
+#include "../../dsdl-engine/IScene.h"
+#include "../../dsdl-engine/EngineDefines.h"
+#include "../../dsdl-engine/Window.h"
+#include "../../dsdl-engine/Sprite.h"
+#include "../../dsdl-engine/Label.h"
+#include "../../dsdl-engine/InputManager.h"
+#include "../../dsdl-engine/AudioManager.h"
+#include "../../dsdl-engine/Button.h"
 
 #include "GameDefines.h"
 

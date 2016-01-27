@@ -24,9 +24,10 @@ namespace DsdlEngine{
 		//void create(int width, int height, std::string path);
 
 		//Render Node
-		void render(SDL_Renderer* r);
-		bool load(SDL_Renderer * r);
+		 void render(SDL_Renderer* r);
+		 bool load(SDL_Renderer * r);
 
+		 void spriteAnimation(SDL_Renderer* r);
 
 		//Set position of node
 		void setPosition(const Vec2& pos){ position.x_ = pos.x_, position.y_ = pos.y_; };
@@ -46,6 +47,7 @@ namespace DsdlEngine{
 		void setWidth(){};
 		void setHeight(){};
 		
+
 	protected:
 
 		NodeType nodeType = NodeType::BASENODE;
@@ -59,6 +61,9 @@ namespace DsdlEngine{
 
 		SDL_Rect m_gSpriteClips[30];	//frames for animation
 		SDL_Rect* m_currentFrame;		//current animation frame
+
+		int m_frame;
+		int m_numFrames;
 
 
 		// For labels

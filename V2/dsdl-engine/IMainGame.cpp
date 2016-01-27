@@ -6,8 +6,21 @@
 
 
 namespace DsdlEngine{
+
+	/*
+	*Added template version of make_unique as Ndk did not support it in its version of STL 
+	*Error was make_unique not part of std::
+	*After research this was the easiest solution to solve error
+	*Ndk-build now builds apk as of 26/01/2016
+	*/
+	template<typename T, typename ...Args>
+	std::unique_ptr<T> make_unique(Args&& ...args)
+	{
+		return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
+	}
+
 	IMainGame::IMainGame(){
-		m_pSceneManager = std::make_unique<SceneManager>(this);
+		m_pSceneManager = DsdlEngine::make_unique<SceneManager>(this);
 	}
 
 	IMainGame::~IMainGame(){}

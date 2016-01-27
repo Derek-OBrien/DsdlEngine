@@ -1,7 +1,8 @@
 
 #pragma once
-#include <dsdl-engine\IMainGame.h>
+//#include <dsdl-engine\IMainGame.h>
 
+#include "../../dsdl-engine/IMainGame.h"
 #include "MainMenuScene.h"
 #include "GamePlayScene.h"
 #include "GameDefines.h"
@@ -19,6 +20,6 @@ public:
 
 private:
 
-	std::unique_ptr<MainMenuScene> m_mainMenuScene = nullptr;
-	std::unique_ptr<GamePlayScene> m_gamePlayScene = nullptr;
+	std::unique_ptr<MainMenuScene> m_mainMenuScene;
+	std::unique_ptr<GamePlayScene> m_gamePlayScene;
 };

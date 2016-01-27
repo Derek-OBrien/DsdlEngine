@@ -1,6 +1,7 @@
 #include "Enemy.h"
-#include <dsdl-engine\EngineMath.h>
+//#include <dsdl-engine\EngineMath.h>
 
+#include "../../dsdl-engine/EngineMath.h"
 
 
 void Enemy::createEnemy(){
