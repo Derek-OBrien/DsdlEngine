@@ -40,12 +40,13 @@ namespace DsdlEngine{
 		}
 	}
 
+
 	void EngineBaseNode::spriteAnimation(SDL_Renderer* r){
 		m_currentFrame = &m_gSpriteClips[m_frame / m_numFrames];
 		engineTexture->render(position.x_, position.y_, r, m_currentFrame);
 		++m_frame;
 
-		if (m_frame / 5 >= m_numFrames){
+		if (m_frame / m_numFrames >= m_numFrames){
 			m_frame = 0;
 		}
 	}
@@ -116,7 +117,7 @@ namespace DsdlEngine{
 
 			}
 
-			return engineTexture;
+			return true;
 		}
 	}
 }

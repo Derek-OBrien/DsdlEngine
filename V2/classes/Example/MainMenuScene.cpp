@@ -68,7 +68,7 @@ void MainMenuScene::onEntryScene(){
 	m_button = new Button();
 	m_button->createTextButton(100, 100, 60, "Button", "fonts/font.ttf", SDL_Color{ 0, 255, 0 }, SDL_Color{ 0, 0, 255 });
 	m_button->setPosition(DsdlEngine::Vec2(0, 500));
-
+	//m_button->assignCallBack(bool()(onNewGameClicked()));
 	addChild(m_button, 4);
 
 }
@@ -136,7 +136,8 @@ void MainMenuScene::checkInput(){
 			break;
 		case SDL_MOUSEBUTTONUP:
 			m_inputManager.releaseKey(evnt.button.button);
-			m_button->onClicked(DsdlEngine::buttonCallBack(onNewGameClicked()));
+
+			//m_button->onClicked(DsdlEngine::buttonCallBack(onNewGameClicked()));
 			break;
 		}
 	}

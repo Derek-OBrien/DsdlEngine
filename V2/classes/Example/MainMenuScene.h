@@ -68,6 +68,4 @@ private:
 
 	Enemy* myChar2;
 
-
-//	DsdlEngine::Sprite m_sprite;
 };

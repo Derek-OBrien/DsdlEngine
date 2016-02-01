@@ -44,7 +44,9 @@ namespace DsdlEngine{
 		virtual void drawScene() = 0;
 
 		//Add node as child of scene
-		void addChild(EngineBaseNode* node, int zOrder) { sceneChildren.push_back(node); }
+		void addChild(EngineBaseNode* node, int zOrder) {
+				sceneChildren.push_back(node);
+		}
 
 
 		int getSceneIndex() const{ return m_iSceneIndex; }

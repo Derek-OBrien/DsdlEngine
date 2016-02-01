@@ -35,4 +35,17 @@
 #define NS_DSDL_START	namespace DsdlEngine{
 #define NS_DSDL_END		}
 
+
+enum class NodeType{
+	BASENODE,
+	SPRITE,
+	LABEL,
+	BUTTON
+};
+
+enum class ButtonState{
+	NORMAL,
+	PRESSED,
+	HOVERING
+};
 #endif

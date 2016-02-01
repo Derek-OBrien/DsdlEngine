@@ -7,12 +7,7 @@
 
 namespace DsdlEngine{
 
-	enum class NodeType{
-		BASENODE,
-		SPRITE,
-		LABEL,
-		BUTTON
-	};
+
 
 
 	class EngineBaseNode
@@ -59,11 +54,12 @@ namespace DsdlEngine{
 		Vec2 position;
 		int width, height;
 
-		SDL_Rect m_gSpriteClips[30];	//frames for animation
+		int m_numFrames;
+
+		SDL_Rect m_gSpriteClips[15];	//frames for animation
 		SDL_Rect* m_currentFrame;		//current animation frame
 
 		int m_frame;
-		int m_numFrames;
 
 
 		// For labels

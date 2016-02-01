@@ -8,17 +8,14 @@
 
 namespace DsdlEngine{
 
-	//call bacck function
-	typedef bool(*buttonCallBack)(bool func());
-
-	enum class ButtonState{
-		NORMAL,
-		PRESSED,
-		HOVERING
-	};
+	//call back function
+	//typedef bool(*buttonCallBack)(bool func());
 
 
 	class Button : public EngineBaseNode{
+		typedef bool(*callbck)();
+
+	
 	public:
 
 		Button();
@@ -38,13 +35,16 @@ namespace DsdlEngine{
 		void onMouseLeaves();
 
 		//Set State to Pressd, Preform Action
-		void onClicked(buttonCallBack);
+		void onClicked();
 
 		//Check for mouse input on a button
 		void checkInput(SDL_Event& e);
 
+		//void assignCallBack(callbck cb){ cb = func; }
+
 	private:
 
+		callbck func();
 		//ResourceTexture* m_pButtonTexture = nullptr;
 		Label* m_label;
 		Sprite m_spriteBtn;

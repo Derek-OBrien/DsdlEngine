@@ -19,6 +19,7 @@ namespace DsdlEngine{
 		return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
 	}
 
+
 	IMainGame::IMainGame(){
 		m_pSceneManager = DsdlEngine::make_unique<SceneManager>(this);
 	}
@@ -209,18 +210,12 @@ namespace DsdlEngine{
 		if (m_pCurrentRunning && m_pCurrentRunning->getSceneState() == SceneState::RUNNING){
 			
 			SDL_RenderClear(m_pGameRenderer);
-
-
 			m_pCurrentRunning->drawScene();
-
 
 			//for running scene 
 			//render each node that is in the child vector
 			for (int i = 0; i < m_pCurrentRunning->sceneChildren.size(); i++){
-
-
 					m_pCurrentRunning->sceneChildren.at(i)->render(m_pGameRenderer);
-	
 			}
 
 
