@@ -30,6 +30,7 @@ namespace DsdlEngine{
 		Main engine Game Loop
 	*/
 	void IMainGame::run(){
+
 		if (!init()) return;
 
 		const float DESIRED_FPS = 60.0f;
@@ -141,7 +142,7 @@ namespace DsdlEngine{
 		m_pCurrentRunning->onEntryScene();
 		m_pCurrentRunning->setSceneRunning();
 
-		//Load all scene Children nodes
+		//Load all scene Children nodes for first scene on init of game
 		for (size_t i = 0; i < m_pCurrentRunning->sceneChildren.size(); i++){
 				m_pCurrentRunning->sceneChildren.at(i)->load(m_pGameRenderer);
 		}
@@ -177,6 +178,12 @@ namespace DsdlEngine{
 				if (m_pCurrentRunning){
 					m_pCurrentRunning->setSceneRunning();
 					m_pCurrentRunning->onEntryScene(); 
+
+					//Load all scene Children nodes for next scene
+					for (size_t i = 0; i < m_pCurrentRunning->sceneChildren.size(); i++){
+						m_pCurrentRunning->sceneChildren.at(i)->load(m_pGameRenderer);
+					}
+
 				}
 				break;
 			case SceneState::CHANGE_PREVIOUS:
@@ -185,6 +192,12 @@ namespace DsdlEngine{
 				if (m_pCurrentRunning){
 					m_pCurrentRunning->setSceneRunning();
 					m_pCurrentRunning->onEntryScene();
+
+					//Load all scene Children nodes for previous scene
+					for (size_t i = 0; i < m_pCurrentRunning->sceneChildren.size(); i++){
+						m_pCurrentRunning->sceneChildren.at(i)->load(m_pGameRenderer);
+					}
+
 				}
 				break;
 			case SceneState::EXIT_APP:

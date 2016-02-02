@@ -32,47 +32,21 @@ void MainMenuScene::destroyScene(){
 
 void MainMenuScene::onEntryScene(){
 
-	Music music = m_AudioManager.loadMusic("Sound/xyz.mp3");
+	music = m_AudioManager.loadMusic("Sound/XYZ.ogg");
 	music.play(-1);
-
-	myChar = new Character();
-	myChar->init();
-	
-	addChild(myChar->m_sprite, 2);
-
-
-	myChar2 = new Enemy();
-	myChar2->createEnemy();
-
-	addChild(myChar2->enemy, 8);
-
-
-	myChar2 = new Enemy();
-	myChar2->createEnemy();
-	myChar2->setPosition(DsdlEngine::Vec2(600,600));
-	addChild(myChar2->enemy, 2);
 
 
 
 	m_label = new Label();
-	m_label->create("Main Menu", 50, SDL_Color{ 255, 0, 0 }, "fonts/font.ttf");
-	m_label->setPosition(DsdlEngine::Vec2(600,600));
-
-
+	m_label->create("Main Menu", 80, SDL_Color{ 255, 0, 0 }, "fonts/font.ttf");
+	m_label->setPosition(DsdlEngine::Vec2(600,5));
 	addChild(m_label, 1);
 
 
 
-	m_label = new Label();
-	m_label->create("Main Menu fdsfdk", 50, SDL_Color{ 255, 0, 0 }, "fonts/font.ttf");
-	m_label->setPosition(DsdlEngine::Vec2::ZERO);
-
-	addChild(m_label, 0);
-
-
 	m_button = new Button();
 	m_button->createTextButton(100, 100, 60, "Button", "fonts/font.ttf", SDL_Color{ 0, 255, 0 }, SDL_Color{ 0, 0, 255 });
-	m_button->setPosition(DsdlEngine::Vec2(0, 500));
+	m_button->setPosition(DsdlEngine::Vec2(600, 500));
 	//m_button->assignCallBack(bool()(onNewGameClicked()));
 	addChild(m_button, 4);
 
@@ -81,6 +55,8 @@ void MainMenuScene::onEntryScene(){
 void MainMenuScene::onExitScene(){
 	m_nextScreenIndex = SCENE_INDEX_GAMEPLAY;
 	m_eCurrentState = DsdlEngine::SceneState::CHANGE_NEXT;
+
+	m_AudioManager.destroy();
 }
 
 void MainMenuScene::updateScene(){

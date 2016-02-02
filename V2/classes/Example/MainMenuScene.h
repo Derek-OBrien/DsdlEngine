@@ -69,4 +69,6 @@ private:
 
 	Enemy* myChar2;
 
+	Music music;
+
 };
