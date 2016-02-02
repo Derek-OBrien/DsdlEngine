@@ -14,8 +14,7 @@ namespace DsdlEngine{
 	*Ndk-build now builds apk as of 26/01/2016
 	*/
 	template<typename T, typename ...Args>
-	std::unique_ptr<T> make_unique(Args&& ...args)
-	{
+	std::unique_ptr<T> make_unique(Args&& ...args){
 		return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
 	}
 
@@ -93,6 +92,18 @@ namespace DsdlEngine{
 		case SDL_MOUSEBUTTONUP:
 			m_InputManager.releaseKey(evnt.button.button);
 			break;
+			//Touch down
+		case SDL_FINGERDOWN:
+			m_InputManager.pressKey(evnt.button.button);
+			break;
+		case SDL_FINGERMOTION:
+			m_InputManager.setMouseCoords((float)evnt.motion.x, (float)evnt.motion.y);
+			break;
+		case SDL_FINGERUP:
+			m_InputManager.releaseKey(evnt.button.button);
+			break;
+		default:
+			break;
 		}
 	}
 
@@ -131,19 +142,8 @@ namespace DsdlEngine{
 		m_pCurrentRunning->setSceneRunning();
 
 		//Load all scene Children nodes
-		for (int i = 0; i < m_pCurrentRunning->sceneChildren.size(); i++){
-			//switch (m_pCurrentRunning->sceneChildren.at(i)->getNodeType())
-			//{
-			//case NodeType::SPRITE:
+		for (size_t i = 0; i < m_pCurrentRunning->sceneChildren.size(); i++){
 				m_pCurrentRunning->sceneChildren.at(i)->load(m_pGameRenderer);
-			//	break;
-			//case NodeType::LABEL:
-			//	m_pCurrentRunning->sceneChildren.at(i)->load(m_pGameRenderer);
-			//	break;
-		//	default:
-			//	break;
-			//}
-
 		}
 
 		return true;
@@ -155,7 +155,6 @@ namespace DsdlEngine{
 	*/
 	bool IMainGame::initSystems(){
 		m_Window.createWindow(windowtitle, m_windowWidth, m_windowHeight, windowFlag);
-		
 		m_pGameRenderer = m_Window.getRenderer();
 		return true;
 	}
@@ -214,13 +213,13 @@ namespace DsdlEngine{
 
 			//for running scene 
 			//render each node that is in the child vector
-			for (int i = 0; i < m_pCurrentRunning->sceneChildren.size(); i++){
+			for (size_t i = 0; i < m_pCurrentRunning->sceneChildren.size(); i++){
 					m_pCurrentRunning->sceneChildren.at(i)->render(m_pGameRenderer);
 			}
 
 
 			m_Window.swapBuffer();
-			SDL_SetRenderDrawColor(m_pGameRenderer, 0x00, 0x00, 0x00, 0xff);
+			//SDL_SetRenderDrawColor(m_pGameRenderer, 0x00, 0x00, 0x00, 0xff);
 			SDL_RenderPresent(m_pGameRenderer);
 
 		}

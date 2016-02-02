@@ -93,7 +93,7 @@ namespace DsdlEngine{
 			DEBUG_MSG("Checking if mouse over button");
 			int x, y;
 			SDL_GetMouseState(&x, &y);
-
+	
 			//Check if mouse inside button area
 			bool inside = true;
 
@@ -125,6 +125,16 @@ namespace DsdlEngine{
 					break;
 				case SDL_MOUSEBUTTONDOWN:
 					onClicked();
+					break;
+					//Touch down
+				case SDL_FINGERDOWN :
+					onClicked();
+					break;
+				case SDL_FINGERMOTION:
+					onMouseEnters();
+					break;
+				case SDL_FINGERUP:
+					onMouseEnters();
 					break;
 				default:
 					break;

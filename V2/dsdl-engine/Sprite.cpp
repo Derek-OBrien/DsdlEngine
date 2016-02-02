@@ -25,4 +25,8 @@ namespace DsdlEngine{
 		m_numFrames = nf;
 	}
 
+	void Sprite::destroy(){
+		
+	}
+
 }

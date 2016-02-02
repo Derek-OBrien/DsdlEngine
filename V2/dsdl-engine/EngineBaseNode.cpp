@@ -1,6 +1,9 @@
 
 #include "EngineBaseNode.h"
 
+
+
+
 namespace DsdlEngine{
 
 
@@ -10,7 +13,9 @@ namespace DsdlEngine{
 		m_numFrames = 1;
 	}
 
-	EngineBaseNode::~EngineBaseNode(){}
+	EngineBaseNode::~EngineBaseNode(){
+		destroy();
+	}
 
 
 
@@ -32,7 +37,7 @@ namespace DsdlEngine{
 				engineTexture->render(position.x_, position.y_, r, m_currentFrame);
 			}
 
-			SDL_SetRenderDrawColor(r, 0xff, 0x00, 0x00, 0xFF);
+			//SDL_SetRenderDrawColor(r, 0xff, 0x00, 0x00, 0xFF);
 			SDL_RenderDrawRect(r, &objectBoundingBox);
 		}
 		else if (nodeType == NodeType::LABEL || nodeType == NodeType::BUTTON){
@@ -60,10 +65,10 @@ namespace DsdlEngine{
 		if (nodeType == NodeType::SPRITE){
 			
 			if (!engineTexture->loadFromFile(m_assetPath, r))
-				DEBUG_MSG("Faild to load sprite");
+				SDL_Log("Faild to load sprite");
 
 			else{
-				DEBUG_MSG("Loaded sprite");
+				SDL_Log("Loaded sprite");
 
 				int temp = 0;
 
@@ -91,8 +96,18 @@ namespace DsdlEngine{
 				TTF_Init();
 			}
 
-			std::string temp = "../../assets/" + m_assetPath;
 
+
+			std::string temp;
+#ifdef __WIN32__
+			SDL_Log("Loading Assets For Windows Platform");
+			temp = "../../assets/" + m_assetPath;
+#endif
+
+#ifdef __ANDROID__
+			SDL_Log("Loading Assets for Android Platform");
+			temp = m_assetPath;
+#endif
 
 			//Check if font in chache
 			auto it = m_FontMap.find(temp);
@@ -119,5 +134,11 @@ namespace DsdlEngine{
 
 			return true;
 		}
+		//else
+		return false;
+	}
+
+	void EngineBaseNode::destroy(){
+		engineTexture->destroy();
 	}
 }

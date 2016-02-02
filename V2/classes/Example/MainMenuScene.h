@@ -57,12 +57,13 @@ private:
 	bool onNewGameClicked();
 
 
-	int m_nextScreenIndex = SCENE_INDEX_GAMEPLAY;
+	int m_nextScreenIndex = SCENE_INDEX_MAINMENU;
 
 	Window* m_window;
 	Label* m_label;
 	InputManager m_inputManager;
 	Button* m_button;
+	AudioManager m_AudioManager;
 
 	Character* myChar;
 

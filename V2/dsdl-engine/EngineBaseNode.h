@@ -20,7 +20,7 @@ namespace DsdlEngine{
 
 		//Render Node
 		 void render(SDL_Renderer* r);
-		 bool load(SDL_Renderer * r);
+		 bool load(SDL_Renderer* r);
 
 		 void spriteAnimation(SDL_Renderer* r);
 
@@ -42,7 +42,7 @@ namespace DsdlEngine{
 		void setWidth(){};
 		void setHeight(){};
 		
-
+		void destroy();
 	protected:
 
 		NodeType nodeType = NodeType::BASENODE;

@@ -15,14 +15,18 @@
 
 namespace DsdlEngine{
 
-	ResourceTexture::ResourceTexture(){}
-	ResourceTexture::~ResourceTexture(){}
+	ResourceTexture::ResourceTexture(){
+		m_Texture = nullptr;
+	}
+	ResourceTexture::~ResourceTexture(){
+		destroy();
+	}
 
 	//Load Texture
 	ResourceTexture ResourceTexture::loadTexture(std::string texturePath, SDL_Renderer* r){
 		ResourceTexture texture;
 		if (!texture.loadFromFile(texturePath, r))
-			DEBUG_MSG("Texture load failed");
+			SDL_Log("Texture load failed");
 
 		return texture;
 	}
@@ -30,15 +34,35 @@ namespace DsdlEngine{
 
 	//Load Sprite from file
 	bool ResourceTexture::loadFromFile(std::string texturePath, SDL_Renderer* r){
+		std::string temp;
 
-		std::string temp = "../../assets/" + texturePath;
 
-		auto it = m_TextureMap.find(temp);
+		/*
+			if defs here for different platfoms as windows needs to find assets in root folder which i have created
+			but android needs to find assets in the jni/assets folder. android is allready set up to go look in this folder 
+			there for all that was needed was the name and in the windows platfom i add on path to the assets folder so it just has to look for name of file
+
+			this will need to be done to each asset type loding function eg. audio, fonts, images
+		*/
+
+
+#ifdef __WIN32__
+		SDL_Log("Loading Assets For Windows Platform");
+		temp = "../../assets/" + texturePath;
+#endif
+
+#ifdef __ANDROID__
+		SDL_Log("Loading Assets for Android Platform");
+		temp = texturePath;
+#endif
+
+
+		//auto it = m_TextureMap.find(temp);
 
 		SDL_Texture* newTexture = NULL;
 		SDL_Surface* loadedSurface = NULL;
 
-		if (it == m_TextureMap.end()){
+		//if (it == m_TextureMap.end()){
 			//Load image at specified path
 			loadedSurface = IMG_Load(temp.c_str());
 
@@ -46,7 +70,7 @@ namespace DsdlEngine{
 			if (loadedSurface == NULL)
 				DEBUG_MSG("SDL_image Error : " + std::string(IMG_GetError()));
 			else{
-				DEBUG_MSG("Flie loaded");
+				SDL_Log("Flie loaded");
 				//Color key image
 				SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0xFF, 0xFF));
 
@@ -64,11 +88,11 @@ namespace DsdlEngine{
 				SDL_FreeSurface(loadedSurface);
 			}
 			 
-			m_TextureMap[temp] = newTexture;
-		}
-		else{
-			newTexture = it->second;
-		}
+			//m_TextureMap[temp] = newTexture;
+		//}
+		//else{
+		//	newTexture = it->second;
+		//}
 		//Return success
 		m_Texture = newTexture;
 		return newTexture != NULL;
@@ -76,17 +100,20 @@ namespace DsdlEngine{
 
 
 	//Load ttf
-	bool ResourceTexture::loadTTF(std::string text, SDL_Color color, TTF_Font* font, SDL_Renderer* r){
+	bool ResourceTexture::loadTTF(std::string text, SDL_Color color, TTF_Font* myfont, SDL_Renderer* r){
 
-		SDL_Surface* textSurface = TTF_RenderText_Blended(font, text.c_str(), color);
+		destroy();
 
-		SDL_Texture* newTexture = NULL;
+		SDL_Surface* textSurface = TTF_RenderText_Blended(myfont, text.c_str(), color);
+
+		//m_Texture = nullptr;
+
 		if (textSurface == NULL){
 			DEBUG_MSG("TTF_RenderText_Blended Error : " + std::string(TTF_GetError()));
 		}
 		else{
-			newTexture = SDL_CreateTextureFromSurface(r, textSurface);
-			if (newTexture == NULL){
+			m_Texture = SDL_CreateTextureFromSurface(r, textSurface);
+			if (m_Texture == NULL){
 				DEBUG_MSG("TTF_RenderText_Blended Error : " + std::string(TTF_GetError()));
 			}
 			else{
@@ -96,9 +123,11 @@ namespace DsdlEngine{
 
 			SDL_FreeSurface(textSurface);
 		}
-		m_Texture = newTexture;
+		//m_Texture = newTexture;
+
 		return m_Texture != NULL;
 	}
+
 
 	//Basic render
 	void ResourceTexture::render(int x, int y, SDL_Renderer* r, SDL_Rect* clip){
@@ -125,9 +154,9 @@ namespace DsdlEngine{
 			m_iHeight = 0;
 		}
 
-		for (auto& it : m_TextureMap){
-			SDL_DestroyTexture(it.second);
-		}
+		//for (auto& it : m_TextureMap){
+		//	SDL_DestroyTexture(it.second);
+		//}
 	}
 
 	void ResourceTexture::setBlendMode(SDL_BlendMode blend){

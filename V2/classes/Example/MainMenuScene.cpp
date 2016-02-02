@@ -5,9 +5,11 @@
 
 #include "../../dsdl-engine/EngineMath.h"
 
+
+
 MainMenuScene::MainMenuScene(DsdlEngine::Window* window) : m_window(window){
 
-	m_nextScreenIndex = SCENE_INDEX_MAINMENU;
+	m_iSceneIndex = SCENE_INDEX_GAMEPLAY;
 }
 MainMenuScene::~MainMenuScene(){}
 
@@ -29,6 +31,9 @@ void MainMenuScene::destroyScene(){
 }
 
 void MainMenuScene::onEntryScene(){
+
+	Music music = m_AudioManager.loadMusic("Sound/xyz.mp3");
+	music.play(-1);
 
 	myChar = new Character();
 	myChar->init();
@@ -92,7 +97,6 @@ void MainMenuScene::drawScene(){
 	//m_SpriteButton.render(m_window->getRenderer());
 
 
-
 }
 
 /*void MainMenuScene::addChild(){
@@ -117,7 +121,6 @@ void MainMenuScene::checkInput(){
 	SDL_Event evnt;
 	while (SDL_PollEvent(&evnt)) {
 		
-		m_button->checkInput(evnt);
 		switch (evnt.type) {
 		case SDL_QUIT:
 			exit(1);
@@ -133,11 +136,28 @@ void MainMenuScene::checkInput(){
 			break;
 		case SDL_MOUSEBUTTONDOWN:
 			m_inputManager.pressKey(evnt.button.button);
+			onNewGameClicked();
 			break;
 		case SDL_MOUSEBUTTONUP:
 			m_inputManager.releaseKey(evnt.button.button);
 
 			//m_button->onClicked(DsdlEngine::buttonCallBack(onNewGameClicked()));
+			break;
+			//Touch down
+		case SDL_FINGERDOWN:
+			m_inputManager.pressKey(evnt.button.button);
+			SDL_Log("Touch Triggered ");
+			onNewGameClicked();
+			break;
+		case SDL_FINGERMOTION:
+			m_inputManager.setMouseCoords((float)evnt.motion.x, (float)evnt.motion.y);
+			SDL_Log("Touch Motion Triggered ");
+			break;
+		case SDL_FINGERUP:
+			m_inputManager.releaseKey(evnt.button.button);
+			SDL_Log("Touch up Triggered ");
+			break;
+		default:
 			break;
 		}
 	}

@@ -28,7 +28,7 @@ namespace DsdlEngine{
 		void setPosX(int x){ position.x_ += x; objectBoundingBox.x += x; }
 		void setPosY(int y){ position.y_ += y; objectBoundingBox.y += y; }
 
-
+		void destroy();
 		//int Set number of sprite sprite frames in animation
 	private:
 

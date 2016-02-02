@@ -39,7 +39,7 @@ namespace DsdlEngine{
 
 	//Clean up scenes
 	void SceneManager::destroy(){
-		for (int i = 0; i < m_pScenes.size(); i++){
+		for (size_t i = 0; i < m_pScenes.size(); i++){
 			m_pScenes[i]->destroyScene();
 			delete m_pScenes[i];
 		}

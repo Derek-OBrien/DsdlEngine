@@ -2,6 +2,7 @@
 #ifndef _ENGINEDEFINES_
 #define _ENGINEDEFINES_
 
+
 #include <SDL.h>
 #include "../dependencies/SDL2/SDL_image/SDL_image.h"
 #include "../dependencies/SDL2/SDL_ttf/SDL_ttf.h"
@@ -9,7 +10,6 @@
 //#include <SDL_image.h>
 //#include <SDL_ttf.h>
 //#include <SDL_mixer.h>
-
 
 //#include <Box2D\Box2D.h>
 
@@ -27,7 +27,6 @@
 
 #include "EngineError.h"
 #include "EngineMath.h"
-
 
 
 //Set Macro Defines for Namespace

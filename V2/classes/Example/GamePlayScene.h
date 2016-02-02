@@ -54,11 +54,10 @@ private:
 
 
 	DsdlEngine::Window* m_window;
-	DsdlEngine::Label m_label;
+	DsdlEngine::Label* m_glabel;
 	DsdlEngine::InputManager m_inputManager;
-	DsdlEngine::ResourceTexture m_texture;
-	DsdlEngine::AudioManager m_AudioManager;
-	DsdlEngine::Sprite m_sprite;
+
+	Character* myChar2;
 
 	//b2World* m_World;
 	//std::vector<Box> boxes;

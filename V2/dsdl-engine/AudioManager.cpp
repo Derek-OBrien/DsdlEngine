@@ -60,6 +60,7 @@ namespace DsdlEngine{
 		if (it == m_sfxAudioMap.end()){
 			if ((sfxChunk = Mix_LoadWAV(temp.c_str())) == NULL){
 				DEBUG_MSG("Mix_LoadWAV: Failed to load Audio" + std::string(Mix_GetError()));
+				SDL_Log("Failed to load Audio Wav");
 			}
 			sfx.m_Chunk = sfxChunk;
 			m_sfxAudioMap[temp] = sfxChunk;
@@ -73,10 +74,19 @@ namespace DsdlEngine{
 
 	//load music
 	Music AudioManager::loadMusic(std::string audioPath){
-		
-		std::string temp = "../../assets/" + audioPath;
 
-		
+		std::string temp;
+#ifdef __WIN32__
+		SDL_Log("Loading Assets For Windows Platform");
+		temp = "../../assets/" + audioPath;
+#endif
+
+#ifdef __ANDROID__
+		SDL_Log("Loading Assets for Android Platform");
+		temp = audioPath;
+#endif
+
+
 		//Check if allready cached
 		auto it = m_bgAudioMap.find(temp);
 
@@ -86,6 +96,7 @@ namespace DsdlEngine{
 		if (it == m_bgAudioMap.end()){
 			if ((mix = Mix_LoadMUS(temp.c_str())) == NULL){
 				DEBUG_MSG("Mix_LoadMUS: Failed to load Audio" + std::string(Mix_GetError()));
+				SDL_Log("Failed to load Audio");
 			}
 			music.m_Music = mix;
 			m_bgAudioMap[temp] = mix;

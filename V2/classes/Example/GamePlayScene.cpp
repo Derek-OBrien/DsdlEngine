@@ -27,60 +27,12 @@ void GamePlayScene::destroyScene(){
 void GamePlayScene::onEntryScene(){
 
 
-	DsdlEngine::Music music = m_AudioManager.loadMusic("Sound/XYZ.ogg");
-	music.play(-1);
+	myChar2 = new Character();
+	myChar2->init();
+
+	addChild(myChar2->m_sprite, 2);
 
 
-	//b2Vec2 gravity(0.0f, 25.8f);
-	//m_World = new b2World(gravity);
-
-	//m_texture = m_texture.loadTexture("bricks.png", m_window->getRenderer());
-
-
-//	m_sprite.create("Character.png", 70, 70);
-
-	//m_label.create("GamePlay Scene", 70, SDL_Color{ 200, 200, 0 }, "fonts/font.ttf", m_window->getRenderer());
-	//m_label.setPosition(DsdlEngine::Vec2(20, 20));
-	//addChild(m_label,1);
-
-
-	//m_sprite.createSprite(100, 100, "Character.png", m_window->getRenderer());
-	//m_sprite.setPosition(DsdlEngine::Vec2(600, 50));
-
-
-//	addChild(m_sprite, 0);
-
-
-
-	//m_char.init();
-	//m_char.m_sprite.setPosition(DsdlEngine::Vec2(100, 100));
-
-	//addChild(m_char.m_sprite, 1);
-	// Make the ground
-	//b2BodyDef groundBodyDef;
-	//groundBodyDef.type = b2_staticBody;
-
-	//groundBodyDef.position.Set(0.0f, 25.0f);
-	//b2Body* groundBody = m_World->CreateBody(&groundBodyDef);
-
-	// Make the ground fixture
-	//b2PolygonShape groundBox;
-	//groundBox.SetAsBox(1024.0f, 100.0f);
-	//groundBody->CreateFixture(&groundBox, 1.0f);
-
-
-	// Make a bunch of boxes
-	//std::mt19937 randGenerator;
-	//std::uniform_real_distribution<float> xPos(100, m_window->getScreenWidth() - 300);
-	//std::uniform_real_distribution<float> yPos(20, m_window->getScreenHeight() - 300);
-	//const int NUM_BOXES = 20;
-
-	/*for (int i = 0; i < NUM_BOXES; i++) {
-		Box newBox;
-		newBox.init(m_World, xPos(randGenerator), yPos(randGenerator), 50, 50, m_texture);
-		boxes.push_back(newBox);
-		
-	}*/
 }
 
 void GamePlayScene::onExitScene(){
@@ -90,27 +42,10 @@ void GamePlayScene::onExitScene(){
 void GamePlayScene::updateScene(){
 
 	checkInput();
-
-	// Update the physics simulation
-	/*m_World->Step(1.0f / 60.0f, 6, 2);
-
-	for (int i = 0; i < boxes.size(); i++){
-		// Now print the position and angle of the body.
-		b2Vec2 position = boxes.at(i).getbody()->GetPosition();
-		float32 angle = boxes.at(i).getbody()->GetAngle();
-
-		printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
-
-	}*/
 }
 
 void GamePlayScene::drawScene(){
 
-
-	/*for (int i = 0; i < boxes.size(); i++){
-
-		boxes.at(i).draw(m_window->getRenderer());
-	}*/
 }
 
 
@@ -154,21 +89,18 @@ void GamePlayScene::checkInput(){
 		case SDL_MOUSEBUTTONUP:
 			m_inputManager.releaseKey(evnt.button.button);
 			break;
+			//Touch down
+		case SDL_FINGERDOWN:
+			m_inputManager.pressKey(evnt.button.button);
+			break;
+		case SDL_FINGERMOTION:
+			m_inputManager.setMouseCoords((float)evnt.motion.x, (float)evnt.motion.y);
+			break;
+		case SDL_FINGERUP:
+			m_inputManager.releaseKey(evnt.button.button);
+			break;
+		default:
+			break;
 		}
 	}
-
-	if (m_inputManager.isKeyDown(SDLK_w)) {
-		m_sprite.setPositionX(10);
-	}
-	else if (m_inputManager.isKeyDown(SDLK_s)) {
-		m_sprite.setPositionX(-10);
-	}
-	if (m_inputManager.isKeyDown(SDLK_a)) {
-		m_sprite.setPositionY(10);
-	}
-	else if (m_inputManager.isKeyDown(SDLK_d)) {
-		m_sprite.setPositionY(-10);
-	}
-
-
 }

@@ -26,9 +26,9 @@ GAME_FILE_LIST := $(wildcard $(LOCAL_PATH)/../../../classes/Example/*.cpp)
 
 # Add your application source files here...
 LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.c\
-	../../../classes/test.cpp
-	#$(ENGINE_FILE_LIST:$(LOCAL_PATH)/%=%)\
-	#$(GAME_FILE_LIST:$(LOCAL_PATH)/%=%)\
+	$(ENGINE_FILE_LIST:$(LOCAL_PATH)/%=%)\
+	$(GAME_FILE_LIST:$(LOCAL_PATH)/%=%)\
+	../../../classes/main.cpp
 	
 
 LOCAL_SHARED_LIBRARIES :=  SDL2 SDL2_image SDL2_ttf SDL2_mixer
