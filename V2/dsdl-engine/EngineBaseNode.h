@@ -29,10 +29,15 @@ namespace DsdlEngine{
 		void setPositionX(int x){ position.x_ = x; }
 		void setPositionY(int y){ position.y_ = y; }
 
+		Vec2 getPosition(){ return position; }
+		
+		//Content Size
+		Size getContentSize(){ return Size(width, height); }
 
 		//Get Assets Path
 		void setAssetPath(std::string path){ m_assetPath = path; }
 		std::string getAssetsPath(){ return m_assetPath; }
+
 
 		//Get And Set Node Type
 		NodeType getNodeType(){ return nodeType; }
@@ -42,7 +47,7 @@ namespace DsdlEngine{
 		void setWidth(){};
 		void setHeight(){};
 		
-		void destroy();
+		virtual void destroy();
 	protected:
 
 		NodeType nodeType = NodeType::BASENODE;
@@ -56,7 +61,7 @@ namespace DsdlEngine{
 
 		int m_numFrames;
 
-		SDL_Rect m_gSpriteClips[15];	//frames for animation
+		SDL_Rect m_gSpriteClips[14];	//frames for animation
 		SDL_Rect* m_currentFrame;		//current animation frame
 
 		int m_frame;

@@ -55,7 +55,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)..\;$(SolutionDir)..\dependenciesSDL2\SDL_ttf\include;$(SolutionDir)..\dependenciesSDL2\SDL_mixer\include;$(SolutionDir)..\dependenciesSDL2\SDL_image\include;$(SolutionDir)..\dependencies\SDL2\SDL\include;$(SolutionDir)..\dependencies\Box2D\Box2D\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\dsdl-engine\;$(SolutionDir)..\dependenciesSDL2\SDL_ttf\include;$(SolutionDir)..\dependenciesSDL2\SDL_mixer\include;$(SolutionDir)..\dependenciesSDL2\SDL_image\include;$(SolutionDir)..\dependencies\SDL2\SDL\include;$(SolutionDir)..\dependencies\Box2D\Box2D\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)..\dsdl-engine\lib;$(SolutionDir)..\dependencies\SDL2\SDL_mixer\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL_ttf\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL_image\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL\lib\x86;$(SolutionDir)..\dependencies\Box2D\Box2D\Build\vs2013\bin\x32\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -70,7 +70,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>DsdlEngine.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>DsdlEngine.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>

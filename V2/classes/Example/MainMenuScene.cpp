@@ -3,7 +3,8 @@
 
 //#include <dsdl-engine\EngineMath.h>
 
-#include "../../dsdl-engine/EngineMath.h"
+//#include "../../dsdl-engine/EngineMath.h"
+#include <DsdlEngine.h>
 
 
 

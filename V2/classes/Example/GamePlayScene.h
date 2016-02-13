@@ -10,17 +10,10 @@
 //#include <dsdl-engine\InputManager.h>
 //#include <dsdl-engine\AudioManager.h>
 
-#include "../../dsdl-engine/IMainGame.h"
-#include "../../dsdl-engine/IScene.h"
-#include "../../dsdl-engine/EngineDefines.h"
-#include "../../dsdl-engine/Window.h"
-#include "../../dsdl-engine/Sprite.h"
-#include "../../dsdl-engine/Label.h"
-#include "../../dsdl-engine/InputManager.h"
-#include "../../dsdl-engine/AudioManager.h"
-//#include "Box.h"
-//#include <Box2D\Box2D.h>
-//#include "../../dependencies/Box2D/Box2D/Box2D/Box2D.h"
+
+//#include "../../dsdl-engine/DsdlEngine.h"
+#include "DsdlEngine.h"
+
 #include <random>
 
 #include "Character.h"

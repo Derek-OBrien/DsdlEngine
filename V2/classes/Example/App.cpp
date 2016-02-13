@@ -2,7 +2,9 @@
 #include "App.h"
 //#include <dsdl-engine\SceneManager.h>
 
-#include "../../dsdl-engine/SceneManager.h"
+
+//#include "../../dsdl-engine/DsdlEngine.h"
+#include <DsdlEngine.h>
 
 /*
 *Added template version of make_unique as Ndk did not support it in its version of STL

@@ -9,13 +9,16 @@ LOCAL_MODULE := main
 
 #Set Paths
 SDL_PATH := ../SDL2
-
+BOX2D_PATH := ../Box2D
+DSDL_PATH := ../Dsdl
 
 # Add includes here
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/$(SDL_PATH)/include
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/$(SDL_PATH)/include $(LOCAL_PATH)/../SDL2_image
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/$(SDL_PATH)/include $(LOCAL_PATH)/../SDL2_ttf
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/$(SDL_PATH)/include $(LOCAL_PATH)/../SDL2_mixer
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/$(DSDL_PATH)/
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/$(BOX2D_PATH)/
 
 #Include all engine cpp files
 ENGINE_FILE_LIST := $(wildcard $(LOCAL_PATH)/../../../dsdl-engine/*.cpp)
@@ -26,12 +29,12 @@ GAME_FILE_LIST := $(wildcard $(LOCAL_PATH)/../../../classes/Example/*.cpp)
 
 # Add your application source files here...
 LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.c\
-	$(ENGINE_FILE_LIST:$(LOCAL_PATH)/%=%)\
 	$(GAME_FILE_LIST:$(LOCAL_PATH)/%=%)\
 	../../../classes/main.cpp
 	
+		#$(ENGINE_FILE_LIST:$(LOCAL_PATH)/%=%)\
 
-LOCAL_SHARED_LIBRARIES :=  SDL2 SDL2_image SDL2_ttf SDL2_mixer
+LOCAL_SHARED_LIBRARIES :=  SDL2 SDL2_image SDL2_ttf SDL2_mixer Dsdl box2d_static
 
 LOCAL_LDLIBS := -lGLESv1_CM -llog -lEGL
 #LOCAL_CPP_FEATURES += exceptions

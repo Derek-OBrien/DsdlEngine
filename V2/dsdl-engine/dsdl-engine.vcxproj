@@ -52,8 +52,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -64,7 +63,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -95,15 +94,16 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\dependencies\tinyxml\tinyxml2.h" />
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="DsdlEngine.h" />
     <ClInclude Include="EngineDefines.h" />
     <ClInclude Include="EngineError.h" />
     <ClInclude Include="EngineBaseNode.h" />
+    <ClInclude Include="EngineMaster.h" />
     <ClInclude Include="EngineMath.h" />
     <ClInclude Include="Gui.h" />
-    <ClInclude Include="Include.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="IScene.h" />
     <ClInclude Include="IMainGame.h" />
@@ -116,11 +116,13 @@
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\dependencies\tinyxml\tinyxml2.cpp" />
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="DsdlEngine.cpp" />
     <ClCompile Include="EngineError.cpp" />
     <ClCompile Include="EngineBaseNode.cpp" />
+    <ClCompile Include="EngineMaster.cpp" />
     <ClCompile Include="EngineMath.cpp" />
     <ClCompile Include="Gui.cpp" />
     <ClCompile Include="IMainGame.cpp" />

@@ -33,7 +33,7 @@ namespace DsdlEngine{
 
 	void FpsLimiter::calculateFPS() {
 		//The number of frames to average
-		static const int NUM_SAMPLES = 10;
+		static const int NUM_SAMPLES = 5;
 		//Stores all the frametimes for each frame that we will average
 		static float frameTimes[NUM_SAMPLES];
 		//The current frame we are on
@@ -74,7 +74,7 @@ namespace DsdlEngine{
 			m_fFps = 1000.0f / frameTimeAverage;
 		}
 		else {
-			m_fFps = 60.0f;	//MAX ALLOWED 
+			m_fFps = 120.0f;	//MAX ALLOWED 
 		}
 	}
 }

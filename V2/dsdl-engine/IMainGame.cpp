@@ -33,7 +33,7 @@ namespace DsdlEngine{
 
 		if (!init()) return;
 
-		const float DESIRED_FPS = 60.0f;
+		const float DESIRED_FPS = 120.0f;
 		const float MS_PER_SECOND = 1000;
 
 		const float DESIRED_FRAMETIME = MS_PER_SECOND / DESIRED_FPS; // The desired frame time per frame

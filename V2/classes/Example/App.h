@@ -1,8 +1,6 @@
 
 #pragma once
-//#include <dsdl-engine\IMainGame.h>
 
-#include "../../dsdl-engine/IMainGame.h"
 #include "MainMenuScene.h"
 #include "GamePlayScene.h"
 #include "GameDefines.h"

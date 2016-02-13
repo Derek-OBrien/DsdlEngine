@@ -1,5 +1,6 @@
 LOCAL_PATH := $(call my-dir)
-
+MY_PATH := $(LOCAL_PATH)
+LOCAL_PATH := $(MY_PATH)
 ###########################
 #
 # DsdlEngine shared library
@@ -8,19 +9,30 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := DsdlEngine
+LOCAL_MODULE := Dsdl
 
-LOCAL_C_INCLUDES := $(LOCAL_PATH)/
+LOCAL_C_INCLUDES := $(LOCAL_PATH)
+LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)
 
-LOCAL_EXPORT_C_INCLUDES := $(LOCAL_C_INCLUDES)
 
 LOCAL_SRC_FILES := \
-	$(wildcard $(LOCAL_PATH)/*.cpp) 
-	
+	AudioManager.cpp\
+	Button.cpp\
+	DsdlEngine.cpp\
+	EngineBaseNode.cpp\
+	EngineError.cpp\
+	EngineMath.cpp\
+	Gui.cpp\
+	IMainGame.cpp\
+	InputManager.cpp\
+	Label.cpp\
+	Layer.cpp\
+	ResourceTexture.cpp\
+	SceneManager.cpp\
+	Sprite.cpp\
+	Timing.cpp\
+	Window.cpp
 
-# Optional compiler flags.
-LOCAL_LDLIBS   = -lz -lm
-LOCAL_CFLAGS   = -Wall -pedantic -std=c99 -g
 
-include $(BUILD_STATIC_LIBRARY)
+include $(BUILD_SHARED_LIBRARY)
 

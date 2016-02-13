@@ -27,6 +27,7 @@
 
 #include "EngineError.h"
 #include "EngineMath.h"
+#include "EngineMaster.h"
 
 
 //Set Macro Defines for Namespace
