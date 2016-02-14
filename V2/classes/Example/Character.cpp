@@ -11,13 +11,34 @@ void Character::init(){
 
 	m_sprite = new Sprite();
 
-	//DsdlEngine::EngineMaster::getInstance()->setIntegerForKey(100, "playerPosx");
+	EngineMaster* em =  EngineMaster::getInstance();
+//	DEBUG_MSG("TEST XML FILE: " + std::string(em->getXMLFilePath()));
+	
+	
+	em->setIntegerForKey(100, "playerPosx");
+	int test = em->getIntegerForKey("playerPosx");
+	std::cout << "PosX : %d " + test << std::endl;
+	
+
+
+	em->setIntegerForKey(600, "playerPosy");
+	int test2 = em->getIntegerForKey("playerPosy");
+	std::cout << "PosY : d% " + test2 << std::endl;
+	
+	
+	em->setIntegerForKey(500, "playerPosx");
+
+	//em->deleteValueForKey("playerPosx");
+
+
+	//int test2 = em->getIntegerForKey("playerPosx");
+
+	//std::cout << test2 << std::endl;
+
+	//em->setIntegerForKey(600, "DefaultRoot");
 
 	m_sprite->create(90, 125, "player2.png", 14);
 	m_sprite->setPosition(Vec2(200,100));
-
-	std::cout << m_sprite->getContentSize().w_ << std::endl;
-	std::cout << m_sprite->getContentSize().h_ << std::endl;
 }
 
 

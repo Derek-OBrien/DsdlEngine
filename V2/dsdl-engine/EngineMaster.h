@@ -2,6 +2,7 @@
 #define _ENGINEMASTER_
 
 #include "EngineDefines.h"
+#include "../dependencies/tinyxml/tinyxml2.h"
 
 namespace DsdlEngine{
 
@@ -17,10 +18,12 @@ namespace DsdlEngine{
 		void setAssetsPath(std::string s){ rootAssetsPath = s; };
 		std::string getAssetsPath(){ return rootAssetsPath;  };
 
+
 		void setWindowSize(int h, int w){ windowHeight = h; windowWidth = w; };
 
 		int returnWindowWidth(){ return windowWidth; }
 		int returnWindowHeight(){ return windowHeight; }
+
 //		Size getWindowSize(){ return Size(windowWidth, windowHeight); };
 
 		//For Read Wirte with xml
@@ -61,19 +64,11 @@ namespace DsdlEngine{
 		/** All supported platforms other iOS & Android use xml file to save values. This function is return the file path of the xml path.
 		* @js NA
 		*/
-		static const std::string& getXMLFilePath();
-
+		
 		/** All supported platforms other iOS & Android and CC_PLATFORM_WINRT use xml file to save values. This function checks whether the xml file exists or not.
 		* @return True if the xml file exists, false if not.
 		* @js NA
 		*/
-		static bool isXMLFileExist();
-
-
-		virtual std::string getSuitableFOpen(const std::string& filenameUtf8) const;
-		virtual std::string getWritablePath() const;
-
-		static bool createXMLFile();
 
 	protected:
 		EngineMaster(){};
@@ -81,12 +76,18 @@ namespace DsdlEngine{
 
 	private:
 
-		static void initXMLFilePath();
 
+		static bool isXMLFileExist();
+		static bool createXMLFile();
+		static void initXMLFilePath();
+		static const std::string getXMLFilePath();
+
+		tinyxml2::XMLElement* getXMLNodeForKey(const char*pKey, tinyxml2::XMLElement** rootNode, tinyxml2::XMLDocument** doc);
+		void setValueForKey(const char* value, const char* key);
+
+		
 		static std::string _filePath;
 		static bool _isFilePathInitialized;
-
-		std::string _writablePath;
 
 
 		std::string rootAssetsPath;

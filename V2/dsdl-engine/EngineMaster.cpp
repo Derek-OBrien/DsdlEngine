@@ -1,50 +1,49 @@
 #include "EngineMaster.h"
+#include "FileIO.h"
 
 #include "../dependencies/tinyxml/tinyxml2.h"
 
 #include <filesystem>
+#include <sys/stat.h>
+
 namespace DsdlEngine{
 
 
-#define DEFAULT_ROOT_NAME    "DefaultRoot"
+#define DEFAULT_ROOT_NAME "DefaultRoot"
 #define XML_FILE "Default.xml"
 
 
 	using namespace tinyxml2;
 	using namespace std;
 	
-	string EngineMaster::_filePath = string("");
+	string EngineMaster::_filePath;
 	bool EngineMaster::_isFilePathInitialized = false;
 
-	inline bool fileExists(const std::string name) {
-			ifstream f(name);
-			if (f.good()) {
-				f.close();
-				return true;
-			}
-			else {
-				f.close();
-				return false;
-			}
-		}
+	
 
 	/*
 		Create As Singleton
 	*/
-	static EngineMaster* Instance = 0;
+	static EngineMaster* Instance = nullptr;
 	EngineMaster* EngineMaster::getInstance(){
-		if (Instance == 0){
-		//	Instance = new EngineMaster();
-			Instance = new EngineMaster();
-
-			if (fileExists(getXMLFilePath())){
-				createXMLFile();
+		if (!Instance){
+			//Init Xml File Path
+			initXMLFilePath();
+			DEBUG_MSG(getXMLFilePath());
+			//Check if file allready exists
+			if ((!isXMLFileExist()) && (!createXMLFile())){
+				return nullptr;
 			}
+
+			Instance = new (std::nothrow) EngineMaster();
+
 		}
 		return Instance;
 	}
 
-	static XMLElement* getXMLNodeForKey(const char*pKey, XMLElement** rootNode, XMLDocument** doc){
+
+
+	XMLElement* EngineMaster::getXMLNodeForKey(const char*pKey, XMLElement** rootNode, XMLDocument** doc){
 
 		XMLElement* curNode = nullptr;
 
@@ -57,34 +56,41 @@ namespace DsdlEngine{
 			XMLDocument* xmlDoc = new XMLDocument();
 			*doc = xmlDoc;
 
-			std::string xmlBuffer = EngineMaster::getInstance()->getXMLFilePath();
-
-			if (xmlBuffer.empty())
-			{
+			std::string xmlBuffer = "../../assets/Default.xml";//FileIO::getInstance()->getSuitableFOpen(getXMLFilePath());//"../../assets/Default.xml";
+			
+			if (xmlBuffer.empty()){
 				DEBUG_MSG("can not read xml file");
 				break;
 			}
-			xmlDoc->Parse(xmlBuffer.c_str(), xmlBuffer.size());
 
-			// get root node
-			*rootNode = xmlDoc->RootElement();
-			if (nullptr == *rootNode)
-			{
-				DEBUG_MSG("read root node error" + std::string(xmlDoc->GetErrorStr1()));
-				break;
-			}
+			if (xmlDoc->LoadFile(xmlBuffer.c_str()) == XML_SUCCESS){
 
-			// find the node
-			curNode = (*rootNode)->FirstChildElement();
-			while (nullptr != curNode)
-			{
-				const char* nodeName = curNode->Value();
-				if (!strcmp(nodeName, pKey))
-				{
+				//xmlDoc->Parse(xmlBuffer.c_str(), xmlBuffer.size());
+
+				// get root node
+				*rootNode = xmlDoc->RootElement();
+
+				//*rootNode = xmlDoc->FirstChildElement();
+				if (nullptr == *rootNode){
+					DEBUG_MSG("read root node error" + std::string(xmlDoc->GetErrorStr1()));
 					break;
 				}
 
-				curNode = curNode->NextSiblingElement();
+				// find the node
+				curNode = (*rootNode)->FirstChildElement();
+				while (curNode != nullptr)
+				{
+					const char* nodeName = curNode->Value();
+					if (!strcmp(nodeName, pKey))
+					{
+						break;
+					}
+
+					curNode = curNode->NextSiblingElement();
+				}
+			}
+			else{
+				DEBUG_MSG("Could not load doc: " + std::string(xmlDoc->GetErrorStr1()));
 			}
 		} while (0);
 
@@ -93,7 +99,7 @@ namespace DsdlEngine{
 
 
 
-	static void setValueForKey(const char* value, const char* key){
+	void EngineMaster::setValueForKey(const char* value, const char* key){
 	
 		XMLElement* rootNode;
 		XMLDocument* doc;
@@ -104,8 +110,6 @@ namespace DsdlEngine{
 		}
 
 		//find node
-
-
 		node = getXMLNodeForKey(key, &rootNode, &doc);
 
 		//change node if exists
@@ -129,7 +133,7 @@ namespace DsdlEngine{
 
 		//save doc
 		if (doc){
-			doc->SaveFile(EngineMaster::getInstance()->getSuitableFOpen(EngineMaster::getInstance()->getXMLFilePath()).c_str());
+			doc->SaveFile("../../assets/Default.xml");
 		}
 	}
 
@@ -232,7 +236,7 @@ namespace DsdlEngine{
 		if (doc)
 		{
 			doc->DeleteNode(node);
-			doc->SaveFile(EngineMaster::getInstance()->getSuitableFOpen(_filePath).c_str());
+			doc->SaveFile("../../assets/Default.xml");
 			delete doc;
 		}
 
@@ -242,9 +246,6 @@ namespace DsdlEngine{
 
 	bool EngineMaster::createXMLFile(){
 		bool bRet = false;
-
-
-		initXMLFilePath();
 
 		XMLDocument *pDoc = new XMLDocument();
 		if (nullptr == pDoc){
@@ -263,9 +264,9 @@ namespace DsdlEngine{
 		}
 		
 		pDoc->LinkEndChild(pRootEle);
-		bRet = XML_SUCCESS == pDoc->SaveFile((_filePath).c_str());
-
+		bRet = XML_SUCCESS == pDoc->SaveFile(FileIO::getInstance()->getSuitableFOpen(_filePath).c_str());
 		DEBUG_MSG("XML File Created");
+
 		if (pDoc){
 			delete pDoc;
 		}
@@ -279,20 +280,14 @@ namespace DsdlEngine{
 
 	void EngineMaster::initXMLFilePath(){
 		if (!_isFilePathInitialized){
-			_filePath += EngineMaster::getInstance()->getWritablePath() + XML_FILE;
+			_filePath += FileIO::getInstance()->getWritablePath() + XML_FILE;
 			_isFilePathInitialized = true;
 		}
 	}
 
+	const string EngineMaster::getXMLFilePath(){ return _filePath; }
 
-
-	const string& EngineMaster::getXMLFilePath(){ return _filePath; }
-
-	std::string EngineMaster::getSuitableFOpen(const std::string& filenameUtf8) const{
-		return filenameUtf8;
-	}
-
-	string EngineMaster::getWritablePath() const{
-		return "../../assets/";
+	bool EngineMaster::isXMLFileExist(){
+		return FileIO::getInstance()->fileExists2(_filePath);
 	}
 }

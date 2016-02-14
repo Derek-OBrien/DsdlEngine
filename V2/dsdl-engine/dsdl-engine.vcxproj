@@ -103,6 +103,7 @@
     <ClInclude Include="EngineBaseNode.h" />
     <ClInclude Include="EngineMaster.h" />
     <ClInclude Include="EngineMath.h" />
+    <ClInclude Include="FileIO.h" />
     <ClInclude Include="Gui.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="IScene.h" />
@@ -124,6 +125,7 @@
     <ClCompile Include="EngineBaseNode.cpp" />
     <ClCompile Include="EngineMaster.cpp" />
     <ClCompile Include="EngineMath.cpp" />
+    <ClCompile Include="FileIO.cpp" />
     <ClCompile Include="Gui.cpp" />
     <ClCompile Include="IMainGame.cpp" />
     <ClCompile Include="InputManager.cpp" />
