@@ -15,18 +15,19 @@ void Character::init(){
 //	DEBUG_MSG("TEST XML FILE: " + std::string(em->getXMLFilePath()));
 	
 	
-	em->setIntegerForKey(100, "playerPosx");
+	//em->setIntegerForKey(100, "playerPosx");
 	int test = em->getIntegerForKey("playerPosx");
-	std::cout << "PosX : %d " + test << std::endl;
+	//std::cout << "PosX : %d " , test << std::endl;
 	
+	SDL_Log("PosX : %d", test);
 
-
-	em->setIntegerForKey(600, "playerPosy");
+	//em->setIntegerForKey(600, "playerPosy");
 	int test2 = em->getIntegerForKey("playerPosy");
-	std::cout << "PosY : d% " + test2 << std::endl;
+	//std::cout << "PosY : d% ", test2 << std::endl;
+	SDL_Log("PosY : %d ",test2);
+
 	
-	
-	em->setIntegerForKey(500, "playerPosx");
+	//em->setIntegerForKey(500, "playerPosx");
 
 	//em->deleteValueForKey("playerPosx");
 

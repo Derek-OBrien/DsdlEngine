@@ -9,9 +9,8 @@ namespace DsdlEngine{
 	class EngineMaster{
 	public:
 
-		/** Returns the singleton.
-		* @js NA
-		* @lua NA
+		/**
+		*	Returns the singleton.
 		*/
 		static EngineMaster* getInstance();
 

@@ -1,6 +1,6 @@
 
 #pragma once
-
+#include "SplashScene.h"
 #include "MainMenuScene.h"
 #include "GamePlayScene.h"
 #include "GameDefines.h"
@@ -18,6 +18,7 @@ public:
 
 private:
 
+	std::unique_ptr<SplashScene> m_splashScene;
 	std::unique_ptr<MainMenuScene> m_mainMenuScene;
 	std::unique_ptr<GamePlayScene> m_gamePlayScene;
 };

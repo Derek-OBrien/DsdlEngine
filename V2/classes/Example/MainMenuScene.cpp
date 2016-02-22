@@ -3,8 +3,7 @@
 
 //#include <dsdl-engine\EngineMath.h>
 
-//#include "../../dsdl-engine/EngineMath.h"
-#include <DsdlEngine.h>
+#include "../../dsdl-engine/EngineMath.h"
 
 
 
@@ -20,11 +19,7 @@ int MainMenuScene::getNextSceneIndex() const{
 
 
 int MainMenuScene::getPreviousSceneIndex() const{
-	return SCENE_INDEX_NO_SCENE;
-}
-
-void MainMenuScene::buildScene(){
-	
+	return SCENE_INDEX_SPLASH;
 }
 
 void MainMenuScene::destroyScene(){
@@ -65,30 +60,6 @@ void MainMenuScene::updateScene(){
 	checkInput();
 }
 
-void MainMenuScene::drawScene(){
-	
-	//renderChildNodes();
-
-	//m_label.render(m_window->getRenderer());
-	//m_button.render( m_window->getRenderer());
-	//m_SpriteButton.render(m_window->getRenderer());
-
-
-}
-
-/*void MainMenuScene::addChild(){
-
-	sceneChildren.push_back(m_label);
-	sceneChildren.push_back(m_button);
-	//sceneChildren.push_back(m_SpriteButton);
-}*/
-
-/*void MainMenuScene::renderChildNodes(){
-
-	for (int i = 0; i < sceneChildren.size(); i ++){
-		sceneChildren.at(i).render(m_window->getRenderer());
-	}
-}*/
 
 void MainMenuScene::checkInput(){
 	

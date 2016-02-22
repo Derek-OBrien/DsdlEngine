@@ -41,7 +41,15 @@ namespace DsdlEngine{
 		return filenameUtf8;
 	}
 
+
 	std::string FileIO::getWritablePath() const{
-		return "../../assets/";
+		std::string path;
+#ifdef __WIN32__
+		path = "../../assets/";
+#endif
+#ifdef __ANDROID__
+		path = "assets/";
+#endif
+		return path;
 	}
 }

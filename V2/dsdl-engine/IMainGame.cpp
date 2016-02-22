@@ -222,7 +222,7 @@ namespace DsdlEngine{
 		if (m_pCurrentRunning && m_pCurrentRunning->getSceneState() == SceneState::RUNNING){
 			
 			SDL_RenderClear(m_pGameRenderer);
-			m_pCurrentRunning->drawScene();
+			//m_pCurrentRunning->drawScene();
 
 			//for running scene 
 			//render each node that is in the child vector

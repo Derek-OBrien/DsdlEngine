@@ -3,8 +3,8 @@
 //#include <dsdl-engine\SceneManager.h>
 
 
-//#include "../../dsdl-engine/DsdlEngine.h"
-#include <DsdlEngine.h>
+#include "../../dsdl-engine/DsdlEngine.h"
+//#include <DsdlEngine.h>
 
 /*
 *Added template version of make_unique as Ndk did not support it in its version of STL
@@ -20,7 +20,7 @@ std::unique_ptr<T> make_unique(Args&& ...args)
 
 
 App::App() {
-
+	m_splashScene = nullptr;
 	m_mainMenuScene = nullptr;
 	m_gamePlayScene = nullptr;
 }
@@ -33,9 +33,11 @@ void App::onInit() {
 }
 
 void App::addScenes() {
+	m_splashScene = make_unique<SplashScene>(&m_Window);
 	m_mainMenuScene = make_unique<MainMenuScene>(&m_Window);
 	m_gamePlayScene = make_unique<GamePlayScene>(&m_Window);
 
+	m_pSceneManager->addScene(m_splashScene.get());
 	m_pSceneManager->addScene(m_mainMenuScene.get());
 	m_pSceneManager->addScene(m_gamePlayScene.get());
 

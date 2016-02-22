@@ -12,7 +12,7 @@ namespace DsdlEngine{
 		m_screenHeight = screenHeight;
 		m_screenWidth = screenWidth;
 
-		EngineMaster::getInstance()->setWindowSize(m_screenHeight, m_screenWidth);
+		//EngineMaster::getInstance()->setWindowSize(m_screenHeight, m_screenWidth);
 
 		//Screen dimensions
 		SDL_Rect gScreenRect = { 0, 0, 320, 240 };

@@ -34,15 +34,13 @@ namespace DsdlEngine{
 		virtual int getNextSceneIndex() const = 0;
 		virtual int getPreviousSceneIndex() const = 0;
 
-		virtual void buildScene() = 0;
 		virtual void destroyScene() = 0;
 
 		virtual void onEntryScene() = 0;
 		virtual void onExitScene() = 0;
 
 		virtual void updateScene() = 0;
-		virtual void drawScene() = 0;
-
+		
 		//Add node as child of scene
 		void addChild(EngineBaseNode* node, int zOrder) {
 				sceneChildren.push_back(node);

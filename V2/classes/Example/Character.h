@@ -3,8 +3,8 @@
 //#include <dsdl-engine\Sprite.h>
 
 
-//#include "../../dsdl-engine/DsdlEngine.h"
-#include "DsdlEngine.h"
+#include "../../dsdl-engine/DsdlEngine.h"
+//#include "DsdlEngine.h"
 
 USING_NS_DSDL;
 

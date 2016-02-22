@@ -16,9 +16,6 @@ int GamePlayScene::getPreviousSceneIndex() const{
 	return SCENE_INDEX_MAINMENU;
 }
 
-void GamePlayScene::buildScene(){
-
-}
 
 void GamePlayScene::destroyScene(){
 
@@ -44,23 +41,6 @@ void GamePlayScene::updateScene(){
 	checkInput();
 }
 
-void GamePlayScene::drawScene(){
-
-}
-
-
-/*void GamePlayScene::addChild(){
-
-	sceneChildren.push_back(m_label);
-	
-}
-
-void GamePlayScene::renderChildNodes(){
-
-	for (int i = 0; i < sceneChildren.size(); i++){
-		sceneChildren.at(i).render(m_window->getRenderer());
-	}
-}*/
 
 void GamePlayScene::checkInput(){
 

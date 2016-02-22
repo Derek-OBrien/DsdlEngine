@@ -26,15 +26,17 @@ ENGINE_FILE_LIST := $(wildcard $(LOCAL_PATH)/../../../dsdl-engine/*.cpp)
 #Include all Example game cpp files
 GAME_FILE_LIST := $(wildcard $(LOCAL_PATH)/../../../classes/Example/*.cpp)
 
+#INclude Tinyxml
+XML_FILE_LIST := $(wildcard $(LOCAL_PATH)/../../../dependencies/tinyxml/*.cpp)
 
 # Add your application source files here...
 LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.c\
+	$(XML_FILE_LIST:$(LOCAL_PATH)/%=%)\
+	$(ENGINE_FILE_LIST:$(LOCAL_PATH)/%=%)\
 	$(GAME_FILE_LIST:$(LOCAL_PATH)/%=%)\
 	../../../classes/main.cpp
 	
-		#$(ENGINE_FILE_LIST:$(LOCAL_PATH)/%=%)\
-
-LOCAL_SHARED_LIBRARIES :=  SDL2 SDL2_image SDL2_ttf SDL2_mixer Dsdl box2d_static
+LOCAL_SHARED_LIBRARIES :=  SDL2 SDL2_image SDL2_ttf SDL2_mixer box2d_static
 
 LOCAL_LDLIBS := -lGLESv1_CM -llog -lEGL
 #LOCAL_CPP_FEATURES += exceptions

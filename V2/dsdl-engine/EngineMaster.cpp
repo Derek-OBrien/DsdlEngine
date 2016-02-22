@@ -3,8 +3,6 @@
 
 #include "../dependencies/tinyxml/tinyxml2.h"
 
-#include <filesystem>
-#include <sys/stat.h>
 
 namespace DsdlEngine{
 
@@ -43,56 +41,117 @@ namespace DsdlEngine{
 
 
 
+	bool loadDoucument(const char* filepath, char** doc_contents) {
+		
+		const char* path;
+		SDL_RWops *file;
+
+#ifdef __WIN32__
+		path = "../../assets/Default.xml";
+//		file = SDL_RWFromFile(path, "r+w");
+#endif
+#ifdef __ANDROID__
+		path = "Default.xml";
+		
+//		file = SDL_RWFromFile(path, "r+w");
+#endif
+
+		file = SDL_RWFromFile(path, "r+w");
+
+		Sint64 file_length = SDL_RWseek(file, 0, SEEK_END);
+		(*doc_contents) = new char[file_length + 1]; // allow an extra character for '\0'
+
+		SDL_RWseek(file, 0, SEEK_SET);
+		int n_blocks = SDL_RWread(file, (*doc_contents), 1, file_length);
+
+		SDL_RWclose(file);
+
+		(*doc_contents)[file_length] = '\0';
+
+		return true;
+	}
+
+
 	XMLElement* EngineMaster::getXMLNodeForKey(const char*pKey, XMLElement** rootNode, XMLDocument** doc){
 
 		XMLElement* curNode = nullptr;
+
+		char* contents = NULL;
 
 		//Check the key
 		if (! pKey){
 			return nullptr;
 		}
 
-		do{
-			XMLDocument* xmlDoc = new XMLDocument();
-			*doc = xmlDoc;
+		if (loadDoucument("../../assets/Default.xml", &contents) != true) {
 
-			std::string xmlBuffer = "../../assets/Default.xml";//FileIO::getInstance()->getSuitableFOpen(getXMLFilePath());//"../../assets/Default.xml";
+			SDL_Log("can not read xml file using SDL_rwops");
+		}
+
+		//SDL_Log(contents);
+
+		//do{
+
+			//*doc = xmlDoc;
+/*
+			std::string path;
+			SDL_RWops *file;
+#ifdef __WIN32__
+			path = "../../assets/Default.xml";
+#endif
+#ifdef __ANDROID__
+			path = "assets/Default.xml";
+			// Open the file
+			file = SDL_RWFromFile(path, "r");
+#endif
+			std::string xmlBuffer = path;//FileIO::getInstance()->getSuitableFOpen(getXMLFilePath());//"../../assets/Default.xml";
 			
 			if (xmlBuffer.empty()){
-				DEBUG_MSG("can not read xml file");
+				SDL_Log("can not read xml file");
 				break;
 			}
+*/
 
-			if (xmlDoc->LoadFile(xmlBuffer.c_str()) == XML_SUCCESS){
+			//std::string path;
+			//std::string xmlBuffer = path;//FileIO::getInstance()->getSuitableFOpen(getXMLFilePath());//"../../assets/Default.xml";
 
-				//xmlDoc->Parse(xmlBuffer.c_str(), xmlBuffer.size());
+			//xmlDoc = loadDoucument(path.c_str(), doc );
 
-				// get root node
-				*rootNode = xmlDoc->RootElement();
+			XMLDocument* xmlDoc = new XMLDocument;
 
-				//*rootNode = xmlDoc->FirstChildElement();
-				if (nullptr == *rootNode){
-					DEBUG_MSG("read root node error" + std::string(xmlDoc->GetErrorStr1()));
-					break;
-				}
+			if (xmlDoc->Parse(contents) == XML_SUCCESS){
+				SDL_Log("Doc Loaded from contents");
 
-				// find the node
-				curNode = (*rootNode)->FirstChildElement();
-				while (curNode != nullptr)
-				{
-					const char* nodeName = curNode->Value();
-					if (!strcmp(nodeName, pKey))
-					{
-						break;
+				if (xmlDoc->Parse(contents) == XML_SUCCESS) {
+					SDL_Log("Doc Parsed");
+					// get root node
+					*rootNode = xmlDoc->RootElement();
+
+					//*rootNode = xmlDoc->FirstChildElement();
+					if (nullptr == *rootNode) {
+						SDL_Log("read root node error ");
+					//	break;
 					}
 
-					curNode = curNode->NextSiblingElement();
+					// find the node
+					curNode = (*rootNode)->FirstChildElement();
+					while (curNode != nullptr)
+					{
+						const char* nodeName = curNode->Value();
+						if (!strcmp(nodeName, pKey))
+						{
+							break;
+						}
+
+						curNode = curNode->NextSiblingElement();
+					}
 				}
 			}
 			else{
-				DEBUG_MSG("Could not load doc: " + std::string(xmlDoc->GetErrorStr1()));
+				SDL_Log("Could not load doc: ");
 			}
-		} while (0);
+		//} while (0);
+			delete[] contents;
 
 		return curNode;
 	}
@@ -133,7 +192,14 @@ namespace DsdlEngine{
 
 		//save doc
 		if (doc){
-			doc->SaveFile("../../assets/Default.xml");
+			std::string path;
+#ifdef __WIN32__
+			path = "../../assets/Default.xml";
+#endif
+#ifdef __ANDROID__
+			path = "assets/Default.xml";
+#endif
+			doc->SaveFile(path.c_str());
 		}
 	}
 
@@ -158,24 +224,23 @@ namespace DsdlEngine{
 		tinyxml2::XMLElement* rootNode;
 		tinyxml2::XMLDocument* doc;
 		tinyxml2::XMLElement* node;
+
 		node = getXMLNodeForKey(key, &rootNode, &doc);
+
 		// find the node
-		if (node && node->FirstChild())
-		{
+		if (node && node->FirstChild()){
 			value = (const char*)(node->FirstChild()->Value());
 		}
 
 		int ret = 0;
 
-		if (value)
-		{
+		if (value){
 			ret = atoi(value);
 		}
-
-		if (doc)
-		{
+		/**
+		if (doc){
 			delete doc;
-		}
+		}*/
 
 
 		return ret;
@@ -198,7 +263,13 @@ namespace DsdlEngine{
 		// format the value
 		char tmp[50];
 		memset(tmp, 0, 50);
+#ifdef __WIN32__
 		sprintf_s(tmp, "%d", value);
+#endif
+
+#ifdef __ANDROID__
+		std::sprintf(tmp, "%d", value);
+#endif
 
 		setValueForKey(tmp, key);
 
@@ -236,7 +307,14 @@ namespace DsdlEngine{
 		if (doc)
 		{
 			doc->DeleteNode(node);
-			doc->SaveFile("../../assets/Default.xml");
+			std::string path;
+#ifdef __WIN32__
+			path = "../../assets/Default.xml";
+#endif
+#ifdef __ANDROID__
+			path = "assets/Default.xml";
+#endif
+			doc->SaveFile(path.c_str());
 			delete doc;
 		}
 
@@ -264,7 +342,16 @@ namespace DsdlEngine{
 		}
 		
 		pDoc->LinkEndChild(pRootEle);
-		bRet = XML_SUCCESS == pDoc->SaveFile(FileIO::getInstance()->getSuitableFOpen(_filePath).c_str());
+
+		std::string path;
+#ifdef __WIN32__
+		path = "../../assets/Default.xml";
+#endif
+#ifdef __ANDROID__
+		path = "assets/Default.xml";
+#endif
+		
+		bRet = XML_SUCCESS == pDoc->SaveFile(FileIO::getInstance()->getSuitableFOpen(path).c_str());
 		DEBUG_MSG("XML File Created");
 
 		if (pDoc){

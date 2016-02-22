@@ -11,8 +11,8 @@
 //#include <dsdl-engine\AudioManager.h>
 
 
-//#include "../../dsdl-engine/DsdlEngine.h"
-#include "DsdlEngine.h"
+#include "../../dsdl-engine/DsdlEngine.h"
+//#include "DsdlEngine.h"
 
 #include <random>
 
@@ -26,21 +26,15 @@ public:
 	virtual int getNextSceneIndex() const override;
 	virtual int getPreviousSceneIndex() const override;
 
-	virtual void buildScene() override;
 	virtual void destroyScene() override;
 
 	virtual void onEntryScene() override;
 	virtual void onExitScene() override;
 
 	virtual void updateScene() override;
-	virtual void drawScene() override;
-
-//	virtual void addChild() override;
-//	virtual void renderChildNodes() override;
 
 private:
 
-	//void initUI();
 	void checkInput();
 
 	int m_sceneIndex = SCENE_INDEX_NO_SCENE;
@@ -52,8 +46,6 @@ private:
 
 	Character* myChar2;
 
-	//b2World* m_World;
-	//std::vector<Box> boxes;
 };
 
 
