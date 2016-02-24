@@ -1,0 +1,56 @@
+<?xml version="2.0" encoding="utf-8"?>
+<!--Root -->
+<assets>
+    <!--Child Element-->
+    <!--Selected Player-->
+    <path name="selected_player">player1</path>
+    <!--BACKGROUNDS-->
+    <path name="sceneBg">../SDL_Runner_V1.0/assets/backgrounds/menu.png</path>
+    <path name="gameBg">../SDL_Runner_V1.0/assets/backgrounds/bg_image.png</path>
+    <path name="cityBg">../SDL_Runner_V1.0/assets/backgrounds/bg_city.png</path>
+    <path name="gameFg">../SDL_Runner_V1.0/assets/backgrounds/fg_smoke.png</path>
+    <!--FONTS-->
+    <path name="font">../SDL_Runner_V1.0/assets/fonts/baveuse3.ttf</path>
+    <!--PLAYER SPRITE SHEETS-->
+    <path name="player1" width="90" height="125" offsetX="90" offsetY="0" frames="14" framerate="5" posX="150" posY="820">../SDL_Runner_V1.0/assets/player_sprites/player1.png</path>
+    <path name="player1slide" width="130" height="75" offsetX="130" offsetY="0" frames="2" framerate="5" posX="150" posY="865">../SDL_Runner_V1.0/assets/player_sprites/player1slide.png</path>
+    <path name="player1jump" width="122" height="112" offsetX="0" offsetY="0" frames="1" framerate="5" posX="150" posY="0">../SDL_Runner_V1.0/assets/player_sprites/player1jump.png</path>
+    <path name="player1powerup" width="90" height="254" offsetX="90" offsetY="0" frames="14" framerate="5" posX="150" posY="695">../SDL_Runner_V1.0/assets/player_sprites/player1powerup.png</path>
+    <path name="player2" width="90" height="125" offsetX="90" offsetY="0" frames="14" framerate="5" posX="150" posY="820">../SDL_Runner_V1.0/assets/player_sprites/player2.png</path>
+    <path name="player2slide" width="130" height="75" offsetX="130" offsetY="0" frames="2" framerate="5" posX="150" posY="865">../SDL_Runner_V1.0/assets/player_sprites/player2slide.png</path>
+    <path name="player2jump" width="122" height="112" offsetX="0" offsetY="0" frames="1" framerate="5" posX="150" posY="0">../SDL_Runner_V1.0/assets/player_sprites/player2jump.png</path>
+    <path name="player2powerup" width="90" height="254" offsetX="90" offsetY="0" frames="14" framerate="5" posX="150" posY="695">../SDL_Runner_V1.0/assets/player_sprites/player2powerup.png</path>
+    <!--COLLECTABLE ITEMS-->
+    <path name="shield" width="50" height="50" offsetX="0" offsetY="0" frames="1" framerate="5" posX="1280" posY="300">../SDL_Runner_V1.0/assets/collectable_sprites/shield.png</path>
+    <path name="coin" width="50" height="50" offsetX="0" offsetY="0" frames="1" framerate="5" posX="0" posY="0">../SDL_Runner_V1.0/assets/collectable_sprites/coin.png</path>
+    <!--NPCS-->
+    <path name="bird" width="63" height="33" offsetX="63" offsetY="0" frames="6" framerate="5" posX="0" posY="0">../SDL_Runner_V1.0/assets/obstical_sprites/bird.png</path>
+    <path name="bug" width="63" height="60" offsetX="63" offsetY="0" frames="8" framerate="5" posX="0" posY="0">../SDL_Runner_V1.0/assets/obstical_sprites/bug.png</path>
+    <path name="zombie" width="64" height="81" offsetX="64" offsetY="0" frames="5" framerate="5" posX="0" posY="0">../SDL_Runner_V1.0/assets/obstical_sprites/zombie.png</path>
+    <!--USER INTERFACE ELEMENTS-->
+    <path name="player1btn" width="160" height="300" offsetX="160" offsetY="0" frames="3" posX="580" posY="400" state="0">../SDL_Runner_V1.0/assets/menu_hud_items/player1btn.png</path>
+    <path name="player2btn" width="160" height="300" offsetX="160" offsetY="0" frames="3" posX="1200" posY="400" state="0">../SDL_Runner_V1.0/assets/menu_hud_items/player2btn.png</path>
+    <path name="pausebutton" width="64" height="64" offsetX="64" offsetY="0" frames="3" posX="1600" posY="15" state="0">../SDL_Runner_V1.0/assets/menu_hud_items/pausebutton.png</path>
+    <path name="closebutton" width="64" height="64" offsetX="64" offsetY="0" frames="3" posX="1700" posY="15" state="0">../SDL_Runner_V1.0/assets/menu_hud_items/closebutton.png</path>
+    <path name="restart" width="64" height="64" offsetX="64" offsetY="0" frames="3" posX="1600" posY="15" state="0">../SDL_Runner_V1.0/assets/menu_hud_items/playbutton.png</path>
+    <!--SOUND FILES-->
+    <path name="bgmusic">../SDL_Runner_V1.0/assets/sounds/Severe_Tire_Damage.wav</path>
+    <path name="sfx">../SDL_Runner_V1.0/assets/sounds/sfx.wav</path>
+    <path name="buttonPress">../SDL_Runner_V1.0/assets/sounds/buttonPress.wav</path>
+</assets>
+
+<!--Root-->
+<score>
+    <currentScore name="currentScore">417</currentScore>
+    <highScore name="highScore">2075</highScore>
+</score>
+
+<!--Defines-->
+<gamedefines>
+    <!--BACKGROUND SCROLL SPEEDS-->
+    <scrollspeed name="initialSpeed">2</scrollspeed>
+    <scrollspeed name="slideSpeed">20</scrollspeed>
+    <!--GAME OBJECTS VELOCITY FORCE-->
+    <velx name="velX">10</velx>
+    <velx name="velX2">30</velx>
+</gamedefines>

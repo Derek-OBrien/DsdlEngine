@@ -42,6 +42,7 @@ namespace DsdlEngine{
 
 		//void assignCallBack(callbck cb){ cb = func; }
 
+		void callback(void* func);
 		void destroy();
 	private:
 

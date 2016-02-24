@@ -9,7 +9,8 @@ USING_NS_DSDL;
 class SplashScene : public IScene
 {
 public:
-	SplashScene(Window* window);
+	//SplashScene(DsdlEngine::Window* window);
+	SplashScene();
 	~SplashScene ();
 
 	virtual int getNextSceneIndex() const override;
@@ -22,14 +23,19 @@ public:
 
 	virtual void updateScene() override;
 
-private:
+	//Uint32 callback(Uint32 interval, void* param);
 
+
+	bool changeNext();
+
+private:
 
 	int m_nextScreenIndex = SCENE_INDEX_SPLASH;
 
-	Window* m_window;
+	InputManager m_inputManager;
 	Label* m_label;
 
+//	Window* m_window;
 private:
 
 };

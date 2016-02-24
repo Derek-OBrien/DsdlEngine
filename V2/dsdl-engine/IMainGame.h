@@ -34,6 +34,7 @@ namespace DsdlEngine{
 
 		/*
 			Functions User must over ride when creating a game
+			For Custom logic
 		*/
 		virtual void onInit() = 0;
 		virtual void addScenes() = 0;

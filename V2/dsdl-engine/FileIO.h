@@ -16,6 +16,10 @@ namespace DsdlEngine{
 		std::string getSuitableFOpen(const std::string& filenameUtf8) const;
 		std::string getWritablePath() const;
 		
+		bool loadDocument(const char* filepath, char** doc_contents);
+		bool writeDocument(const char* filepath, char** doc_contents);
+
+
 	protected:
 
 		FileIO(){};

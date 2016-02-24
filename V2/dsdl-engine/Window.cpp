@@ -12,8 +12,7 @@ namespace DsdlEngine{
 		m_screenHeight = screenHeight;
 		m_screenWidth = screenWidth;
 
-		//EngineMaster::getInstance()->setWindowSize(m_screenHeight, m_screenWidth);
-
+		
 		//Screen dimensions
 		SDL_Rect gScreenRect = { 0, 0, 320, 240 };
 
@@ -30,6 +29,8 @@ namespace DsdlEngine{
 		m_pSdlWindow = SDL_CreateWindow(windowName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, m_screenWidth, m_screenHeight, flag);
 		m_pSdlRenderer = SDL_CreateRenderer(m_pSdlWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 		SDL_SetRenderDrawColor(m_pSdlRenderer, 0, 0, 0, 120);
+		//EngineMaster::getInstance()->setWindowSize(m_screenHeight, m_screenWidth);
+
 #endif
 
 		//Load Window for Android using device screen Size
@@ -38,6 +39,8 @@ namespace DsdlEngine{
 		m_pSdlWindow = SDL_CreateWindow(windowName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, gScreenRect.w, gScreenRect.h, flag);
 		m_pSdlRenderer = SDL_CreateRenderer(m_pSdlWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 		SDL_SetRenderDrawColor(m_pSdlRenderer, 0, 0, 0, 120);
+		//EngineMaster::getInstance()->setWindowSize(gScreenRect.h, gScreenRect.w);
+
 #endif
 
 

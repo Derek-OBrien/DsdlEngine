@@ -2,7 +2,7 @@
 
 namespace DsdlEngine{
 
-	//EngineMaster* Em = EngineMaster::getInstance();
+	EngineMaster* Em = EngineMaster::getInstance();
 
 	//Defaults to position of (0 , 0)
 	Vec2::Vec2() : x_(0), y_(0){
@@ -22,6 +22,7 @@ namespace DsdlEngine{
 
 
 	const Vec2 Vec2::ZERO(0, 0);
+	//const Vec2 Vec2::MIDTOP(Em->returnWindowWidth() / 2, Em->returnWindowHeight() - 200);
 	//const Vec2 Vec2::BOTTOM(0, Em->returnWindowHeight());
 	//const Vec2 Vec2::RIGHT(Em->returnWindowWidth(), 0);
 }

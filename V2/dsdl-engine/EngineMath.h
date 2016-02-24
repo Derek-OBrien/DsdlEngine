@@ -30,6 +30,8 @@ namespace DsdlEngine{
 		static const Vec2 BOTTOM;
 		static const Vec2 RIGHT;
 
+		static const Vec2 MIDTOP;
+
 	};
 
 

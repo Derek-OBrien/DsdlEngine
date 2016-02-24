@@ -1,16 +1,13 @@
 
 #include "MainMenuScene.h"
-
+#include "GamePlayScene.h"
 //#include <dsdl-engine\EngineMath.h>
 
 #include "../../dsdl-engine/EngineMath.h"
 
 
-
-MainMenuScene::MainMenuScene(DsdlEngine::Window* window) : m_window(window){
-
-	m_iSceneIndex = SCENE_INDEX_GAMEPLAY;
-}
+//MainMenuScene::MainMenuScene(DsdlEngine::Window* window) : m_window(window) {}
+MainMenuScene::MainMenuScene() {}
 MainMenuScene::~MainMenuScene(){}
 
 int MainMenuScene::getNextSceneIndex() const{
@@ -31,14 +28,10 @@ void MainMenuScene::onEntryScene(){
 	music = m_AudioManager.loadMusic("Sound/XYZ.ogg");
 	music.play(-1);
 
-
-
 	m_label = new Label();
 	m_label->create("Main Menu", 80, SDL_Color{ 255, 0, 0 }, "fonts/font.ttf");
 	m_label->setPosition(DsdlEngine::Vec2(600,5));
 	addChild(m_label, 1);
-
-
 
 	m_button = new Button();
 	m_button->createTextButton(100, 100, 60, "Button", "fonts/font.ttf", SDL_Color{ 0, 255, 0 }, SDL_Color{ 0, 0, 255 });
@@ -113,6 +106,8 @@ void MainMenuScene::checkInput(){
 
 bool MainMenuScene::onNewGameClicked(){
 	m_nextScreenIndex = SCENE_INDEX_GAMEPLAY;
+
 	m_eCurrentState = DsdlEngine::SceneState::CHANGE_NEXT;
+
 	return true;
 }

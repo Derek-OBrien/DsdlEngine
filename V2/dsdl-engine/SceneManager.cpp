@@ -4,7 +4,9 @@
 
 namespace DsdlEngine{
 
-	SceneManager::SceneManager(IMainGame* game) : m_pGame(game){
+	SceneManager::SceneManager(IMainGame* game) : 
+		m_pGame(game){
+		//Empty
 	}
 
 	//Move to next scene
@@ -35,6 +37,9 @@ namespace DsdlEngine{
 		newScene->m_iSceneIndex = m_pScenes.size();
 		m_pScenes.push_back(newScene);
 		//newScene->buildScene();
+
+		//newScene->buildScene();
+		//newScene->setParentGame(m_pGame);
 	}
 
 	//Clean up scenes

@@ -2,4 +2,5 @@
 <DefaultRoot>
     <playerPosy>600</playerPosy>
     <playerPosx>500</playerPosx>
+	<player>player2.png</player>
 </DefaultRoot>

@@ -53,6 +53,7 @@ namespace DsdlEngine{
 		float getFloatForKey(const char* key);
 		std::string getStringForKey(const char* key);
 
+		//auto getValueForKey(const char* key);
 		/**
 		* delete any value by key,
 		* @param key The key to delete value.

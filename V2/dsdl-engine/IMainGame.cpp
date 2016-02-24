@@ -142,6 +142,10 @@ namespace DsdlEngine{
 		m_pCurrentRunning->onEntryScene();
 		m_pCurrentRunning->setSceneRunning();
 
+		/*m_pCurrentRunning = SceneDirector::getInstance()->getCurrentScene();
+		m_pCurrentRunning->onEntryScene();
+		m_pCurrentRunning->setSceneRunning();
+		*/
 		//Load all scene Children nodes for first scene on init of game
 		for (size_t i = 0; i < m_pCurrentRunning->sceneChildren.size(); i++){
 				m_pCurrentRunning->sceneChildren.at(i)->load(m_pGameRenderer);

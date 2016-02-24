@@ -2,7 +2,8 @@
 #include "GamePlayScene.h"
 #include "GameDefines.h"
 
-GamePlayScene::GamePlayScene(DsdlEngine::Window* window) : m_window(window){
+//GamePlayScene::GamePlayScene(DsdlEngine::Window* window) : m_window(window){
+GamePlayScene::GamePlayScene(){
 	m_sceneIndex = SCENE_INDEX_GAMEPLAY;
 }
 GamePlayScene::~GamePlayScene(){}

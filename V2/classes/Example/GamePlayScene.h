@@ -20,7 +20,8 @@
 
 class GamePlayScene : public DsdlEngine::IScene{
 public:
-	GamePlayScene(DsdlEngine::Window* window);
+	//GamePlayScene(DsdlEngine::Window* window);
+	GamePlayScene();
 	~GamePlayScene();
 
 	virtual int getNextSceneIndex() const override;
@@ -40,7 +41,7 @@ private:
 	int m_sceneIndex = SCENE_INDEX_NO_SCENE;
 
 
-	DsdlEngine::Window* m_window;
+//	DsdlEngine::Window* m_window;
 	DsdlEngine::Label* m_glabel;
 	DsdlEngine::InputManager m_inputManager;
 

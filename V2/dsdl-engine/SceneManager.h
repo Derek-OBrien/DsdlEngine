@@ -1,5 +1,12 @@
 #ifndef _SCREENMANAGER_
 #define _SCREENMANAGER_
+/*
+name:	SceneManager
+author: @Derek O Brien
+Description: Scene Manager for handling all in game scenes
+holds vector of all scenes,
+*/
+
 #include "EngineDefines.h"
 
 namespace DsdlEngine{

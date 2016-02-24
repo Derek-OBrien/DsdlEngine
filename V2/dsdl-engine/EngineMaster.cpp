@@ -41,22 +41,19 @@ namespace DsdlEngine{
 
 
 
-	bool loadDoucument(const char* filepath, char** doc_contents) {
+/*	bool loadDoucument(const char* filepath, char** doc_contents) {
 		
 		const char* path;
 		SDL_RWops *file;
 
 #ifdef __WIN32__
 		path = "../../assets/Default.xml";
-//		file = SDL_RWFromFile(path, "r+w");
 #endif
 #ifdef __ANDROID__
 		path = "Default.xml";
-		
-//		file = SDL_RWFromFile(path, "r+w");
 #endif
 
-		file = SDL_RWFromFile(path, "r+w");
+		file = SDL_RWFromFile(path, "rb");
 
 		Sint64 file_length = SDL_RWseek(file, 0, SEEK_END);
 		(*doc_contents) = new char[file_length + 1]; // allow an extra character for '\0'
@@ -69,21 +66,59 @@ namespace DsdlEngine{
 		(*doc_contents)[file_length] = '\0';
 
 		return true;
-	}
+	}*/
 
+	/*bool writeDocument(const char* filepath, char** doc_contents) {
+		const char* path;
+		SDL_RWops *file;
+
+#ifdef __WIN32__
+		path = "../../assets/Default.xml";
+#endif
+#ifdef __ANDROID__
+		path = "Default.xml";
+#endif
+
+		file = SDL_RWFromFile(path, "r+w");
+
+		//Sint64 file_length = SDL_RWseek(file, 0, SEEK_END);
+		//(*doc_contents) = new char[file_length + 1]; // allow an extra character for '\0'
+		size_t file_length = SDL_strlen(*doc_contents);
+
+		SDL_RWseek(file, 0, SEEK_SET);
+		int n_blocks = SDL_RWwrite(file, (*doc_contents), 1, file_length);
+
+		SDL_Log("Wrote %d bytes : ", n_blocks);
+
+		SDL_RWclose(file);
+
+		//(*doc_contents)[file_length] = '\0';
+
+		return true;
+
+	}
+	*/
 
 	XMLElement* EngineMaster::getXMLNodeForKey(const char*pKey, XMLElement** rootNode, XMLDocument** doc){
 
 		XMLElement* curNode = nullptr;
 
 		char* contents = NULL;
+		std::string path;
+
+#ifdef __WIN32__
+		path = "../../assets/Default.xml";
+#endif
+#ifdef __ANDROID__
+		path = "Default.xml";
+#endif
 
 		//Check the key
 		if (! pKey){
 			return nullptr;
 		}
 
-		if (loadDoucument("../../assets/Default.xml", &contents) != true) {
+		if (FileIO::getInstance()->loadDocument(path.c_str(), &contents) != true) {
 
 			SDL_Log("can not read xml file using SDL_rwops");
 		}
@@ -119,10 +154,7 @@ namespace DsdlEngine{
 
 			XMLDocument* xmlDoc = new XMLDocument;
 
-			if (xmlDoc->Parse(contents) == XML_SUCCESS){
-				SDL_Log("Doc Loaded from contents");
-
-				if (xmlDoc->Parse(contents) == XML_SUCCESS) {
+			if (xmlDoc->Parse(contents) == XML_SUCCESS) {
 					SDL_Log("Doc Parsed");
 					// get root node
 					*rootNode = xmlDoc->RootElement();
@@ -146,11 +178,10 @@ namespace DsdlEngine{
 						curNode = curNode->NextSiblingElement();
 					}
 				}
-			}
 			else{
 				SDL_Log("Could not load doc: ");
 			}
-		//} while (0);
+
 			delete[] contents;
 
 		return curNode;
@@ -179,6 +210,8 @@ namespace DsdlEngine{
 			else{
 				XMLText* content = doc->NewText(value);
 				node->LinkEndChild(content);
+				//writeDocument("test", content);
+
 			}
 		}
 		else{
@@ -187,11 +220,14 @@ namespace DsdlEngine{
 				rootNode->LinkEndChild(temp);
 				XMLText* content = doc->NewText(value);
 				temp->LinkEndChild(content);
+
+				//writeDocument("test", content->CData);
 			}
 		}
 
+
 		//save doc
-		if (doc){
+		/*if (doc){
 			std::string path;
 #ifdef __WIN32__
 			path = "../../assets/Default.xml";
@@ -200,7 +236,7 @@ namespace DsdlEngine{
 			path = "assets/Default.xml";
 #endif
 			doc->SaveFile(path.c_str());
-		}
+		}*/
 	}
 
 	/*static const char* findNode(XMLElement* node){
@@ -216,6 +252,27 @@ namespace DsdlEngine{
 			delete d;
 		}
 	 }
+
+
+
+	/*auto EngineMaster::getValueForKey(const char* key) {
+		const char* value = nullptr;
+		tinyxml2::XMLElement* rootNode;
+		tinyxml2::XMLDocument* doc;
+		tinyxml2::XMLElement* node;
+
+		node = getXMLNodeForKey(key, &rootNode, &doc);
+
+		// find the node
+		if (node && node->FirstChild()) {
+			value = (const char*)(node->FirstChild()->Value());
+		}
+		else {
+			value = NULL;
+		}
+
+		return value;		
+	}*/
 
 
 	int EngineMaster::getIntegerForKey(const char* key){
@@ -250,13 +307,34 @@ namespace DsdlEngine{
 	bool EngineMaster::getBoolForKey(const char* key){ return true; };
 	double EngineMaster::getDoubleForKey(const char* key) { return 0.0; };
 	float EngineMaster::getFloatForKey(const char* key){ return 0.0; };
-	string EngineMaster::getStringForKey(const char* key) { return "helloE"; };
+
+
+	string EngineMaster::getStringForKey(const char* key) { 
+		
+		const char* value = nullptr;
+		XMLElement* rootNode;
+		XMLElement* node;
+		XMLDocument* doc;
+
+		node = getXMLNodeForKey(key, &rootNode, &doc);
+
+		if (node && node->FirstChild()) {
+			value = (const char*)(node->FirstChild()->Value());
+		}
+
+		string temp = "No Value Found";
+
+		if (value) {
+			temp = string(value);
+		}
+
+		return temp; 
+	}
 
 
 	void EngineMaster::setIntegerForKey(int value, const char* key){
 		// check key
-		if (!key)
-		{
+		if (!key){
 			return;
 		}
 

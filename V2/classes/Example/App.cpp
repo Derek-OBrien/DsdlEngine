@@ -13,8 +13,7 @@
 *Ndk-build now builds apk as of 26/01/2016
 */
 template<typename T, typename ...Args>
-std::unique_ptr<T> make_unique(Args&& ...args)
-{
+std::unique_ptr<T> make_unique(Args&& ...args){
 	return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
 }
 
@@ -33,15 +32,16 @@ void App::onInit() {
 }
 
 void App::addScenes() {
-	m_splashScene = make_unique<SplashScene>(&m_Window);
-	m_mainMenuScene = make_unique<MainMenuScene>(&m_Window);
-	m_gamePlayScene = make_unique<GamePlayScene>(&m_Window);
+	
+	m_splashScene = make_unique<SplashScene>();
+	m_mainMenuScene = make_unique<MainMenuScene>();
+	m_gamePlayScene = make_unique<GamePlayScene>();
 
 	m_pSceneManager->addScene(m_splashScene.get());
 	m_pSceneManager->addScene(m_mainMenuScene.get());
 	m_pSceneManager->addScene(m_gamePlayScene.get());
 
-	m_pSceneManager->setScene(m_mainMenuScene->getSceneIndex());
+	m_pSceneManager->setScene(m_splashScene->getSceneIndex());
 }
 
 

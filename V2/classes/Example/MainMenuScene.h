@@ -20,11 +20,14 @@
 
 USING_NS_DSDL;
 
-class MainMenuScene : public DsdlEngine::IScene{
+class MainMenuScene : public IScene{
 
 public:
 
-	MainMenuScene(DsdlEngine::Window* window);
+	//static IScene* create();
+
+	//MainMenuScene(DsdlEngine::Window* window);
+	MainMenuScene();
 	~MainMenuScene();
 
 	virtual int getNextSceneIndex() const override;
@@ -46,7 +49,6 @@ private:
 
 	int m_nextScreenIndex = SCENE_INDEX_MAINMENU;
 
-	Window* m_window;
 	Label* m_label;
 	InputManager m_inputManager;
 	Button* m_button;
@@ -58,4 +60,5 @@ private:
 
 	Music music;
 
+	//Window* m_window;
 };

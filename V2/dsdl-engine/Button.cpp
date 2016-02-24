@@ -84,7 +84,6 @@ namespace DsdlEngine{
 	}
 
 
-
 	//Check for mouse input on a button
 	void Button::checkInput(SDL_Event& e){
 
