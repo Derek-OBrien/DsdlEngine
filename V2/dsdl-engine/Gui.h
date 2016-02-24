@@ -1,9 +1,9 @@
 
 #include "EngineDefines.h"
-
+#include "Layer.h"
 
 namespace DsdlEngine{
-	class Gui
+	class Gui : public Layer
 	{
 	public:
 		Gui();

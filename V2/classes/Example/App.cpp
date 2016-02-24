@@ -27,7 +27,7 @@ App::App() {
 App::~App() {}
 
 void App::onInit() {
-	setupWindow(1080, 900, "SDL Engine Example Game", 2);
+	setupWindow(1920, 1080, "SDL Engine Example Game", 2);
 	setFps(120);
 }
 

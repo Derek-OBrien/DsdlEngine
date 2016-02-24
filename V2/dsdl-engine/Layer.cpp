@@ -1,26 +1,22 @@
 #include "Layer.h"
+#include "Sprite.h"
 
 namespace DsdlEngine{
 
 
 
-	Layer::Layer(){}
+	Layer::Layer(){
+	
+	}
 
 	Layer ::~Layer(){}
 
 
-	ResourceTexture* Layer::create(std::string texturePath, SDL_Renderer* r){
+	Layer* Layer::create(){
 
-		if (!m_LayerTexture.loadFromFile(texturePath, r)){
-			DEBUG_MSG("Faild to load sprite");
-		
-		}
-		else{
-			DEBUG_MSG("Loaded sprite");
+		auto layer = new Layer();
 
-		}
-
-		return &m_LayerTexture;
+		return layer;
 	}
 
 
@@ -28,8 +24,24 @@ namespace DsdlEngine{
 
 	}
 
-	/*void Layer::render(SDL_Renderer* r){
 
-		m_LayerTexture.render(0, 0, r);
-	}*/
+	void Layer::loadNodes(SDL_Renderer* r) {
+		for (size_t i = 0; i < layerNodes.size(); i++)
+		{
+			layerNodes.at(i)->load(r);
+		}
+	}
+
+	void Layer::drawNodes(SDL_Renderer* r) {
+		for (size_t i = 0; i < layerNodes.size(); i++)
+		{
+			layerNodes.at(i)->render(r);
+		}
+	}
+
+
+	void Layer::addNodeToLayer(EngineBaseNode* node) {
+		layerNodes.push_back(node);
+	}
+
 }

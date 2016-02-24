@@ -9,6 +9,8 @@
 #include "Timing.h"
 #include "AudioManager.h"
 #include "ResourceTexture.h"
+#include "Layer.h"
+
 
 namespace DsdlEngine{
 	

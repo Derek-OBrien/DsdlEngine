@@ -147,8 +147,13 @@ namespace DsdlEngine{
 		m_pCurrentRunning->setSceneRunning();
 		*/
 		//Load all scene Children nodes for first scene on init of game
-		for (size_t i = 0; i < m_pCurrentRunning->sceneChildren.size(); i++){
+		for (size_t i = 0; i < m_pCurrentRunning->sceneLayers.size(); i++){
+				//m_pCurrentRunning->sceneChildren.at(i)->load(m_pGameRenderer);
+			//m_pCurrentRunning->sceneLayers.at(i)->getLayerNodes(i)->load(m_pGameRenderer);
+			m_pCurrentRunning->loadScene(m_pGameRenderer);
+			/*for (size_t i = 0; i < m_pCurrentRunning->sceneChildren.size(); i++) {
 				m_pCurrentRunning->sceneChildren.at(i)->load(m_pGameRenderer);
+			}*/
 		}
 
 		return true;
@@ -184,8 +189,10 @@ namespace DsdlEngine{
 					m_pCurrentRunning->onEntryScene(); 
 
 					//Load all scene Children nodes for next scene
-					for (size_t i = 0; i < m_pCurrentRunning->sceneChildren.size(); i++){
-						m_pCurrentRunning->sceneChildren.at(i)->load(m_pGameRenderer);
+					for (size_t i = 0; i < m_pCurrentRunning->sceneLayers.size(); i++) {
+						//m_pCurrentRunning->sceneChildren.at(i)->load(m_pGameRenderer);
+						//m_pCurrentRunning->sceneLayers.at(i)->getLayerNodes(i)->load(m_pGameRenderer);
+						m_pCurrentRunning->loadScene(m_pGameRenderer);
 					}
 
 				}
@@ -198,8 +205,10 @@ namespace DsdlEngine{
 					m_pCurrentRunning->onEntryScene();
 
 					//Load all scene Children nodes for previous scene
-					for (size_t i = 0; i < m_pCurrentRunning->sceneChildren.size(); i++){
-						m_pCurrentRunning->sceneChildren.at(i)->load(m_pGameRenderer);
+					for (size_t i = 0; i < m_pCurrentRunning->sceneLayers.size(); i++) {
+						//m_pCurrentRunning->sceneChildren.at(i)->load(m_pGameRenderer);
+						//m_pCurrentRunning->sceneLayers.at(i)->getLayerNodes(i)->load(m_pGameRenderer);
+						m_pCurrentRunning->loadScene(m_pGameRenderer);
 					}
 
 				}
@@ -226,12 +235,11 @@ namespace DsdlEngine{
 		if (m_pCurrentRunning && m_pCurrentRunning->getSceneState() == SceneState::RUNNING){
 			
 			SDL_RenderClear(m_pGameRenderer);
-			//m_pCurrentRunning->drawScene();
-
+			
 			//for running scene 
 			//render each node that is in the child vector
-			for (size_t i = 0; i < m_pCurrentRunning->sceneChildren.size(); i++){
-					m_pCurrentRunning->sceneChildren.at(i)->render(m_pGameRenderer);
+			for (size_t i = 0; i < m_pCurrentRunning->sceneLayers.size(); i++) {
+				m_pCurrentRunning->drawScene(m_pGameRenderer);
 			}
 
 

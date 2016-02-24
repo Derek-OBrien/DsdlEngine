@@ -49,6 +49,7 @@ private:
 
 	int m_nextScreenIndex = SCENE_INDEX_MAINMENU;
 
+	Layer* layer;
 	Label* m_label;
 	InputManager m_inputManager;
 	Button* m_button;

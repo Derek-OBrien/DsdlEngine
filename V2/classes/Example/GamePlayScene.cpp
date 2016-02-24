@@ -24,12 +24,16 @@ void GamePlayScene::destroyScene(){
 
 void GamePlayScene::onEntryScene(){
 
+	layer = new Layer();
 
 	myChar2 = new Character();
 	myChar2->init();
 
-	addChild(myChar2->m_sprite, 2);
+	//addChild(myChar2->m_sprite, 2);
 
+	layer->addNodeToLayer(myChar2->m_sprite);
+
+	addLayerToScene(layer);
 
 }
 

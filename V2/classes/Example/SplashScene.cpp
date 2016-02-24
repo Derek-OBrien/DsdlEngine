@@ -18,7 +18,8 @@ int SplashScene::getPreviousSceneIndex() const{
 
 
 void SplashScene::destroyScene(){
-
+	bg->destroy();
+	m_label->destroy();
 }
 
 Uint32 callback(Uint32 interval, void* splashScene) {
@@ -30,28 +31,38 @@ Uint32 callback(Uint32 interval, void* splashScene) {
 bool SplashScene::changeNext() {
 	m_nextScreenIndex = SCENE_INDEX_MAINMENU;
 	m_eCurrentState = DsdlEngine::SceneState::CHANGE_NEXT;
-
+	
 	return 0;
 }
 
 void SplashScene::onEntryScene(){
 
+	layer = new Layer();
+
+	bg = new Sprite();
+	bg->create(1920, 1080, "DemoGame/backgrounds/menu.png");
+	bg->setPosition(Vec2::ZERO);
+
+
 	m_label = new Label();
 	m_label->create("Splash Scene", 80, SDL_Color{ 255, 0, 0 }, "fonts/font.ttf");
-
-
-	//int posx = EngineMaster::getInstance()->returnWindowWidth() / 2 - m_label->getContentSize().w_ / 2;
 	m_label->setPosition(DsdlEngine::Vec2(300, 50));
-	addChild(m_label, 1);
+
+	
+	//addChild(m_label, 1);
 
 	//Set callback
-	SDL_TimerID timerID = SDL_AddTimer(3 * 1000, callback, this);
+	SDL_TimerID timerID = SDL_AddTimer(4 * 1000, callback, this);
 
+	layer->addNodeToLayer(bg);
+	layer->addNodeToLayer(m_label);
+
+	addLayerToScene(layer);
 }
 
 
 void SplashScene::onExitScene(){
-	
+	destroyScene();
 }
 
 void SplashScene::updateScene(){

@@ -23,9 +23,6 @@ public:
 
 	virtual void updateScene() override;
 
-	//Uint32 callback(Uint32 interval, void* param);
-
-
 	bool changeNext();
 
 private:
@@ -34,7 +31,9 @@ private:
 
 	InputManager m_inputManager;
 	Label* m_label;
+	Layer* layer;
 
+	Sprite* bg;
 //	Window* m_window;
 private:
 

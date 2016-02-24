@@ -44,7 +44,7 @@ private:
 //	DsdlEngine::Window* m_window;
 	DsdlEngine::Label* m_glabel;
 	DsdlEngine::InputManager m_inputManager;
-
+	Layer* layer;
 	Character* myChar2;
 
 };

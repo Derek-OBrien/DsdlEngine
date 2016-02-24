@@ -11,12 +11,18 @@ namespace DsdlEngine{
 		Layer ();
 		~Layer ();
 
-
-		ResourceTexture* create(std::string texturePath, SDL_Renderer* r);
-
-		//void render(SDL_Renderer* r);
+		Layer* create();
 
 		void destroy();
+
+		void loadNodes(SDL_Renderer* r);
+		void drawNodes(SDL_Renderer* r);
+
+		std::vector<EngineBaseNode*> layerNodes;
+
+		void addNodeToLayer(EngineBaseNode* node);
+
+		
 	private:
 
 		ResourceTexture m_LayerTexture;
