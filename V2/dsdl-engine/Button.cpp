@@ -10,7 +10,7 @@ namespace DsdlEngine{
 		m_eCurrentState = ButtonState::NORMAL;
 	}
 
-	Button::~Button(){}
+	Button::~Button() { destroy(); }
 
 
 	void Button::createTextButton(int width, int height, int size, std::string buttonText, std::string fontPath, SDL_Color color, SDL_Color bgColor){
@@ -45,7 +45,8 @@ namespace DsdlEngine{
 		rect.x = position.x_;
 		rect.y = position.y_;
 
-		m_spriteBtn.create(m_BtnWidth, m_BtnHeight, imagePath);
+		m_spriteBtn = new Sprite();
+		m_spriteBtn->create(m_BtnWidth, m_BtnHeight, imagePath);
 	}
 
 
@@ -144,7 +145,14 @@ namespace DsdlEngine{
 	}
 
 	void Button::destroy(){
-
+		if (m_label != nullptr) {
+			//delete m_label;
+		}
+	
+		if (m_spriteBtn != nullptr) {
+		//	delete m_spriteBtn;
+		}
+	
 	}
 }
 //NS_DSDL_END

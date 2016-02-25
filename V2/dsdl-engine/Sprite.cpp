@@ -7,7 +7,7 @@ namespace DsdlEngine{
 		setEngineNodeType(NodeType::SPRITE);
 	}
 
-	Sprite::~Sprite(){}
+	Sprite::~Sprite() { destroy(); }
 
 	void Sprite::create(int w, int h, std::string path){
 		setAssetPath(path);
@@ -26,7 +26,7 @@ namespace DsdlEngine{
 	}
 
 	void Sprite::destroy(){
-		
+		EngineBaseNode::destroy();
 	}
 
 }

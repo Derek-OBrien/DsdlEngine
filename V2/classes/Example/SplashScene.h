@@ -4,12 +4,12 @@
 #include "../../dsdl-engine/DsdlEngine.h"
 #include "GameDefines.h"
 
+#include "ScrollingBg.h"
 USING_NS_DSDL;
 
 class SplashScene : public IScene
 {
 public:
-	//SplashScene(DsdlEngine::Window* window);
 	SplashScene();
 	~SplashScene ();
 
@@ -30,11 +30,8 @@ private:
 	int m_nextScreenIndex = SCENE_INDEX_SPLASH;
 
 	InputManager m_inputManager;
-	Label* m_label;
 	Layer* layer;
 
-	Sprite* bg;
-//	Window* m_window;
 private:
 
 };

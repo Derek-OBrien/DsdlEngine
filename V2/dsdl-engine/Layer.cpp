@@ -9,32 +9,29 @@ namespace DsdlEngine{
 	
 	}
 
-	Layer ::~Layer(){}
+	Layer ::~Layer() { destroy(); }
 
-
-	Layer* Layer::create(){
-
-		auto layer = new Layer();
-
-		return layer;
-	}
 
 
 	void Layer::destroy(){
 
+		for (size_t i = 0; i < layerNodes.size(); i++) {
+			layerNodes[i]->destroy();
+			delete layerNodes[i];
+		}
+		layerNodes.resize(0);
+		m_LayerTexture.destroy();
 	}
 
 
 	void Layer::loadNodes(SDL_Renderer* r) {
-		for (size_t i = 0; i < layerNodes.size(); i++)
-		{
+		for (size_t i = 0; i < layerNodes.size(); i++){
 			layerNodes.at(i)->load(r);
 		}
 	}
 
 	void Layer::drawNodes(SDL_Renderer* r) {
-		for (size_t i = 0; i < layerNodes.size(); i++)
-		{
+		for (size_t i = 0; i < layerNodes.size(); i++){
 			layerNodes.at(i)->render(r);
 		}
 	}

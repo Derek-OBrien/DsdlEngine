@@ -41,12 +41,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)..\dependencies\Box2D\Box2D\;$(SolutionDir)..\dependencies\SDL2\SDL_ttf\include;$(SolutionDir)..\dependencies\SDL2\SDL_mixer\include;$(SolutionDir)..\dependencies\SDL2\SDL_image\include;$(SolutionDir)..\dependencies\SDL2\SDL\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)..\dependencies\SDL2\SDL_ttf\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL_mixer\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL_image\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL\lib\x86;$(SolutionDir)..\dependencies\Box2D\Box2D\Build\vs2013\bin\x32\Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)..\dependencies\SDL2\SDL_ttf\include;$(SolutionDir)..\dependencies\SDL2\SDL_mixer\include;$(SolutionDir)..\dependencies\SDL2\SDL_image\include;$(SolutionDir)..\dependencies\SDL2\SDL\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)..\dependencies\SDL2\SDL_ttf\lib\Debug\x86;$(SolutionDir)..\dependencies\SDL2\SDL_mixer\lib\Debug\x86;$(SolutionDir)..\dependencies\SDL2\SDL_image\lib\Debug\x86;$(SolutionDir)..\dependencies\SDL2\SDL\lib\Debug\x86;$(LibraryPath)</LibraryPath>
     <OutDir>.\lib\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)..\dependencies\SDL2\SDL_ttf\include;$(SolutionDir)..\dependencies\SDL2\SDL_mixer\include;$(SolutionDir)..\dependencies\SDL2\SDL_image\include;$(SolutionDir)..\dependencies\SDL2\SDL\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\dependencies\SDL2\SDL_ttf\include;$(SolutionDir)..\dependencies\SDL2\SDL_mixer\include;$(SolutionDir)..\dependencies\SDL2\SDL_image\include;$(SolutionDir)..\dependencies\SDL2\SDL\include;$(SolutionDir)..\dependencies\Box2D\Box2D\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)..\dependencies\SDL2\SDL_ttf\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL_mixer\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL_image\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL\lib\x86;$(LibraryPath)</LibraryPath>
     <OutDir>.\lib</OutDir>
   </PropertyGroup>

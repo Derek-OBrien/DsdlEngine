@@ -24,9 +24,6 @@ class MainMenuScene : public IScene{
 
 public:
 
-	//static IScene* create();
-
-	//MainMenuScene(DsdlEngine::Window* window);
 	MainMenuScene();
 	~MainMenuScene();
 
@@ -50,16 +47,11 @@ private:
 	int m_nextScreenIndex = SCENE_INDEX_MAINMENU;
 
 	Layer* layer;
-	Label* m_label;
 	InputManager m_inputManager;
-	Button* m_button;
+
 	AudioManager m_AudioManager;
 
-	Character* myChar;
-
-	Enemy* myChar2;
 
 	Music music;
 
-	//Window* m_window;
 };

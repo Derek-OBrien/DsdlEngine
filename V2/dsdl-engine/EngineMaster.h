@@ -18,10 +18,10 @@ namespace DsdlEngine{
 		std::string getAssetsPath(){ return rootAssetsPath;  };
 
 
-		void setWindowSize(int h, int w){ windowHeight = h; windowWidth = w; };
+		//void setWindowSize(int h, int w){ windowHeight = h; windowWidth = w; };
 
-		int returnWindowWidth(){ return windowWidth; }
-		int returnWindowHeight(){ return windowHeight; }
+		//int returnWindowWidth(){ return windowWidth; }
+		//int returnWindowHeight(){ return windowHeight; }
 
 //		Size getWindowSize(){ return Size(windowWidth, windowHeight); };
 

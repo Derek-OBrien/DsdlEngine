@@ -17,10 +17,11 @@
 #include <random>
 
 #include "Character.h"
+#include "ScrollingBg.h"
+
 
 class GamePlayScene : public DsdlEngine::IScene{
 public:
-	//GamePlayScene(DsdlEngine::Window* window);
 	GamePlayScene();
 	~GamePlayScene();
 
@@ -40,13 +41,13 @@ private:
 
 	int m_sceneIndex = SCENE_INDEX_NO_SCENE;
 
-
-//	DsdlEngine::Window* m_window;
-	DsdlEngine::Label* m_glabel;
-	DsdlEngine::InputManager m_inputManager;
+	InputManager m_inputManager;
 	Layer* layer;
 	Character* myChar2;
 
+	ScrollingBg* bg;
+
+	ScrollingBg* mg;
 };
 
 

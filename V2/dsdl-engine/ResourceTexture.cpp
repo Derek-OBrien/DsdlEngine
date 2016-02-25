@@ -153,10 +153,6 @@ namespace DsdlEngine{
 			m_iWidth = 0;
 			m_iHeight = 0;
 		}
-
-		//for (auto& it : m_TextureMap){
-		//	SDL_DestroyTexture(it.second);
-		//}
 	}
 
 	void ResourceTexture::setBlendMode(SDL_BlendMode blend){

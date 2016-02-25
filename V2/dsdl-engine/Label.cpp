@@ -7,7 +7,7 @@ namespace DsdlEngine{
 		setEngineNodeType(NodeType::LABEL);
 	}
 
-	Label::~Label(){}
+	Label::~Label() { destroy(); }
 
 
 
@@ -21,7 +21,7 @@ namespace DsdlEngine{
 
 
 	void Label::destroy(){
-
+		EngineBaseNode::destroy();
 	}
 	//// Load and Create text texture
 	/*bool Label::load(SDL_Renderer* r){

@@ -6,38 +6,30 @@
 
 namespace DsdlEngine{
 
-
+	//Constructor
 	EngineBaseNode::EngineBaseNode(){
 		setEngineNodeType(NodeType::BASENODE);
 		m_frame = 0;
 		m_numFrames = 1;
 	}
 
+	//Deconstructor
 	EngineBaseNode::~EngineBaseNode(){
 		destroy();
 	}
 
 
 
-	/*void EngineBaseNode::create(int w, int h, std::string path){
-		setAssetPath(path);
-
-		width = w;
-		height = h;
-
-	}*/
-
-
+	//Render Node
 	void EngineBaseNode::render(SDL_Renderer* r){
 		if (nodeType == NodeType::SPRITE){
 			if (m_numFrames > 1){
-				spriteAnimation(r);
+				renderAnimation(r);
 			}
 			else{
 				engineTexture->render(position.x_, position.y_, r, m_currentFrame);
 			}
 
-			//SDL_SetRenderDrawColor(r, 0xff, 0x00, 0x00, 0xFF);
 			SDL_RenderDrawRect(r, &objectBoundingBox);
 		}
 		else if (nodeType == NodeType::LABEL || nodeType == NodeType::BUTTON){
@@ -46,7 +38,8 @@ namespace DsdlEngine{
 	}
 
 
-	void EngineBaseNode::spriteAnimation(SDL_Renderer* r){
+	//Render Node as Animation
+	void EngineBaseNode::renderAnimation(SDL_Renderer* r){
 		m_currentFrame = &m_gSpriteClips[m_frame / m_numFrames];
 		engineTexture->render(position.x_, position.y_, r, m_currentFrame);
 		++m_frame;
@@ -57,7 +50,7 @@ namespace DsdlEngine{
 	}
 
 
-
+	//Load Node as engine texture
 	bool EngineBaseNode::load( SDL_Renderer * r){
 
 		engineTexture = new ResourceTexture();

@@ -5,7 +5,7 @@
 namespace DsdlEngine{
 
 	Window::Window(){}
-	Window::~Window(){}
+	Window::~Window() { destroy(); }
 
 	int Window::createWindow(std::string windowName, int screenWidth, int screenHeight, unsigned int flag){
 
@@ -71,6 +71,13 @@ namespace DsdlEngine{
 
 	void Window::swapBuffer(){
 		SDL_GL_SwapWindow(m_pSdlWindow);
+	}
+
+	void Window::destroy() {
+		SDL_DestroyRenderer(m_pSdlRenderer);
+		SDL_DestroyWindow(m_pSdlWindow);
+		m_pScreenSurface = nullptr;
+		SDL_Quit();
 	}
 
 }

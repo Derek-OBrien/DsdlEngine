@@ -37,9 +37,6 @@ namespace DsdlEngine{
 		newScene->m_iSceneIndex = m_pScenes.size();
 		m_pScenes.push_back(newScene);
 		//newScene->buildScene();
-
-		//newScene->buildScene();
-		//newScene->setParentGame(m_pGame);
 	}
 
 	//Clean up scenes
@@ -54,8 +51,9 @@ namespace DsdlEngine{
 
 	//Return the current scene
 	IScene* SceneManager::getCurrentScene(){
-		if (m_iCurrentSceneIndex == SCENE_INDEX_NO_SCENE)
+		if (m_iCurrentSceneIndex == SCENE_INDEX_NO_SCENE) {
 			return nullptr;
+		}
 		return m_pScenes[m_iCurrentSceneIndex];
 	}
 

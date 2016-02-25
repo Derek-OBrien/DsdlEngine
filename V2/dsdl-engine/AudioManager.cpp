@@ -50,12 +50,10 @@ namespace DsdlEngine{
 
 		std::string temp;
 #ifdef __WIN32__
-		SDL_Log("Loading Assets For Windows Platform");
 		temp = "../../assets/" + audioPath;
 #endif
 
 #ifdef __ANDROID__
-		SDL_Log("Loading Assets for Android Platform");
 		temp = audioPath;
 #endif
 
@@ -86,12 +84,10 @@ namespace DsdlEngine{
 
 		std::string temp;
 #ifdef __WIN32__
-		SDL_Log("Loading Assets For Windows Platform");
 		temp = "../../assets/" + audioPath;
 #endif
 
 #ifdef __ANDROID__
-		SDL_Log("Loading Assets for Android Platform");
 		temp = audioPath;
 #endif
 

@@ -2,7 +2,6 @@
 #include "GamePlayScene.h"
 #include "GameDefines.h"
 
-//GamePlayScene::GamePlayScene(DsdlEngine::Window* window) : m_window(window){
 GamePlayScene::GamePlayScene(){
 	m_sceneIndex = SCENE_INDEX_GAMEPLAY;
 }
@@ -19,30 +18,45 @@ int GamePlayScene::getPreviousSceneIndex() const{
 
 
 void GamePlayScene::destroyScene(){
-
+	//Destroy Layer and all its nodes
+	layer->destroy();
 }
 
 void GamePlayScene::onEntryScene(){
-
+	
+	//Create Layer
 	layer = new Layer();
-
+	
+	//Add Background
+	bg = new ScrollingBg();
+	bg->create("DemoGame/backgrounds/bg_city.png");
+	
+	//Add Middle Ground
+	mg = new ScrollingBg();
+	mg->create("DemoGame/backgrounds/bg_image.png");
+	
+	//Add Character
 	myChar2 = new Character();
 	myChar2->init();
+	
 
-	//addChild(myChar2->m_sprite, 2);
-
+	//Add Nodes to Layer
+	layer->addNodeToLayer(bg->bg);
 	layer->addNodeToLayer(myChar2->m_sprite);
-
+	layer->addNodeToLayer(mg->bg);
+	
+	//Add Layer to Scene
 	addLayerToScene(layer);
-
 }
 
 void GamePlayScene::onExitScene(){
-
+	destroyScene();
 }
 
 void GamePlayScene::updateScene(){
 
+	bg->update();
+	mg->update();
 	checkInput();
 }
 

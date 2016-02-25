@@ -9,7 +9,7 @@ namespace DsdlEngine{
 	{
 	public:
 		Window();
-		~Window();
+		virtual ~Window();
 
 		int createWindow(std::string windowNname, int screenWidth, int screenHeight, unsigned int flag);
 		void swapBuffer();
@@ -19,6 +19,7 @@ namespace DsdlEngine{
 
 		SDL_Renderer* getRenderer(){ return m_pSdlRenderer; }
 
+		void destroy();
 	private:
 
 		SDL_Window* m_pSdlWindow;

@@ -142,18 +142,9 @@ namespace DsdlEngine{
 		m_pCurrentRunning->onEntryScene();
 		m_pCurrentRunning->setSceneRunning();
 
-		/*m_pCurrentRunning = SceneDirector::getInstance()->getCurrentScene();
-		m_pCurrentRunning->onEntryScene();
-		m_pCurrentRunning->setSceneRunning();
-		*/
 		//Load all scene Children nodes for first scene on init of game
 		for (size_t i = 0; i < m_pCurrentRunning->sceneLayers.size(); i++){
-				//m_pCurrentRunning->sceneChildren.at(i)->load(m_pGameRenderer);
-			//m_pCurrentRunning->sceneLayers.at(i)->getLayerNodes(i)->load(m_pGameRenderer);
 			m_pCurrentRunning->loadScene(m_pGameRenderer);
-			/*for (size_t i = 0; i < m_pCurrentRunning->sceneChildren.size(); i++) {
-				m_pCurrentRunning->sceneChildren.at(i)->load(m_pGameRenderer);
-			}*/
 		}
 
 		return true;
@@ -190,8 +181,6 @@ namespace DsdlEngine{
 
 					//Load all scene Children nodes for next scene
 					for (size_t i = 0; i < m_pCurrentRunning->sceneLayers.size(); i++) {
-						//m_pCurrentRunning->sceneChildren.at(i)->load(m_pGameRenderer);
-						//m_pCurrentRunning->sceneLayers.at(i)->getLayerNodes(i)->load(m_pGameRenderer);
 						m_pCurrentRunning->loadScene(m_pGameRenderer);
 					}
 
@@ -206,8 +195,6 @@ namespace DsdlEngine{
 
 					//Load all scene Children nodes for previous scene
 					for (size_t i = 0; i < m_pCurrentRunning->sceneLayers.size(); i++) {
-						//m_pCurrentRunning->sceneChildren.at(i)->load(m_pGameRenderer);
-						//m_pCurrentRunning->sceneLayers.at(i)->getLayerNodes(i)->load(m_pGameRenderer);
 						m_pCurrentRunning->loadScene(m_pGameRenderer);
 					}
 
@@ -244,7 +231,6 @@ namespace DsdlEngine{
 
 
 			m_Window.swapBuffer();
-			//SDL_SetRenderDrawColor(m_pGameRenderer, 0x00, 0x00, 0x00, 0xff);
 			SDL_RenderPresent(m_pGameRenderer);
 
 		}

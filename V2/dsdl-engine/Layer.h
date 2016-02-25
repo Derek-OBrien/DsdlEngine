@@ -9,10 +9,9 @@ namespace DsdlEngine{
 	{
 	public:
 		Layer ();
-		~Layer ();
+		virtual ~Layer ();
 
-		Layer* create();
-
+	
 		void destroy();
 
 		void loadNodes(SDL_Renderer* r);

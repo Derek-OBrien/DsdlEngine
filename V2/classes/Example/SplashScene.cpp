@@ -18,8 +18,7 @@ int SplashScene::getPreviousSceneIndex() const{
 
 
 void SplashScene::destroyScene(){
-	bg->destroy();
-	m_label->destroy();
+	layer->destroy();
 }
 
 Uint32 callback(Uint32 interval, void* splashScene) {
@@ -39,17 +38,14 @@ void SplashScene::onEntryScene(){
 
 	layer = new Layer();
 
-	bg = new Sprite();
+	auto bg = new Sprite();
 	bg->create(1920, 1080, "DemoGame/backgrounds/menu.png");
 	bg->setPosition(Vec2::ZERO);
 
-
-	m_label = new Label();
+	auto m_label = new Label();
 	m_label->create("Splash Scene", 80, SDL_Color{ 255, 0, 0 }, "fonts/font.ttf");
-	m_label->setPosition(DsdlEngine::Vec2(300, 50));
+	m_label->setPosition(Vec2(300, 50));
 
-	
-	//addChild(m_label, 1);
 
 	//Set callback
 	SDL_TimerID timerID = SDL_AddTimer(4 * 1000, callback, this);

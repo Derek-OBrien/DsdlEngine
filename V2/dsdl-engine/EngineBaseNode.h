@@ -5,54 +5,55 @@
 #include "ResourceTexture.h"
 
 
-namespace DsdlEngine{
+namespace DsdlEngine {
 
-
-
-
-	class EngineBaseNode
-	{
+	class EngineBaseNode{
 	public:
 		EngineBaseNode();
-		~EngineBaseNode();
-		
-		//void create(int width, int height, std::string path);
+		virtual ~EngineBaseNode();
 
+	
 		//Render Node
-		 void render(SDL_Renderer* r);
-		 bool load(SDL_Renderer* r);
+		void render(SDL_Renderer* r);
+		void renderAnimation(SDL_Renderer* r);
 
-		 void spriteAnimation(SDL_Renderer* r);
+		bool load(SDL_Renderer* r);
 
 		//Set position of node
-		void setPosition(const Vec2& pos){ position.x_ = pos.x_, position.y_ = pos.y_; };
-		void setPositionX(int x){ position.x_ = x; }
-		void setPositionY(int y){ position.y_ = y; }
+		void setPosition(const Vec2& pos) { position.x_ = pos.x_, position.y_ = pos.y_; };
+		void setPositionX(int x) { position.x_ = x; }
+		void setPositionY(int y) { position.y_ = y; }
 
-		Vec2 getPosition(){ return position; }
-		
-		//Content Size
-		Size getContentSize(){ return Size(width, height); }
+		Vec2 getPosition() { return position; }
+
+		//Rotate Node
+
+
+		//Scale Node
 
 		//Get Assets Path
-		void setAssetPath(std::string path){ m_assetPath = path; }
-		std::string getAssetsPath(){ return m_assetPath; }
+		void setAssetPath(std::string path) { m_assetPath = path; }
+		std::string getAssetsPath() { return m_assetPath; }
 
 
 		//Get And Set Node Type
-		NodeType getNodeType(){ return nodeType; }
-		void setEngineNodeType(NodeType type){ nodeType = type; }
+		NodeType getNodeType() { return nodeType; }
+		void setEngineNodeType(NodeType type) { nodeType = type; }
 
 		//Set Dimensions
-		void setWidth(){};
-		void setHeight(){};
-		
+		//Content Size
+		Size getContentSize() { return Size(width, height); }
+
+		void setWidth() {};
+		void setHeight() {};
+
 		virtual void destroy();
+
 	protected:
 
 		NodeType nodeType = NodeType::BASENODE;
 
-		ResourceTexture* engineTexture ;
+		ResourceTexture* engineTexture;
 		SDL_Rect objectBoundingBox;
 
 		//nodes position Vec2
