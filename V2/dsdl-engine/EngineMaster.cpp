@@ -1,8 +1,6 @@
 #include "EngineMaster.h"
 #include "FileIO.h"
 
-#include "../dependencies/tinyxml/tinyxml2.h"
-
 
 namespace DsdlEngine{
 

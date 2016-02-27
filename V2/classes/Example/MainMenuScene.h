@@ -37,11 +37,14 @@ public:
 
 	virtual void updateScene() override;
 
+	void onNewGameClicked();
+
 private:
 
 	void checkInput();
 
-	bool onNewGameClicked();
+	
+	//		void operator()()const;
 
 
 	int m_nextScreenIndex = SCENE_INDEX_MAINMENU;

@@ -2,6 +2,7 @@
 #include "GamePlayScene.h"
 #include "GameDefines.h"
 
+
 GamePlayScene::GamePlayScene(){
 	m_sceneIndex = SCENE_INDEX_GAMEPLAY;
 }
@@ -35,18 +36,28 @@ void GamePlayScene::onEntryScene(){
 	mg = new ScrollingBg();
 	mg->create("DemoGame/backgrounds/bg_image.png");
 	
+	auto bgs = new Sprite();
+	bgs->create(1920, 1080, "DemoGame/backgrounds/menu.png");
+	bgs->setPosition(Vec2::ZERO);
+
 	//Add Character
 	myChar2 = new Character();
 	myChar2->init();
 	
+	//Add Enemy
+	enemy = new Enemy();
+	enemy->createEnemy();
 
 	//Add Nodes to Layer
 	layer->addNodeToLayer(bg->bg);
+	layer->addNodeToLayer(bgs);
 	layer->addNodeToLayer(myChar2->m_sprite);
+	layer->addNodeToLayer(enemy->m_enemySprite);
 	layer->addNodeToLayer(mg->bg);
 	
 	//Add Layer to Scene
 	addLayerToScene(layer);
+
 }
 
 void GamePlayScene::onExitScene(){
@@ -57,16 +68,17 @@ void GamePlayScene::updateScene(){
 
 	bg->update();
 	mg->update();
+
+	enemy->update();
 	checkInput();
 }
 
 
 void GamePlayScene::checkInput(){
+	SDL_Event evnt;
 
 	m_inputManager.update();
 
-
-	SDL_Event evnt;
 	while (SDL_PollEvent(&evnt)) {
 
 		switch (evnt.type) {
@@ -84,9 +96,11 @@ void GamePlayScene::checkInput(){
 			break;
 		case SDL_MOUSEBUTTONDOWN:
 			m_inputManager.pressKey(evnt.button.button);
+			//myChar2->jump();
 			break;
 		case SDL_MOUSEBUTTONUP:
 			m_inputManager.releaseKey(evnt.button.button);
+			//myChar2->drop();
 			break;
 			//Touch down
 		case SDL_FINGERDOWN:

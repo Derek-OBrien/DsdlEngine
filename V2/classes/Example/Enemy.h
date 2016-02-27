@@ -1,18 +1,17 @@
 #pragma once
-
-//#include <dsdl-engine\Sprite.h>
-
 #include "../../dsdl-engine/DsdlEngine.h"
-//#include "DsdlEngine.h"
+
+USING_NS_DSDL;
 
 
 class Enemy : public DsdlEngine::Sprite{
 
 public: 
-	Enemy(){}
-
+	Enemy();
+	~Enemy();
 	void createEnemy();
+	void update();
 
-
-	Sprite* enemy;
+	Sprite* m_enemySprite;
+	int pos;
 };

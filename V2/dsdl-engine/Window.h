@@ -10,13 +10,16 @@ namespace DsdlEngine{
 	public:
 		Window();
 		virtual ~Window();
-
+		
+		//Create window
 		int createWindow(std::string windowNname, int screenWidth, int screenHeight, unsigned int flag);
 		void swapBuffer();
 
+		//Get Window Width and Height
 		int getScreenWidth() { return m_screenWidth; }
 		int getScreenHeight() { return m_screenHeight; }
 
+		//Get Renderer
 		SDL_Renderer* getRenderer(){ return m_pSdlRenderer; }
 
 		void destroy();

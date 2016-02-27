@@ -11,7 +11,7 @@
 #include "EngineMath.h"
 #include "EngineError.h"
 #include "FileIO.h"
-//#include "Gui.h"
+#include "Gui.h"
 #include "IMainGame.h"
 #include "InputManager.h"
 #include "IScene.h"
@@ -25,6 +25,9 @@
 
 
 #include "Window.h"
+
+
+
 
 
 

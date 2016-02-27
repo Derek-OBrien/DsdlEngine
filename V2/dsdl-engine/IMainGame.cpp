@@ -23,7 +23,9 @@ namespace DsdlEngine{
 		m_pSceneManager = DsdlEngine::make_unique<SceneManager>(this);
 	}
 
-	IMainGame::~IMainGame(){}
+	IMainGame::~IMainGame(){
+		//Empty
+	}
 	
 
 	/*
@@ -33,37 +35,20 @@ namespace DsdlEngine{
 
 		if (!init()) return;
 
-		const float DESIRED_FPS = 120.0f;
-		const float MS_PER_SECOND = 1000;
-
-		const float DESIRED_FRAMETIME = MS_PER_SECOND / DESIRED_FPS; // The desired frame time per frame
-		const float MAX_DELTA_TIME = 1.0f; // Maximum size of deltaTime
-
-
 		FpsLimiter fpsLimit;
 		fpsLimit.setMaxFPS(m_fFps);
 
-		// Start our previousTicks variable
-		Uint32 previousTicks = SDL_GetTicks();
-
+	
 		m_bIsRunning = true;
-
 		while (m_bIsRunning){
 			fpsLimit.begin();
-			Uint32 newTicks = SDL_GetTicks();
-			Uint32 frameTime = newTicks - previousTicks;
-			previousTicks = newTicks; // Store newTicks in previousTicks so we can use it next frame
-
-			// Get the total delta time
-			float totalDeltaTime = frameTime / DESIRED_FRAMETIME;
-
-			
+	
 			m_InputManager.update();
 			update();
-			draw();
 
+			draw();
+			
 			m_fFps = fpsLimit.end();
-			//std::cout << m_fFps << std::endl;
 		}
 	}
 
@@ -76,7 +61,7 @@ namespace DsdlEngine{
 		//Will keep looping until there are no more events to process
 		switch (evnt.type) {
 		case SDL_QUIT:
-			m_bIsRunning = false;
+			exitGame();
 			break;
 		case SDL_MOUSEMOTION:
 			m_InputManager.setMouseCoords((float)evnt.motion.x, (float)evnt.motion.y);
@@ -136,8 +121,10 @@ namespace DsdlEngine{
 			return false;
 		}
 
+		//Add all Scenes
 		addScenes();
 		
+		//Load up First Scene
 		m_pCurrentRunning = m_pSceneManager->getCurrentScene();
 		m_pCurrentRunning->onEntryScene();
 		m_pCurrentRunning->setSceneRunning();
@@ -178,12 +165,10 @@ namespace DsdlEngine{
 				if (m_pCurrentRunning){
 					m_pCurrentRunning->setSceneRunning();
 					m_pCurrentRunning->onEntryScene(); 
-
 					//Load all scene Children nodes for next scene
 					for (size_t i = 0; i < m_pCurrentRunning->sceneLayers.size(); i++) {
 						m_pCurrentRunning->loadScene(m_pGameRenderer);
 					}
-
 				}
 				break;
 			case SceneState::CHANGE_PREVIOUS:
@@ -192,12 +177,10 @@ namespace DsdlEngine{
 				if (m_pCurrentRunning){
 					m_pCurrentRunning->setSceneRunning();
 					m_pCurrentRunning->onEntryScene();
-
 					//Load all scene Children nodes for previous scene
 					for (size_t i = 0; i < m_pCurrentRunning->sceneLayers.size(); i++) {
 						m_pCurrentRunning->loadScene(m_pGameRenderer);
 					}
-
 				}
 				break;
 			case SceneState::EXIT_APP:
@@ -220,21 +203,15 @@ namespace DsdlEngine{
 
 	void IMainGame::draw(){
 		if (m_pCurrentRunning && m_pCurrentRunning->getSceneState() == SceneState::RUNNING){
-			
 			SDL_RenderClear(m_pGameRenderer);
 			
-			//for running scene 
-			//render each node that is in the child vector
+			//for running scene render each node that is in the child vector
 			for (size_t i = 0; i < m_pCurrentRunning->sceneLayers.size(); i++) {
 				m_pCurrentRunning->drawScene(m_pGameRenderer);
 			}
 
-
-			m_Window.swapBuffer();
 			SDL_RenderPresent(m_pGameRenderer);
-
 		}
-
 	}
 
 
@@ -243,9 +220,7 @@ namespace DsdlEngine{
 		Exit Game
 	*/
 	void IMainGame::exitGame(){
-
 		m_pCurrentRunning->onExitScene();
-
 		if (m_pSceneManager){
 			m_pSceneManager->destroy();
 			m_pSceneManager.reset();

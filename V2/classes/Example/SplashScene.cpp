@@ -43,8 +43,8 @@ void SplashScene::onEntryScene(){
 	bg->setPosition(Vec2::ZERO);
 
 	auto m_label = new Label();
-	m_label->create("Splash Scene", 80, SDL_Color{ 255, 0, 0 }, "fonts/font.ttf");
-	m_label->setPosition(Vec2(300, 50));
+	m_label->create(Vec2(300, 100),"Splash Scene", 80, SDL_Color{ 255, 0, 0 }, "fonts/font.ttf");
+	//m_label->setPosition(Vec2(300, 50));
 
 
 	//Set callback

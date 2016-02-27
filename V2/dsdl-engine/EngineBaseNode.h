@@ -27,9 +27,10 @@ namespace DsdlEngine {
 		Vec2 getPosition() { return position; }
 
 		//Rotate Node
-
+		//TODO
 
 		//Scale Node
+		//TODO
 
 		//Get Assets Path
 		void setAssetPath(std::string path) { m_assetPath = path; }
@@ -40,12 +41,14 @@ namespace DsdlEngine {
 		NodeType getNodeType() { return nodeType; }
 		void setEngineNodeType(NodeType type) { nodeType = type; }
 
+
 		//Set Dimensions
 		//Content Size
-		Size getContentSize() { return Size(width, height); }
+		void setSize(Size si) { size.w_ = si.w_; size.h_ = si.h_; }
+		void setWidth(int w) { size.w_ = w; };
+		void setHeight(int h) { size.h_ = h; };
 
-		void setWidth() {};
-		void setHeight() {};
+		Size getContentSize() { return size; }
 
 		virtual void destroy();
 
@@ -58,14 +61,13 @@ namespace DsdlEngine {
 
 		//nodes position Vec2
 		Vec2 position;
-		int width, height;
+		Size size;
 
-		int m_numFrames;
+		int m_numFrames, m_frame;
+
 
 		SDL_Rect m_gSpriteClips[14];	//frames for animation
 		SDL_Rect* m_currentFrame;		//current animation frame
-
-		int m_frame;
 
 
 		// For labels
@@ -73,19 +75,17 @@ namespace DsdlEngine {
 		int textSize;
 		SDL_Color textColor;
 
-
+		SDL_Surface* btnbg;
 		SDL_Rect rect;
+		SDL_Rect labelBorder;
+
 		SDL_Color buttonbg;
-		int m_BtnHeight;
-		int m_BtnWidth;
+
 
 	private:
 
 		std::string m_assetPath;
-
-
 		TTF_Font* font;
-
 		std::map<std::string, TTF_Font*> m_FontMap;
 	};
 }

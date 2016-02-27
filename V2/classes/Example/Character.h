@@ -1,10 +1,5 @@
 #pragma once
-
-//#include <dsdl-engine\Sprite.h>
-
-
 #include "../../dsdl-engine/DsdlEngine.h"
-//#include "DsdlEngine.h"
 
 USING_NS_DSDL;
 
@@ -18,6 +13,8 @@ public:
 	void init();
 	void update();
 
+	void jump();
+	void drop();
 	Sprite* m_sprite;
 
 };

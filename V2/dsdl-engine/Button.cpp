@@ -4,8 +4,7 @@ namespace DsdlEngine{
 	//NS_DSDL_START
 
 
-
-	Button::Button(){
+	Button::Button() {
 		setEngineNodeType(NodeType::BUTTON);
 		m_eCurrentState = ButtonState::NORMAL;
 	}
@@ -13,57 +12,43 @@ namespace DsdlEngine{
 	Button::~Button() { destroy(); }
 
 
-	void Button::createTextButton(int width, int height, int size, std::string buttonText, std::string fontPath, SDL_Color color, SDL_Color bgColor){
+	void Button::createTextButton(Vec2 pos, Size btnsize, std::string buttonText, std::string fontPath, SDL_Color color, SDL_Color bgColor){
 
-		m_BtnHeight = height;
-		m_BtnWidth = width;
+		size.h_ = btnsize.h_;
+		size.w_ =  buttonText.length() * btnsize.h_;
 
-
-		rect.h = m_BtnHeight;
-		rect.w = m_BtnWidth;
-		rect.x = position.x_;
-		rect.y = position.y_;
+		position.x_ = pos.x_;
+		position.y_ = pos.y_;
 
 		buttonbg = bgColor;
 
 		labelText = buttonText;
-		textSize = size;
+		textSize = btnsize.h_;
 		textColor = color;
 		setAssetPath(fontPath);
 
+		labelBorder.h = size.h_;
+		labelBorder.w = size.w_;
+		labelBorder.x = position.x_;
+		labelBorder.y = position.y_;
+
 		m_label = new Label();
-		m_label->create(labelText, textSize, textColor, fontPath);
+		m_label->create(pos, labelText, textSize, textColor, fontPath);
 	}
 
 
 	void Button::createSpriteButton(int width, int height, std::string imagePath){
-		m_BtnHeight = height;
-		m_BtnWidth = width;
+		size.h_ = height;
+		size.w_ = width;
 
-		rect.h = m_BtnHeight;
-		rect.w = m_BtnWidth;
+		rect.h = size.h_;
+		rect.w = size.w_;
 		rect.x = position.x_;
 		rect.y = position.y_;
 
 		m_spriteBtn = new Sprite();
-		m_spriteBtn->create(m_BtnWidth, m_BtnHeight, imagePath);
+		m_spriteBtn->create(size.w_, size.h_, imagePath);
 	}
-
-
-	/*void Button::render( SDL_Renderer* r){
-
-		//render button bg
-		SDL_SetRenderDrawColor(r, buttonbg.r, buttonbg.g, buttonbg.b, buttonbg.a);
-		SDL_RenderFillRect(r, &rect);
-
-		//render button outline
-		SDL_SetRenderDrawColor(r, buttonbg.r, buttonbg.g, buttonbg.b, buttonbg.a);
-		SDL_RenderDrawRect(r, &rect);
-
-
-		engineTexture->render(m_posX, m_posY, r);
-		}*/
-
 
 	//Set State to Hovering
 	void Button::onMouseEnters(){
@@ -81,9 +66,7 @@ namespace DsdlEngine{
 		m_eCurrentState = ButtonState::PRESSED;
 		DEBUG_MSG("Pressed button");
 
-		//(function)();
 	}
-
 
 	//Check for mouse input on a button
 	void Button::checkInput(SDL_Event& e){
@@ -101,13 +84,13 @@ namespace DsdlEngine{
 			if (x < position.x_){
 				inside = false;
 			}
-			else if (x > position.x_ + m_BtnWidth){
+			else if (x > position.x_ + size.h_){
 				inside = false;
 			}
 			else if (y < position.y_){
 				inside = false;
 			}
-			else if (y > position.y_ + m_BtnHeight){
+			else if (y > position.y_ + size.w_){
 				inside = false;
 			}
 
@@ -145,14 +128,7 @@ namespace DsdlEngine{
 	}
 
 	void Button::destroy(){
-		if (m_label != nullptr) {
-			//delete m_label;
-		}
-	
-		if (m_spriteBtn != nullptr) {
-		//	delete m_spriteBtn;
-		}
-	
+
 	}
 }
 //NS_DSDL_END

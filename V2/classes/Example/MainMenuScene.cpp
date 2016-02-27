@@ -1,12 +1,10 @@
 
 #include "MainMenuScene.h"
 #include "GamePlayScene.h"
-//#include <dsdl-engine\EngineMath.h>
 
 #include "../../dsdl-engine/EngineMath.h"
 
 
-//MainMenuScene::MainMenuScene(DsdlEngine::Window* window) : m_window(window) {}
 MainMenuScene::MainMenuScene() {}
 MainMenuScene::~MainMenuScene(){}
 
@@ -27,6 +25,8 @@ void MainMenuScene::destroyScene(){
 void MainMenuScene::onEntryScene(){
 
 	layer = new Layer();
+	
+	auto gui = new DsdlGui();
 
 	//Add Audio Manager
 	music = m_AudioManager.loadMusic("Sound/XYZ.ogg");
@@ -39,21 +39,19 @@ void MainMenuScene::onEntryScene(){
 
 	//Add Label
 	auto m_label = new Label();
-	m_label->create("Main Menu", 80, SDL_Color{ 255, 0, 0 }, "fonts/font.ttf");
-	m_label->setPosition(Vec2(600,5));
+	m_label->create(Vec2(600, 5),"Main Menu", 80, SDL_Color{ 255, 0, 0 }, "fonts/font.ttf");
 	
 	//Add Button
-	auto m_button = new Button();
-	m_button->createTextButton(100, 100, 60, "Button", "fonts/font.ttf", SDL_Color{ 0, 255, 0 }, SDL_Color{ 0, 0, 255 });
-	m_button->setPosition(Vec2(600, 500));
+	
+	gui->addButton(ButtonType::LABEL_BTN, Vec2(600, 500), Size(200, 100), "fonts/font.ttf", SDL_Color{ 0,255,255 }, SDL_Color{ 255,0,0 }, "New-Game");
 	
 	//Add to Layer
 	layer->addNodeToLayer(bg);
 	layer->addNodeToLayer(m_label);
-	layer->addNodeToLayer(m_button);
-
+	
 	//Add Layer to scene
 	addLayerToScene(layer);
+	addLayerToScene(gui);
 }
 
 void MainMenuScene::onExitScene(){
@@ -72,7 +70,6 @@ void MainMenuScene::checkInput(){
 	
 	m_inputManager.update();
 	
-
 	SDL_Event evnt;
 	while (SDL_PollEvent(&evnt)) {
 		
@@ -99,16 +96,13 @@ void MainMenuScene::checkInput(){
 			//Touch down
 		case SDL_FINGERDOWN:
 			m_inputManager.pressKey(evnt.button.button);
-			SDL_Log("Touch Triggered ");
 			onNewGameClicked();
 			break;
 		case SDL_FINGERMOTION:
 			m_inputManager.setMouseCoords((float)evnt.motion.x, (float)evnt.motion.y);
-			SDL_Log("Touch Motion Triggered ");
 			break;
 		case SDL_FINGERUP:
 			m_inputManager.releaseKey(evnt.button.button);
-			SDL_Log("Touch up Triggered ");
 			break;
 		default:
 			break;
@@ -116,9 +110,7 @@ void MainMenuScene::checkInput(){
 	}
 }
 
-bool MainMenuScene::onNewGameClicked(){
+void MainMenuScene::onNewGameClicked(){
 	m_nextScreenIndex = SCENE_INDEX_GAMEPLAY;
 	m_eCurrentState = DsdlEngine::SceneState::CHANGE_NEXT;
-
-	return true;
 }

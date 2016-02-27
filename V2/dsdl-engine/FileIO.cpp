@@ -59,12 +59,12 @@ namespace DsdlEngine{
 	*/
 	bool FileIO::loadDocument(const char* filepath, char** doc_contents) {
 
-		const char* path;
+//		const char* path;
 		SDL_RWops *file;
 
 		file = SDL_RWFromFile(filepath, "rb");
 
-		Sint64 file_length = SDL_RWseek(file, 0, SEEK_END);
+		size_t file_length = SDL_RWseek(file, 0, SEEK_END);
 		(*doc_contents) = new char[file_length + 1]; // allow an extra character for '\0'
 
 		SDL_RWseek(file, 0, SEEK_SET);
@@ -79,7 +79,7 @@ namespace DsdlEngine{
 
 
 	bool FileIO::writeDocument(const char* filepath, char** doc_contents) {
-		const char* path;
+		//const char* path;
 		SDL_RWops *file;
 
 		file = SDL_RWFromFile(filepath, "r+w");

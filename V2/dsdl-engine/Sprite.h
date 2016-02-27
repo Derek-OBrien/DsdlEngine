@@ -24,15 +24,10 @@ namespace DsdlEngine{
 		void create(int width, int height, std::string path);
 		void create(int width, int height, std::string path, int numFrames);
 
-		//Set position Of Sprite
-		void setPosition(Vec2 pos){ position.x_ = pos.x_; position.y_ = pos.y_; }
-		void setPosX(int x){ position.x_ += x; objectBoundingBox.x += x; }
-		void setPosY(int y){ position.y_ += y; objectBoundingBox.y += y; }
-
+		
 		//cleanup
 		void destroy();
 
-		//int Set number of sprite sprite frames in animation
 	private:
 
 	};

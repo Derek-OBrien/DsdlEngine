@@ -11,7 +11,6 @@
 //#include <SDL_ttf.h>
 //#include <SDL_mixer.h>
 
-
 #include <string>
 #include <iostream>
 #include <memory>
@@ -44,6 +43,11 @@ enum class ButtonState{
 	NORMAL,
 	PRESSED,
 	HOVERING
+};
+
+enum class ButtonType {
+	LABEL_BTN,
+	SPRITE_BTN
 };
 
 #endif

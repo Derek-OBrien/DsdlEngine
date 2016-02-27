@@ -18,6 +18,7 @@
 
 #include "Character.h"
 #include "ScrollingBg.h"
+#include "Enemy.h"
 
 
 class GamePlayScene : public DsdlEngine::IScene{
@@ -43,11 +44,13 @@ private:
 
 	InputManager m_inputManager;
 	Layer* layer;
-	Character* myChar2;
 
 	ScrollingBg* bg;
-
 	ScrollingBg* mg;
+
+	Character* myChar2;
+
+	Enemy* enemy;
 };
 
 

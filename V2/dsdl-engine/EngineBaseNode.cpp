@@ -30,10 +30,25 @@ namespace DsdlEngine{
 				engineTexture->render(position.x_, position.y_, r, m_currentFrame);
 			}
 
-			SDL_RenderDrawRect(r, &objectBoundingBox);
+		//	SDL_SetRenderDrawColor(r, 0, 0, 255, 120);
+		//	SDL_RenderDrawRect(r, &objectBoundingBox);
 		}
-		else if (nodeType == NodeType::LABEL || nodeType == NodeType::BUTTON){
+
+		else if (nodeType == NodeType::LABEL){
+
+		//	SDL_SetRenderDrawColor(r, 255, 0, 0, 120);
+		//	SDL_RenderDrawRect(r, &labelBorder);
+		
 			engineTexture->render(position.x_, position.y_, r);
+
+		}
+		else if (nodeType == NodeType::BUTTON) {
+		//	SDL_SetRenderDrawColor(r, 0, 255, 0, 120);
+		//	SDL_RenderDrawRect(r, &labelBorder);
+		//	SDL_FillRect(btnbg, &labelBorder, 255);
+
+			engineTexture->render(position.x_, position.y_, r);
+
 		}
 	}
 
@@ -68,16 +83,16 @@ namespace DsdlEngine{
 				for (int i = 0; i < m_numFrames; i++){
 					m_gSpriteClips[i].x = temp;
 					m_gSpriteClips[i].y = 0;
-					m_gSpriteClips[i].w = width;
-					m_gSpriteClips[i].h = height;
+					m_gSpriteClips[i].w = size.w_;
+					m_gSpriteClips[i].h = size.h_;
 
-					temp += width;
+					temp += size.w_;
 				}
 
 				objectBoundingBox.x = position.x_;
 				objectBoundingBox.y = position.y_;
-				objectBoundingBox.w = width;
-				objectBoundingBox.h = height;
+				objectBoundingBox.w = size.w_;
+				objectBoundingBox.h = size.h_;
 
 			}
 			return true;
