@@ -18,7 +18,7 @@ namespace DsdlEngine{
 		
 
 		bool loadDocument(const char* filepath, char** doc_contents);
-		bool writeDocument(const char* filepath, char** doc_contents);
+		bool writeDocument(const char* filepath, const char** doc_contents);
 
 
 	protected:

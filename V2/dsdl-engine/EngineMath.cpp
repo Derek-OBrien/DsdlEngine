@@ -1,4 +1,5 @@
 #include "EngineMath.h"
+#include "Window.h"
 
 namespace DsdlEngine{
 
@@ -22,7 +23,7 @@ namespace DsdlEngine{
 
 
 	const Vec2 Vec2::ZERO(0, 0);
-	//const Vec2 Vec2::MIDTOP(Em->returnWindowWidth() / 2, Em->returnWindowHeight() - 200);
+	//const Vec2 Vec2::MIDTOP( / 2, Em->returnWindowHeight() - 200);
 	//const Vec2 Vec2::BOTTOM(0, Em->returnWindowHeight());
 	//const Vec2 Vec2::RIGHT(Em->returnWindowWidth(), 0);
 }

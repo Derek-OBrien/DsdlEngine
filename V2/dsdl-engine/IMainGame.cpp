@@ -101,6 +101,11 @@ namespace DsdlEngine{
 		m_windowHeight = h;
 		windowtitle = windowName;
 		windowFlag = flag;
+
+		EngineMaster* em = EngineMaster::getInstance();
+
+		em->setIntegerForKey(m_windowHeight, "windowHeight");
+		em->setIntegerForKey(m_windowWidth, "windowWidth");
 	}
 
 

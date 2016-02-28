@@ -1,6 +1,7 @@
 
 #include "Gui.h"
 #include "Button.h"
+#include "Window.h"
 
 namespace DsdlEngine{
 
@@ -32,7 +33,7 @@ namespace DsdlEngine{
 	}
 
 	void DsdlGui::setGUIPos() {
-
+		
 	}
 
 	void DsdlGui::onSDLEvent(SDL_Event& e) {
