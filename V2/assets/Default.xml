@@ -4,5 +4,8 @@
     <playerPosx>1080</playerPosx>
     <player>player2.png</player>
     <windowHeight>1080</windowHeight>
-    <windowWidth>1920</windowWidth>
+    <windowName>SDL Engine Example Game</windowName>
+    <TestBool>true</TestBool>
+    <testDouble>0.324000</testDouble>
+    <testFloat>0.345600</testFloat>
 </DefaultRoot>

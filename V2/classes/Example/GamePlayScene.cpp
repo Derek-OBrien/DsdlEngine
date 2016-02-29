@@ -36,10 +36,6 @@ void GamePlayScene::onEntryScene(){
 	mg = new ScrollingBg();
 	mg->create("DemoGame/backgrounds/bg_image.png");
 	
-	auto bgs = new Sprite();
-	bgs->create(1920, 1080, "DemoGame/backgrounds/menu.png");
-	bgs->setPosition(Vec2::ZERO);
-
 	//Add Character
 	myChar2 = new Character();
 	myChar2->init();
@@ -50,7 +46,6 @@ void GamePlayScene::onEntryScene(){
 
 	//Add Nodes to Layer
 	layer->addNodeToLayer(bg->bg);
-	layer->addNodeToLayer(bgs);
 	layer->addNodeToLayer(myChar2->m_sprite);
 	layer->addNodeToLayer(enemy->m_enemySprite);
 	layer->addNodeToLayer(mg->bg);

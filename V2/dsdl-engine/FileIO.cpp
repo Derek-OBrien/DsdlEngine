@@ -91,7 +91,9 @@ namespace DsdlEngine{
 		//Write the data
 		SDL_RWwrite(file, *doc_contents, 1, len);
 		
+		//close file
 		SDL_RWclose(file);
+
 		return true;
 
 	}

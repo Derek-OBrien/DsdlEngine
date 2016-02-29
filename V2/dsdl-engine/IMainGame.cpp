@@ -105,7 +105,19 @@ namespace DsdlEngine{
 		EngineMaster* em = EngineMaster::getInstance();
 
 		em->setIntegerForKey(m_windowHeight, "windowHeight");
-		em->setIntegerForKey(m_windowWidth, "windowWidth");
+		em->setStringForKey(windowtitle.c_str(), "windowName");
+		em->setBoolForKey(true, "TestBool");
+		em->setDoubleForKey(0.324, "testDouble");
+		em->setFloatForKey(0.3456, "testFloat");
+
+
+
+		SDL_Log("get int test %d",em->getIntegerForKey("windowHeight"));
+		SDL_Log("get string test %s",em->getStringForKey("windowName").c_str());
+		if (em->getBoolForKey("TestBool")) SDL_Log("bool test work");
+
+		SDL_Log("get double test %f",em->getDoubleForKey("testDouble"));
+		SDL_Log("get float test %f",em->getFloatForKey("testFloat"));
 	}
 
 

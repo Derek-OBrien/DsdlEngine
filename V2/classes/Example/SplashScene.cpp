@@ -44,11 +44,10 @@ void SplashScene::onEntryScene(){
 
 	auto m_label = new Label();
 	m_label->create(Vec2(300, 100),"Splash Scene", 80, SDL_Color{ 255, 0, 0 }, "fonts/font.ttf");
-	//m_label->setPosition(Vec2(300, 50));
-
+	
 
 	//Set callback
-	SDL_TimerID timerID = SDL_AddTimer(4 * 1000, callback, this);
+	SDL_TimerID timerID = SDL_AddTimer(3 * 1000, callback, this);
 
 	layer->addNodeToLayer(bg);
 	layer->addNodeToLayer(m_label);
