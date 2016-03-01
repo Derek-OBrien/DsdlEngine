@@ -1,8 +1,9 @@
 #ifndef _FILEIO_
 #define _FILEIO_
 #include "EngineDefines.h"
-//#include <filesystem>
 #include <sys/stat.h>
+
+#include "../dependencies/tinyxml/tinyxml2.h"
 
 
 namespace DsdlEngine{
@@ -20,6 +21,11 @@ namespace DsdlEngine{
 		bool loadDocument(const char* filepath, char** doc_contents);
 		bool writeDocument(const char* filepath, const char** doc_contents);
 
+
+		tinyxml2::XMLElement* getXMLNodeForKey(const char*pKey, tinyxml2::XMLElement** rootNode, tinyxml2::XMLDocument** doc);
+		void setValueForKey(const char* value, const char* key);
+
+		bool createXMLFile();
 
 	protected:
 

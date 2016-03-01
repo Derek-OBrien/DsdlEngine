@@ -2,6 +2,7 @@
 #include "Gui.h"
 #include "Button.h"
 #include "Window.h"
+#include "Label.h"
 
 namespace DsdlEngine{
 
@@ -28,9 +29,14 @@ namespace DsdlEngine{
 		layerNodes.push_back(m_btn);
 	}
 
-	void DsdlGui::addLabel() {
+	void DsdlGui::addLabel(Vec2 pos, std::string text, int fontSize, SDL_Color color, std::string fontFilePath){
+		m_label = new Label();
 
+		m_label->create(pos, text, fontSize, color, fontFilePath);
+
+		layerNodes.push_back(m_label);
 	}
+
 
 	void DsdlGui::setGUIPos() {
 		

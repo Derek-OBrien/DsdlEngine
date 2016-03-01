@@ -11,6 +11,11 @@
 //#include <SDL_ttf.h>
 //#include <SDL_mixer.h>
 
+
+
+#include <Box2D\Box2D.h>
+//#include "../dependencies/include/Box2D/Box2D.h"
+
 #include <string>
 #include <iostream>
 #include <memory>
@@ -49,5 +54,10 @@ enum class ButtonType {
 	LABEL_BTN,
 	SPRITE_BTN
 };
+
+
+#define DEFAULT_ROOT_NAME "DefaultRoot"
+#define XML_FILE "Default.xml"
+
 
 #endif

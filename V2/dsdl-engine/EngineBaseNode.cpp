@@ -25,9 +25,13 @@ namespace DsdlEngine{
 		if (nodeType == NodeType::SPRITE){
 			if (m_numFrames > 1){
 				renderAnimation(r);
+
+				SDL_Log("################Engine Base node frames > 1################");
 			}
 			else{
 				engineTexture->render(position.x_, position.y_, r, m_currentFrame);
+
+				SDL_Log("################Engine base Node frames 1################");
 			}
 
 		//	SDL_SetRenderDrawColor(r, 0, 0, 255, 120);

@@ -22,7 +22,7 @@
 #include "Sprite.h"
 
 #include "Timing.h"
-
+#include "XmlLocalStorage.h"
 
 #include "Window.h"
 

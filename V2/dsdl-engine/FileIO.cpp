@@ -5,6 +5,9 @@
 
 #include <fstream>
 
+using namespace tinyxml2;
+using namespace std;
+
 namespace DsdlEngine{
 	/*
 	Create As Singleton
@@ -13,7 +16,7 @@ namespace DsdlEngine{
 
 	FileIO* FileIO::getInstance(){
 		if (!Instance){
-			Instance = new FileIO();
+			Instance = new (std::nothrow) FileIO();
 		}
 		return Instance;
 	}
@@ -86,8 +89,7 @@ namespace DsdlEngine{
 
 		//Length of data to write	
 		size_t len = SDL_strlen(*doc_contents);
-		//SDL_Log("Doc : %s Length : %d ",*doc_contents, len);
-
+		
 		//Write the data
 		SDL_RWwrite(file, *doc_contents, 1, len);
 		
@@ -97,4 +99,178 @@ namespace DsdlEngine{
 		return true;
 
 	}
+
+
+	/*
+
+	Parse Xml for Element for Key and return Element node if found
+
+	*/
+	XMLElement* FileIO::getXMLNodeForKey(const char*pKey, XMLElement** rootNode, XMLDocument** doc) {
+
+		XMLElement* curNode = nullptr;
+
+		char* contents = NULL;
+		std::string path;
+
+#ifdef __WIN32__
+		path = "../../assets/Default.xml";
+#endif
+#ifdef __ANDROID__
+		path = "Default.xml";
+#endif
+
+		//Check the key
+		if (!pKey) {
+			return nullptr;
+		}
+
+		//Load Xml document into contents char
+		if (FileIO::getInstance()->loadDocument(path.c_str(), &contents) != true) {
+			SDL_Log("can not read xml file using SDL_rwops");
+		}
+
+		//SDL_Log(contents);
+
+		XMLDocument* xmlDoc = new XMLDocument;
+		*doc = xmlDoc;
+
+		if (xmlDoc->Parse(contents) == XML_SUCCESS) {
+			SDL_Log("Doc Parsed");
+			// get root node
+			*rootNode = xmlDoc->RootElement();
+
+			if (nullptr == *rootNode) {
+				SDL_Log("read root node error ");
+			}
+
+			// find the node
+			curNode = (*rootNode)->FirstChildElement();
+			while (curNode != nullptr)
+			{
+				const char* nodeName = curNode->Value();
+				if (!strcmp(nodeName, pKey)) {
+					break;
+				}
+				curNode = curNode->NextSiblingElement();
+			}
+		}
+		else {
+			SDL_Log("Could not load doc: ");
+		}
+
+		delete[] contents;
+
+		return curNode;
+	}
+
+
+
+	void FileIO::setValueForKey(const char* value, const char* key) {
+
+		XMLElement* rootNode;
+		XMLDocument* doc;
+		XMLElement* node;
+		XMLPrinter printer;
+		std::string path;
+
+
+		if (!key || !value) {
+			return;
+		}
+
+
+#ifdef __WIN32__
+		path = "../../assets/Default.xml";
+#endif
+#ifdef __ANDROID__
+		path = "Default.xml";
+#endif
+
+		//Check if node exists allready
+		node = getXMLNodeForKey(key, &rootNode, &doc);
+
+		//if node allready exists change value
+		if (node) {
+			if (node->FirstChild()) {
+				node->FirstChild()->SetValue(value);
+			}
+			else {
+				XMLText* content = doc->NewText(value);
+				node->LinkEndChild(content);
+			}
+		}//Create new node and set value
+		else {
+			if (rootNode) {
+				XMLElement* temp = doc->NewElement(key);
+				rootNode->LinkEndChild(temp);
+				XMLText* content = doc->NewText(value);
+				temp->LinkEndChild(content);
+			}
+		}
+
+		// attach printer to the document you want to convert in to a std::string 
+		doc->Accept(&printer);
+
+		// Create a std::string and copy your document data in to the string    
+		const char* buffer = printer.CStr();
+
+		//Write back to file and save file
+		if (FileIO::getInstance()->writeDocument(path.c_str(), &buffer)) {
+			SDL_Log("Key : %s :: Value : %s :: saved", key, value);
+		}
+		delete doc;
+	}
+
+
+	bool FileIO::createXMLFile() {
+		bool bRet = false;
+
+		XMLPrinter printer;
+
+		XMLDocument *doc = new XMLDocument();
+		if (nullptr == doc) {
+			return false;
+		}
+
+		XMLDeclaration *pDeclaration = doc->NewDeclaration(nullptr);
+		if (nullptr == pDeclaration) {
+			return false;
+		}
+
+		doc->LinkEndChild(pDeclaration);
+		XMLElement *pRootEle = doc->NewElement(DEFAULT_ROOT_NAME);
+		if (nullptr == pRootEle) {
+			return false;
+		}
+
+		doc->LinkEndChild(pRootEle);
+
+		std::string path;
+#ifdef __WIN32__
+		path = "../../assets/Default.xml";
+#endif
+#ifdef __ANDROID__
+		path = "assets/Default.xml";
+#endif
+
+		bRet = XML_SUCCESS == doc->SaveFile(FileIO::getInstance()->getSuitableFOpen(path).c_str());
+		DEBUG_MSG("XML File Created");
+
+		// attach printer to the document you want to convert in to a std::string 
+		//doc->Accept(&printer);
+
+		// Create a std::string and copy your document data in to the string    
+		//const char* buffer = printer.CStr();
+
+		//Write back to file and save file
+		//if (FileIO::getInstance()->writeDocument(path.c_str(), &buffer)) {
+		//	bRet = true;
+		//}
+
+		if (doc) delete doc;
+
+		return bRet;
+	}
+
 }

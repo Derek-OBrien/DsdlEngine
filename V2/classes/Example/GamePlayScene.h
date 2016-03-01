@@ -1,20 +1,7 @@
 
 #pragma once
 
-//#include <dsdl-engine\IMainGame.h>
-//#include <dsdl-engine\IScene.h>
-//#include <dsdl-engine\EngineDefines.h>
-//#include <dsdl-engine\Window.h>
-//#include <dsdl-engine\Sprite.h>
-//#include <dsdl-engine\Label.h>
-//#include <dsdl-engine\InputManager.h>
-//#include <dsdl-engine\AudioManager.h>
-
-
 #include "../../dsdl-engine/DsdlEngine.h"
-//#include "DsdlEngine.h"
-
-#include <random>
 
 #include "Character.h"
 #include "ScrollingBg.h"
@@ -51,6 +38,17 @@ private:
 	Character* myChar2;
 
 	Enemy* enemy;
+
+	b2World* world;
+	b2BodyDef* groundBodyDef;
+	b2Body* groundBody;
+
+	b2PolygonShape* groundBox;
+
+	float32 timeStep = 1.0f / 60.0f;
+	int32 velocityIterations = 6;
+	int32 positionIterations = 2;
+
 };
 
 

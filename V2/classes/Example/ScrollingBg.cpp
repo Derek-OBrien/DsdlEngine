@@ -2,13 +2,15 @@
 
 
 
-ScrollingBg::ScrollingBg(){}
+ScrollingBg::ScrollingBg(){
+	bg = new Sprite();
+}
 ScrollingBg::~ScrollingBg(){}
 
 
 void ScrollingBg::create(std::string path) {
 
-	bg = new Sprite();
+	//bg = new Sprite();
 
 	bg->create(3840, 1080, path);
 	bg->setPosition(Vec2::ZERO);

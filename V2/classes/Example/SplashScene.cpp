@@ -22,12 +22,11 @@ void SplashScene::destroyScene(){
 }
 
 Uint32 callback(Uint32 interval, void* splashScene) {
-	//Print callback message
-	SDL_Log("Timer Callback Called ");
 	return ((class SplashScene *)splashScene)->changeNext();
 }
 
 bool SplashScene::changeNext() {
+	//Set Next Scene to load
 	m_nextScreenIndex = SCENE_INDEX_MAINMENU;
 	m_eCurrentState = DsdlEngine::SceneState::CHANGE_NEXT;
 	
@@ -35,23 +34,26 @@ bool SplashScene::changeNext() {
 }
 
 void SplashScene::onEntryScene(){
-
+	//Create Layer
 	layer = new Layer();
 
+	//Create Background Sprite
 	auto bg = new Sprite();
 	bg->create(1920, 1080, "DemoGame/backgrounds/menu.png");
 	bg->setPosition(Vec2::ZERO);
 
+	//Ccreate Label
 	auto m_label = new Label();
 	m_label->create(Vec2(300, 100),"Splash Scene", 80, SDL_Color{ 255, 0, 0 }, "fonts/font.ttf");
-	
 
 	//Set callback
 	SDL_TimerID timerID = SDL_AddTimer(3 * 1000, callback, this);
-
+	
+	//Add Nodes to Layer
 	layer->addNodeToLayer(bg);
 	layer->addNodeToLayer(m_label);
 
+	//Add Scene to Layer
 	addLayerToScene(layer);
 }
 
@@ -62,7 +64,6 @@ void SplashScene::onExitScene(){
 
 void SplashScene::updateScene(){
 
-	m_inputManager.update();
 	SDL_Event evnt;
 	while (SDL_PollEvent(&evnt)) {
 
@@ -81,26 +82,18 @@ void SplashScene::updateScene(){
 			break;
 		case SDL_MOUSEBUTTONDOWN:
 			m_inputManager.pressKey(evnt.button.button);
-			//onNewGameClicked();
 			break;
 		case SDL_MOUSEBUTTONUP:
 			m_inputManager.releaseKey(evnt.button.button);
-
-			//m_button->onClicked(DsdlEngine::buttonCallBack(onNewGameClicked()));
 			break;
-			//Touch down
 		case SDL_FINGERDOWN:
 			m_inputManager.pressKey(evnt.button.button);
-			SDL_Log("Touch Triggered ");
-			//onNewGameClicked();
 			break;
 		case SDL_FINGERMOTION:
 			m_inputManager.setMouseCoords((float)evnt.motion.x, (float)evnt.motion.y);
-			SDL_Log("Touch Motion Triggered ");
 			break;
 		case SDL_FINGERUP:
 			m_inputManager.releaseKey(evnt.button.button);
-			SDL_Log("Touch up Triggered ");
 			break;
 		default:
 			break;

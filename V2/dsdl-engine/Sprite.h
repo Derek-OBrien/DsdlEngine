@@ -23,7 +23,7 @@ namespace DsdlEngine{
 
 		void create(int width, int height, std::string path);
 		void create(int width, int height, std::string path, int numFrames);
-
+		void createWithPhysics(Size spriteSize, std::string path, int numFrames);
 		
 		//cleanup
 		void destroy();

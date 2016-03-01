@@ -8,6 +8,7 @@
 namespace DsdlEngine{
 
 	class Button;
+	class Label;
 
 	class DsdlGui : public Layer
 	{
@@ -17,7 +18,7 @@ namespace DsdlEngine{
 
 
 		void addButton(ButtonType type, Vec2 pos, Size size, const char* path, SDL_Color color, SDL_Color bgColor, const char* text = NULL);
-		void addLabel();
+		void addLabel(Vec2 pos, std::string text, int fontSize, SDL_Color color, std::string fontFilePath);
 
 		void setGUIPos();
 		void onSDLEvent(SDL_Event& e);
@@ -27,6 +28,7 @@ namespace DsdlEngine{
 	private:
 
 		Button* m_btn;
+		Label* m_label;
 	};
 }
 

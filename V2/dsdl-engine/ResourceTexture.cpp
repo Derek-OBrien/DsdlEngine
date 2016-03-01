@@ -70,7 +70,7 @@ namespace DsdlEngine{
 			if (loadedSurface == NULL)
 				DEBUG_MSG("SDL_image Error : " + std::string(IMG_GetError()));
 			else{
-				SDL_Log("Flie loaded");
+				//SDL_Log("Flie loaded");
 				//Color key image
 				SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0xFF, 0xFF));
 
@@ -142,6 +142,7 @@ namespace DsdlEngine{
 
 		//Render to screen
 		SDL_RenderCopy(r, m_Texture, clip, &renderQuad);
+		SDL_Log("################RenderTexture################");
 	}
 
 

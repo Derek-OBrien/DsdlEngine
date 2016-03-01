@@ -10,11 +10,13 @@ public:
 	Character();
 	~Character();
 
-	void init();
+	void init(b2World* world);
 	void update();
 
 	void jump();
 	void drop();
 	Sprite* m_sprite;
 
+	b2BodyDef* bodyDef;
+	b2Body* body;
 };

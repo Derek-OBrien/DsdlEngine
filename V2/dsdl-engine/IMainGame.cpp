@@ -102,22 +102,12 @@ namespace DsdlEngine{
 		windowtitle = windowName;
 		windowFlag = flag;
 
-		EngineMaster* em = EngineMaster::getInstance();
+
+		//Test Write & Load of XML Elements
+		XmlLocalStorage* em = XmlLocalStorage::getInstance();
 
 		em->setIntegerForKey(m_windowHeight, "windowHeight");
-		em->setStringForKey(windowtitle.c_str(), "windowName");
-		em->setBoolForKey(true, "TestBool");
-		em->setDoubleForKey(0.324, "testDouble");
-		em->setFloatForKey(0.3456, "testFloat");
-
-
-
-		SDL_Log("get int test %d",em->getIntegerForKey("windowHeight"));
-		SDL_Log("get string test %s",em->getStringForKey("windowName").c_str());
-		if (em->getBoolForKey("TestBool")) SDL_Log("bool test work");
-
-		SDL_Log("get double test %f",em->getDoubleForKey("testDouble"));
-		SDL_Log("get float test %f",em->getFloatForKey("testFloat"));
+		em->setIntegerForKey(m_windowWidth, "windowWidth");
 	}
 
 
@@ -227,6 +217,8 @@ namespace DsdlEngine{
 				m_pCurrentRunning->drawScene(m_pGameRenderer);
 			}
 
+
+			SDL_Log("################IMainGame::draw################");
 			SDL_RenderPresent(m_pGameRenderer);
 		}
 	}

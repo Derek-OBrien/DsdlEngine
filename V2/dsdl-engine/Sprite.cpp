@@ -25,6 +25,16 @@ namespace DsdlEngine{
 		m_numFrames = nf;
 	}
 
+
+	void Sprite::createWithPhysics(Size spriteSize, std::string path, int numFrames) {
+		setAssetPath(path);
+
+		size.w_ = spriteSize.w_;
+		size.h_ = spriteSize.h_;
+		m_numFrames = numFrames;
+
+	}
+
 	void Sprite::destroy(){
 		EngineBaseNode::destroy();
 	}

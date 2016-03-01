@@ -41,13 +41,13 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)..\dependencies\SDL2\SDL_ttf\include;$(SolutionDir)..\dependencies\SDL2\SDL_mixer\include;$(SolutionDir)..\dependencies\SDL2\SDL_image\include;$(SolutionDir)..\dependencies\SDL2\SDL\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)..\dependencies\SDL2\SDL_ttf\lib\Debug\x86;$(SolutionDir)..\dependencies\SDL2\SDL_mixer\lib\Debug\x86;$(SolutionDir)..\dependencies\SDL2\SDL_image\lib\Debug\x86;$(SolutionDir)..\dependencies\SDL2\SDL\lib\Debug\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)..\dependencies\include;$(SolutionDir)..\dependencies\SDL2\SDL_ttf\include;$(SolutionDir)..\dependencies\SDL2\SDL_mixer\include;$(SolutionDir)..\dependencies\SDL2\SDL_image\include;$(SolutionDir)..\dependencies\SDL2\SDL\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)..\dependencies\lib\Debug\;$(SolutionDir)..\dependencies\SDL2\SDL_ttf\lib\Debug\x86;$(SolutionDir)..\dependencies\SDL2\SDL_mixer\lib\Debug\x86;$(SolutionDir)..\dependencies\SDL2\SDL_image\lib\Debug\x86;$(SolutionDir)..\dependencies\SDL2\SDL\lib\Debug\x86;$(LibraryPath)</LibraryPath>
     <OutDir>.\lib\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)..\dependencies\SDL2\SDL_ttf\include;$(SolutionDir)..\dependencies\SDL2\SDL_mixer\include;$(SolutionDir)..\dependencies\SDL2\SDL_image\include;$(SolutionDir)..\dependencies\SDL2\SDL\include;$(SolutionDir)..\dependencies\Box2D\Box2D\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)..\dependencies\SDL2\SDL_ttf\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL_mixer\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL_image\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)..\dependencies\SDL2\SDL_ttf\include;$(SolutionDir)..\dependencies\SDL2\SDL_mixer\include;$(SolutionDir)..\dependencies\SDL2\SDL_image\include;$(SolutionDir)..\dependencies\SDL2\SDL\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)..\dependencies\lib\Release\;$(SolutionDir)..\dependencies\SDL2\SDL_ttf\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL_mixer\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL_image\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL\lib\x86;$(LibraryPath)</LibraryPath>
     <OutDir>.\lib</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -63,7 +63,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -85,6 +85,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -115,6 +116,7 @@
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Timing.h" />
     <ClInclude Include="Window.h" />
+    <ClInclude Include="XmlLocalStorage.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\dependencies\tinyxml\tinyxml2.cpp" />
@@ -136,6 +138,7 @@
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Timing.cpp" />
     <ClCompile Include="Window.cpp" />
+    <ClCompile Include="XmlLocalStorage.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

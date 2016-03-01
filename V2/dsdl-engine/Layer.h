@@ -16,13 +16,17 @@ namespace DsdlEngine{
 
 		void loadNodes(SDL_Renderer* r);
 		void drawNodes(SDL_Renderer* r);
+		void drawBox2dNodes(SDL_Renderer* r);
 
 		std::vector<EngineBaseNode*> layerNodes;
-
 		void addNodeToLayer(EngineBaseNode* node);
 
+		std::vector<b2Body*> box2dNodes;
+		void addBox2dNodes(b2Body* body);
 		
 	private:
+
+		SDL_Rect box2dRect;
 
 		ResourceTexture m_LayerTexture;
 
