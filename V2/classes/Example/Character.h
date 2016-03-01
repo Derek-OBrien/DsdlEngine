@@ -17,6 +17,9 @@ public:
 	void drop();
 	Sprite* m_sprite;
 
-	b2BodyDef* bodyDef;
-	b2Body* body;
+
+	b2Body* m_body;
+	b2BodyDef m_bodyDef;
+	b2PolygonShape m_shape;
+	b2FixtureDef m_fixtureDef;
 };

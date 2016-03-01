@@ -5,8 +5,8 @@
 
 #include "Character.h"
 #include "ScrollingBg.h"
-#include "Enemy.h"
-
+#include "EnemyFactory.h"
+#include "HudLayer.h"
 
 class GamePlayScene : public DsdlEngine::IScene{
 public:
@@ -26,19 +26,26 @@ public:
 private:
 
 	void checkInput();
+	void generateEnemy(Vec2 position);
 
 	int m_sceneIndex = SCENE_INDEX_NO_SCENE;
 
 	InputManager m_inputManager;
 	Layer* layer;
+	Layer* fgLayer;
+	HudLayer* hud;
 
 	ScrollingBg* bg;
 	ScrollingBg* mg;
 
-	Character* myChar2;
+	Character* m_player;
 
 	Enemy* enemy;
 
+	///Enemy Factory
+	EnemyFactory *m_enemyFactory;
+
+	///Ground Physics
 	b2World* world;
 	b2BodyDef* groundBodyDef;
 	b2Body* groundBody;

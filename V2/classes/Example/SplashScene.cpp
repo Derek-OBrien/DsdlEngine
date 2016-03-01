@@ -1,17 +1,20 @@
 #include "SplashScene.h"
 
 
-//SplashScene::SplashScene(DsdlEngine::Window* window) : m_window(window){}
-SplashScene::SplashScene() {}
-
-SplashScene::~SplashScene(){
+SplashScene::SplashScene() {
+	//Empty
 }
 
+SplashScene::~SplashScene(){
+	//Empty
+}
+
+//Get next Scene
 int SplashScene::getNextSceneIndex() const{
 	return m_nextScreenIndex;
 }
 
-
+//Previous Scene
 int SplashScene::getPreviousSceneIndex() const{
 	return SCENE_INDEX_NO_SCENE;
 }
@@ -36,25 +39,26 @@ bool SplashScene::changeNext() {
 void SplashScene::onEntryScene(){
 	//Create Layer
 	layer = new Layer();
+	auto gui = new DsdlGui();
+
+	//Create Label	
+	gui->addLabel(Vec2(400, 300), "Splash", 80, SDL_Color{ 255, 0, 0 }, "fonts/font.ttf");
 
 	//Create Background Sprite
 	auto bg = new Sprite();
-	bg->create(1920, 1080, "DemoGame/backgrounds/menu.png");
+	bg->create(1980, 1080, "DemoGame/backgrounds/menu.png");
 	bg->setPosition(Vec2::ZERO);
 
-	//Ccreate Label
-	auto m_label = new Label();
-	m_label->create(Vec2(300, 100),"Splash Scene", 80, SDL_Color{ 255, 0, 0 }, "fonts/font.ttf");
 
 	//Set callback
 	SDL_TimerID timerID = SDL_AddTimer(3 * 1000, callback, this);
 	
 	//Add Nodes to Layer
 	layer->addNodeToLayer(bg);
-	layer->addNodeToLayer(m_label);
-
+	
 	//Add Scene to Layer
 	addLayerToScene(layer);
+	addLayerToScene(gui);
 }
 
 

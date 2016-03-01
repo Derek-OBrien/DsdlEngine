@@ -30,6 +30,12 @@ namespace DsdlEngine{
 
 		ResourceTexture m_LayerTexture;
 
+
+		b2Vec2 lowerVertex;
+		b2Vec2 heigherVertex;
+		int bodyWidth;
+		int bodyHeight;
+
 	};
 }
 #endif

@@ -1,7 +1,9 @@
 
 #include "GamePlayScene.h"
 #include "GameDefines.h"
+#include "EnemyManager.h"
 
+USING_NS_DSDL;
 
 GamePlayScene::GamePlayScene(){
 	m_sceneIndex = SCENE_INDEX_GAMEPLAY;
@@ -21,78 +23,62 @@ int GamePlayScene::getPreviousSceneIndex() const{
 void GamePlayScene::destroyScene(){
 	//Destroy Layer and all its nodes
 	layer->destroy();
+	EnemyManager::GetInstance()->destroy();
+
 }
 
 void GamePlayScene::onEntryScene(){
 	
 	//Create Layer
 	layer = new Layer();
+	fgLayer = new Layer();
+	hud = new HudLayer();
 
 	// Define the gravity vector.
-	b2Vec2 gravity(3.0f, 10.0f);
-
-	// Construct a world object, which will hold and simulate the rigid bodies.
+	b2Vec2 gravity(1.0f, 10.0f);
 	world = new b2World(gravity);
 
 	// Define the ground body.
 	groundBodyDef = new b2BodyDef();
 	groundBodyDef->position.Set(0.0, 1080 - 130);
-
 	groundBody = world->CreateBody(groundBodyDef);
 
-	// Define the ground box shape.
 	groundBox = new b2PolygonShape();
-
-	// The extents are the half-widths of the box.
-	groundBox->SetAsBox(1920/2, 10.0f);
-
-	// Add the ground fixture to the ground body.
+	groundBox->SetAsBox(1920  , (10.0) );
 	groundBody->CreateFixture(groundBox, 0.0f);
 
-	SDL_Log("Box 2d ground Created");
 	
 	//Add Background
 	bg = new ScrollingBg();
 	bg->create("DemoGame/backgrounds/bg_city.png");
-	
-
-	SDL_Log("bg Created");
+	layer->addNodeToLayer(bg->bg);
 
 	//Add Middle Ground
 	//mg = new ScrollingBg();
 	//mg->create("DemoGame/backgrounds/bg_image.png");
 	
 
-	SDL_Log("Mg Created");
 	//Add Character
-	myChar2 = new Character();
-	myChar2->init(world);
-	
+	m_player = new Character();
+	m_player->init(world);
+	layer->addNodeToLayer(m_player->m_sprite);
 
-	SDL_Log("Character Created");
 	//Add Enemy
 	enemy = new Enemy();
-	enemy->createEnemy();
-
-
-	SDL_Log("Enemy Created");
-	//Add Nodes to Layer
-	layer->addNodeToLayer(bg->bg);
-	layer->addNodeToLayer(myChar2->m_sprite);
-	layer->addNodeToLayer(enemy->m_enemySprite);
-//	layer->addNodeToLayer(mg->bg);
 	
-	SDL_Log("Nodes Added to layer ");
+	m_enemyFactory = new EnemyFactory();
 	
+	generateEnemy(Vec2(20, 20));
+
 	
 	layer->addBox2dNodes(groundBody);
-	layer->addBox2dNodes(myChar2->body);
-	SDL_Log("Box2d Node addedd to layer");
-
+	layer->addBox2dNodes(m_player->m_body);
+	
 	//Add Layer to Scene
 	addLayerToScene(layer);
-	
-	SDL_Log("layer added to scene");
+	//addLayerToScene(fgLayer);
+
+	addLayerToScene(hud->createHud());
 
 }
 
@@ -101,17 +87,94 @@ void GamePlayScene::onExitScene(){
 }
 
 void GamePlayScene::updateScene(){
-
+	///Physics world step
 	world->Step(timeStep, velocityIterations, positionIterations);
 
-	bg->update();
-	//mg->update();
-
-	myChar2->update();
-	enemy->update();
+	///Process Input
 	checkInput();
+
+	///Update Game Elements
+
+	bg->update();
+	
+	m_player->update();
+	
+	EnemyManager::GetInstance()->update();
 }
 
+
+void GamePlayScene::generateEnemy(Vec2 position) {
+	
+	Vec2 pos;
+	for (int i = 0; i < 5; i++) {
+		switch (i) {
+		case 0:
+			pos.x_ = GAME_WIDTH + (GAME_WIDTH *0.2);
+			pos.y_ = GAME_HEIGHT - 550;
+
+			enemy = m_enemyFactory->createEnemy(world, pos);
+			EnemyManager::GetInstance()->AddEnemy(enemy);
+			layer->addNodeToLayer(enemy->m_enemySprite);
+			layer->addBox2dNodes(enemy->m_body);
+
+			break;
+		case 1:
+			pos.x_ = GAME_WIDTH + (GAME_WIDTH *0.4);
+			pos.y_ = GAME_HEIGHT - 300;
+			enemy = m_enemyFactory->createEnemy(world, pos);
+
+			EnemyManager::GetInstance()->AddEnemy(enemy);
+			layer->addNodeToLayer(enemy->m_enemySprite);
+			layer->addBox2dNodes(enemy->m_body);
+
+			break;
+		case 2:
+			pos.x_ = GAME_WIDTH + (GAME_WIDTH*0.6);
+			pos.y_ = GAME_HEIGHT - 180;
+			enemy = m_enemyFactory->createEnemy(world, pos);
+
+			EnemyManager::GetInstance()->AddEnemy(enemy);
+			layer->addNodeToLayer(enemy->m_enemySprite);
+			layer->addBox2dNodes(enemy->m_body);
+
+			break;
+		case 3:
+			pos.x_ = GAME_WIDTH + (GAME_WIDTH*0.8);
+			pos.y_ = GAME_HEIGHT - 450;
+			enemy = m_enemyFactory->createEnemy(world, pos);
+
+			EnemyManager::GetInstance()->AddEnemy(enemy);
+			layer->addNodeToLayer(enemy->m_enemySprite);
+			layer->addBox2dNodes(enemy->m_body);
+
+			break;
+		case 4:
+			pos.x_ = GAME_WIDTH + (GAME_WIDTH);
+			pos.y_ = GAME_HEIGHT - 250;
+
+			enemy = m_enemyFactory->createEnemy(world, pos);
+
+			EnemyManager::GetInstance()->AddEnemy(enemy);
+			layer->addNodeToLayer(enemy->m_enemySprite);
+			layer->addBox2dNodes(enemy->m_body);
+
+			break;
+		case 5:
+			pos.x_ = GAME_WIDTH + (GAME_WIDTH);
+			pos.y_ = GAME_HEIGHT - 350;
+
+			enemy = m_enemyFactory->createEnemy(world, pos);
+
+			EnemyManager::GetInstance()->AddEnemy(enemy);
+			layer->addNodeToLayer(enemy->m_enemySprite);
+			layer->addBox2dNodes(enemy->m_body);
+
+			break;
+		default:
+			break;
+		}
+	}
+}
 
 void GamePlayScene::checkInput(){
 	SDL_Event evnt;

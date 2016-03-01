@@ -60,4 +60,13 @@ enum class ButtonType {
 #define XML_FILE "Default.xml"
 
 
+
+///Box2D scaling defines
+#define METRESTOPIXELS 30
+#define PIXELSTOMETRES 1/30.0f
+#define RADTODEG  (-180/3.1415926536f)  
+#define DEGTORAD -0.0174532925199432957f
+
+#define GRAVITYSCALE 9.0f
+
 #endif
