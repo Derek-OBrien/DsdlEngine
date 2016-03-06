@@ -37,19 +37,17 @@ public:
 
 	virtual void updateScene() override;
 
+	virtual void onInput();
+	
 	void onNewGameClicked();
 
 private:
 
-	void checkInput();
-
-	
-	//		void operator()()const;
-
-
 	int m_nextScreenIndex = SCENE_INDEX_MAINMENU;
 
 	Layer* layer;
+
+	DsdlGui* gui;
 	InputManager m_inputManager;
 
 	AudioManager m_AudioManager;

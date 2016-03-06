@@ -55,6 +55,20 @@ enum class ButtonType {
 	SPRITE_BTN
 };
 
+enum class LableType {
+	LABEL_STATIC,
+	LABEL_DYNAMIC
+};
+
+///Callback Functions
+#define CALLBACK_1(__selector__,__target__, ...) std::bind(&__selector__,__target__, std::placeholders::_1, ##__VA_ARGS__)
+
+
+///Set callback
+typedef SDL_TimerID CallBackTimer;
+typedef SDL_TimerCallback CallBack;
+
+
 
 #define DEFAULT_ROOT_NAME "DefaultRoot"
 #define XML_FILE "Default.xml"

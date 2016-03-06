@@ -8,6 +8,8 @@
 #include "EnemyFactory.h"
 #include "HudLayer.h"
 
+#include "CollisionManager.h"
+
 class GamePlayScene : public DsdlEngine::IScene{
 public:
 	GamePlayScene();
@@ -23,12 +25,18 @@ public:
 
 	virtual void updateScene() override;
 
+	virtual void onInput();
 private:
 
 	void checkInput();
 	void generateEnemy(Vec2 position);
 
 	int m_sceneIndex = SCENE_INDEX_NO_SCENE;
+
+	AudioManager m_AudioManager;
+
+
+	Music music;
 
 	InputManager m_inputManager;
 	Layer* layer;
@@ -37,6 +45,7 @@ private:
 
 	ScrollingBg* bg;
 	ScrollingBg* mg;
+	ScrollingBg* fg;
 
 	Character* m_player;
 
@@ -56,6 +65,8 @@ private:
 	int32 velocityIterations = 6;
 	int32 positionIterations = 2;
 
+
+	CollisionManager collisionManager;
 };
 
 

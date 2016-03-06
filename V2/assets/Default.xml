@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <DefaultRoot>
-    <windowHeight>1080</windowHeight>
-    <windowName>SDL Engine Example Game</windowName>
-    <TestBool>true</TestBool>
-    <testDouble>0.324000</testDouble>
-    <testFloat>0.345600</testFloat>
-    <windowWidth>1920</windowWidth>
+    <selectedPlayer>player1</selectedPlayer>
 </DefaultRoot>

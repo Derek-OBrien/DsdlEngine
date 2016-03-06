@@ -15,7 +15,7 @@ namespace DsdlEngine{
 
 		bool loadFromFile(std::string texturePath, SDL_Renderer* r);
 		bool loadTTF(std::string text, SDL_Color color, TTF_Font* myFont, SDL_Renderer* r);
-		void render(int x, int y, SDL_Renderer* r, SDL_Rect* clip = NULL);
+		void render(Vec2 p, Vec2 s, SDL_Renderer* r, SDL_Rect* clip = NULL);
 
 		void setBlendMode(SDL_BlendMode blending);
 		void setAlpha(Uint8 alpha);

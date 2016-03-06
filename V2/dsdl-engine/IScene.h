@@ -11,7 +11,7 @@
 #include "EngineDefines.h"
 #include "EngineBaseNode.h"
 #include "Sprite.h"
-
+#include "InputManager.h"
 #include "Layer.h"
 
 namespace DsdlEngine{
@@ -59,15 +59,47 @@ namespace DsdlEngine{
 		// Sets m_game to the parent game
 		void setParentGame(IMainGame* game) { m_game = game; }
 
-		//Vector to hold game nodes
-		std::vector<EngineBaseNode*> sceneChildren;
 		
-		//Add node as child of scene
-		void addChild(EngineBaseNode* node, int zOrder) {
-			sceneChildren.push_back(node);
+		virtual void onInput() {
+			SDL_Event evnt;
+			m_inputManager.update();
+
+			while (SDL_PollEvent(&evnt)) {
+
+				switch (evnt.type) {
+				case SDL_QUIT:
+					exit(1);
+					break;
+				case SDL_MOUSEMOTION:
+					m_inputManager.setMouseCoords(evnt.motion.x, evnt.motion.y);
+					break;
+				case SDL_KEYDOWN:
+					m_inputManager.pressKey(evnt.key.keysym.sym);
+					break;
+				case SDL_KEYUP:
+					m_inputManager.releaseKey(evnt.key.keysym.sym);
+					break;
+				case SDL_MOUSEBUTTONDOWN:
+					m_inputManager.pressKey(evnt.button.button);
+					break;
+				case SDL_MOUSEBUTTONUP:
+					m_inputManager.releaseKey(evnt.button.button);
+					break;
+					//Touch down
+				case SDL_FINGERDOWN:
+					m_inputManager.pressKey(evnt.button.button);
+					break;
+				case SDL_FINGERMOTION:
+					m_inputManager.setMouseCoords((float)evnt.motion.x, (float)evnt.motion.y);
+					break;
+				case SDL_FINGERUP:
+					m_inputManager.releaseKey(evnt.button.button);
+					break;
+				default:
+					break;
+				}
+			}
 		}
-
-
 		//Vector to hold Game Layers
 		//Each Layer Contains Vector of game nodes
 		std::vector<Layer*> sceneLayers;
@@ -76,12 +108,14 @@ namespace DsdlEngine{
 		}
 
 
+		//Load nodes in current Scene
 		void loadScene(SDL_Renderer* r) {
 			for (size_t i = 0; i < sceneLayers.size(); i++) {
 				sceneLayers.at(i)->loadNodes(r);
 			}
 		}
 
+		//Draw Nodes in current scene
 		void drawScene(SDL_Renderer* r) {
 			for (size_t i = 0; i < sceneLayers.size(); i++) {
 				sceneLayers.at(i)->drawNodes(r);
@@ -94,12 +128,13 @@ namespace DsdlEngine{
 	protected:
 
 		friend class SceneManager;
+		friend class InputManager;
 		SceneState m_eCurrentState = SceneState::NONE;
 
 		IMainGame* m_game = nullptr;
-	
 		int m_iSceneIndex = SCENE_INDEX_NO_SCENE;
-
+		InputManager m_inputManager;
+		
 	};
 }
 

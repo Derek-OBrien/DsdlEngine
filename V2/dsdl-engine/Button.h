@@ -8,7 +8,6 @@
 
 namespace DsdlEngine{
 
-
 	class Button : public EngineBaseNode{
 		
 	public:
@@ -35,6 +34,9 @@ namespace DsdlEngine{
 		void checkInput(SDL_Event& e);
 
 		void destroy();
+
+
+		ButtonState m_eCurrentState;// = ButtonState::NORMAL;
 	private:
 
 		
@@ -46,7 +48,6 @@ namespace DsdlEngine{
 		int m_BtnHeight;
 		int m_BtnWidth;
 		*/
-		ButtonState m_eCurrentState;// = ButtonState::NORMAL;
 	};
 }
 

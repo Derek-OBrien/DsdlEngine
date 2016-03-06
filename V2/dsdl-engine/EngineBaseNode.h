@@ -44,13 +44,19 @@ namespace DsdlEngine {
 
 		//Set Dimensions
 		//Content Size
-		void setSize(Size si) { size.w_ = si.w_; size.h_ = si.h_; }
-		void setWidth(int w) { size.w_ = w; };
-		void setHeight(int h) { size.h_ = h; };
+		void setSize(Size si) { size.x_ = si.w_; size.y_ = si.h_; }
+		void setWidth(int w) { size.x_ = w; };
+		void setHeight(int h) { size.y_ = h; };
 
-		Size getContentSize() { return size; }
+		Vec2 getContentSize() { return size; }
 
+		//Set Opacity of texture 0 - 255
+		void setOpacity(int opacity);
 		virtual void destroy();
+
+		ResourceTexture* getEngineTexture() { return engineTexture; }
+
+		void updateLabelText(std::string text) { labelText = text; }
 
 	protected:
 
@@ -61,9 +67,9 @@ namespace DsdlEngine {
 
 		//nodes position Vec2
 		Vec2 position;
-		Size size;
+		Vec2 size;
 
-		int m_numFrames, m_frame;
+		int m_numFrames, m_frame, opacity;
 
 
 		SDL_Rect m_gSpriteClips[14];	//frames for animation

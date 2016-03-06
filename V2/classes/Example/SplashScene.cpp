@@ -42,7 +42,7 @@ void SplashScene::onEntryScene(){
 	auto gui = new DsdlGui();
 
 	//Create Label	
-	gui->addLabel(Vec2(400, 300), "Splash", 80, SDL_Color{ 255, 0, 0 }, "fonts/font.ttf");
+	gui->addLabel(LableType::LABEL_STATIC, Vec2(400, 300), "-[In The Smoke]-", 150, SDL_Color{ 0, 255, 255 }, "fonts/font.ttf");
 
 	//Create Background Sprite
 	auto bg = new Sprite();
@@ -51,8 +51,9 @@ void SplashScene::onEntryScene(){
 
 
 	//Set callback
-	SDL_TimerID timerID = SDL_AddTimer(3 * 1000, callback, this);
+	CallBackTimer timerID = SDL_AddTimer(3 * 1000, callback, this);
 	
+
 	//Add Nodes to Layer
 	layer->addNodeToLayer(bg);
 	
@@ -70,37 +71,6 @@ void SplashScene::updateScene(){
 
 	SDL_Event evnt;
 	while (SDL_PollEvent(&evnt)) {
-
-		switch (evnt.type) {
-		case SDL_QUIT:
-			exit(1);
-			break;
-		case SDL_MOUSEMOTION:
-			m_inputManager.setMouseCoords(evnt.motion.x, evnt.motion.y);
-			break;
-		case SDL_KEYDOWN:
-			m_inputManager.pressKey(evnt.key.keysym.sym);
-			break;
-		case SDL_KEYUP:
-			m_inputManager.releaseKey(evnt.key.keysym.sym);
-			break;
-		case SDL_MOUSEBUTTONDOWN:
-			m_inputManager.pressKey(evnt.button.button);
-			break;
-		case SDL_MOUSEBUTTONUP:
-			m_inputManager.releaseKey(evnt.button.button);
-			break;
-		case SDL_FINGERDOWN:
-			m_inputManager.pressKey(evnt.button.button);
-			break;
-		case SDL_FINGERMOTION:
-			m_inputManager.setMouseCoords((float)evnt.motion.x, (float)evnt.motion.y);
-			break;
-		case SDL_FINGERUP:
-			m_inputManager.releaseKey(evnt.button.button);
-			break;
-		default:
-			break;
-		}
+		m_game->onSDLEvent(evnt);
 	}
 }

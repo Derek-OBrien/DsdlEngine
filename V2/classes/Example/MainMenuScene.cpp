@@ -25,7 +25,7 @@ void MainMenuScene::destroyScene(){
 void MainMenuScene::onEntryScene(){
 
 	layer = new Layer();	
-	auto gui = new DsdlGui();
+	gui = new DsdlGui();
 
 	//Add Audio Manager
 	music = m_AudioManager.loadMusic("Sound/XYZ.ogg");
@@ -38,9 +38,31 @@ void MainMenuScene::onEntryScene(){
 
 	
 	//Add Gui Elements
-	gui->addButton(ButtonType::LABEL_BTN, Vec2(600, 500), Size(200, 100), "fonts/font.ttf", SDL_Color{ 0,255,255 }, SDL_Color{ 255,0,0 }, "New-Game");
-	gui->addLabel(Vec2(20,300) , "Main Menu", 80, SDL_Color{ 255, 0, 0 }, "fonts/font.ttf");
-	
+	gui->addLabel(LableType::LABEL_STATIC, Vec2(GAME_WIDTH / 4, 50), "[ Select Your Runner ]", 50, SDL_Color{ 0, 255, 255 }, "fonts/font.ttf");
+
+
+	gui->addButton(
+		ButtonType::SPRITE_BTN,
+		"player1",
+		Vec2(GAME_WIDTH / 4, 400),
+		Size(160,300),
+		"DemoGame/menu_hud_items/player1btn.png",
+		SDL_Color{ NULL },
+		SDL_Color{ NULL },
+		NULL
+		);
+
+	gui->addButton(
+		ButtonType::SPRITE_BTN,
+		"player2",
+		Vec2((GAME_WIDTH / 4 ) + GAME_WIDTH / 2, 400),
+		Size(160, 300),
+		"DemoGame/menu_hud_items/player2btn.png",
+		SDL_Color{ NULL },
+		SDL_Color{ NULL },
+		NULL
+		);
+
 	//Add to Layer
 	layer->addNodeToLayer(bg);
 	
@@ -57,53 +79,38 @@ void MainMenuScene::onExitScene(){
 
 void MainMenuScene::updateScene(){
 
-	checkInput();
+	this->onInput();
 }
 
-
-void MainMenuScene::checkInput(){
-	
-	m_inputManager.update();
-	
+void MainMenuScene::onInput() {
 	SDL_Event evnt;
-	while (SDL_PollEvent(&evnt)) {
-		
-		switch (evnt.type) {
-		case SDL_QUIT:
-			exit(1);
-			break;
-		case SDL_MOUSEMOTION:
-			m_inputManager.setMouseCoords(evnt.motion.x, evnt.motion.y);
-			break;
-		case SDL_KEYDOWN:
-			m_inputManager.pressKey(evnt.key.keysym.sym);
-			break;
-		case SDL_KEYUP:
-			m_inputManager.releaseKey(evnt.key.keysym.sym);
-			break;
+
+	while(SDL_PollEvent(&evnt)) {
+		gui->onSDLEvent(evnt);
+
+		switch (evnt.type){
 		case SDL_MOUSEBUTTONDOWN:
-			m_inputManager.pressKey(evnt.button.button);
-			onNewGameClicked();
-			break;
-		case SDL_MOUSEBUTTONUP:
-			m_inputManager.releaseKey(evnt.button.button);
-			break;
-			//Touch down
-		case SDL_FINGERDOWN:
-			m_inputManager.pressKey(evnt.button.button);
-			onNewGameClicked();
-			break;
-		case SDL_FINGERMOTION:
-			m_inputManager.setMouseCoords((float)evnt.motion.x, (float)evnt.motion.y);
-			break;
-		case SDL_FINGERUP:
-			m_inputManager.releaseKey(evnt.button.button);
+			if (gui->m_btn->m_eCurrentState == ButtonState::PRESSED) {
+
+				if (gui->buttonName == "player2") {
+					onNewGameClicked();
+					XmlLocalStorage* db = XmlLocalStorage::getInstance();
+					db->setStringForKey("player1", "selectedPlayer");
+				}
+				if (gui->buttonName == "player1") {
+					onNewGameClicked();
+					XmlLocalStorage* db = XmlLocalStorage::getInstance();
+					db->setStringForKey("player2", "selectedPlayer");
+				}
+			}
+				
 			break;
 		default:
 			break;
 		}
 	}
 }
+
 
 void MainMenuScene::onNewGameClicked(){
 	m_nextScreenIndex = SCENE_INDEX_GAMEPLAY;

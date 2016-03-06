@@ -11,17 +11,21 @@ namespace DsdlEngine{
 
 	DsdlGui::~DsdlGui() { destroy(); }
 
-	void DsdlGui::addButton(ButtonType type, Vec2 pos, Size size, const char* path, SDL_Color color, SDL_Color bgColor , const char* text) {
+	//Add Button to GUI
+	void DsdlGui::addButton(ButtonType type, std::string name, Vec2 pos, Size size, std::string path, SDL_Color color, SDL_Color bgColor , const char* text) {
 
 		m_btn = new Button();
-
+		buttonName = name;
+		//Create as Text Button
 		if (type == ButtonType::LABEL_BTN) {
 			m_btn->createTextButton(pos, size, text, path, color, bgColor);
 			m_btn->setPosition(pos);
 		}
-
+		//Create as Sprite Button
 		if (type == ButtonType::SPRITE_BTN) {
 			m_btn->createSpriteButton(size.w_, size.h_, path);
+
+			m_btn->setEngineNodeType(NodeType::SPRITE);
 			m_btn->setPosition(pos);
 		}
 
@@ -29,21 +33,36 @@ namespace DsdlEngine{
 		layerNodes.push_back(m_btn);
 	}
 
-	void DsdlGui::addLabel(Vec2 pos, std::string text, int fontSize, SDL_Color color, std::string fontFilePath){
+	//Add Label to Gui Layer
+	void DsdlGui::addLabel(LableType type, Vec2 pos, std::string text, int fontSize, SDL_Color color, std::string fontFilePath){
 		m_label = new Label();
 
+		m_label->setType(type);
 		m_label->create(pos, text, fontSize, color, fontFilePath);
 
 		layerNodes.push_back(m_label);
 	}
 
 
+
+	void DsdlGui::addPreDefineLabel(Label* label, LableType type) {
+
+		label->setType(type);
+		layerNodes.push_back(label);
+	}
+
 	void DsdlGui::setGUIPos() {
 		
 	}
 
 	void DsdlGui::onSDLEvent(SDL_Event& e) {
-
+		//m_btn->checkInput(e);
+		for (size_t i = 0; i < layerNodes.size(); i++)
+		{
+			if (layerNodes.at(i)->getNodeType() == NodeType::SPRITE) {
+				m_btn->checkInput(e);
+			}
+		}
 	}
 
 	void DsdlGui::destroy() {

@@ -16,7 +16,9 @@
 namespace DsdlEngine{
 
 	ResourceTexture::ResourceTexture(){
-		m_Texture = nullptr;
+		m_Texture = NULL;
+		m_iHeight = 0;
+		m_iWidth = 0;
 	}
 	ResourceTexture::~ResourceTexture(){
 		destroy();
@@ -47,22 +49,22 @@ namespace DsdlEngine{
 
 
 #ifdef __WIN32__
-		SDL_Log("Loading Assets For Windows Platform");
+	//	SDL_Log("Loading Assets For Windows Platform");
 		temp = "../../assets/" + texturePath;
 #endif
 
 #ifdef __ANDROID__
-		SDL_Log("Loading Assets for Android Platform");
+	//	SDL_Log("Loading Assets for Android Platform");
 		temp = texturePath;
 #endif
 
 
-		//auto it = m_TextureMap.find(temp);
+		auto it = m_TextureMap.find(temp);
 
 		SDL_Texture* newTexture = NULL;
 		SDL_Surface* loadedSurface = NULL;
 
-		//if (it == m_TextureMap.end()){
+		if (it == m_TextureMap.end()){
 			//Load image at specified path
 			loadedSurface = IMG_Load(temp.c_str());
 
@@ -88,11 +90,11 @@ namespace DsdlEngine{
 				SDL_FreeSurface(loadedSurface);
 			}
 			 
-			//m_TextureMap[temp] = newTexture;
-		//}
-		//else{
-		//	newTexture = it->second;
-		//}
+			m_TextureMap[temp] = newTexture;
+		}
+		else{
+			newTexture = it->second;
+		}
 		//Return success
 		m_Texture = newTexture;
 		return newTexture != NULL;
@@ -130,10 +132,22 @@ namespace DsdlEngine{
 
 
 	//Basic render
-	void ResourceTexture::render(int x, int y, SDL_Renderer* r, SDL_Rect* clip){
+	void ResourceTexture::render(Vec2 p, Vec2 s, SDL_Renderer* r, SDL_Rect* clip){
 		//Set rendering space and render to screen
-		SDL_Rect renderQuad = { x, y, m_iWidth, m_iHeight };
+		SDL_Rect renderQuad;
+		if (s.x_ != NULL && s.y_ != NULL) {//For Sprites
+			renderQuad = { p.x_, p.y_, s.x_, s.y_ };
 
+			SDL_SetRenderDrawColor(r, 0, 255, 255, 120);
+			SDL_RenderDrawRect(r, &renderQuad);
+		}
+		else {	//For TTf Labels 
+			renderQuad = { p.x_, p.y_, m_iWidth, m_iHeight };
+
+			SDL_SetRenderDrawColor(r, 0, 0, 255, 120);
+			SDL_RenderDrawRect(r, &renderQuad);
+		}
+		
 		//Set clip rendering dimensions
 		if (clip != NULL){
 			renderQuad.w = clip->w;
@@ -142,7 +156,6 @@ namespace DsdlEngine{
 
 		//Render to screen
 		SDL_RenderCopy(r, m_Texture, clip, &renderQuad);
-		SDL_Log("################RenderTexture################");
 	}
 
 

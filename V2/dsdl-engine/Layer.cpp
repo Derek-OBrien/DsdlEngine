@@ -6,7 +6,7 @@ namespace DsdlEngine{
 
 
 	Layer::Layer(){
-	
+		//Empty
 	}
 
 	Layer ::~Layer() { destroy(); }
@@ -29,23 +29,36 @@ namespace DsdlEngine{
 
 	}
 
+	/*
+		Add Engine node to layer for loading and rendering
+	*/
 	void Layer::addNodeToLayer(EngineBaseNode* node) {
 		layerNodes.push_back(node);
 	}
 
+	/*
+		Load all nodes added to layer
+	*/
 	void Layer::loadNodes(SDL_Renderer* r) {
 		for (size_t i = 0; i < layerNodes.size(); i++){
 			layerNodes.at(i)->load(r);
 		}
 	}
 
+	/*
+		Render all nodes added to layer
+	*/
 	void Layer::drawNodes(SDL_Renderer* r) {
 		for (size_t i = 0; i < layerNodes.size(); i++){
-			layerNodes.at(i)->render(r);
 
-			//SDL_Log("################Layer::drawNodes################");
+			if (layerNodes.at(i)->getNodeType() == NodeType::LABEL) {
+				layerNodes.at(i)->load(r);
+			}
+
+			layerNodes.at(i)->render(r);
 		}
 	}
+
 
 
 	void Layer::addBox2dNodes(b2Body* body) {

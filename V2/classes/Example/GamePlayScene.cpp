@@ -8,11 +8,14 @@ USING_NS_DSDL;
 GamePlayScene::GamePlayScene(){
 	m_sceneIndex = SCENE_INDEX_GAMEPLAY;
 }
-GamePlayScene::~GamePlayScene(){}
+
+GamePlayScene::~GamePlayScene(){
+	//Empty
+}
 
 
 int GamePlayScene::getNextSceneIndex() const{
-	return SCENE_INDEX_NO_SCENE;
+	return SCENE_INDEX_OVER;
 
 }
 int GamePlayScene::getPreviousSceneIndex() const{
@@ -34,18 +37,25 @@ void GamePlayScene::onEntryScene(){
 	fgLayer = new Layer();
 	hud = new HudLayer();
 
+	//Add Audio Manager
+	music = m_AudioManager.loadMusic("DemoGame/sounds/Severe_Tire_Damage.wav");
+	music.play(-1);
+
+
 	// Define the gravity vector.
-	b2Vec2 gravity(1.0f, 10.0f);
+	b2Vec2 gravity(0.0f, 50.0f);
+	
 	world = new b2World(gravity);
+	world->SetContactListener(&collisionManager);
 
 	// Define the ground body.
 	groundBodyDef = new b2BodyDef();
-	groundBodyDef->position.Set(0.0, 1080 - 130);
+	groundBodyDef->position.Set(0.0, GAME_HEIGHT - 130);
 	groundBody = world->CreateBody(groundBodyDef);
 
 	groundBox = new b2PolygonShape();
-	groundBox->SetAsBox(1920  , (10.0) );
-	groundBody->CreateFixture(groundBox, 0.0f);
+	groundBox->SetAsBox(GAME_WIDTH , 10.0f );
+	groundBody->CreateFixture(groundBox, 0.0);
 
 	
 	//Add Background
@@ -53,30 +63,36 @@ void GamePlayScene::onEntryScene(){
 	bg->create("DemoGame/backgrounds/bg_city.png");
 	layer->addNodeToLayer(bg->bg);
 
-	//Add Middle Ground
-	//mg = new ScrollingBg();
-	//mg->create("DemoGame/backgrounds/bg_image.png");
-	
 
 	//Add Character
 	m_player = new Character();
 	m_player->init(world);
+
 	layer->addNodeToLayer(m_player->m_sprite);
 
 	//Add Enemy
 	enemy = new Enemy();
-	
 	m_enemyFactory = new EnemyFactory();
-	
 	generateEnemy(Vec2(20, 20));
 
-	
+
+	//Add Middle Ground
+	mg = new ScrollingBg();
+	mg->create("DemoGame/backgrounds/bg_image.png");
+	//layer->addNodeToLayer(mg->bg);
+
+
+	fg = new ScrollingBg();
+	fg->create("DemoGame/backgrounds/fg_smoke.png");
+	fg->bg->setOpacity(120);
+	//layer->addNodeToLayer(fg->bg);
+
+	//Add box2d boxes to render them (Debug only)
 	layer->addBox2dNodes(groundBody);
 	layer->addBox2dNodes(m_player->m_body);
 	
 	//Add Layer to Scene
 	addLayerToScene(layer);
-	//addLayerToScene(fgLayer);
 
 	addLayerToScene(hud->createHud());
 
@@ -91,15 +107,30 @@ void GamePlayScene::updateScene(){
 	world->Step(timeStep, velocityIterations, positionIterations);
 
 	///Process Input
-	checkInput();
+	this->onInput();
+	m_player->update(m_game->m_InputManager);
+
+
+	hud->updateScore();
 
 	///Update Game Elements
-
 	bg->update();
-	
-	m_player->update();
-	
+	mg->update();
+	fg->update();
+
 	EnemyManager::GetInstance()->update();
+}
+
+
+void GamePlayScene::onInput() {
+	SDL_Event evnt;
+
+	while (SDL_PollEvent(&evnt)) {
+
+		//hud->onInput(m_game);
+		m_game->onSDLEvent(evnt);
+		
+	}
 }
 
 
@@ -169,50 +200,6 @@ void GamePlayScene::generateEnemy(Vec2 position) {
 			layer->addNodeToLayer(enemy->m_enemySprite);
 			layer->addBox2dNodes(enemy->m_body);
 
-			break;
-		default:
-			break;
-		}
-	}
-}
-
-void GamePlayScene::checkInput(){
-	SDL_Event evnt;
-
-	m_inputManager.update();
-
-	while (SDL_PollEvent(&evnt)) {
-
-		switch (evnt.type) {
-		case SDL_QUIT:
-			exit(1);
-			break;
-		case SDL_MOUSEMOTION:
-			m_inputManager.setMouseCoords(evnt.motion.x, evnt.motion.y);
-			break;
-		case SDL_KEYDOWN:
-			m_inputManager.pressKey(evnt.key.keysym.sym);
-			break;
-		case SDL_KEYUP:
-			m_inputManager.releaseKey(evnt.key.keysym.sym);
-			break;
-		case SDL_MOUSEBUTTONDOWN:
-			m_inputManager.pressKey(evnt.button.button);
-			//myChar2->jump();
-			break;
-		case SDL_MOUSEBUTTONUP:
-			m_inputManager.releaseKey(evnt.button.button);
-			//myChar2->drop();
-			break;
-			//Touch down
-		case SDL_FINGERDOWN:
-			m_inputManager.pressKey(evnt.button.button);
-			break;
-		case SDL_FINGERMOTION:
-			m_inputManager.setMouseCoords((float)evnt.motion.x, (float)evnt.motion.y);
-			break;
-		case SDL_FINGERUP:
-			m_inputManager.releaseKey(evnt.button.button);
 			break;
 		default:
 			break;

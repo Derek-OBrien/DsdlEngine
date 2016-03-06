@@ -36,7 +36,7 @@ namespace DsdlEngine{
 	void SceneManager::addScene(IScene* newScene){
 		newScene->m_iSceneIndex = m_pScenes.size();
 		m_pScenes.push_back(newScene);
-		//newScene->buildScene();
+		newScene->setParentGame(m_pGame);
 	}
 
 	//Clean up scenes

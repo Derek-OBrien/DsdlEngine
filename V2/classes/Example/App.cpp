@@ -22,26 +22,34 @@ App::App() {
 	m_splashScene = nullptr;
 	m_mainMenuScene = nullptr;
 	m_gamePlayScene = nullptr;
+	//m_pauseScene = nullptr;
+	m_gameOverScene = nullptr;
 }
 
 App::~App() {}
 
 void App::onInit() {
-	setupWindow(1920, 1080, "SDL Engine Example Game", 2);
+	setupWindow(GAME_WIDTH, GAME_HEIGHT, "SDL Engine Example Game", 2);
 	
 	setFps(60);
 }
 
 void App::addScenes() {
-	
+	//Create a pointer to all scenes
 	m_splashScene = make_unique<SplashScene>();
 	m_mainMenuScene = make_unique<MainMenuScene>();
 	m_gamePlayScene = make_unique<GamePlayScene>();
+	//m_pauseScene = make_unique<PauseScene>();
+	m_gameOverScene = make_unique<GameOverScene>();
 
+	//Add Scenes pointers to the scene manager
 	m_pSceneManager->addScene(m_splashScene.get());
 	m_pSceneManager->addScene(m_mainMenuScene.get());
 	m_pSceneManager->addScene(m_gamePlayScene.get());
+//	m_pSceneManager->addScene(m_pauseScene.get());
+	m_pSceneManager->addScene(m_gameOverScene.get());
 
+	//Set initial sceen to load
 	m_pSceneManager->setScene(m_splashScene->getSceneIndex());
 }
 

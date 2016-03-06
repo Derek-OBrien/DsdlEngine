@@ -43,6 +43,15 @@ namespace DsdlEngine{
 		virtual void onExit() = 0;
 
 
+		InputManager m_InputManager;
+		void onSDLEvent(SDL_Event& evnt);
+
+		const float getFps() const { return m_fFps; }
+
+		void setPaused() { m_bIsPaused = true; }
+		void setRunning() { m_bIsPaused = false; m_bIsRunning = true; }
+
+		bool checkPaused() { return m_bIsPaused; }
 	protected:
 		unsigned int windowFlag;
 		int m_windowWidth;
@@ -53,13 +62,12 @@ namespace DsdlEngine{
 
 		IScene* m_pCurrentRunning;
 		bool m_bIsRunning;
+		bool m_bIsPaused;
 		float m_fFps;
 
 		Window m_Window;
 		SDL_Renderer* m_pGameRenderer;
 
-
-		InputManager m_InputManager;
 		AudioManager m_audioManager;
 		ResourceTexture m_resourceManager;
 
@@ -71,10 +79,6 @@ namespace DsdlEngine{
 
 		bool init();
 		bool initSystems();
-
-		const float getFps() const{ return m_fFps; }
-		void onSDLEvent(SDL_Event& evnt);
-
 	};
 }
 

@@ -24,10 +24,13 @@ namespace DsdlEngine{
 			gScreenRect.h = displayMode.h;
 		}
 
+		SDL_Log("Width %d :", gScreenRect.w);
+
+		SDL_Log("height %d :", gScreenRect.h);
 		//Load Window for windows using size passed in
 #ifdef __WIN32__
 		SDL_Log("Windows Created for Windows Platform");
-		m_pSdlWindow = SDL_CreateWindow(windowName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, m_screenWidth, m_screenHeight, flag);
+		m_pSdlWindow = SDL_CreateWindow(windowName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, gScreenRect.w, gScreenRect.h, flag);
 		m_pSdlRenderer = SDL_CreateRenderer(m_pSdlWindow, -1, SDL_RENDERER_TARGETTEXTURE | SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 		SDL_SetRenderDrawColor(m_pSdlRenderer, 0, 0, 0, 120);
 		//EngineMaster::getInstance()->setWindowSize(m_screenHeight, m_screenWidth);

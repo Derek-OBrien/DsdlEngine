@@ -12,16 +12,16 @@ namespace DsdlEngine{
 	void Sprite::create(int w, int h, std::string path){
 		setAssetPath(path);
 
-		size.w_ = w;
-		size.h_ = h;
+		size.x_ = w;
+		size.y_ = h;
 	}
 
 
 	void Sprite::create(int w, int h, std::string path, int nf){
 		setAssetPath(path);
 
-		size.w_ = w;
-		size.h_ = h;
+		size.x_ = w;
+		size.y_ = h;
 		m_numFrames = nf;
 	}
 
@@ -29,8 +29,8 @@ namespace DsdlEngine{
 	void Sprite::createWithPhysics(Size spriteSize, std::string path, int numFrames) {
 		setAssetPath(path);
 
-		size.w_ = spriteSize.w_;
-		size.h_ = spriteSize.h_;
+		size.x_ = spriteSize.w_;
+		size.y_ = spriteSize.h_;
 		m_numFrames = numFrames;
 
 	}

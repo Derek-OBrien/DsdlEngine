@@ -1,4 +1,5 @@
 #include "Button.h"
+#include "IScene.h"
 
 namespace DsdlEngine{
 	//NS_DSDL_START
@@ -14,8 +15,8 @@ namespace DsdlEngine{
 
 	void Button::createTextButton(Vec2 pos, Size btnsize, std::string buttonText, std::string fontPath, SDL_Color color, SDL_Color bgColor){
 
-		size.h_ = btnsize.h_;
-		size.w_ =  buttonText.length() * btnsize.h_;
+		size.y_ = btnsize.h_;
+		size.x_ =  buttonText.length() * btnsize.h_;
 
 		position.x_ = pos.x_;
 		position.y_ = pos.y_;
@@ -27,8 +28,8 @@ namespace DsdlEngine{
 		textColor = color;
 		setAssetPath(fontPath);
 
-		labelBorder.h = size.h_;
-		labelBorder.w = size.w_;
+		labelBorder.h = size.y_;
+		labelBorder.w = size.x_;
 		labelBorder.x = position.x_;
 		labelBorder.y = position.y_;
 
@@ -38,22 +39,26 @@ namespace DsdlEngine{
 
 
 	void Button::createSpriteButton(int width, int height, std::string imagePath){
-		size.h_ = height;
-		size.w_ = width;
+		size.y_ = height;
+		size.x_ = width;
 
-		rect.h = size.h_;
-		rect.w = size.w_;
+		setAssetPath(imagePath);
+
+		rect.h = size.y_;
+		rect.w = size.x_;
 		rect.x = position.x_;
 		rect.y = position.y_;
 
+		setEngineNodeType(NodeType::SPRITE);
+
 		m_spriteBtn = new Sprite();
-		m_spriteBtn->create(size.w_, size.h_, imagePath);
+		m_spriteBtn->create(size.x_, size.y_, imagePath);
 	}
 
 	//Set State to Hovering
 	void Button::onMouseEnters(){
 		m_eCurrentState = ButtonState::HOVERING;
-		DEBUG_MSG("Mouse over button");
+		SDL_Log("Mouse over button");
 	}
 
 	//Set State Back to Normal
@@ -61,10 +66,18 @@ namespace DsdlEngine{
 		m_eCurrentState = ButtonState::NORMAL;
 	}
 
+	Uint32 callback(Uint32 interval, void* func) {
+		return ((class IScene *)func)->getNextSceneIndex();
+	}
+
+
 	//Set State to Pressd, Preform Action
 	void Button::onClicked(){
 		m_eCurrentState = ButtonState::PRESSED;
-		DEBUG_MSG("Pressed button");
+		SDL_Log("Pressed button");
+
+		//Set callback
+		CallBackTimer timerID = SDL_AddTimer(3 * 1000, callback, this);
 
 	}
 
@@ -73,7 +86,7 @@ namespace DsdlEngine{
 
 		//check if mouse over button
 		if (e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_MOUSEBUTTONUP || e.type == SDL_MOUSEBUTTONUP){
-			DEBUG_MSG("Checking if mouse over button");
+			SDL_Log("Checking if mouse over button");
 			int x, y;
 			SDL_GetMouseState(&x, &y);
 	
@@ -84,13 +97,13 @@ namespace DsdlEngine{
 			if (x < position.x_){
 				inside = false;
 			}
-			else if (x > position.x_ + size.h_){
+			else if (x > position.x_ + size.y_){
 				inside = false;
 			}
 			else if (y < position.y_){
 				inside = false;
 			}
-			else if (y > position.y_ + size.w_){
+			else if (y > position.y_ + size.x_){
 				inside = false;
 			}
 

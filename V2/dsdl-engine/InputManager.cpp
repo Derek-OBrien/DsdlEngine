@@ -29,8 +29,7 @@ namespace DsdlEngine{
 	}
 
 	void InputManager::setMouseCoords(float x, float y) {
-		//_mouseCoords.x = x;
-		//_mouseCoords.y = y;
+		
 	}
 
 
@@ -73,5 +72,35 @@ namespace DsdlEngine{
 		}
 	}
 
+	bool InputManager::isSwipe(float x, float y) {
+		
+		int startX = x;
+		int startY = y;
+		
+
+		return true;
+	}
+
+
+
+	bool InputManager::isSwipeUp(float x, float y) {
+
+		return true;
+	}
+
+	bool InputManager::isSwipeDown(float x, float y) {
+
+		return true;
+	}
+
+	bool InputManager::isSwipeLeft(float x, float y) {
+
+		return true;
+	}
+
+	bool InputManager::isSwipeRight(float x, float y) {
+
+		return true;
+	}
 
 }

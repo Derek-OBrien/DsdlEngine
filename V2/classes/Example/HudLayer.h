@@ -13,10 +13,19 @@ public:
 
 	Layer* createHud();
 
+	virtual void onInput(IMainGame* game);
+
+	void pauseGame(IMainGame* game);
+
 	void updateScore();
 	void updateCoinCount();
+
+	
+	Label* scoreLabel;
+	Label* coinLabel;
 private:
 
+	DsdlGui* gui;
 	int score, coinCount;
 
 	std::string scoreText;	

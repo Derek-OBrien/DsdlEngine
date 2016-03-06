@@ -4,120 +4,109 @@
 
 
 
-namespace DsdlEngine{
+namespace DsdlEngine {
 
 	//Constructor
-	EngineBaseNode::EngineBaseNode(){
+	EngineBaseNode::EngineBaseNode() {
+
+		engineTexture = NULL;
 		setEngineNodeType(NodeType::BASENODE);
 		m_frame = 0;
 		m_numFrames = 1;
+		opacity = 255;
+
 	}
 
 	//Deconstructor
-	EngineBaseNode::~EngineBaseNode(){
+	EngineBaseNode::~EngineBaseNode() {
 		destroy();
 	}
 
 
 
 	//Render Node
-	void EngineBaseNode::render(SDL_Renderer* r){
-		if (nodeType == NodeType::SPRITE){
-			if (m_numFrames > 1){
+	void EngineBaseNode::render(SDL_Renderer* r) {
+		if (nodeType == NodeType::SPRITE) {
+			if (m_numFrames > 1) {
 				renderAnimation(r);
-
-				SDL_Log("################Engine Base node frames > 1################");
 			}
-			else{
-				engineTexture->render(position.x_, position.y_, r, m_currentFrame);
-
-				SDL_Log("################Engine base Node frames 1################");
+			else {
+				engineTexture->setAlpha(opacity);
+				engineTexture->render(position, size, r, m_currentFrame);
 			}
-
-		//	SDL_SetRenderDrawColor(r, 0, 0, 255, 120);
-		//	SDL_RenderDrawRect(r, &objectBoundingBox);
 		}
 
-		else if (nodeType == NodeType::LABEL){
+		else if (nodeType == NodeType::LABEL) {
 
-		//	SDL_SetRenderDrawColor(r, 255, 0, 0, 120);
-		//	SDL_RenderDrawRect(r, &labelBorder);
-		
-			engineTexture->render(position.x_, position.y_, r);
-
+			engineTexture->render(position, size, r);
 		}
 		else if (nodeType == NodeType::BUTTON) {
-		//	SDL_SetRenderDrawColor(r, 0, 255, 0, 120);
-		//	SDL_RenderDrawRect(r, &labelBorder);
-		//	SDL_FillRect(btnbg, &labelBorder, 255);
 
-			engineTexture->render(position.x_, position.y_, r);
-
+			engineTexture->render(position, size, r);
 		}
 	}
 
 
 	//Render Node as Animation
-	void EngineBaseNode::renderAnimation(SDL_Renderer* r){
+	void EngineBaseNode::renderAnimation(SDL_Renderer* r) {
 		m_currentFrame = &m_gSpriteClips[m_frame / m_numFrames];
-		engineTexture->render(position.x_, position.y_, r, m_currentFrame);
+		engineTexture->setAlpha(opacity);
+		engineTexture->render(position, size, r, m_currentFrame);
 		++m_frame;
 
-		if (m_frame / m_numFrames >= m_numFrames){
+		if (m_frame / m_numFrames >= m_numFrames) {
 			m_frame = 0;
 		}
 	}
 
 
 	//Load Node as engine texture
-	bool EngineBaseNode::load( SDL_Renderer * r){
+	bool EngineBaseNode::load(SDL_Renderer * r) {
 
 		engineTexture = new ResourceTexture();
-		
-		if (nodeType == NodeType::SPRITE){
-			
+
+		if (nodeType == NodeType::SPRITE) {
+
 			if (!engineTexture->loadFromFile(m_assetPath, r))
 				SDL_Log("Faild to load sprite");
 
-			else{
+			else {
 				SDL_Log("Loaded sprite");
 
 				int temp = 0;
 
-				for (int i = 0; i < m_numFrames; i++){
+				for (int i = 0; i < m_numFrames; i++) {
 					m_gSpriteClips[i].x = temp;
 					m_gSpriteClips[i].y = 0;
-					m_gSpriteClips[i].w = size.w_;
-					m_gSpriteClips[i].h = size.h_;
+					m_gSpriteClips[i].w = size.x_;
+					m_gSpriteClips[i].h = size.y_;
 
-					temp += size.w_;
+					temp += size.x_;
 				}
 
 				objectBoundingBox.x = position.x_;
 				objectBoundingBox.y = position.y_;
-				objectBoundingBox.w = size.w_;
-				objectBoundingBox.h = size.h_;
+				objectBoundingBox.w = size.x_;
+				objectBoundingBox.h = size.y_;
 
 			}
 			return true;
 		}
-		else if (nodeType == NodeType::LABEL || nodeType == NodeType::BUTTON){
+		else if (nodeType == NodeType::LABEL || nodeType == NodeType::BUTTON) {
 
 
-			if (!TTF_WasInit()){
+			if (!TTF_WasInit()) {
 				TTF_Init();
 			}
 
-
-
 			std::string temp;
 #ifdef __WIN32__
-			SDL_Log("Loading Assets For Windows Platform");
+			//	SDL_Log("Loading Assets For Windows Platform");
 			temp = "../../assets/" + m_assetPath;
 #endif
 
 #ifdef __ANDROID__
-			SDL_Log("Loading Assets for Android Platform");
+			//	SDL_Log("Loading Assets for Android Platform");
 			temp = m_assetPath;
 #endif
 
@@ -126,11 +115,11 @@ namespace DsdlEngine{
 
 
 			// if not load and create texture
-			if (it == m_FontMap.end()){
+			if (it == m_FontMap.end()) {
 
 				//open font
 				font = TTF_OpenFont(temp.c_str(), textSize);
-				if (font == NULL){
+				if (font == NULL) {
 					DEBUG_MSG("TTF_OpenFont Error : " + std::string(TTF_GetError()));
 				}
 
@@ -138,7 +127,7 @@ namespace DsdlEngine{
 
 				m_FontMap[temp] = font;
 			}
-			else{//create texture
+			else {//create texture
 				font = it->second;
 				engineTexture->loadTTF(labelText, textColor, font, r);
 
@@ -146,11 +135,16 @@ namespace DsdlEngine{
 
 			return true;
 		}
-		//else
-		return false;
+		else
+			return false;
 	}
 
-	void EngineBaseNode::destroy(){
+
+	void EngineBaseNode::setOpacity(int op) {
+		opacity = op;
+	}
+
+	void EngineBaseNode::destroy() {
 		engineTexture->destroy();
 	}
 }

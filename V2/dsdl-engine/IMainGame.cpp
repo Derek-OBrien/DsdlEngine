@@ -34,20 +34,24 @@ namespace DsdlEngine{
 	void IMainGame::run(){
 
 		if (!init()) return;
-
 		FpsLimiter fpsLimit;
 		fpsLimit.setMaxFPS(m_fFps);
 
 	
-		m_bIsRunning = true;
+		setRunning();
 		while (m_bIsRunning){
 			fpsLimit.begin();
 	
-			m_InputManager.update();
-			update();
 
+			m_pCurrentRunning->onInput();
+
+			update();
 			draw();
 			
+			while (m_bIsPaused == true) {
+				m_pCurrentRunning->onInput();
+			}
+
 			m_fFps = fpsLimit.end();
 		}
 	}
@@ -57,7 +61,7 @@ namespace DsdlEngine{
 	*/
 
 	void IMainGame::onSDLEvent(SDL_Event& evnt){
-
+		m_InputManager.update();
 		//Will keep looping until there are no more events to process
 		switch (evnt.type) {
 		case SDL_QUIT:
@@ -78,15 +82,14 @@ namespace DsdlEngine{
 		case SDL_MOUSEBUTTONUP:
 			m_InputManager.releaseKey(evnt.button.button);
 			break;
-			//Touch down
 		case SDL_FINGERDOWN:
-			m_InputManager.pressKey(evnt.button.button);
+			m_InputManager.pressKey(evnt.tfinger.fingerId);
 			break;
 		case SDL_FINGERMOTION:
-			m_InputManager.setMouseCoords((float)evnt.motion.x, (float)evnt.motion.y);
+			m_InputManager.isSwipe(evnt.tfinger.x, evnt.tfinger.y);
 			break;
 		case SDL_FINGERUP:
-			m_InputManager.releaseKey(evnt.button.button);
+			m_InputManager.releaseKey(evnt.tfinger.fingerId);
 			break;
 		default:
 			break;
@@ -101,13 +104,6 @@ namespace DsdlEngine{
 		m_windowHeight = h;
 		windowtitle = windowName;
 		windowFlag = flag;
-
-
-		//Test Write & Load of XML Elements
-		XmlLocalStorage* em = XmlLocalStorage::getInstance();
-
-		em->setIntegerForKey(m_windowHeight, "windowHeight");
-		em->setIntegerForKey(m_windowWidth, "windowWidth");
 	}
 
 
@@ -133,12 +129,17 @@ namespace DsdlEngine{
 		
 		//Load up First Scene
 		m_pCurrentRunning = m_pSceneManager->getCurrentScene();
-		m_pCurrentRunning->onEntryScene();
 		m_pCurrentRunning->setSceneRunning();
+		m_pCurrentRunning->onEntryScene();
 
 		//Load all scene Children nodes for first scene on init of game
 		for (size_t i = 0; i < m_pCurrentRunning->sceneLayers.size(); i++){
 			m_pCurrentRunning->loadScene(m_pGameRenderer);
+		}
+
+		//for running scene render each node that is in the child vector
+		for (size_t i = 0; i < m_pCurrentRunning->sceneLayers.size(); i++) {
+			m_pCurrentRunning->drawScene(m_pGameRenderer);
 		}
 
 		return true;
@@ -216,9 +217,6 @@ namespace DsdlEngine{
 			for (size_t i = 0; i < m_pCurrentRunning->sceneLayers.size(); i++) {
 				m_pCurrentRunning->drawScene(m_pGameRenderer);
 			}
-
-
-			SDL_Log("################IMainGame::draw################");
 			SDL_RenderPresent(m_pGameRenderer);
 		}
 	}

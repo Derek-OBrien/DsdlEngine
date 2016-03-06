@@ -1,5 +1,6 @@
 #pragma once
 #include "../../dsdl-engine/DsdlEngine.h"
+#include "GameDefines.h"
 
 USING_NS_DSDL;
 
@@ -10,11 +11,12 @@ public:
 	Character();
 	~Character();
 
+
 	void init(b2World* world);
-	void update();
+	void update(InputManager& inputManager);
 
 	void jump();
-	void drop();
+	void slide();
 	Sprite* m_sprite;
 
 
@@ -22,4 +24,17 @@ public:
 	b2BodyDef m_bodyDef;
 	b2PolygonShape m_shape;
 	b2FixtureDef m_fixtureDef;
+
+	InputManager inputManager;
+
+	int getPlayerState() { return currentState; };	//Get current palyer state
+	void setPlayerState(EPlayerState state) { currentState = (EPlayerState)state; };	//Set player state
+
+
+private:
+	Vec2 m_position;
+	Vec2 m_size;
+
+	EPlayerState currentState;
+
 };

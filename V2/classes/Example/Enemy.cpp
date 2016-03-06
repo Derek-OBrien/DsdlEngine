@@ -29,8 +29,8 @@ void Enemy::createEnemy(b2World* world, Vec2 position){
 
 	// Define another box shape for our dynamic body.
 	m_shape.SetAsBox(
-		(m_enemySprite->getContentSize().w_ / 2),
-		(m_enemySprite->getContentSize().h_ / 2));
+		(m_enemySprite->getContentSize().x_ / 2),
+		(m_enemySprite->getContentSize().y_ / 2));
 
 	m_fixtureDef.shape = &m_shape;
 	m_fixtureDef.density = 0.5f;
@@ -49,15 +49,12 @@ void Enemy::createEnemy(b2World* world, Vec2 position){
 void Enemy::update() {
 
 	pos -= 5;
-	if (pos <= 0) {
-		pos = 1500;
+	if (pos <= -20) {
+		pos = 1980;
 	}
 	m_enemySprite->setPositionX(pos);
 	
 	m_body->SetTransform(b2Vec2(
 		m_enemySprite->getPosition().x_,
 		m_enemySprite->getPosition().y_), 0.0);
-
-	//m_body->ApplyForce(b2Vec2(30, 0.0), b2Vec2(m_body->GetLocalCenter()),true);
-
 }

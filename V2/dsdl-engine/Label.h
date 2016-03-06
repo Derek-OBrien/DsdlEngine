@@ -19,9 +19,16 @@ namespace DsdlEngine{
 		* @param color The Color of the label
 		*/
 
+		void setType(LableType type) { m_labelType = type; };
+		const int getType() {return (int)m_labelType;}
+
+
 		void create(Vec2 pos, std::string text, int fontSize, SDL_Color color, std::string fontFilePath);
 
 		void destroy();
+	protected:
+
+		LableType m_labelType;
 
 	};
 }

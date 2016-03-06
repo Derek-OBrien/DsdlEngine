@@ -23,6 +23,17 @@ namespace DsdlEngine{
 		/// Returns true if the key was just pressed
 		bool isKeyPressed(unsigned int keyID);
 
+
+		bool isSwipe(float x, float y);
+
+		bool isSwipeUp(float x, float y);
+
+		bool isSwipeDown(float x, float y);
+
+		bool isSwipeLeft(float x, float y);
+
+		bool isSwipeRight(float x, float y);
+
 	private:
 
 		/// Returns true if the key is held down
