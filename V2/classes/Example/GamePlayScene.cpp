@@ -38,7 +38,7 @@ void GamePlayScene::onEntryScene(){
 	hud = new HudLayer();
 
 	//Add Audio Manager
-	music = m_AudioManager.loadMusic("DemoGame/sounds/Severe_Tire_Damage.wav");
+	music = m_AudioManager.loadMusic(XmlLocalStorage::getInstance()->getStringForKey("bgmusic"));
 	music.play(-1);
 
 
@@ -46,7 +46,7 @@ void GamePlayScene::onEntryScene(){
 	b2Vec2 gravity(0.0f, 50.0f);
 	
 	world = new b2World(gravity);
-	world->SetContactListener(&collisionManager);
+	//world->SetContactListener(&collisionManager);
 
 	// Define the ground body.
 	groundBodyDef = new b2BodyDef();
@@ -60,7 +60,7 @@ void GamePlayScene::onEntryScene(){
 	
 	//Add Background
 	bg = new ScrollingBg();
-	bg->create("DemoGame/backgrounds/bg_city.png");
+	bg->create(XmlLocalStorage::getInstance()->getStringForKey("gamebg"));
 	layer->addNodeToLayer(bg->bg);
 
 
@@ -72,24 +72,27 @@ void GamePlayScene::onEntryScene(){
 
 	//Add Enemy
 	enemy = new Enemy();
-	m_enemyFactory = new EnemyFactory();
+	m_enemyFactory = new Factory();
 	generateEnemy(Vec2(20, 20));
 
+	//Add Coins
+	coin = new Coins();
+	generateCoins(Vec2(10, 10));
 
 	//Add Middle Ground
 	mg = new ScrollingBg();
-	mg->create("DemoGame/backgrounds/bg_image.png");
+	mg->create(XmlLocalStorage::getInstance()->getStringForKey("gamemg"));
 	//layer->addNodeToLayer(mg->bg);
 
 
 	fg = new ScrollingBg();
-	fg->create("DemoGame/backgrounds/fg_smoke.png");
+	fg->create(XmlLocalStorage::getInstance()->getStringForKey("gamefg"));
 	fg->bg->setOpacity(120);
 	//layer->addNodeToLayer(fg->bg);
 
 	//Add box2d boxes to render them (Debug only)
 	layer->addBox2dNodes(groundBody);
-	layer->addBox2dNodes(m_player->m_body);
+	layer->addBox2dNodes(m_player->getCapsule().getBody());
 	
 	//Add Layer to Scene
 	addLayerToScene(layer);
@@ -205,4 +208,84 @@ void GamePlayScene::generateEnemy(Vec2 position) {
 			break;
 		}
 	}
+}
+
+void GamePlayScene::generateCoins(Vec2 position) {
+
+	Vec2 pos;
+
+	for (int i = 0; i < 5; i++) {
+
+		switch (i) {
+		case 0:
+			pos.x_ = GAME_WIDTH + (GAME_WIDTH *0.2);
+			pos.y_ = GAME_HEIGHT - 450;
+		
+			coin = m_enemyFactory->createCoin(world, pos);
+
+			EnemyManager::GetInstance()->AddCoin(coin);
+			layer->addNodeToLayer(coin->m_coinSprite);
+			layer->addBox2dNodes(coin->m_body);
+
+			break;
+		case 1:
+			pos.x_ = GAME_WIDTH + (GAME_WIDTH *0.2);
+			pos.y_ = GAME_HEIGHT - 500;
+
+
+			coin = m_enemyFactory->createCoin(world, pos);
+
+			EnemyManager::GetInstance()->AddCoin(coin);
+			layer->addNodeToLayer(coin->m_coinSprite);
+			layer->addBox2dNodes(coin->m_body);
+			break;
+		case 2:
+			pos.x_ = GAME_WIDTH + (GAME_WIDTH*0.4);
+			pos.y_ = GAME_HEIGHT - 350;
+
+
+			coin = m_enemyFactory->createCoin(world, pos);
+
+			EnemyManager::GetInstance()->AddCoin(coin);
+			layer->addNodeToLayer(coin->m_coinSprite);
+			layer->addBox2dNodes(coin->m_body);
+			break;
+		case 3:
+			pos.x_ = GAME_WIDTH + (GAME_WIDTH*0.4);///slideunder
+			pos.y_ = GAME_HEIGHT - 300;
+
+
+			coin = m_enemyFactory->createCoin(world, pos);
+
+			EnemyManager::GetInstance()->AddCoin(coin);
+			layer->addNodeToLayer(coin->m_coinSprite);
+			layer->addBox2dNodes(coin->m_body);
+			break;
+		case 4:
+			pos.x_ = GAME_WIDTH + (GAME_WIDTH*0.6);///slide under
+			pos.y_ = GAME_HEIGHT - 250;
+
+
+			coin = m_enemyFactory->createCoin(world, pos);
+
+			EnemyManager::GetInstance()->AddCoin(coin);
+			layer->addNodeToLayer(coin->m_coinSprite);
+			layer->addBox2dNodes(coin->m_body);
+			break;
+		case 5:
+			pos.y_ = GAME_WIDTH + (GAME_WIDTH*0.6);///slide under
+			pos.y_ = GAME_HEIGHT - 200;
+
+
+			coin = m_enemyFactory->createCoin(world, pos);
+
+			EnemyManager::GetInstance()->AddCoin(coin);
+			layer->addNodeToLayer(coin->m_coinSprite);
+			layer->addBox2dNodes(coin->m_body);
+			break;
+		default:
+			break;
+		}
+	}
+
 }

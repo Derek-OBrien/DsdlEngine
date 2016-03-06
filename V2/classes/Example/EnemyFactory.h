@@ -1,13 +1,13 @@
 #pragma once
 
 #include "Enemy.h"
-
-class EnemyFactory
+#include "Coins.h"
+class Factory
 {
 public:
-	EnemyFactory();
-	~EnemyFactory();
+	Factory();
+	~Factory();
 
 	virtual Enemy* createEnemy(b2World* world, Vec2 position);
-
+	virtual Coins* createCoin(b2World* world, Vec2 position);
 };

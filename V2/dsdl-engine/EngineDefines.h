@@ -41,7 +41,8 @@ enum class NodeType{
 	BASENODE,
 	SPRITE,
 	LABEL,
-	BUTTON
+	BUTTON,
+	PARTICLE
 };
 
 enum class ButtonState{
@@ -74,6 +75,7 @@ typedef SDL_TimerCallback CallBack;
 #define XML_FILE "Default.xml"
 
 
+#define TOTAL_PARTICLES 30
 
 ///Box2D scaling defines
 #define METRESTOPIXELS 30

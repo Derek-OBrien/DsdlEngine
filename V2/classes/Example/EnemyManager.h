@@ -7,6 +7,8 @@ public:
 	static EnemyManager *GetInstance();
 
 	void AddEnemy(Enemy* enemy);
+	void AddCoin(Coins* coin);
+
 	void FillEnemyVec();
 	void update();
 
@@ -15,10 +17,12 @@ public:
 	~EnemyManager();
 private:
 	std::vector<Enemy*> m_enemies;
+	std::vector<Coins*> m_coins;
 
 protected:
-	EnemyFactory* enemyFactory;
+	Factory* factory;
 	void EnemyUpdate();
+	void CoinUpdate();
 
 	EnemyManager();
 };

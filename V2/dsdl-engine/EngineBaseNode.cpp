@@ -42,7 +42,11 @@ namespace DsdlEngine {
 		}
 		else if (nodeType == NodeType::BUTTON) {
 
-			engineTexture->render(position, size, r);
+			engineTexture->render(position, size, r, m_currentFrame);
+
+		}
+		else if (nodeType == NodeType::PARTICLE) {
+			
 		}
 	}
 
@@ -65,7 +69,7 @@ namespace DsdlEngine {
 
 		engineTexture = new ResourceTexture();
 
-		if (nodeType == NodeType::SPRITE) {
+		if (nodeType == NodeType::SPRITE || nodeType == NodeType::BUTTON) {
 
 			if (!engineTexture->loadFromFile(m_assetPath, r))
 				SDL_Log("Faild to load sprite");
@@ -92,7 +96,7 @@ namespace DsdlEngine {
 			}
 			return true;
 		}
-		else if (nodeType == NodeType::LABEL || nodeType == NodeType::BUTTON) {
+		else if (nodeType == NodeType::LABEL) {
 
 
 			if (!TTF_WasInit()) {

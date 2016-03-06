@@ -30,7 +30,7 @@ private:
 
 	void checkInput();
 	void generateEnemy(Vec2 position);
-
+	void generateCoins(Vec2 position);
 	int m_sceneIndex = SCENE_INDEX_NO_SCENE;
 
 	AudioManager m_AudioManager;
@@ -50,9 +50,9 @@ private:
 	Character* m_player;
 
 	Enemy* enemy;
-
+	Coins* coin;
 	///Enemy Factory
-	EnemyFactory *m_enemyFactory;
+	Factory *m_enemyFactory;
 
 	///Ground Physics
 	b2World* world;

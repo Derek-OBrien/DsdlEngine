@@ -51,8 +51,9 @@ namespace DsdlEngine{
 
 		setEngineNodeType(NodeType::SPRITE);
 
+		m_numFrames = 3;
 		m_spriteBtn = new Sprite();
-		m_spriteBtn->create(size.x_, size.y_, imagePath);
+		m_spriteBtn->create(width, height, imagePath, 3);
 	}
 
 	//Set State to Hovering

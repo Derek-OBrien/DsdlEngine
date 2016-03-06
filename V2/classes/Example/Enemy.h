@@ -1,5 +1,6 @@
 #pragma once
 #include "../../dsdl-engine/DsdlEngine.h"
+#include "ColisionCapsule.h"
 
 USING_NS_DSDL;
 

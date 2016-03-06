@@ -33,12 +33,14 @@ void MainMenuScene::onEntryScene(){
 
 	//Add bg
 	auto bg = new Sprite();
-	bg->create(1920, 1080, "DemoGame/backgrounds/menu.png");
+	bg->create(1920, 1080, XmlLocalStorage::getInstance()->getStringForKey("menubg"));
 	bg->setPosition(Vec2::ZERO);
 
+	//Add to Layer
+	layer->addNodeToLayer(bg);
 	
 	//Add Gui Elements
-	gui->addLabel(LableType::LABEL_STATIC, Vec2(GAME_WIDTH / 4, 50), "[ Select Your Runner ]", 50, SDL_Color{ 0, 255, 255 }, "fonts/font.ttf");
+	gui->addLabel(LableType::LABEL_STATIC, Vec2(GAME_WIDTH / 3, 50), "[ Select Your Runner ]", 50, SDL_Color{ 0, 255, 255 }, XmlLocalStorage::getInstance()->getStringForKey("font"));
 
 
 	gui->addButton(
@@ -46,7 +48,7 @@ void MainMenuScene::onEntryScene(){
 		"player1",
 		Vec2(GAME_WIDTH / 4, 400),
 		Size(160,300),
-		"DemoGame/menu_hud_items/player1btn.png",
+		XmlLocalStorage::getInstance()->getStringForKey("player1btn"),
 		SDL_Color{ NULL },
 		SDL_Color{ NULL },
 		NULL
@@ -55,17 +57,14 @@ void MainMenuScene::onEntryScene(){
 	gui->addButton(
 		ButtonType::SPRITE_BTN,
 		"player2",
-		Vec2((GAME_WIDTH / 4 ) + GAME_WIDTH / 2, 400),
+		Vec2((GAME_WIDTH / 4) + GAME_WIDTH / 4, 400),
 		Size(160, 300),
-		"DemoGame/menu_hud_items/player2btn.png",
+		XmlLocalStorage::getInstance()->getStringForKey("player2btn"),
 		SDL_Color{ NULL },
 		SDL_Color{ NULL },
 		NULL
 		);
 
-	//Add to Layer
-	layer->addNodeToLayer(bg);
-	
 	//Add Layer to scene
 	addLayerToScene(layer);
 	addLayerToScene(gui);
@@ -95,7 +94,7 @@ void MainMenuScene::onInput() {
 				if (gui->buttonName == "player2") {
 					onNewGameClicked();
 					XmlLocalStorage* db = XmlLocalStorage::getInstance();
-					db->setStringForKey("player1", "selectedPlayer");
+					db->setStringForKey("player2", "selectedPlayer");
 				}
 				if (gui->buttonName == "player1") {
 					onNewGameClicked();

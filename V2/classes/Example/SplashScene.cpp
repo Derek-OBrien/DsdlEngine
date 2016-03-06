@@ -1,5 +1,5 @@
 #include "SplashScene.h"
-
+#include "../../dsdl-engine/DsdlEngine.h"
 
 SplashScene::SplashScene() {
 	//Empty
@@ -42,11 +42,11 @@ void SplashScene::onEntryScene(){
 	auto gui = new DsdlGui();
 
 	//Create Label	
-	gui->addLabel(LableType::LABEL_STATIC, Vec2(400, 300), "-[In The Smoke]-", 150, SDL_Color{ 0, 255, 255 }, "fonts/font.ttf");
+	gui->addLabel(LableType::LABEL_STATIC, Vec2(400, 300), "-[In The Smoke]-", 100, SDL_Color{ 0, 255, 255 }, XmlLocalStorage::getInstance()->getStringForKey("font"));
 
 	//Create Background Sprite
 	auto bg = new Sprite();
-	bg->create(1980, 1080, "DemoGame/backgrounds/menu.png");
+	bg->create(1980, 1080, XmlLocalStorage::getInstance()->getStringForKey("menubg"));
 	bg->setPosition(Vec2::ZERO);
 
 

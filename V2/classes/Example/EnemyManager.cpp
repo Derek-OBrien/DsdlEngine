@@ -22,14 +22,18 @@ void EnemyManager::AddEnemy(Enemy* enemy) {
 	m_enemies.push_back(enemy);
 }
 
-void EnemyManager::FillEnemyVec() {
-	enemyFactory = new EnemyFactory();
+void EnemyManager::AddCoin(Coins* coin) {
+	m_coins.push_back(coin);
+}
 
-	
+
+void EnemyManager::FillEnemyVec() {
+	factory = new Factory();
 }
 
 void EnemyManager::update() {
 	EnemyUpdate();
+	CoinUpdate();
 }
 
 void EnemyManager::destroy() {
@@ -41,5 +45,11 @@ void EnemyManager::destroy() {
 void EnemyManager::EnemyUpdate() {
 	for (size_t i = 0; i < m_enemies.size(); i++){
 		m_enemies.at(i)->update();
+	}
+}
+
+void EnemyManager::CoinUpdate() {
+	for (size_t i = 0; i < m_coins.size(); i++){
+		m_coins.at(i)->update();
 	}
 }

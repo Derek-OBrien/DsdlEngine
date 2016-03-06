@@ -1,4 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <DefaultRoot>
-    <selectedPlayer>player1</selectedPlayer>
+    <selectedPlayer>player2</selectedPlayer>
+    <!--BackGround Images-->
+    <menubg>DemoGame/backgrounds/menu.png</menubg>
+    <gamebg>DemoGame/backgrounds/bg_city.png</gamebg>
+    <gamemg>DemoGame/backgrounds/bg_image.png</gamemg>
+    <gamefg>DemoGame/backgrounds/fg_smoke.png</gamefg>
+    <!--Sprite Sheets-->
+    <player1>DemoGame/player_sprites/player1.png</player1>
+    <player1slide>DemoGame/player_sprites/player1slide.png</player1slide>
+    <player1jump>DemoGame/player_sprites/player1jump.png</player1jump>
+    <player1powerup>DemoGame/player_sprites/player1powerup.png</player1powerup>
+    <player2>DemoGame/player_sprites/player2.png</player2>
+    <player2slide>DemoGame/player_sprites/player2slide.png</player2slide>
+    <player2jump>DemoGame/player_sprites/player2jump.png</player2jump>
+    <player2powerup>DemoGame/player_sprites/player2powerup.png</player2powerup>
+    <coin>DemoGame/collectable_sprites/coin.png</coin>
+    <enemy>DemoGame/obstical_sprites/bird.png</enemy>
+    <!--UI Elements-->
+    <font>DemoGame/fonts/baveuse3.ttf</font>
+    <player1btn>DemoGame/menu_hud_items/player1btn.png</player1btn>
+    <player2btn>DemoGame/menu_hud_items/player2btn.png</player2btn>
+    <pause>DemoGame/menu_hud_items/pausebutton.png</pause>
+    <close>DemoGame/menu_hud_items/closebutton.png</close>
+    <restart>DemoGame/menu_hud_items/playbutton.png</restart>
+    <!--Audio-->
+    <bgmusic>DemoGame/sounds/Severe_Tire_Damage.wav</bgmusic>
+    <sfx>DemoGame/sounds/sfx.wav</sfx>
+    <buttonpress>DemoGame/sounds/buttonPress.wav</buttonpress>
 </DefaultRoot>

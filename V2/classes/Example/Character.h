@@ -1,6 +1,7 @@
 #pragma once
 #include "../../dsdl-engine/DsdlEngine.h"
 #include "GameDefines.h"
+#include "ColisionCapsule.h"
 
 USING_NS_DSDL;
 
@@ -21,14 +22,13 @@ public:
 
 
 	b2Body* m_body;
-	b2BodyDef m_bodyDef;
-	b2PolygonShape m_shape;
-	b2FixtureDef m_fixtureDef;
 
 	InputManager inputManager;
 
 	int getPlayerState() { return currentState; };	//Get current palyer state
 	void setPlayerState(EPlayerState state) { currentState = (EPlayerState)state; };	//Set player state
+
+	const CollisionCapsule& getCapsule() const { return m_capsule; }
 
 
 private:
@@ -37,4 +37,5 @@ private:
 
 	EPlayerState currentState;
 
+	CollisionCapsule m_capsule;
 };

@@ -9,7 +9,7 @@
 
 
 #include "../../dsdl-engine/DsdlEngine.h"
-
+#include "../../dsdl-engine/Particles.h"
 //#include "DsdlEngine.h"
 
 #include "GameDefines.h"
