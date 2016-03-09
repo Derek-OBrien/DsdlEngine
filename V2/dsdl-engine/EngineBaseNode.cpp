@@ -9,11 +9,11 @@ namespace DsdlEngine {
 	//Constructor
 	EngineBaseNode::EngineBaseNode() {
 
-		engineTexture = NULL;
+		m_engineTexture = NULL;
 		setEngineNodeType(NodeType::BASENODE);
 		m_frame = 0;
 		m_numFrames = 1;
-		opacity = 255;
+		m_opacity = 255;
 
 	}
 
@@ -31,31 +31,35 @@ namespace DsdlEngine {
 				renderAnimation(r);
 			}
 			else {
-				engineTexture->setAlpha(opacity);
-				engineTexture->render(position, size, r, m_currentFrame);
+				m_engineTexture->setAlpha(m_opacity);
+				m_engineTexture->render(m_position, m_size, r, m_currentFrame);
 			}
 		}
 
 		else if (nodeType == NodeType::LABEL) {
 
-			engineTexture->render(position, size, r);
+			m_engineTexture->render(m_position, m_size, r);
 		}
 		else if (nodeType == NodeType::BUTTON) {
 
-			engineTexture->render(position, size, r, m_currentFrame);
+			m_engineTexture->render(m_position, m_size, r, m_currentFrame);
 
 		}
 		else if (nodeType == NodeType::PARTICLE) {
 			
 		}
+
 	}
 
 
 	//Render Node as Animation
 	void EngineBaseNode::renderAnimation(SDL_Renderer* r) {
 		m_currentFrame = &m_gSpriteClips[m_frame / m_numFrames];
-		engineTexture->setAlpha(opacity);
-		engineTexture->render(position, size, r, m_currentFrame);
+		m_engineTexture->setAlpha(m_opacity);
+		if (m_CollisionShape != NULL) {
+			renderCollisionShape(r, m_CollisionShape);
+		}
+		m_engineTexture->render(m_position, m_size, r, m_currentFrame);
 		++m_frame;
 
 		if (m_frame / m_numFrames >= m_numFrames) {
@@ -67,11 +71,11 @@ namespace DsdlEngine {
 	//Load Node as engine texture
 	bool EngineBaseNode::load(SDL_Renderer * r) {
 
-		engineTexture = new ResourceTexture();
+		m_engineTexture = new ResourceTexture();
 
 		if (nodeType == NodeType::SPRITE || nodeType == NodeType::BUTTON) {
 
-			if (!engineTexture->loadFromFile(m_assetPath, r))
+			if (!m_engineTexture->loadFromFile(m_assetPath, r))
 				SDL_Log("Faild to load sprite");
 
 			else {
@@ -82,16 +86,16 @@ namespace DsdlEngine {
 				for (int i = 0; i < m_numFrames; i++) {
 					m_gSpriteClips[i].x = temp;
 					m_gSpriteClips[i].y = 0;
-					m_gSpriteClips[i].w = size.x_;
-					m_gSpriteClips[i].h = size.y_;
+					m_gSpriteClips[i].w = m_size.x_;
+					m_gSpriteClips[i].h = m_size.y_;
 
-					temp += size.x_;
+					temp += m_size.x_;
 				}
 
-				objectBoundingBox.x = position.x_;
-				objectBoundingBox.y = position.y_;
-				objectBoundingBox.w = size.x_;
-				objectBoundingBox.h = size.y_;
+				m_objectBoundingBox.x = m_position.x_;
+				m_objectBoundingBox.y = m_position.y_;
+				m_objectBoundingBox.w = m_size.x_;
+				m_objectBoundingBox.h = m_size.y_;
 
 			}
 			return true;
@@ -122,19 +126,18 @@ namespace DsdlEngine {
 			if (it == m_FontMap.end()) {
 
 				//open font
-				font = TTF_OpenFont(temp.c_str(), textSize);
-				if (font == NULL) {
+				m_font = TTF_OpenFont(temp.c_str(), m_textSize);
+				if (m_font == NULL) {
 					DEBUG_MSG("TTF_OpenFont Error : " + std::string(TTF_GetError()));
 				}
 
-				engineTexture->loadTTF(labelText, textColor, font, r);
+				m_engineTexture->loadTTF(m_labelText, m_textColor, m_font, r);
 
-				m_FontMap[temp] = font;
+				m_FontMap[temp] = m_font;
 			}
 			else {//create texture
-				font = it->second;
-				engineTexture->loadTTF(labelText, textColor, font, r);
-
+				m_font = it->second;
+				m_engineTexture->loadTTF(m_labelText, m_textColor, m_font, r);
 			}
 
 			return true;
@@ -145,10 +148,24 @@ namespace DsdlEngine {
 
 
 	void EngineBaseNode::setOpacity(int op) {
-		opacity = op;
+		m_opacity = op;
 	}
 
 	void EngineBaseNode::destroy() {
-		engineTexture->destroy();
+		m_engineTexture->destroy();
 	}
+
+
+	void EngineBaseNode::renderCollisionShape(SDL_Renderer* r, CollisionShape* shape) {
+
+		SDL_Rect collisionbox;
+		collisionbox.x = shape->getBody()->GetPosition().x;
+		collisionbox.y = shape->getBody()->GetPosition().y;
+		collisionbox.w = shape->getDimensions().x_;
+		collisionbox.h = shape->getDimensions().y_;
+
+		SDL_SetRenderDrawColor(r, 0, 255, 0, 255);
+		SDL_RenderDrawRect(r, &collisionbox);
+	}
+
 }

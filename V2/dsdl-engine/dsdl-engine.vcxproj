@@ -100,6 +100,7 @@
     <ClInclude Include="..\dependencies\tinyxml\tinyxml2.h" />
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="CollisionShape.h" />
     <ClInclude Include="DsdlEngine.h" />
     <ClInclude Include="EngineDefines.h" />
     <ClInclude Include="EngineError.h" />
@@ -125,6 +126,7 @@
     <ClCompile Include="..\dependencies\tinyxml\tinyxml2.cpp" />
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="CollisionShane.cpp" />
     <ClCompile Include="DsdlEngine.cpp" />
     <ClCompile Include="EngineError.cpp" />
     <ClCompile Include="EngineBaseNode.cpp" />

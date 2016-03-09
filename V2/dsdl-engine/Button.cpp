@@ -15,39 +15,40 @@ namespace DsdlEngine{
 
 	void Button::createTextButton(Vec2 pos, Size btnsize, std::string buttonText, std::string fontPath, SDL_Color color, SDL_Color bgColor){
 
-		size.y_ = btnsize.h_;
-		size.x_ =  buttonText.length() * btnsize.h_;
+		m_size.y_ = btnsize.h_;
+		m_size.x_ =  buttonText.length() * btnsize.h_;
 
-		position.x_ = pos.x_;
-		position.y_ = pos.y_;
+		m_position.x_ = pos.x_;
+		m_position.y_ = pos.y_;
 
-		buttonbg = bgColor;
+		m_buttonbg = bgColor;
 
-		labelText = buttonText;
-		textSize = btnsize.h_;
-		textColor = color;
+		m_labelText = buttonText;
+		m_textSize = btnsize.h_;
+		m_textColor = color;
 		setAssetPath(fontPath);
 
-		labelBorder.h = size.y_;
-		labelBorder.w = size.x_;
-		labelBorder.x = position.x_;
-		labelBorder.y = position.y_;
+		/*m_labelBorder.h = size.y_;
+		m_labelBorder.w = size.x_;
+		m_labelBorder.x = position.x_;
+		m_labelBorder.y = position.y_;
+		*/
 
 		m_label = new Label();
-		m_label->create(pos, labelText, textSize, textColor, fontPath);
+		m_label->create(pos, m_labelText, m_textSize, m_textColor, fontPath);
 	}
 
 
 	void Button::createSpriteButton(int width, int height, std::string imagePath){
-		size.y_ = height;
-		size.x_ = width;
+		m_size.y_ = height;
+		m_size.x_ = width;
 
 		setAssetPath(imagePath);
 
-		rect.h = size.y_;
-		rect.w = size.x_;
-		rect.x = position.x_;
-		rect.y = position.y_;
+		m_rect.h = m_size.y_;
+		m_rect.w = m_size.x_;
+		m_rect.x = m_position.x_;
+		m_rect.y = m_position.y_;
 
 		setEngineNodeType(NodeType::SPRITE);
 
@@ -95,16 +96,16 @@ namespace DsdlEngine{
 			bool inside = true;
 
 			//Check if mouse inside button
-			if (x < position.x_){
+			if (x < m_position.x_){
 				inside = false;
 			}
-			else if (x > position.x_ + size.y_){
+			else if (x > m_position.x_ + m_size.y_){
 				inside = false;
 			}
-			else if (y < position.y_){
+			else if (y < m_position.y_){
 				inside = false;
 			}
-			else if (y > position.y_ + size.x_){
+			else if (y > m_position.y_ + m_size.x_){
 				inside = false;
 			}
 

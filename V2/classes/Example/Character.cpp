@@ -10,14 +10,11 @@ Character::~Character(){};
 void Character::init(b2World* world){
 
 	m_sprite = new Sprite();
+	std::string player = XmlLocalStorage::getInstance()->getStringForKey("selectedPlayer").c_str();
 	
-	m_sprite->create(90, 125, XmlLocalStorage::getInstance()->getStringForKey(XmlLocalStorage::getInstance()->getStringForKey("selectedPlayer").c_str()), 14);
+	m_sprite->createWithPhysics(world, Vec2(90,125), Vec2(150,820), XmlLocalStorage::getInstance()->getStringForKey(player.c_str()),14,1.0f,0.0f,true);
 	
-	m_sprite->setPosition(Vec2(150, 820));
-
-	m_capsule.init(world,m_sprite->getPosition(), m_sprite->getContentSize(),1.0f,0.0f,true );
-
-	m_body = m_capsule.getBody();
+	m_body = m_sprite->getCollisionBody();
 }
 
 
@@ -39,10 +36,10 @@ void Character::update(InputManager& inputManager){
 
 void Character::jump() {
 	setPlayerState(JUMPING);
-	//int x = m_sprite->getPosition().y_;
+	int x = m_sprite->getPosition().y_;
 
-	//int pos = x -= 300;
-	//m_sprite->setPositionY(pos);
+	int pos = x -= 300;
+	m_sprite->setPositionY(pos);
 
 	
 
@@ -53,10 +50,10 @@ void Character::jump() {
 
 void Character::slide() {
 	setPlayerState(SLIDING);
-	/*int x = m_sprite->getPosition().y_;
+	int x = m_sprite->getPosition().y_;
 
 	int pos = x += 300;
-	m_sprite->setPositionY(pos);*/
+	m_sprite->setPositionY(pos);
 
 
 	m_body->ApplyForceToCenter(b2Vec2(200.0, 0.0), true);

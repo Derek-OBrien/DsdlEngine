@@ -1,10 +1,8 @@
 #pragma once
 #include "../../dsdl-engine/DsdlEngine.h"
 #include "GameDefines.h"
-#include "ColisionCapsule.h"
 
 USING_NS_DSDL;
-
 
 class Character : public DsdlEngine::Sprite{
 
@@ -28,14 +26,10 @@ public:
 	int getPlayerState() { return currentState; };	//Get current palyer state
 	void setPlayerState(EPlayerState state) { currentState = (EPlayerState)state; };	//Set player state
 
-	const CollisionCapsule& getCapsule() const { return m_capsule; }
-
-
 private:
 	Vec2 m_position;
 	Vec2 m_size;
 
 	EPlayerState currentState;
 
-	CollisionCapsule m_capsule;
 };

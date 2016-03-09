@@ -13,19 +13,14 @@ namespace DsdlEngine{
 
 	void Label::create(Vec2 pos, std::string text, int txtsize, SDL_Color color, std::string fontFilePath){
 
-		labelText = text;
-		textSize = txtsize;
-		textColor = color;
+		m_labelText = text;
+		m_textSize = txtsize;
+		m_textColor = color;
+
 		setAssetPath(fontFilePath);
 
-		position.x_ = pos.x_;
-		position.y_ = pos.y_;
-
-
-		labelBorder.h = txtsize;
-		labelBorder.w = text.length() * txtsize;
-		labelBorder.x = position.x_;
-		labelBorder.y = position.y_;
+		m_position.x_ = pos.x_;
+		m_position.y_ = pos.y_;
 	}
 
 

@@ -14,6 +14,7 @@ void Enemy::createEnemy(b2World* world, Vec2 position){
 	m_enemySprite = new Sprite();
 	
 	m_enemySprite->create(63, 33, XmlLocalStorage::getInstance()->getStringForKey("enemy"), 6);
+	
 	m_enemySprite->setPosition(Vec2(position.x_, position.y_));
 
 

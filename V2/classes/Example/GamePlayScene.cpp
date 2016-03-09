@@ -67,7 +67,6 @@ void GamePlayScene::onEntryScene(){
 	//Add Character
 	m_player = new Character();
 	m_player->init(world);
-
 	layer->addNodeToLayer(m_player->m_sprite);
 
 	//Add Enemy
@@ -76,29 +75,27 @@ void GamePlayScene::onEntryScene(){
 	generateEnemy(Vec2(20, 20));
 
 	//Add Coins
-	coin = new Coins();
-	generateCoins(Vec2(10, 10));
+	//coin = new Coins();
+	//generateCoins(Vec2(10, 10));
 
 	//Add Middle Ground
-	mg = new ScrollingBg();
-	mg->create(XmlLocalStorage::getInstance()->getStringForKey("gamemg"));
+	//mg = new ScrollingBg();
+	//mg->create(XmlLocalStorage::getInstance()->getStringForKey("gamemg"));
 	//layer->addNodeToLayer(mg->bg);
 
 
-	fg = new ScrollingBg();
-	fg->create(XmlLocalStorage::getInstance()->getStringForKey("gamefg"));
-	fg->bg->setOpacity(120);
+	//fg = new ScrollingBg();
+	//fg->create(XmlLocalStorage::getInstance()->getStringForKey("gamefg"));
+	//fg->bg->setOpacity(120);
 	//layer->addNodeToLayer(fg->bg);
 
 	//Add box2d boxes to render them (Debug only)
 	layer->addBox2dNodes(groundBody);
-	layer->addBox2dNodes(m_player->getCapsule().getBody());
+	//layer->addBox2dNodes(m_player->m_sprite->getCollisionBody());
 	
 	//Add Layer to Scene
 	addLayerToScene(layer);
-
 	addLayerToScene(hud->createHud());
-
 }
 
 void GamePlayScene::onExitScene(){
@@ -110,8 +107,8 @@ void GamePlayScene::updateScene(){
 	world->Step(timeStep, velocityIterations, positionIterations);
 
 	///Process Input
-	this->onInput();
-	m_player->update(m_game->m_InputManager);
+	//onInput();
+	//m_player->update(m_game->m_InputManager);
 
 
 	hud->updateScore();

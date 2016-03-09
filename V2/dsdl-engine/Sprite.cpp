@@ -12,27 +12,36 @@ namespace DsdlEngine{
 	void Sprite::create(int w, int h, std::string path){
 		setAssetPath(path);
 
-		size.x_ = w;
-		size.y_ = h;
+		m_size.x_ = w;
+		m_size.y_ = h;
 	}
 
 
 	void Sprite::create(int w, int h, std::string path, int nf){
 		setAssetPath(path);
 
-		size.x_ = w;
-		size.y_ = h;
+		m_size.x_ = w;
+		m_size.y_ = h;
 		m_numFrames = nf;
 	}
 
 
-	void Sprite::createWithPhysics(Size spriteSize, std::string path, int numFrames) {
+	void Sprite::createWithPhysics(b2World* world, Vec2 spriteSize, Vec2 position, std::string path, int numFrames, float den, float fri, bool FixedRotation) {
 		setAssetPath(path);
 
-		size.x_ = spriteSize.w_;
-		size.y_ = spriteSize.h_;
+		m_size.x_ = spriteSize.x_;
+		m_size.y_ = spriteSize.y_;
+		
+		m_position.x_ = position.x_;
+		m_position.y_ = position.y_;
+
+		setPosition(position);
+
 		m_numFrames = numFrames;
 
+		m_CollisionShape = new CollisionShape();
+
+		m_CollisionShape->init(world, position, spriteSize, den, fri, FixedRotation);
 	}
 
 	void Sprite::destroy(){
