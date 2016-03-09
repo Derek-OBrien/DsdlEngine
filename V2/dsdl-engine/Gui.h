@@ -29,12 +29,14 @@ namespace DsdlEngine{
 
 		std::vector<EngineBaseNode*> GUIElements;
 
+		Button* getButton() { return m_btn; }
+		std::string getButtonName() { return buttonName; }
 
-		Button* m_btn;
-		std::string buttonName;
-	private:
+	protected:
 
 		Label* m_label;
+		Button* m_btn;
+		std::string buttonName;
 	};
 }
 

@@ -120,9 +120,9 @@ namespace DsdlEngine{
 			for (size_t i = 0; i < sceneLayers.size(); i++) {
 				sceneLayers.at(i)->drawNodes(r);
 			}
-			for (size_t i = 0; i < sceneLayers.size(); i++) {
+			/*for (size_t i = 0; i < sceneLayers.size(); i++) {
 				sceneLayers.at(i)->drawBox2dNodes(r);
-			}
+			}*/
 		}
 		
 	protected:

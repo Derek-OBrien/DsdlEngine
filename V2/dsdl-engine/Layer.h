@@ -8,6 +8,10 @@ namespace DsdlEngine{
 	class Layer : public EngineBaseNode
 	{
 	public:
+
+		friend class Gui;
+
+
 		Layer ();
 		virtual ~Layer ();
 

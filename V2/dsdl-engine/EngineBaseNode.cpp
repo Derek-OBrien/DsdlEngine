@@ -41,9 +41,7 @@ namespace DsdlEngine {
 			m_engineTexture->render(m_position, m_size, r);
 		}
 		else if (nodeType == NodeType::BUTTON) {
-
-			m_engineTexture->render(m_position, m_size, r, m_currentFrame);
-
+				m_engineTexture->render(m_position, m_size, r, m_currentFrame);
 		}
 		else if (nodeType == NodeType::PARTICLE) {
 			
@@ -56,9 +54,9 @@ namespace DsdlEngine {
 	void EngineBaseNode::renderAnimation(SDL_Renderer* r) {
 		m_currentFrame = &m_gSpriteClips[m_frame / m_numFrames];
 		m_engineTexture->setAlpha(m_opacity);
-		if (m_CollisionShape != NULL) {
+	/*	if (m_CollisionShape != NULL) {
 			renderCollisionShape(r, m_CollisionShape);
-		}
+		}*/
 		m_engineTexture->render(m_position, m_size, r, m_currentFrame);
 		++m_frame;
 
@@ -144,6 +142,10 @@ namespace DsdlEngine {
 		}
 		else
 			return false;
+	}
+
+	void EngineBaseNode::updateLabelText(std::string text) {
+		m_labelText = text; 
 	}
 
 

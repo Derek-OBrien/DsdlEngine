@@ -21,7 +21,7 @@ Layer* HudLayer::createHud() {
 	gui = new DsdlEngine::DsdlGui();
 	score = 0;
 	coinCount = 0;
-	scoreText = " ";
+	scoreText = "0";
 	coinText = "Coins";
 
 	coinLabel->create(Vec2(20, 50), coinText.c_str(), 60, SDL_Color{ 0,255,255 }, "fonts/font.ttf");

@@ -52,6 +52,7 @@ namespace DsdlEngine{
 		for (size_t i = 0; i < layerNodes.size(); i++){
 
 			if (layerNodes.at(i)->getNodeType() == NodeType::LABEL) {
+				layerNodes.at(i)->destroy();
 				layerNodes.at(i)->load(r);
 			}
 

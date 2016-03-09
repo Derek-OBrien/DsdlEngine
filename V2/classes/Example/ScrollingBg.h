@@ -15,7 +15,7 @@ public:
 	void update();
 	void destroy();
 
-	Sprite* bg;
+	Sprite* scrollingImage;
 	int pos;
 private:
 

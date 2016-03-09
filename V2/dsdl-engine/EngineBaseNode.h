@@ -63,7 +63,7 @@ namespace DsdlEngine {
 		ResourceTexture* getEngineTexture() { return m_engineTexture; }
 
 		//Update LabelText
-		void updateLabelText(std::string text) { m_labelText = text; }
+		void updateLabelText(std::string text);
 
 	protected:
 

@@ -89,14 +89,14 @@ void MainMenuScene::onInput() {
 
 		switch (evnt.type){
 		case SDL_MOUSEBUTTONDOWN:
-			if (gui->m_btn->m_eCurrentState == ButtonState::PRESSED) {
+			if (gui->getButton()->m_eCurrentState == ButtonState::PRESSED) {
 
-				if (gui->buttonName == "player2") {
+				if (gui->getButtonName() == "player2") {
 					onNewGameClicked();
 					XmlLocalStorage* db = XmlLocalStorage::getInstance();
 					db->setStringForKey("player2", "selectedPlayer");
 				}
-				if (gui->buttonName == "player1") {
+				if (gui->getButtonName() == "player1") {
 					onNewGameClicked();
 					XmlLocalStorage* db = XmlLocalStorage::getInstance();
 					db->setStringForKey("player2", "selectedPlayer");

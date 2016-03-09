@@ -10,10 +10,10 @@ ScrollingBg::~ScrollingBg(){}
 
 void ScrollingBg::create(std::string path) {
 
-	bg = new Sprite();
+	scrollingImage = new Sprite();
 
-	bg->create(3840, 1080, path);
-	bg->setPosition(Vec2::ZERO);
+	scrollingImage->create(3840, 1080, path);
+	scrollingImage->setPosition(Vec2::ZERO);
 
 	pos = 0;
 }
@@ -22,15 +22,15 @@ void ScrollingBg::create(std::string path) {
 void ScrollingBg::update() {
 
 	pos -= 3;
-	if (pos < -bg->getContentSize().x_){
+	if (pos < -scrollingImage->getContentSize().x_){
 		pos = 0;
 	}
-	bg->setPositionX(pos);
+	scrollingImage->setPositionX(pos);
 
 }
 
 
 
 void ScrollingBg::destroy() {
-	bg->destroy();
+	scrollingImage->destroy();
 }

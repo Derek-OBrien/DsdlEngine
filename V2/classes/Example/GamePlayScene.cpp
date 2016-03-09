@@ -34,7 +34,6 @@ void GamePlayScene::onEntryScene(){
 	
 	//Create Layer
 	layer = new Layer();
-	fgLayer = new Layer();
 	hud = new HudLayer();
 
 	//Add Audio Manager
@@ -59,9 +58,9 @@ void GamePlayScene::onEntryScene(){
 
 	
 	//Add Background
-	bg = new ScrollingBg();
-	bg->create(XmlLocalStorage::getInstance()->getStringForKey("gamebg"));
-	layer->addNodeToLayer(bg->bg);
+	//bg = new ScrollingBg();
+	//bg->create("DemoGame/backgrounds/bg_city.png");
+	//layer->addNodeToLayer(bg->scrollingImage);
 
 
 	//Add Character
@@ -70,9 +69,9 @@ void GamePlayScene::onEntryScene(){
 	layer->addNodeToLayer(m_player->m_sprite);
 
 	//Add Enemy
-	enemy = new Enemy();
-	m_enemyFactory = new Factory();
-	generateEnemy(Vec2(20, 20));
+	//enemy = new Enemy();
+	//m_enemyFactory = new Factory();
+	//generateEnemy(Vec2(20, 20));
 
 	//Add Coins
 	//coin = new Coins();
@@ -90,8 +89,7 @@ void GamePlayScene::onEntryScene(){
 	//layer->addNodeToLayer(fg->bg);
 
 	//Add box2d boxes to render them (Debug only)
-	layer->addBox2dNodes(groundBody);
-	//layer->addBox2dNodes(m_player->m_sprite->getCollisionBody());
+	//layer->addBox2dNodes(groundBody);
 	
 	//Add Layer to Scene
 	addLayerToScene(layer);
@@ -114,11 +112,11 @@ void GamePlayScene::updateScene(){
 	hud->updateScore();
 
 	///Update Game Elements
-	bg->update();
-	mg->update();
-	fg->update();
+	//bg->update();
+//	mg->update();
+//	fg->update();
 
-	EnemyManager::GetInstance()->update();
+	//EnemyManager::GetInstance()->update();
 }
 
 
