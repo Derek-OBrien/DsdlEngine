@@ -13,6 +13,10 @@ namespace DsdlEngine{
 
 
 
+	/*
+		Destroy layer nodes 
+		and cleanup
+	*/
 	void Layer::destroy(){
 
 		for (size_t i = 0; i < layerNodes.size(); i++) {

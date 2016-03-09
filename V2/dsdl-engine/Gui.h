@@ -4,6 +4,7 @@
 
 #include "EngineDefines.h"
 #include "Layer.h"
+#include "IScene.h"
 
 namespace DsdlEngine{
 
@@ -17,7 +18,7 @@ namespace DsdlEngine{
 		virtual ~DsdlGui();
 
 
-		void addButton(ButtonType type, std::string name, Vec2 pos, Size size, std::string path, SDL_Color color, SDL_Color bgColor, const char* text = NULL);
+		void addButton(ButtonType type, std::string name, Vec2 pos, Size size, std::string path, SDL_Color color, SDL_Color bgColor, /*dsdlCallBack callback,*/ const char* text = NULL);
 
 		void addLabel(LableType type, Vec2 pos, std::string text, int fontSize, SDL_Color color, std::string fontFilePath);
 
@@ -27,16 +28,18 @@ namespace DsdlEngine{
 
 		void destroy();
 
-		std::vector<EngineBaseNode*> GUIElements;
+		std::vector<Button*> GUIElements;
 
 		Button* getButton() { return m_btn; }
-		std::string getButtonName() { return buttonName; }
+		//std::string getButtonName() { return buttonName; }
 
 	protected:
 
 		Label* m_label;
 		Button* m_btn;
-		std::string buttonName;
+		//std::string buttonName;
+
+		//dsdlCallBack m_callback;
 	};
 }
 

@@ -39,11 +39,13 @@ namespace DsdlEngine{
 	}
 
 
-	void Button::createSpriteButton(int width, int height, std::string imagePath){
+	void Button::createSpriteButton(int width, int height, std::string imagePath, std::string name){
 		m_size.y_ = height;
 		m_size.x_ = width;
 
 		setAssetPath(imagePath);
+
+		m_buttonName = name;
 
 		m_rect.h = m_size.y_;
 		m_rect.w = m_size.x_;
@@ -68,19 +70,10 @@ namespace DsdlEngine{
 		m_eCurrentState = ButtonState::NORMAL;
 	}
 
-	Uint32 callback(Uint32 interval, void* func) {
-		return ((class IScene *)func)->getNextSceneIndex();
-	}
-
-
 	//Set State to Pressd, Preform Action
 	void Button::onClicked(){
 		m_eCurrentState = ButtonState::PRESSED;
 		SDL_Log("Pressed button");
-
-		//Set callback
-		CallBackTimer timerID = SDL_AddTimer(3 * 1000, callback, this);
-
 	}
 
 	//Check for mouse input on a button
@@ -88,7 +81,6 @@ namespace DsdlEngine{
 
 		//check if mouse over button
 		if (e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_MOUSEBUTTONUP || e.type == SDL_MOUSEBUTTONUP){
-			SDL_Log("Checking if mouse over button");
 			int x, y;
 			SDL_GetMouseState(&x, &y);
 	

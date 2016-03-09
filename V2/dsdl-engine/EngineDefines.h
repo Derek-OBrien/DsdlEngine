@@ -30,7 +30,6 @@
 #include "EngineMath.h"
 #include "EngineMaster.h"
 
-
 //Set Macro Defines for Namespace
 #define USING_NS_DSDL	using namespace DsdlEngine
 #define NS_DSDL_START	namespace DsdlEngine{
@@ -62,7 +61,9 @@ enum class LableType {
 };
 
 ///Callback Functions
-#define CALLBACK_1(__selector__,__target__, ...) std::bind(&__selector__,__target__, std::placeholders::_1, ##__VA_ARGS__)
+typedef void(*func)() ;
+typedef void(*func_type)(void);
+typedef std::function<void(func*)> dsdlCallBack;
 
 
 ///Set callback
@@ -85,4 +86,4 @@ typedef SDL_TimerCallback CallBack;
 
 #define GRAVITYSCALE 9.0f
 
-#endif
+#endif //!_ENGINEDEFINES_

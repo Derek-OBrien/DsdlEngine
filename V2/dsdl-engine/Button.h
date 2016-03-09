@@ -19,7 +19,7 @@ namespace DsdlEngine{
 
 		void createTextButton(Vec2 pos, Size size, std::string buttonText, std::string fontPath, SDL_Color textColor, SDL_Color bgColor);
 
-		void createSpriteButton(int width, int height, std::string imagePath);
+		void createSpriteButton(int width, int height, std::string imagePath, std::string name);
 
 		//Set State to Hovering
 		void onMouseEnters();
@@ -35,6 +35,7 @@ namespace DsdlEngine{
 
 		void destroy();
 
+		std::string getButtonName() { return m_buttonName; }
 
 		ButtonState m_eCurrentState;// = ButtonState::NORMAL;
 	private:
@@ -43,6 +44,7 @@ namespace DsdlEngine{
 		Label* m_label;
 		Sprite* m_spriteBtn;
 
+		std::string m_buttonName;
 		/*SDL_Rect rect;
 		SDL_Color buttonbg;
 		int m_BtnHeight;

@@ -51,6 +51,7 @@ void MainMenuScene::onEntryScene(){
 		XmlLocalStorage::getInstance()->getStringForKey("player1btn"),
 		SDL_Color{ NULL },
 		SDL_Color{ NULL },
+		//dsdlCallBack(&MainMenuScene::onNewGameClicked, this),
 		NULL
 		);
 
@@ -62,6 +63,7 @@ void MainMenuScene::onEntryScene(){
 		XmlLocalStorage::getInstance()->getStringForKey("player2btn"),
 		SDL_Color{ NULL },
 		SDL_Color{ NULL },
+		//dsdlCallBack(&MainMenuScene::onNewGameClicked, this),
 		NULL
 		);
 
@@ -89,20 +91,26 @@ void MainMenuScene::onInput() {
 
 		switch (evnt.type){
 		case SDL_MOUSEBUTTONDOWN:
-			if (gui->getButton()->m_eCurrentState == ButtonState::PRESSED) {
+			for (size_t i = 0; i < gui->GUIElements.size(); i++)
+			{
 
-				if (gui->getButtonName() == "player2") {
-					onNewGameClicked();
-					XmlLocalStorage* db = XmlLocalStorage::getInstance();
-					db->setStringForKey("player2", "selectedPlayer");
-				}
-				if (gui->getButtonName() == "player1") {
-					onNewGameClicked();
-					XmlLocalStorage* db = XmlLocalStorage::getInstance();
-					db->setStringForKey("player2", "selectedPlayer");
+
+				if (gui->GUIElements.at(i)->m_eCurrentState == ButtonState::PRESSED) {
+
+				
+					if (gui->GUIElements.at(i)->getButtonName() == "player2") {
+						onNewGameClicked();
+						XmlLocalStorage* db = XmlLocalStorage::getInstance();
+						db->setStringForKey("player2", "selectedPlayer");
+					}
+					if (gui->GUIElements.at(i)->getButtonName() == "player1") {
+						onNewGameClicked();
+						XmlLocalStorage* db = XmlLocalStorage::getInstance();
+						db->setStringForKey("player1", "selectedPlayer");
+					}
 				}
 			}
-				
+
 			break;
 		default:
 			break;
