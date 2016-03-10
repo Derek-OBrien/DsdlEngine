@@ -26,7 +26,7 @@ int GamePlayScene::getPreviousSceneIndex() const{
 void GamePlayScene::destroyScene(){
 	//Destroy Layer and all its nodes
 	layer->destroy();
-	EnemyManager::GetInstance()->destroy();
+	Spawner::GetInstance()->destroy();
 
 }
 
@@ -45,7 +45,7 @@ void GamePlayScene::onEntryScene(){
 	b2Vec2 gravity(0.0f, 50.0f);
 	
 	world = new b2World(gravity);
-	//world->SetContactListener(&collisionManager);
+	world->SetContactListener(&collisionManager);
 
 	// Define the ground body.
 	groundBodyDef = new b2BodyDef();
@@ -53,14 +53,14 @@ void GamePlayScene::onEntryScene(){
 	groundBody = world->CreateBody(groundBodyDef);
 
 	groundBox = new b2PolygonShape();
-	groundBox->SetAsBox(GAME_WIDTH , 10.0f );
+	groundBox->SetAsBox(GAME_WIDTH , 20.0f );
 	groundBody->CreateFixture(groundBox, 0.0);
 
 	
 	//Add Background
-	//bg = new ScrollingBg();
-	//bg->create("DemoGame/backgrounds/bg_city.png");
-	//layer->addNodeToLayer(bg->scrollingImage);
+	bg = new ScrollingBg();
+	bg->create(XmlLocalStorage::getInstance()->getStringForKey("gamebg"));
+	layer->addNodeToLayer(bg->scrollingImage);
 
 
 	//Add Character
@@ -68,29 +68,24 @@ void GamePlayScene::onEntryScene(){
 	m_player->init(world);
 	layer->addNodeToLayer(m_player->m_sprite);
 
-	//Add Enemy
-	//enemy = new Enemy();
-	//m_enemyFactory = new Factory();
-	//generateEnemy(Vec2(20, 20));
-
-	//Add Coins
-	//coin = new Coins();
-	//generateCoins(Vec2(10, 10));
+	//Add Enemy & Coins
+	
+	Spawner::GetInstance()->FillEnemyVec(world, layer);
 
 	//Add Middle Ground
-	//mg = new ScrollingBg();
-	//mg->create(XmlLocalStorage::getInstance()->getStringForKey("gamemg"));
-	//layer->addNodeToLayer(mg->bg);
+	mg = new ScrollingBg();
+	mg->create(XmlLocalStorage::getInstance()->getStringForKey("gamemg"));
+	layer->addNodeToLayer(mg->scrollingImage);
 
 
-	//fg = new ScrollingBg();
-	//fg->create(XmlLocalStorage::getInstance()->getStringForKey("gamefg"));
-	//fg->bg->setOpacity(120);
-	//layer->addNodeToLayer(fg->bg);
+	fg = new ScrollingBg();
+	fg->create(XmlLocalStorage::getInstance()->getStringForKey("gamefg"));
+	fg->scrollingImage->setOpacity(120);
+	layer->addNodeToLayer(fg->scrollingImage);
 
 	//Add box2d boxes to render them (Debug only)
 	//layer->addBox2dNodes(groundBody);
-	
+
 	//Add Layer to Scene
 	addLayerToScene(layer);
 	addLayerToScene(hud->createHud());
@@ -105,18 +100,19 @@ void GamePlayScene::updateScene(){
 	world->Step(timeStep, velocityIterations, positionIterations);
 
 	///Process Input
-	//onInput();
-	//m_player->update(m_game->m_InputManager);
+	onInput();
+	m_player->update(m_game->m_InputManager);
 
 
 	hud->updateScore();
 
 	///Update Game Elements
-	//bg->update();
-//	mg->update();
-//	fg->update();
+	bg->update();
+	mg->update();
+	fg->update();
 
-	//EnemyManager::GetInstance()->update();
+	Spawner::GetInstance()->update();
+	
 }
 
 
@@ -125,14 +121,14 @@ void GamePlayScene::onInput() {
 
 	while (SDL_PollEvent(&evnt)) {
 
-		//hud->onInput(m_game);
+		hud->onInput(m_game);
 		m_game->onSDLEvent(evnt);
 		
 	}
 }
 
 
-void GamePlayScene::generateEnemy(Vec2 position) {
+/*void GamePlayScene::generateEnemy(Vec2 position) {
 	
 	Vec2 pos;
 	for (int i = 0; i < 5; i++) {
@@ -142,7 +138,7 @@ void GamePlayScene::generateEnemy(Vec2 position) {
 			pos.y_ = GAME_HEIGHT - 550;
 
 			enemy = m_enemyFactory->createEnemy(world, pos);
-			EnemyManager::GetInstance()->AddEnemy(enemy);
+			Spawner::GetInstance()->AddEnemy(enemy);
 			layer->addNodeToLayer(enemy->m_enemySprite);
 			layer->addBox2dNodes(enemy->m_body);
 
@@ -152,7 +148,7 @@ void GamePlayScene::generateEnemy(Vec2 position) {
 			pos.y_ = GAME_HEIGHT - 300;
 			enemy = m_enemyFactory->createEnemy(world, pos);
 
-			EnemyManager::GetInstance()->AddEnemy(enemy);
+			Spawner::GetInstance()->AddEnemy(enemy);
 			layer->addNodeToLayer(enemy->m_enemySprite);
 			layer->addBox2dNodes(enemy->m_body);
 
@@ -162,7 +158,7 @@ void GamePlayScene::generateEnemy(Vec2 position) {
 			pos.y_ = GAME_HEIGHT - 180;
 			enemy = m_enemyFactory->createEnemy(world, pos);
 
-			EnemyManager::GetInstance()->AddEnemy(enemy);
+			Spawner::GetInstance()->AddEnemy(enemy);
 			layer->addNodeToLayer(enemy->m_enemySprite);
 			layer->addBox2dNodes(enemy->m_body);
 
@@ -172,7 +168,7 @@ void GamePlayScene::generateEnemy(Vec2 position) {
 			pos.y_ = GAME_HEIGHT - 450;
 			enemy = m_enemyFactory->createEnemy(world, pos);
 
-			EnemyManager::GetInstance()->AddEnemy(enemy);
+			Spawner::GetInstance()->AddEnemy(enemy);
 			layer->addNodeToLayer(enemy->m_enemySprite);
 			layer->addBox2dNodes(enemy->m_body);
 
@@ -183,7 +179,7 @@ void GamePlayScene::generateEnemy(Vec2 position) {
 
 			enemy = m_enemyFactory->createEnemy(world, pos);
 
-			EnemyManager::GetInstance()->AddEnemy(enemy);
+			Spawner::GetInstance()->AddEnemy(enemy);
 			layer->addNodeToLayer(enemy->m_enemySprite);
 			layer->addBox2dNodes(enemy->m_body);
 
@@ -194,7 +190,7 @@ void GamePlayScene::generateEnemy(Vec2 position) {
 
 			enemy = m_enemyFactory->createEnemy(world, pos);
 
-			EnemyManager::GetInstance()->AddEnemy(enemy);
+			Spawner::GetInstance()->AddEnemy(enemy);
 			layer->addNodeToLayer(enemy->m_enemySprite);
 			layer->addBox2dNodes(enemy->m_body);
 
@@ -203,8 +199,8 @@ void GamePlayScene::generateEnemy(Vec2 position) {
 			break;
 		}
 	}
-}
-
+}*/
+/**
 void GamePlayScene::generateCoins(Vec2 position) {
 
 	Vec2 pos;
@@ -218,7 +214,7 @@ void GamePlayScene::generateCoins(Vec2 position) {
 		
 			coin = m_enemyFactory->createCoin(world, pos);
 
-			EnemyManager::GetInstance()->AddCoin(coin);
+			Spawner::GetInstance()->AddCoin(coin);
 			layer->addNodeToLayer(coin->m_coinSprite);
 			layer->addBox2dNodes(coin->m_body);
 
@@ -230,7 +226,7 @@ void GamePlayScene::generateCoins(Vec2 position) {
 
 			coin = m_enemyFactory->createCoin(world, pos);
 
-			EnemyManager::GetInstance()->AddCoin(coin);
+			Spawner::GetInstance()->AddCoin(coin);
 			layer->addNodeToLayer(coin->m_coinSprite);
 			layer->addBox2dNodes(coin->m_body);
 			break;
@@ -241,7 +237,7 @@ void GamePlayScene::generateCoins(Vec2 position) {
 
 			coin = m_enemyFactory->createCoin(world, pos);
 
-			EnemyManager::GetInstance()->AddCoin(coin);
+			Spawner::GetInstance()->AddCoin(coin);
 			layer->addNodeToLayer(coin->m_coinSprite);
 			layer->addBox2dNodes(coin->m_body);
 			break;
@@ -252,7 +248,7 @@ void GamePlayScene::generateCoins(Vec2 position) {
 
 			coin = m_enemyFactory->createCoin(world, pos);
 
-			EnemyManager::GetInstance()->AddCoin(coin);
+			Spawner::GetInstance()->AddCoin(coin);
 			layer->addNodeToLayer(coin->m_coinSprite);
 			layer->addBox2dNodes(coin->m_body);
 			break;
@@ -263,7 +259,7 @@ void GamePlayScene::generateCoins(Vec2 position) {
 
 			coin = m_enemyFactory->createCoin(world, pos);
 
-			EnemyManager::GetInstance()->AddCoin(coin);
+			Spawner::GetInstance()->AddCoin(coin);
 			layer->addNodeToLayer(coin->m_coinSprite);
 			layer->addBox2dNodes(coin->m_body);
 			break;
@@ -274,7 +270,7 @@ void GamePlayScene::generateCoins(Vec2 position) {
 
 			coin = m_enemyFactory->createCoin(world, pos);
 
-			EnemyManager::GetInstance()->AddCoin(coin);
+			Spawner::GetInstance()->AddCoin(coin);
 			layer->addNodeToLayer(coin->m_coinSprite);
 			layer->addBox2dNodes(coin->m_body);
 			break;
@@ -284,3 +280,4 @@ void GamePlayScene::generateCoins(Vec2 position) {
 	}
 
 }
+*/

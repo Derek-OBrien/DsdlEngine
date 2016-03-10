@@ -27,13 +27,13 @@ namespace DsdlEngine {
 	//Render Node
 	void EngineBaseNode::render(SDL_Renderer* r) {
 		if (nodeType == NodeType::SPRITE) {
-			if (m_numFrames > 1) {
+			//if (m_numFrames > 1) {
 				renderAnimation(r);
-			}
+			/*}
 			else {
 				m_engineTexture->setAlpha(m_opacity);
 				m_engineTexture->render(m_position, m_size, r, m_currentFrame);
-			}
+			}*/
 		}
 
 		else if (nodeType == NodeType::LABEL) {

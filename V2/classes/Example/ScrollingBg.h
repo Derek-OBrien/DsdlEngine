@@ -17,6 +17,8 @@ public:
 
 	Sprite* scrollingImage;
 	int pos;
+
+	std::vector<Sprite*> bacgrounds;
 private:
 
 };

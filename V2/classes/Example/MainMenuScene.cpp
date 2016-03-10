@@ -93,11 +93,8 @@ void MainMenuScene::onInput() {
 		case SDL_MOUSEBUTTONDOWN:
 			for (size_t i = 0; i < gui->GUIElements.size(); i++)
 			{
-
-
 				if (gui->GUIElements.at(i)->m_eCurrentState == ButtonState::PRESSED) {
 
-				
 					if (gui->GUIElements.at(i)->getButtonName() == "player2") {
 						onNewGameClicked();
 						XmlLocalStorage* db = XmlLocalStorage::getInstance();

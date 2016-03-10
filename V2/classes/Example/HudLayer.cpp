@@ -31,16 +31,18 @@ Layer* HudLayer::createHud() {
 	scoreLabel->create(Vec2(GAME_WIDTH / 2, 50), scoreText.c_str(), 70, SDL_Color{ 0,255,255 }, "fonts/font.ttf");
 	gui->addPreDefineLabel(scoreLabel, LableType::LABEL_DYNAMIC);
 
-	/*gui->addButton(
-		ButtonType::SPRITE_BTN, 
-		Vec2(GAME_WIDTH - 300, 100), 
-		Size(64, 64), 
-		"DemoGame/menu_hud_items/pausebutton.png", 
+	gui->addButton(
+		ButtonType::SPRITE_BTN,
+		"pause",
+		Vec2(GAME_WIDTH - 300, 60),
+		Size(64, 64),
+		XmlLocalStorage::getInstance()->getStringForKey("pause"),
 		SDL_Color{ NULL },
 		SDL_Color{ NULL },
+		//dsdlCallBack(&MainMenuScene::onNewGameClicked, this),
 		NULL
 		);
-	*/
+	
 
 	return gui;
 }
@@ -53,9 +55,15 @@ void HudLayer::onInput(IMainGame* game) {
 
 		switch (evnt.type) {
 		case SDL_MOUSEBUTTONDOWN:
-			/*if (gui->m_btn->m_eCurrentState == ButtonState::PRESSED) {
-				pauseGame(game);
-			}*/	
+			for (size_t i = 0; i < gui->GUIElements.size(); i++)
+			{
+				if (gui->GUIElements.at(i)->m_eCurrentState == ButtonState::PRESSED) {
+
+					if (gui->GUIElements.at(i)->getButtonName() == "pause") {
+						pauseGame(game);
+					}
+				}
+			}
 			break;
 		default:
 			break;

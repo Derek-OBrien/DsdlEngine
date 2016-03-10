@@ -16,6 +16,8 @@ void ScrollingBg::create(std::string path) {
 	scrollingImage->setPosition(Vec2::ZERO);
 
 	pos = 0;
+	
+	bacgrounds.push_back(scrollingImage);
 }
 
 

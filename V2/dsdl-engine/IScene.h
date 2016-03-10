@@ -103,6 +103,7 @@ namespace DsdlEngine{
 		//Vector to hold Game Layers
 		//Each Layer Contains Vector of game nodes
 		std::vector<Layer*> sceneLayers;
+
 		void addLayerToScene(Layer* layer) {
 			sceneLayers.push_back(layer);
 		}

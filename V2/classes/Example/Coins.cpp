@@ -1,10 +1,10 @@
 #include "Coins.h"
-Coins::Coins()
-{
+Coins::Coins(){
+	//Empty
 }
 
-Coins::~Coins()
-{
+Coins::~Coins(){
+	//Empty
 }
 
 
@@ -12,7 +12,7 @@ void Coins::createCoin(b2World* world, Vec2 position) {
 
 	m_coinSprite = new Sprite();
 
-	m_coinSprite->create(50, 50, XmlLocalStorage::getInstance()->getStringForKey("coin"));
+	m_coinSprite->create(50, 50, XmlLocalStorage::getInstance()->getStringForKey("coin"),1);
 	m_coinSprite->setPosition(Vec2(position.x_, position.y_));
 
 

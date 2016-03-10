@@ -27,9 +27,7 @@ public:
 	void setPlayerState(EPlayerState state) { currentState = (EPlayerState)state; };	//Set player state
 
 private:
-	Vec2 m_position;
-	Vec2 m_size;
-
+	
 	EPlayerState currentState;
 
 };

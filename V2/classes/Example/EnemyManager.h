@@ -1,20 +1,21 @@
 #pragma once
 #include "EnemyFactory.h"
 
-class EnemyManager
+class Spawner
 {
 public:
-	static EnemyManager *GetInstance();
+	static Spawner *GetInstance();
 
 	void AddEnemy(Enemy* enemy);
 	void AddCoin(Coins* coin);
 
-	void FillEnemyVec();
+	void FillEnemyVec(b2World* world, Layer* layer);
+
 	void update();
 
 	void destroy();
 
-	~EnemyManager();
+	~Spawner();
 private:
 	std::vector<Enemy*> m_enemies;
 	std::vector<Coins*> m_coins;
@@ -23,6 +24,8 @@ protected:
 	Factory* factory;
 	void EnemyUpdate();
 	void CoinUpdate();
+	Enemy* enemy;
+	Coins* coin;
 
-	EnemyManager();
+	Spawner();
 };

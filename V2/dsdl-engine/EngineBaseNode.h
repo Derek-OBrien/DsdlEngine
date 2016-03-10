@@ -44,6 +44,8 @@ namespace DsdlEngine {
 
 		//Scale Node
 		//TODO
+		void scaleWidth(float scale) { m_size.x_ =m_size.x_ * scale; }
+		void scaleHeight(float scale) { m_size.y_ = m_size.y_ * scale; }
 
 
 		//Get Assets Path

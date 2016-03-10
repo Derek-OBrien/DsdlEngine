@@ -10,6 +10,6 @@ void CollisionManager::BeginContact(b2Contact* contact) {
 	void* bodyUserData = contact->GetFixtureA()->GetBody()->GetUserData();
 	
 	if (bodyUserData) {
-		static_cast<Enemy*>(bodyUserData)->~Enemy();
+		static_cast<Character*>(bodyUserData)->destroy();
 	}
 }

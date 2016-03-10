@@ -42,7 +42,6 @@ namespace DsdlEngine{
 		while (m_bIsRunning){
 			fpsLimit.begin();
 	
-
 			m_pCurrentRunning->onInput();
 
 			update();
