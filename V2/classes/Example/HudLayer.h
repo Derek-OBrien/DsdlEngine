@@ -16,7 +16,7 @@ public:
 	virtual void onInput(IMainGame* game, Character* player);
 
 	void pauseGame(IMainGame* game);
-
+	void update();
 	void updateScore();
 	void updateCoinCount();
 

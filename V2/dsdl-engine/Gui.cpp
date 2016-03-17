@@ -21,6 +21,7 @@ namespace DsdlEngine{
 			m_btn->createTextButton(pos, Size(size.x_, size.y_), text, path, color, bgColor);
 			m_btn->setPosition(pos);
 		}
+
 		//Create as Sprite Button
 		if (type == ButtonType::SPRITE_BTN) {
 			m_btn->createSpriteButton(size , pos, path, name);

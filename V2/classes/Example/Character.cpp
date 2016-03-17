@@ -81,6 +81,11 @@ void Character::jump() {
 	setPlayerState(JUMPING);
 	int x = m_sprite->getPosition().y_;
 
+	m_sprite->updateTexure(
+		Vec2(122, 112),
+		m_sprite->getPosition(),
+		XmlLocalStorage::getInstance()->getStringForKey("player2jump"), 2);
+
 		int pos = x -= 30;
 		m_sprite->setPositionY(pos);
 
@@ -89,13 +94,16 @@ void Character::jump() {
 			b2Vec2(m_sprite->getPosition().x_, m_sprite->getPosition().y_),
 			0
 			);
-
-		m_sprite->updateTexure(m_sprite->getContentSize(), m_sprite->getPosition(), XmlLocalStorage::getInstance()->getStringForKey("player2jump"), 5);
 }
 
 void Character::fall() {
 	setPlayerState(FALLING);
 	int x = m_sprite->getPosition().y_;
+
+	m_sprite->updateTexure(
+		Vec2(90, 125),
+		m_sprite->getPosition(),
+		XmlLocalStorage::getInstance()->getStringForKey(player.c_str()), 14);
 
 	while (x < 820) {
 
@@ -108,7 +116,6 @@ void Character::fall() {
 			b2Vec2(m_sprite->getPosition().x_, m_sprite->getPosition().y_),
 			0
 			);
-
 	}
 }
 
@@ -123,11 +130,21 @@ void Character::slide() {
 		b2Vec2(m_sprite->getPosition().x_, m_sprite->getPosition().y_),
 		0
 		);
+
+	m_sprite->updateTexure(
+		Vec2(130,75), 
+		m_sprite->getPosition(), 
+		XmlLocalStorage::getInstance()->getStringForKey("player2slide"), 1);
 }
 
 void Character::stopSlide() {
 	setPlayerState(SLIDING);
 	int x = m_sprite->getPosition().x_;
+
+	m_sprite->updateTexure(
+		Vec2(90, 125),
+		m_sprite->getPosition(),
+		XmlLocalStorage::getInstance()->getStringForKey(player.c_str()), 14);
 
 	while (x > 100) {
 
@@ -138,7 +155,5 @@ void Character::stopSlide() {
 			b2Vec2(m_sprite->getPosition().x_, m_sprite->getPosition().y_),
 			0
 			);
-
-
 	}
 }

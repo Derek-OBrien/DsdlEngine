@@ -66,7 +66,9 @@ namespace DsdlEngine{
 
 
 	void Sprite::updateTexure(Vec2 spriteSize, Vec2 position, std::string path, int numFrames) {
-		updateTextureInfo = true;
+	
+		setUpdateTextureTrue(true);
+
 		setAssetPath(path);
 
 		m_size.x_ = spriteSize.x_;

@@ -57,8 +57,11 @@ namespace DsdlEngine{
 
 			if (layerNodes.at(i)->getNodeType() == NodeType::SPRITE) {
 
-				if (updateTextureInfo == true) {
+				if (layerNodes.at(i)->isTextureChanged() == true) {
+
+					layerNodes.at(i)->destroy();
 					layerNodes.at(i)->load(r);
+					layerNodes.at(i)->setUpdateTextureTrue(false);
 				}
 				layerNodes.at(i)->render(r);
 			}

@@ -84,6 +84,8 @@ namespace DsdlEngine {
 		void setBoundingBox(Vec2 pos, Vec2 size) { m_objectBoundingBox->x = pos.x_; m_objectBoundingBox->y = pos.y_; m_objectBoundingBox->w = size.x_; m_objectBoundingBox->h = size.y_; }
 	
 	
+		void setUpdateTextureTrue(bool value) { updateTextureInfo = value; }
+		bool isTextureChanged() { return updateTextureInfo; }
 	protected:
 
 		std::string m_assetPath;
