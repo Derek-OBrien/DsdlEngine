@@ -42,11 +42,33 @@ Layer* HudLayer::createHud() {
 		NULL
 		);
 	
+	gui->addButton(
+		ButtonType::SPRITE_BTN,
+		"up",
+		Vec2(200, GAME_HEIGHT - 100),
+		Vec2(64, 64),
+		XmlLocalStorage::getInstance()->getStringForKey("up"),
+		SDL_Color{ NULL },
+		SDL_Color{ NULL },
+		NULL
+		);
+
+	gui->addButton(
+		ButtonType::SPRITE_BTN,
+		"down",
+		Vec2(GAME_WIDTH - 200, GAME_HEIGHT - 100),
+		Vec2(64, 64),
+		XmlLocalStorage::getInstance()->getStringForKey("down"),
+		SDL_Color{ NULL },
+		SDL_Color{ NULL },
+		NULL
+		);
+
 
 	return gui;
 }
 
-void HudLayer::onInput(IMainGame* game) {
+void HudLayer::onInput(IMainGame* game, Character* player) {
 	SDL_Event evnt;
 
 	while (SDL_PollEvent(&evnt)) {
@@ -60,6 +82,12 @@ void HudLayer::onInput(IMainGame* game) {
 
 					if (gui->GUIElements.at(i)->getButtonName() == "pause") {
 						pauseGame(game);
+					}
+					if (gui->GUIElements.at(i)->getButtonName() == "up") {
+						player->jump();
+					}
+					if (gui->GUIElements.at(i)->getButtonName() == "down") {
+						player->slide();
 					}
 				}
 			}

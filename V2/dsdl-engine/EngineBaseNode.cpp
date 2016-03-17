@@ -16,6 +16,8 @@ namespace DsdlEngine {
 		m_opacity = 255;
 		m_objectBoundingBox = new SDL_Rect();
 
+		updateTextureInfo = false;
+
 	}
 
 	//Deconstructor
@@ -41,7 +43,7 @@ namespace DsdlEngine {
 			m_engineTexture->render(m_position, m_size, r);
 		}
 		else if (nodeType == NodeType::BUTTON) {
-			m_engineTexture->render(m_position, m_size, r, m_currentFrame);
+			m_engineTexture->render(m_position, m_size, r);
 		}
 		else if (nodeType == NodeType::PARTICLE) {
 			
@@ -109,22 +111,11 @@ namespace DsdlEngine {
 			}
 
 			std::string temp;
-/*#ifdef __WIN32__
-			//	SDL_Log("Loading Assets For Windows Platform");
-			temp = FileIO::getInstance()->getWritablePath() + m_assetPath;
-#endif
-
-#ifdef __ANDROID__
-			//	SDL_Log("Loading Assets for Android Platform");
-			temp = FileIO::getInstance()->getWritablePath() + m_assetPath;
-#endif*/
-
 
 			temp = FileIO::getInstance()->getWritablePath() + m_assetPath;
 
 			//Check if font in chache
 			auto it = m_FontMap.find(temp);
-
 
 			// if not load and create texture
 			if (it == m_FontMap.end()) {

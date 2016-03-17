@@ -25,7 +25,7 @@ namespace DsdlEngine{
 		void create(Vec2 spriteSize, Vec2 position, std::string path, int numFrames);
 		void createWithPhysics(b2World* world, Vec2 spriteSize, Vec2 position, std::string path, int numFrames, float den, float fri, bool FixedRotation);
 		
-
+		void updateTexure(Vec2 spriteSize, Vec2 position, std::string path, int numFrames);
 		b2Body* getCollisionBody() { return m_CollisionShape->getBody(); }
 		//cleanup
 		void destroy();

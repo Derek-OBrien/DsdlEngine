@@ -63,4 +63,22 @@ namespace DsdlEngine{
 		EngineBaseNode::destroy();
 	}
 
+
+
+	void Sprite::updateTexure(Vec2 spriteSize, Vec2 position, std::string path, int numFrames) {
+		updateTextureInfo = true;
+		setAssetPath(path);
+
+		m_size.x_ = spriteSize.x_;
+		m_size.y_ = spriteSize.y_;
+
+		m_position.x_ = position.x_;
+		m_position.y_ = position.y_;
+		setPosition(position);
+
+
+		setBoundingBox(position, spriteSize);
+		m_numFrames = numFrames;
+
+	}
 }

@@ -36,29 +36,7 @@ namespace DsdlEngine{
 
 	//Load Sprite from file
 	bool ResourceTexture::loadFromFile(std::string texturePath, SDL_Renderer* r){
-		std::string temp;
-
-
-		/*
-			if defs here for different platfoms as windows needs to find assets in root folder which i have created
-			but android needs to find assets in the jni/assets folder. android is allready set up to go look in this folder 
-			there for all that was needed was the name and in the windows platfom i add on path to the assets folder so it just has to look for name of file
-
-			this will need to be done to each asset type loding function eg. audio, fonts, images
-		*/
-
-/**
-#ifdef __WIN32__
-	//	SDL_Log("Loading Assets For Windows Platform");
-		temp = "../../assets/" + texturePath;
-#endif
-
-#ifdef __ANDROID__
-	//	SDL_Log("Loading Assets for Android Platform");
-		temp = texturePath;
-#endif
-*/
-		temp = FileIO::getInstance()->getWritablePath() + texturePath;
+		std::string temp = FileIO::getInstance()->getWritablePath() + texturePath;
 
 		auto it = m_TextureMap.find(temp);
 

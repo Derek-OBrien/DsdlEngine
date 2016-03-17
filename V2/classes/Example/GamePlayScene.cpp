@@ -131,7 +131,7 @@ void GamePlayScene::onInput() {
 
 	while (SDL_PollEvent(&evnt)) {
 
-		hud->onInput(m_game);
+		hud->onInput(m_game, m_player);
 		m_game->onSDLEvent(evnt);
 		
 	}

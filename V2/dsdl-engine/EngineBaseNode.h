@@ -101,6 +101,7 @@ namespace DsdlEngine {
 
 		int m_numFrames, m_frame, m_opacity;
 
+		bool updateTextureInfo;
 
 		SDL_Rect m_gSpriteClips[14];	//frames for animation
 		SDL_Rect* m_currentFrame;		//current animation frame

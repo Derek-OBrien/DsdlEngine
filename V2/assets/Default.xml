@@ -24,6 +24,8 @@
     <pause>DemoGame/menu_hud_items/pausebutton.png</pause>
     <close>DemoGame/menu_hud_items/closebutton.png</close>
     <restart>DemoGame/menu_hud_items/playbutton.png</restart>
+    <up>DemoGame/menu_hud_items/up.png</up>
+    <down>DemoGame/menu_hud_items/down.png</down>
     <!--Audio-->
     <bgmusic>DemoGame/sounds/Severe_Tire_Damage.wav</bgmusic>
     <sfx>DemoGame/sounds/sfx.wav</sfx>

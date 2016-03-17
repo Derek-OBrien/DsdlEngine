@@ -61,17 +61,14 @@ namespace DsdlEngine{
 	*/
 
 	std::string FileIO::getWritablePath(){
-		//std::string path;
-
+		//If win32 version running file is path passed in
 #ifdef __WIN32__
-		//path = "../../assets/";
 		m_path;
 #endif
-
+		//If Android version running file path is empty as SDL_Rwops() points to assets folder by default
+		//The only problem this provides is file must be stored in the assets folder in order to work in android
 #ifdef __ANDROID__
-		SDL_Log("Setting Path to assets folder");
 		m_path = "";
-		SDL_Log("Path is Set %s", m_path.c_str());
 #endif
 		return m_path;
 	}
@@ -134,20 +131,9 @@ namespace DsdlEngine{
 		XMLElement* curNode = nullptr;
 
 		char* contents = NULL;
-		std::string path;
 
-/*#ifdef __WIN32__
-		//path = "../../assets/Default.xml";
-		path = m_path + "Default.xml";
-#endif
-#ifdef __ANDROID__
-		path = "Default.xml";
-#endif*/
-
-		SDL_Log("Setting path to contain file name");
-		path = getWritablePath() + "Default.xml";
-		SDL_Log("Path is Set %s", path.c_str());
-
+		std::string path = getWritablePath() + "Default.xml";
+		
 		//Check the key
 		if (!pKey) {
 			return nullptr;
@@ -164,7 +150,7 @@ namespace DsdlEngine{
 		*doc = xmlDoc;
 
 		if (xmlDoc->Parse(contents) == XML_SUCCESS) {
-			SDL_Log("Doc Parsed");
+			//SDL_Log("Doc Parsed");
 			// get root node
 			*rootNode = xmlDoc->RootElement();
 

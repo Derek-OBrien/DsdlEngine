@@ -90,7 +90,7 @@ void Character::jump() {
 			0
 			);
 
-	
+		m_sprite->updateTexure(m_sprite->getContentSize(), m_sprite->getPosition(), XmlLocalStorage::getInstance()->getStringForKey("player2jump"), 5);
 }
 
 void Character::fall() {

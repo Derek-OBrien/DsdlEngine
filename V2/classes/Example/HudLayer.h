@@ -2,7 +2,7 @@
 
 #include "../../dsdl-engine/DsdlEngine.h"
 #include <sstream>
-
+#include "Character.h"
 USING_NS_DSDL;
 
 class HudLayer : public DsdlEngine::Layer
@@ -13,7 +13,7 @@ public:
 
 	Layer* createHud();
 
-	virtual void onInput(IMainGame* game);
+	virtual void onInput(IMainGame* game, Character* player);
 
 	void pauseGame(IMainGame* game);
 

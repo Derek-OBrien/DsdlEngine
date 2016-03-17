@@ -29,12 +29,15 @@ namespace DsdlEngine{
 		std::string getFileToOpen() { return m_fileName; }
 		void setFileToOpen(std::string file) { m_fileName = file; }
 
-		
+		//Load document into memory
 		bool loadDocument(const char* filepath, char** doc_contents);
+		//Write contents from memory to file
 		bool writeDocument(const char* filepath, const char** doc_contents);
 
-
+		//get xml node 
 		tinyxml2::XMLElement* getXMLNodeForKey(const char*pKey, tinyxml2::XMLElement** rootNode, tinyxml2::XMLDocument** doc);
+
+		//set value for giving xml node
 		void setValueForKey(const char* value, const char* key);
 
 		bool createXMLFile();
@@ -45,8 +48,8 @@ namespace DsdlEngine{
 		virtual ~FileIO(){};
 	private:
 
-		std::string m_path;
-		std::string m_fileName;
+		std::string m_path;		//path to folder which contains file
+		std::string m_fileName;	//name of xml file to load
 
 	};
 }
