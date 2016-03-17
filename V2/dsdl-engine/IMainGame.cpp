@@ -82,10 +82,10 @@ namespace DsdlEngine{
 			m_InputManager.releaseKey(evnt.button.button);
 			break;
 		case SDL_FINGERDOWN:
-			m_InputManager.pressKey(evnt.tfinger.fingerId);
+			m_InputManager.isSwipe(evnt);
 			break;
 		case SDL_FINGERMOTION:
-			m_InputManager.isSwipe(evnt.tfinger.x, evnt.tfinger.y);
+			m_InputManager.isSwipe(evnt);
 			break;
 		case SDL_FINGERUP:
 			m_InputManager.releaseKey(evnt.tfinger.fingerId);
@@ -98,11 +98,18 @@ namespace DsdlEngine{
 	/*
 		Get users window information
 	*/
-	void IMainGame::setupWindow(int w, int h, std::string windowName, unsigned int flag){
+	void IMainGame::setupWindow(int w, int h, std::string windowName, std::string path, int flag) {
 		m_windowWidth = w;
 		m_windowHeight = h;
 		windowtitle = windowName;
 		windowFlag = flag;
+
+		mainAssetsPath = path;
+
+#ifdef __WIN32__
+		FileIO::getInstance()->setAssetsPath(mainAssetsPath);
+#endif // !__WIN32__
+
 	}
 
 
@@ -115,16 +122,21 @@ namespace DsdlEngine{
 		m_audioManager.init();
 		
 		//call game's on init method
+
+		SDL_Log("Before onInit() Called");
 		onInit();
+		SDL_Log("After onInit() Called");
 
 		//If window creation fails exit
 		if (!initSystems()) {
-			DEBUG_MSG("InitSystems Failed : ");
+			SDL_Log("InitSystems Failed : Window not created");
 			return false;
 		}
 
+		SDL_Log("Before Add Scenes Called");
 		//Add all Scenes
 		addScenes();
+		SDL_Log("After Add Scenes Called");
 		
 		//Load up First Scene
 		m_pCurrentRunning = m_pSceneManager->getCurrentScene();

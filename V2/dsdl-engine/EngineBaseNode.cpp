@@ -1,6 +1,6 @@
 
 #include "EngineBaseNode.h"
-
+#include "FileIO.h"
 
 
 
@@ -14,6 +14,7 @@ namespace DsdlEngine {
 		m_frame = 0;
 		m_numFrames = 1;
 		m_opacity = 255;
+		m_objectBoundingBox = new SDL_Rect();
 
 	}
 
@@ -37,11 +38,10 @@ namespace DsdlEngine {
 		}
 
 		else if (nodeType == NodeType::LABEL) {
-
 			m_engineTexture->render(m_position, m_size, r);
 		}
 		else if (nodeType == NodeType::BUTTON) {
-				m_engineTexture->render(m_position, m_size, r, m_currentFrame);
+			m_engineTexture->render(m_position, m_size, r, m_currentFrame);
 		}
 		else if (nodeType == NodeType::PARTICLE) {
 			
@@ -57,6 +57,9 @@ namespace DsdlEngine {
 	/*	if (m_CollisionShape != NULL) {
 			renderCollisionShape(r, m_CollisionShape);
 		}*/
+		SDL_SetRenderDrawColor(r, 255, 0, 0, 255);
+		SDL_RenderDrawRect(r, m_objectBoundingBox);
+
 		m_engineTexture->render(m_position, m_size, r, m_currentFrame);
 		++m_frame;
 
@@ -77,7 +80,7 @@ namespace DsdlEngine {
 				SDL_Log("Faild to load sprite");
 
 			else {
-				SDL_Log("Loaded sprite");
+				//SDL_Log("Loaded sprite");
 
 				int temp = 0;
 
@@ -90,10 +93,10 @@ namespace DsdlEngine {
 					temp += m_size.x_;
 				}
 
-				m_objectBoundingBox.x = m_position.x_;
-				m_objectBoundingBox.y = m_position.y_;
-				m_objectBoundingBox.w = m_size.x_;
-				m_objectBoundingBox.h = m_size.y_;
+				m_objectBoundingBox->x = m_position.x_;
+				m_objectBoundingBox->y = m_position.y_;
+				m_objectBoundingBox->w = m_size.x_;
+				m_objectBoundingBox->h = m_size.y_;
 
 			}
 			return true;
@@ -106,15 +109,18 @@ namespace DsdlEngine {
 			}
 
 			std::string temp;
-#ifdef __WIN32__
+/*#ifdef __WIN32__
 			//	SDL_Log("Loading Assets For Windows Platform");
-			temp = "../../assets/" + m_assetPath;
+			temp = FileIO::getInstance()->getWritablePath() + m_assetPath;
 #endif
 
 #ifdef __ANDROID__
 			//	SDL_Log("Loading Assets for Android Platform");
-			temp = m_assetPath;
-#endif
+			temp = FileIO::getInstance()->getWritablePath() + m_assetPath;
+#endif*/
+
+
+			temp = FileIO::getInstance()->getWritablePath() + m_assetPath;
 
 			//Check if font in chache
 			auto it = m_FontMap.find(temp);

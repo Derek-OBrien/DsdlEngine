@@ -6,9 +6,9 @@
 
 namespace DsdlEngine{
 
-	#define DEBUG 1
-	#if defined DEBUG 
-		#if (DEBUG ==1)
+	#define DEBUG_DSDL 1
+	#if defined DEBUG_DSDL 
+		#if (DEBUG_DSDL == 1)
 			#define DEBUG_MSG(x) (std::cout << (x) <<std::endl)
 		#else
 			#define DEBUG_MSG(x)
@@ -16,7 +16,7 @@ namespace DsdlEngine{
 	#else 
 	#define DEBUG_MSG(x)
 	#endif
-
+	
 }
 
 

@@ -55,16 +55,25 @@ namespace DsdlEngine{
 	void Layer::drawNodes(SDL_Renderer* r) {
 		for (size_t i = 0; i < layerNodes.size(); i++){
 
+			if (layerNodes.at(i)->getNodeType() == NodeType::SPRITE) {
+
+				layerNodes.at(i)->render(r);
+			}
+			
 			/*
 			Reload labels for update each tick for changes to take effect
 			old label destroyed first to realease its memory so no extra memory been taking up
 			*/
 			if (layerNodes.at(i)->getNodeType() == NodeType::LABEL) {
+						
 				layerNodes.at(i)->destroy();
 				layerNodes.at(i)->load(r);
+
+				layerNodes.at(i)->render(r);
 			}
 
-			layerNodes.at(i)->render(r);
+			
+			
 		}
 	}
 

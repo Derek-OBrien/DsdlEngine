@@ -28,7 +28,7 @@ public:
 	virtual void onInput();
 private:
 
-	void checkInput();
+	void checkCollision();
 	void generateEnemy(Vec2 position);
 	void generateCoins(Vec2 position);
 	int m_sceneIndex = SCENE_INDEX_NO_SCENE;

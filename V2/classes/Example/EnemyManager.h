@@ -15,6 +15,9 @@ public:
 
 	void destroy();
 
+	std::vector<Enemy*> getEnemyVec() { return m_enemies; }
+	std::vector<Coins*> getCoinVec() { return m_coins; }
+
 	~Spawner();
 private:
 	std::vector<Enemy*> m_enemies;

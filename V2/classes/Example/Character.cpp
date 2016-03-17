@@ -10,42 +10,69 @@ Character::~Character(){};
 void Character::init(b2World* world){
 
 	m_sprite = new Sprite();
-	std::string player = XmlLocalStorage::getInstance()->getStringForKey("selectedPlayer").c_str();
+	player = XmlLocalStorage::getInstance()->getStringForKey("selectedPlayer").c_str();
 	
-	m_sprite->createWithPhysics(world, Vec2(90,125), Vec2(150,820), XmlLocalStorage::getInstance()->getStringForKey(player.c_str()),14,1.0f,0.0f,true);
-	
+	m_sprite->createWithPhysics(
+		world,
+		Vec2(90, 125),
+		Vec2(150, 820),
+		XmlLocalStorage::getInstance()->getStringForKey(player.c_str()),
+		14,
+		1.0f,
+		0.0f,
+		true);
+
 	m_body = m_sprite->getCollisionBody();
+
+	b2Filter playerfilter;
+	playerfilter.maskBits = PLAYER_FILTER;
+
+	m_body->GetFixtureList()->SetFilterData(playerfilter);
+	m_body->SetUserData(m_sprite);
 	m_body->SetTransform(
 		b2Vec2(m_sprite->getPosition().x_, m_sprite->getPosition().y_),
 		0
 		);
+
+	setPlayerState(ALIVE);
+
+	if (currentState == ALIVE) {
+		m_sprite->setAssetPath(XmlLocalStorage::getInstance()->getStringForKey(player.c_str()));
+	}
+	if (currentState == JUMPING) {
+		m_sprite->setAssetPath(XmlLocalStorage::getInstance()->getStringForKey("player2jump"));
+	}
+	if (currentState == SLIDING) {
+		m_sprite->setAssetPath(XmlLocalStorage::getInstance()->getStringForKey("player2slide"));
+	}
 }
 
 
 
-void Character::update(InputManager& inputManager){
+void Character::update(InputManager& inputManager, b2World* world){
 
-	//b2Vec2 position =	m_body->GetPosition();
-	//float32 angle =		m_body->GetAngle();
 #ifdef __WIN32__
-	if (inputManager.isKeyDown(SDLK_UP)) {
+	if (inputManager.isKeyPressed(SDLK_UP)) {
 		jump();
-		SDL_Log("Up Pressed");
 	}
-	else if (inputManager.isKeyDown(SDLK_DOWN)) {
+
+	if (inputManager.isKeyPressed(SDLK_DOWN)) {
 		slide();
-		SDL_Log("down Pressed");
 	}
+
+	if (inputManager.isKeyReleased(SDLK_UP)) {
+		fall();
+	}
+
+	if (inputManager.isKeyReleased(SDLK_DOWN)) {
+		stopSlide();
+	}
+
 #endif
 
 #ifdef __ANDROID__
-	if (inputManager.isKeyDown(SDL_FINGERDOWN)) {
+	if (inputManager.isKeyPressed(SDL_FINGERDOWN)) {
 		jump();
-		SDL_Log("Up Pressed");
-	}
-	else if (inputManager.isKeyDown(SDL_FINGERUP)) {
-		slide();
-		SDL_Log("down Pressed");
 	}
 #endif
 }
@@ -54,19 +81,64 @@ void Character::jump() {
 	setPlayerState(JUMPING);
 	int x = m_sprite->getPosition().y_;
 
-	int pos = x -= 300;
-	m_sprite->setPositionY(pos);
+		int pos = x -= 30;
+		m_sprite->setPositionY(pos);
+
+		m_sprite->setBoundingBox(m_sprite->getPosition(), m_sprite->getContentSize());
+		m_body->SetTransform(
+			b2Vec2(m_sprite->getPosition().x_, m_sprite->getPosition().y_),
+			0
+			);
+
 	
-	m_body->ApplyForceToCenter(b2Vec2(-200.0, 0.0), true);
 }
 
+void Character::fall() {
+	setPlayerState(FALLING);
+	int x = m_sprite->getPosition().y_;
+
+	while (x < 820) {
+
+
+		int pos = x += 30;
+		m_sprite->setPositionY(pos);
+
+		m_sprite->setBoundingBox(m_sprite->getPosition(), m_sprite->getContentSize());
+		m_body->SetTransform(
+			b2Vec2(m_sprite->getPosition().x_, m_sprite->getPosition().y_),
+			0
+			);
+
+	}
+}
 
 void Character::slide() {
 	setPlayerState(SLIDING);
-	int x = m_sprite->getPosition().y_;
+	int x = m_sprite->getPosition().x_;
 
-	int pos = x += 300;
-	m_sprite->setPositionY(pos);
+	int pos = x += 30;
+	m_sprite->setPositionX(pos);
 
-	m_body->ApplyForceToCenter(b2Vec2(200.0, 0.0), true);
+	m_body->SetTransform(
+		b2Vec2(m_sprite->getPosition().x_, m_sprite->getPosition().y_),
+		0
+		);
+}
+
+void Character::stopSlide() {
+	setPlayerState(SLIDING);
+	int x = m_sprite->getPosition().x_;
+
+	while (x > 100) {
+
+		int pos = x -= 30;
+		m_sprite->setPositionX(pos);
+
+		m_body->SetTransform(
+			b2Vec2(m_sprite->getPosition().x_, m_sprite->getPosition().y_),
+			0
+			);
+
+
+	}
 }

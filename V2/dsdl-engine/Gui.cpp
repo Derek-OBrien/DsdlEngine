@@ -12,18 +12,18 @@ namespace DsdlEngine{
 	DsdlGui::~DsdlGui() { destroy(); }
 
 	//Add Button to GUI
-	void DsdlGui::addButton(ButtonType type, std::string name, Vec2 pos, Size size, std::string path, SDL_Color color, SDL_Color bgColor ,/* dsdlCallBack callback,*/ const char* text) {
+	void DsdlGui::addButton(ButtonType type, std::string name, Vec2 pos, Vec2 size, std::string path, SDL_Color color, SDL_Color bgColor ,/* dsdlCallBack callback,*/ const char* text) {
 
 		m_btn = new Button();
 		//buttonName = name;
 		//Create as Text Button
 		if (type == ButtonType::LABEL_BTN) {
-			m_btn->createTextButton(pos, size, text, path, color, bgColor);
+			m_btn->createTextButton(pos, Size(size.x_, size.y_), text, path, color, bgColor);
 			m_btn->setPosition(pos);
 		}
 		//Create as Sprite Button
 		if (type == ButtonType::SPRITE_BTN) {
-			m_btn->createSpriteButton(size.w_, size.h_, path, name);
+			m_btn->createSpriteButton(size , pos, path, name);
 
 			m_btn->setEngineNodeType(NodeType::SPRITE);
 			m_btn->setPosition(pos);

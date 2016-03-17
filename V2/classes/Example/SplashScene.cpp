@@ -46,8 +46,8 @@ void SplashScene::onEntryScene(){
 
 	//Create Background Sprite
 	auto bg = new Sprite();
-	bg->create(1980, 1080, XmlLocalStorage::getInstance()->getStringForKey("menubg"));
-	bg->setPosition(Vec2::ZERO);
+	bg->create(Vec2(1980, 1080), Vec2::ZERO,  XmlLocalStorage::getInstance()->getStringForKey("menubg"));
+	//bg->setPosition(Vec2::ZERO);
 
 
 	//Set callback

@@ -12,10 +12,13 @@ public:
 
 
 	void init(b2World* world);
-	void update(InputManager& inputManager);
+	void update(InputManager& inputManager, b2World* world);
 
 	void jump();
+	void fall();
 	void slide();
+	void stopSlide();
+
 	Sprite* m_sprite;
 
 
@@ -29,5 +32,5 @@ public:
 private:
 	
 	EPlayerState currentState;
-
+	std::string player;
 };

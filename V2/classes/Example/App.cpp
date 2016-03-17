@@ -29,8 +29,8 @@ App::App() {
 App::~App() {}
 
 void App::onInit() {
-	setupWindow(GAME_WIDTH, GAME_HEIGHT, "SDL Engine Example Game", 2);
-	
+	setupWindow(GAME_WIDTH, GAME_HEIGHT, "SDL Engine Example Game", "../../assets/", 2);
+	SDL_Log("window set up complete");
 	setFps(60);
 }
 
@@ -39,14 +39,12 @@ void App::addScenes() {
 	m_splashScene = make_unique<SplashScene>();
 	m_mainMenuScene = make_unique<MainMenuScene>();
 	m_gamePlayScene = make_unique<GamePlayScene>();
-	//m_pauseScene = make_unique<PauseScene>();
 	m_gameOverScene = make_unique<GameOverScene>();
 
 	//Add Scenes pointers to the scene manager
 	m_pSceneManager->addScene(m_splashScene.get());
 	m_pSceneManager->addScene(m_mainMenuScene.get());
 	m_pSceneManager->addScene(m_gamePlayScene.get());
-//	m_pSceneManager->addScene(m_pauseScene.get());
 	m_pSceneManager->addScene(m_gameOverScene.get());
 
 	//Set initial sceen to load

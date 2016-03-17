@@ -2,6 +2,7 @@
 #include "GamePlayScene.h"
 #include "GameDefines.h"
 #include "EnemyManager.h"
+#include "SimpleBoxCollision.h"
 
 USING_NS_DSDL;
 
@@ -38,14 +39,12 @@ void GamePlayScene::onEntryScene(){
 
 	//Add Audio Manager
 	music = m_AudioManager.loadMusic(XmlLocalStorage::getInstance()->getStringForKey("bgmusic"));
-	music.play(-1);
-
-
+	
 	// Define the gravity vector.
-	b2Vec2 gravity(0.0f, 50.0f);
+	b2Vec2 gravity(0.0f, 0.0f);
 	
 	world = new b2World(gravity);
-	world->SetContactListener(&collisionManager);
+	//world->SetContactListener(&collisionManager);
 
 	// Define the ground body.
 	groundBodyDef = new b2BodyDef();
@@ -83,12 +82,14 @@ void GamePlayScene::onEntryScene(){
 	fg->scrollingImage->setOpacity(120);
 	layer->addNodeToLayer(fg->scrollingImage);
 
-	//Add box2d boxes to render them (Debug only)
-	//layer->addBox2dNodes(groundBody);
+
 
 	//Add Layer to Scene
 	addLayerToScene(layer);
 	addLayerToScene(hud->createHud());
+	
+	music.play(-1);
+
 }
 
 void GamePlayScene::onExitScene(){
@@ -96,14 +97,18 @@ void GamePlayScene::onExitScene(){
 }
 
 void GamePlayScene::updateScene(){
+	
 	///Physics world step
 	world->Step(timeStep, velocityIterations, positionIterations);
 
+	
 	///Process Input
 	onInput();
-	m_player->update(m_game->m_InputManager);
+	m_player->update(m_game->m_InputManager, world);
+	
+	checkCollision();
 
-
+	///update score
 	hud->updateScore();
 
 	///Update Game Elements
@@ -111,8 +116,13 @@ void GamePlayScene::updateScene(){
 	mg->update();
 	fg->update();
 
+
+	
+	///update enemy and coin positions
 	Spawner::GetInstance()->update();
 	
+	//collisionManager.BeginContact(world->GetContactList() ,hud);
+	//collisionManager.EndContact(world->GetContactList(), hud);
 }
 
 
@@ -127,157 +137,24 @@ void GamePlayScene::onInput() {
 	}
 }
 
+void GamePlayScene::checkCollision() {
 
-/*void GamePlayScene::generateEnemy(Vec2 position) {
-	
-	Vec2 pos;
-	for (int i = 0; i < 5; i++) {
-		switch (i) {
-		case 0:
-			pos.x_ = GAME_WIDTH + (GAME_WIDTH *0.2);
-			pos.y_ = GAME_HEIGHT - 550;
+	auto spawner = Spawner::GetInstance();
+	for (size_t i = 0; i < spawner->getCoinVec().size(); i++)
+	{
+		if (SimpleBoxCollision::getInstance()->check(
+			m_player->m_sprite->getBoundingBox(), 
+			spawner->getEnemyVec().at(i)->m_enemySprite->getBoundingBox())) {
 
-			enemy = m_enemyFactory->createEnemy(world, pos);
-			Spawner::GetInstance()->AddEnemy(enemy);
-			layer->addNodeToLayer(enemy->m_enemySprite);
-			layer->addBox2dNodes(enemy->m_body);
+		}
 
-			break;
-		case 1:
-			pos.x_ = GAME_WIDTH + (GAME_WIDTH *0.4);
-			pos.y_ = GAME_HEIGHT - 300;
-			enemy = m_enemyFactory->createEnemy(world, pos);
+		if (SimpleBoxCollision::getInstance()->check(
+			m_player->m_sprite->getBoundingBox(), 
+			spawner->getCoinVec().at(i)->m_coinSprite->getBoundingBox())) {
 
-			Spawner::GetInstance()->AddEnemy(enemy);
-			layer->addNodeToLayer(enemy->m_enemySprite);
-			layer->addBox2dNodes(enemy->m_body);
-
-			break;
-		case 2:
-			pos.x_ = GAME_WIDTH + (GAME_WIDTH*0.6);
-			pos.y_ = GAME_HEIGHT - 180;
-			enemy = m_enemyFactory->createEnemy(world, pos);
-
-			Spawner::GetInstance()->AddEnemy(enemy);
-			layer->addNodeToLayer(enemy->m_enemySprite);
-			layer->addBox2dNodes(enemy->m_body);
-
-			break;
-		case 3:
-			pos.x_ = GAME_WIDTH + (GAME_WIDTH*0.8);
-			pos.y_ = GAME_HEIGHT - 450;
-			enemy = m_enemyFactory->createEnemy(world, pos);
-
-			Spawner::GetInstance()->AddEnemy(enemy);
-			layer->addNodeToLayer(enemy->m_enemySprite);
-			layer->addBox2dNodes(enemy->m_body);
-
-			break;
-		case 4:
-			pos.x_ = GAME_WIDTH + (GAME_WIDTH);
-			pos.y_ = GAME_HEIGHT - 250;
-
-			enemy = m_enemyFactory->createEnemy(world, pos);
-
-			Spawner::GetInstance()->AddEnemy(enemy);
-			layer->addNodeToLayer(enemy->m_enemySprite);
-			layer->addBox2dNodes(enemy->m_body);
-
-			break;
-		case 5:
-			pos.x_ = GAME_WIDTH + (GAME_WIDTH);
-			pos.y_ = GAME_HEIGHT - 350;
-
-			enemy = m_enemyFactory->createEnemy(world, pos);
-
-			Spawner::GetInstance()->AddEnemy(enemy);
-			layer->addNodeToLayer(enemy->m_enemySprite);
-			layer->addBox2dNodes(enemy->m_body);
-
-			break;
-		default:
+			spawner->getCoinVec().at(i)->resetPosition();
+			hud->updateCoinCount();
 			break;
 		}
 	}
-}*/
-/**
-void GamePlayScene::generateCoins(Vec2 position) {
-
-	Vec2 pos;
-
-	for (int i = 0; i < 5; i++) {
-
-		switch (i) {
-		case 0:
-			pos.x_ = GAME_WIDTH + (GAME_WIDTH *0.2);
-			pos.y_ = GAME_HEIGHT - 450;
-		
-			coin = m_enemyFactory->createCoin(world, pos);
-
-			Spawner::GetInstance()->AddCoin(coin);
-			layer->addNodeToLayer(coin->m_coinSprite);
-			layer->addBox2dNodes(coin->m_body);
-
-			break;
-		case 1:
-			pos.x_ = GAME_WIDTH + (GAME_WIDTH *0.2);
-			pos.y_ = GAME_HEIGHT - 500;
-
-
-			coin = m_enemyFactory->createCoin(world, pos);
-
-			Spawner::GetInstance()->AddCoin(coin);
-			layer->addNodeToLayer(coin->m_coinSprite);
-			layer->addBox2dNodes(coin->m_body);
-			break;
-		case 2:
-			pos.x_ = GAME_WIDTH + (GAME_WIDTH*0.4);
-			pos.y_ = GAME_HEIGHT - 350;
-
-
-			coin = m_enemyFactory->createCoin(world, pos);
-
-			Spawner::GetInstance()->AddCoin(coin);
-			layer->addNodeToLayer(coin->m_coinSprite);
-			layer->addBox2dNodes(coin->m_body);
-			break;
-		case 3:
-			pos.x_ = GAME_WIDTH + (GAME_WIDTH*0.4);///slideunder
-			pos.y_ = GAME_HEIGHT - 300;
-
-
-			coin = m_enemyFactory->createCoin(world, pos);
-
-			Spawner::GetInstance()->AddCoin(coin);
-			layer->addNodeToLayer(coin->m_coinSprite);
-			layer->addBox2dNodes(coin->m_body);
-			break;
-		case 4:
-			pos.x_ = GAME_WIDTH + (GAME_WIDTH*0.6);///slide under
-			pos.y_ = GAME_HEIGHT - 250;
-
-
-			coin = m_enemyFactory->createCoin(world, pos);
-
-			Spawner::GetInstance()->AddCoin(coin);
-			layer->addNodeToLayer(coin->m_coinSprite);
-			layer->addBox2dNodes(coin->m_body);
-			break;
-		case 5:
-			pos.y_ = GAME_WIDTH + (GAME_WIDTH*0.6);///slide under
-			pos.y_ = GAME_HEIGHT - 200;
-
-
-			coin = m_enemyFactory->createCoin(world, pos);
-
-			Spawner::GetInstance()->AddCoin(coin);
-			layer->addNodeToLayer(coin->m_coinSprite);
-			layer->addBox2dNodes(coin->m_body);
-			break;
-		default:
-			break;
-		}
-	}
-
 }
-*/

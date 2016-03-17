@@ -13,6 +13,7 @@ public:
 
 	void createCoin(b2World* world, Vec2 position);
 	void update();
+	void resetPosition();
 
 	Sprite* m_coinSprite;
 	int pos;

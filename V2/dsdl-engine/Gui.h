@@ -18,7 +18,7 @@ namespace DsdlEngine{
 		virtual ~DsdlGui();
 
 
-		void addButton(ButtonType type, std::string name, Vec2 pos, Size size, std::string path, SDL_Color color, SDL_Color bgColor, /*dsdlCallBack callback,*/ const char* text = NULL);
+		void addButton(ButtonType type, std::string name, Vec2 pos, Vec2 size, std::string path, SDL_Color color, SDL_Color bgColor, /*dsdlCallBack callback,*/ const char* text = NULL);
 
 		void addLabel(LableType type, Vec2 pos, std::string text, int fontSize, SDL_Color color, std::string fontFilePath);
 

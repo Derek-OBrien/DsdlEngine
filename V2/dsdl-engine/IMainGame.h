@@ -31,7 +31,7 @@ namespace DsdlEngine{
 		/*
 			Functions user can use to customize game window and fps
 		*/
-		void setupWindow(int w, int h, std::string windowName, unsigned int flag);
+		void setupWindow(int w, int h, std::string windowName, std::string path, int flag);
 		void setFps(float fps){ m_fFps = fps; }
 
 		/*
@@ -52,11 +52,14 @@ namespace DsdlEngine{
 		void setRunning() { m_bIsPaused = false; m_bIsRunning = true; }
 
 		bool checkPaused() { return m_bIsPaused; }
+
 	protected:
 		unsigned int windowFlag;
 		int m_windowWidth;
 		int m_windowHeight;
 		std::string windowtitle;
+		std::string mainAssetsPath;
+
 
 		std::unique_ptr<SceneManager> m_pSceneManager;
 

@@ -23,12 +23,15 @@ namespace DsdlEngine{
 		/// Returns true if the key was just pressed
 		bool isKeyPressed(unsigned int keyID);
 
+		bool isKeyReleased(unsigned int KeyID);
 
-		bool isSwipe(float x, float y);
 
-		bool isSwipeUp(float x, float y);
+		bool isTouch(unsigned int keyID);
+		bool isSwipe(SDL_Event& evnt);
 
-		bool isSwipeDown(float x, float y);
+		bool isSwipeUp();
+
+		bool isSwipeDown();
 
 		bool isSwipeLeft(float x, float y);
 
@@ -39,10 +42,11 @@ namespace DsdlEngine{
 		/// Returns true if the key is held down
 		bool wasKeyDown(unsigned int keyID);
 
-
 		std::unordered_map<unsigned int, bool> _keyMap;
 		std::unordered_map<unsigned int, bool> _previousKeyMap;
 
+		bool swipeup, swipedown, swipeleft, swiperight;
+		bool fingerDown, fingerUp;
 	};
 }
 #endif

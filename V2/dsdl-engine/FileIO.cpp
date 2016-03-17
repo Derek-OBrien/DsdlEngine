@@ -22,6 +22,9 @@ namespace DsdlEngine{
 	}
 
 
+	/*
+		Check if file exists first
+	*/
 	inline bool fileExists(const std::string name) {
 		std::ifstream f(name);
 		if (f.good()) {
@@ -35,25 +38,42 @@ namespace DsdlEngine{
 		}
 	}
 
+
 	bool FileIO::fileExists2(const std::string& name) {
 		struct stat buffer;
 		return (stat(name.c_str(), &buffer) == 0);
 	}
+
 
 	std::string FileIO::getSuitableFOpen(const std::string& filenameUtf8) const{
 		return filenameUtf8;
 	}
 
 
-	std::string FileIO::getWritablePath() const{
-		std::string path;
+	/*
+		Get Path to file
+
+		if defs here for different platfoms as windows needs to find assets in root folder which i have created
+		but android needs to find assets in the jni/assets folder. android is allready set up to go look in this folder 
+		there for all that was needed was the name and in the windows platfom i add on path to the assets folder so it just has to look for name of file
+
+		this will need to be done to each asset type loding function eg. audio, fonts, images
+	*/
+
+	std::string FileIO::getWritablePath(){
+		//std::string path;
+
 #ifdef __WIN32__
-		path = "../../assets/";
+		//path = "../../assets/";
+		m_path;
 #endif
+
 #ifdef __ANDROID__
-		path = "assets/";
+		SDL_Log("Setting Path to assets folder");
+		m_path = "";
+		SDL_Log("Path is Set %s", m_path.c_str());
 #endif
-		return path;
+		return m_path;
 	}
 
 
@@ -79,6 +99,9 @@ namespace DsdlEngine{
 		return true;
 	}
 
+	/*
+		Write contents of buffer to file and save.
+	*/
 
 	bool FileIO::writeDocument(const char* filepath, const char** doc_contents) {
 
@@ -113,12 +136,17 @@ namespace DsdlEngine{
 		char* contents = NULL;
 		std::string path;
 
-#ifdef __WIN32__
-		path = "../../assets/Default.xml";
+/*#ifdef __WIN32__
+		//path = "../../assets/Default.xml";
+		path = m_path + "Default.xml";
 #endif
 #ifdef __ANDROID__
 		path = "Default.xml";
-#endif
+#endif*/
+
+		SDL_Log("Setting path to contain file name");
+		path = getWritablePath() + "Default.xml";
+		SDL_Log("Path is Set %s", path.c_str());
 
 		//Check the key
 		if (!pKey) {
@@ -165,7 +193,11 @@ namespace DsdlEngine{
 	}
 
 
-
+	/*
+		Set Value for key in xml file
+		@parma key = name of node to be written to file
+		@parma vale = vale of node to be saved
+	*/
 	void FileIO::setValueForKey(const char* value, const char* key) {
 
 		XMLElement* rootNode;
@@ -179,13 +211,16 @@ namespace DsdlEngine{
 			return;
 		}
 
-
+/**
 #ifdef __WIN32__
 		path = "../../assets/Default.xml";
 #endif
 #ifdef __ANDROID__
 		path = "Default.xml";
 #endif
+*/
+
+		path = getWritablePath() + "Default.xml";
 
 		//Check if node exists allready
 		node = getXMLNodeForKey(key, &rootNode, &doc);
@@ -247,12 +282,14 @@ namespace DsdlEngine{
 		doc->LinkEndChild(pRootEle);
 
 		std::string path;
-#ifdef __WIN32__
+/*#ifdef __WIN32__
 		path = "../../assets/Default.xml";
 #endif
 #ifdef __ANDROID__
 		path = "assets/Default.xml";
-#endif
+#endif*/
+		path = getWritablePath() + "Default.xml";
+
 
 		bRet = XML_SUCCESS == doc->SaveFile(FileIO::getInstance()->getSuitableFOpen(path).c_str());
 		DEBUG_MSG("XML File Created");

@@ -10,7 +10,7 @@
 
 #include "ResourceTexture.h"
 #include "EngineError.h"
-
+#include "FileIO.h"
 
 
 namespace DsdlEngine{
@@ -47,7 +47,7 @@ namespace DsdlEngine{
 			this will need to be done to each asset type loding function eg. audio, fonts, images
 		*/
 
-
+/**
 #ifdef __WIN32__
 	//	SDL_Log("Loading Assets For Windows Platform");
 		temp = "../../assets/" + texturePath;
@@ -57,7 +57,8 @@ namespace DsdlEngine{
 	//	SDL_Log("Loading Assets for Android Platform");
 		temp = texturePath;
 #endif
-
+*/
+		temp = FileIO::getInstance()->getWritablePath() + texturePath;
 
 		auto it = m_TextureMap.find(temp);
 
@@ -138,14 +139,14 @@ namespace DsdlEngine{
 		if (s.x_ != NULL && s.y_ != NULL) {//For Sprites
 			renderQuad = { p.x_, p.y_, s.x_, s.y_ };
 
-			SDL_SetRenderDrawColor(r, 0, 255, 255, 120);
-			SDL_RenderDrawRect(r, &renderQuad);
+			///SDL_SetRenderDrawColor(r, 255, 0, 0, 255);
+			///SDL_RenderDrawRect(r, &renderQuad);
 		}
 		else {	//For TTf Labels 
 			renderQuad = { p.x_, p.y_, m_iWidth, m_iHeight };
 
-			SDL_SetRenderDrawColor(r, 0, 0, 255, 120);
-			SDL_RenderDrawRect(r, &renderQuad);
+			///SDL_SetRenderDrawColor(r, 0, 0, 255, 255);
+			///SDL_RenderDrawRect(r, &renderQuad);
 		}
 		
 		//Set clip rendering dimensions
@@ -168,11 +169,19 @@ namespace DsdlEngine{
 			m_iHeight = 0;
 		}
 	}
-
+	
+	/*
+		Set Texture Blend Mode
+	*/
 	void ResourceTexture::setBlendMode(SDL_BlendMode blend){
 		SDL_SetTextureBlendMode(m_Texture, blend);
 	}
 
+
+	/*
+		Set Alpha value of texture for transperence
+		@parma alpha value of texture alpha 0 to 255
+	*/
 	void ResourceTexture::setAlpha(Uint8 alpha){
 		//Modulate texture alpha
 		SDL_SetTextureAlphaMod(m_Texture, alpha);

@@ -12,8 +12,8 @@ void ScrollingBg::create(std::string path) {
 
 	scrollingImage = new Sprite();
 
-	scrollingImage->create(3840, 1080, path);
-	scrollingImage->setPosition(Vec2::ZERO);
+	scrollingImage->create(Vec2(3840, 1080), Vec2::ZERO, path);
+	//scrollingImage->setPosition(Vec2::ZERO);
 
 	pos = 0;
 	

@@ -6,7 +6,7 @@ namespace DsdlEngine{
 
 
 	Button::Button() {
-		setEngineNodeType(NodeType::BUTTON);
+		setEngineNodeType(NodeType::LABEL);
 		m_eCurrentState = ButtonState::NORMAL;
 	}
 
@@ -28,24 +28,22 @@ namespace DsdlEngine{
 		m_textColor = color;
 		setAssetPath(fontPath);
 
-		/*m_labelBorder.h = size.y_;
-		m_labelBorder.w = size.x_;
-		m_labelBorder.x = position.x_;
-		m_labelBorder.y = position.y_;
-		*/
-
 		m_label = new Label();
 		m_label->create(pos, m_labelText, m_textSize, m_textColor, fontPath);
 	}
 
 
-	void Button::createSpriteButton(int width, int height, std::string imagePath, std::string name){
-		m_size.y_ = height;
-		m_size.x_ = width;
+	void Button::createSpriteButton(Vec2 spriteSize, Vec2 position, std::string imagePath, std::string name){
+		m_size.x_ = spriteSize.x_;
+		m_size.y_ = spriteSize.y_;
 
 		setAssetPath(imagePath);
 
 		m_buttonName = name;
+
+		m_position.x_ = position.x_;
+		m_position.y_ = position.y_;
+		setPosition(position);
 
 		m_rect.h = m_size.y_;
 		m_rect.w = m_size.x_;
@@ -56,7 +54,7 @@ namespace DsdlEngine{
 
 		m_numFrames = 3;
 		m_spriteBtn = new Sprite();
-		m_spriteBtn->create(width, height, imagePath, 3);
+		m_spriteBtn->create(m_size, m_position, imagePath, 3);
 	}
 
 	//Set State to Hovering
@@ -80,10 +78,10 @@ namespace DsdlEngine{
 	void Button::checkInput(SDL_Event& e){
 
 		//check if mouse over button
-		if (e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_MOUSEBUTTONUP || e.type == SDL_MOUSEBUTTONUP){
+		if (e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_MOUSEBUTTONUP ){
 			int x, y;
 			SDL_GetMouseState(&x, &y);
-	
+			
 			//Check if mouse inside button area
 			bool inside = true;
 

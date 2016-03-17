@@ -19,7 +19,7 @@ namespace DsdlEngine{
 
 		void createTextButton(Vec2 pos, Size size, std::string buttonText, std::string fontPath, SDL_Color textColor, SDL_Color bgColor);
 
-		void createSpriteButton(int width, int height, std::string imagePath, std::string name);
+		void createSpriteButton(Vec2 spriteSize, Vec2 position, std::string imagePath, std::string name);
 
 		//Set State to Hovering
 		void onMouseEnters();

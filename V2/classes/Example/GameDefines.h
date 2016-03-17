@@ -6,6 +6,13 @@ const int SCENE_INDEX_GAMEPLAY = 2;
 const int SCENE_INDEX_OVER = 3;
 const int SCENE_INDEX_PAUSE = 4;
 
+//Collision Filters
+#define PLAYER_FILTER 0x01
+#define ENEMY_FILTER 0x02
+#define COIN_FILTER 0x03
+#define GROUND_FILTER 0x04
+
+#define OBJECT_CAT 0x05
 
 //Hard Code Window Size for now
 #ifdef __WIN32__

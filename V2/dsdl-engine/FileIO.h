@@ -15,9 +15,21 @@ namespace DsdlEngine{
 
 		bool fileExists2(const std::string& name);
 		std::string getSuitableFOpen(const std::string& filenameUtf8) const;
-		std::string getWritablePath() const;
-		
 
+		/*
+			Get and Set Asset Storage path
+		*/
+		std::string getWritablePath();
+		void setAssetsPath(  std::string assetsPath)  { m_path = assetsPath; }
+
+
+		/*
+			Get and set file to open { For Xml only}
+		*/
+		std::string getFileToOpen() { return m_fileName; }
+		void setFileToOpen(std::string file) { m_fileName = file; }
+
+		
 		bool loadDocument(const char* filepath, char** doc_contents);
 		bool writeDocument(const char* filepath, const char** doc_contents);
 
@@ -32,6 +44,9 @@ namespace DsdlEngine{
 		FileIO(){};
 		virtual ~FileIO(){};
 	private:
+
+		std::string m_path;
+		std::string m_fileName;
 
 	};
 }

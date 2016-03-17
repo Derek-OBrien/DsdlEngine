@@ -24,7 +24,7 @@ namespace DsdlEngine{
 	private:
 
 		SDL_Texture* m_Texture;
-		std::map<std::string,SDL_Texture*> m_TextureMap;
+		std::map<std::string, SDL_Texture*> m_TextureMap;
 
 		int m_iWidth;
 		int m_iHeight;

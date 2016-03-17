@@ -29,6 +29,7 @@ namespace DsdlEngine {
 		bodyDef.fixedRotation = fixedRotation;
 		m_body = world->CreateBody(&bodyDef);
 
+
 		// Create the box
 		b2PolygonShape boxShape;
 		boxShape.SetAsBox(dimensions.x_ / 2.0f, (dimensions.y_ - dimensions.x_) / 2.0f);

@@ -35,11 +35,10 @@ Layer* HudLayer::createHud() {
 		ButtonType::SPRITE_BTN,
 		"pause",
 		Vec2(GAME_WIDTH - 300, 60),
-		Size(64, 64),
+		Vec2(64, 64),
 		XmlLocalStorage::getInstance()->getStringForKey("pause"),
 		SDL_Color{ NULL },
 		SDL_Color{ NULL },
-		//dsdlCallBack(&MainMenuScene::onNewGameClicked, this),
 		NULL
 		);
 	
@@ -88,8 +87,9 @@ void HudLayer::updateScore() {
 	scoreLabel->updateLabelText(scoreDisplay.str().c_str());
 }
 
+
 void HudLayer::updateCoinCount() {
-	coinCount += 1;
+	coinCount = coinCount + 1;
 	coinDisplay.str(" ");
 	coinDisplay << coinCount;
 

@@ -1,6 +1,9 @@
 #ifndef _ENGINEBASENODE_
 #define _ENGINEBASENODE_
 
+/**
+* Engine Base node root for all elements
+*/
 #include "EngineDefines.h"
 #include "ResourceTexture.h"
 #include "CollisionShape.h"
@@ -10,22 +13,30 @@ namespace DsdlEngine {
 
 	class EngineBaseNode{
 	public:
+
+		///Constructor
 		EngineBaseNode();
+
+		///Virtual Deconstructor
 		virtual ~EngineBaseNode();
 
+		///Virtual destroy
 		virtual void destroy();
 
-		//Load Node
+		///Load Node
 		bool load(SDL_Renderer* r);
 
 
-		//Render Node
+		/*
+		*Render Node
+		*/
 		void render(SDL_Renderer* r);
+		///Render Node as animation of frames
 		void renderAnimation(SDL_Renderer* r);
-
+		///Render box2d collision shape
 		void renderCollisionShape(SDL_Renderer* r, CollisionShape* shape);
 		
-		//Set position of node
+		///Set position of node
 		void setPosition(const Vec2& pos) { m_position.x_ = pos.x_, m_position.y_ = pos.y_; };
 		void setPositionX(int x) { m_position.x_ = x; }
 		void setPositionY(int y) { m_position.y_ = y; }
@@ -67,12 +78,22 @@ namespace DsdlEngine {
 		//Update LabelText
 		void updateLabelText(std::string text);
 
+
+		//Get Node Bounding box
+		SDL_Rect* getBoundingBox() { return m_objectBoundingBox; }
+		void setBoundingBox(Vec2 pos, Vec2 size) { m_objectBoundingBox->x = pos.x_; m_objectBoundingBox->y = pos.y_; m_objectBoundingBox->w = size.x_; m_objectBoundingBox->h = size.y_; }
+	
+	
 	protected:
+
+		std::string m_assetPath;
+
+		EngineBaseNode* m_node;
 
 		NodeType nodeType = NodeType::BASENODE;
 
 		ResourceTexture* m_engineTexture;
-		SDL_Rect m_objectBoundingBox;
+		SDL_Rect* m_objectBoundingBox;
 
 		//nodes position Vec2
 		Vec2 m_position;
@@ -94,7 +115,6 @@ namespace DsdlEngine {
 		SDL_Surface* m_btnbg;
 		SDL_Rect m_rect;
 
-		std::string m_assetPath;
 		TTF_Font* m_font;
 		std::map<std::string, TTF_Font*> m_FontMap;
 

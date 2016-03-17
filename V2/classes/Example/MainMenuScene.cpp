@@ -33,7 +33,7 @@ void MainMenuScene::onEntryScene(){
 
 	//Add bg
 	auto bg = new Sprite();
-	bg->create(1920, 1080, XmlLocalStorage::getInstance()->getStringForKey("menubg"));
+	bg->create(Vec2(1920, 1080), Vec2::ZERO, XmlLocalStorage::getInstance()->getStringForKey("menubg"));
 	bg->setPosition(Vec2::ZERO);
 
 	//Add to Layer
@@ -47,7 +47,7 @@ void MainMenuScene::onEntryScene(){
 		ButtonType::SPRITE_BTN,
 		"player1",
 		Vec2(GAME_WIDTH / 4, 400),
-		Size(160,300),
+		Vec2(160,300),
 		XmlLocalStorage::getInstance()->getStringForKey("player1btn"),
 		SDL_Color{ NULL },
 		SDL_Color{ NULL },
@@ -59,7 +59,7 @@ void MainMenuScene::onEntryScene(){
 		ButtonType::SPRITE_BTN,
 		"player2",
 		Vec2((GAME_WIDTH / 4) + GAME_WIDTH / 4, 400),
-		Size(160, 300),
+		Vec2(160, 300),
 		XmlLocalStorage::getInstance()->getStringForKey("player2btn"),
 		SDL_Color{ NULL },
 		SDL_Color{ NULL },
