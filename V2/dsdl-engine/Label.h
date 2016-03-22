@@ -26,6 +26,7 @@ namespace DsdlEngine{
 		void create(Vec2 pos, std::string text, int fontSize, SDL_Color color, std::string fontFilePath);
 
 		void destroy();
+		void cleanup();
 	protected:
 
 		LableType m_labelType;

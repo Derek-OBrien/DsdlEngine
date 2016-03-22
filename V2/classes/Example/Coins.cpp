@@ -44,17 +44,17 @@ void Coins::createCoin(b2World* world, Vec2 position) {
 		m_coinSprite->getPosition().x_,
 		m_coinSprite->getPosition().y_), 0.0);
 
-	pos = m_coinSprite->getPosition().x_;
+	pos = m_coinSprite->getPosition();
 }
 
 
 void Coins::update() {
 
-	pos -= 5;
-	if (pos <= -20) {
-		pos = 1980;
+	pos.x_ -= 5;
+	if (pos.x_ <= -20) {
+		pos.x_ = 1980;
 	}
-	m_coinSprite->setPositionX(pos);
+	m_coinSprite->setPositionX(pos.x_);
 
 
 	m_coinSprite->setBoundingBox(m_coinSprite->getPosition(), m_coinSprite->getContentSize());
@@ -64,6 +64,12 @@ void Coins::update() {
 }
 
 void Coins::resetPosition() {
-	m_coinSprite->setPositionX(GAME_WIDTH + 100);
-	m_coinSprite->getBoundingBox()->x = m_coinSprite->getPosition().x_;
+
+	m_coinSprite->updateTexure(
+		m_coinSprite->getContentSize(),
+		pos,
+		XmlLocalStorage::getInstance()->getStringForKey("coin"), 2);
+
+	//m_coinSprite->setPositionX(GAME_WIDTH + 100);
+	//m_coinSprite->getBoundingBox()->x = m_coinSprite->getPosition().x_;
 }

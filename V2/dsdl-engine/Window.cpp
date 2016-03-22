@@ -30,7 +30,7 @@ namespace DsdlEngine{
 		//Load Window for windows using size passed in
 #ifdef __WIN32__
 		SDL_Log("Windows Created for Windows Platform");
-		m_pSdlWindow = SDL_CreateWindow(windowName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, gScreenRect.w, gScreenRect.h, flag);
+		m_pSdlWindow = SDL_CreateWindow(windowName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screenWidth, screenHeight, flag);
 		m_pSdlRenderer = SDL_CreateRenderer(m_pSdlWindow, -1, SDL_RENDERER_TARGETTEXTURE | SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 		SDL_SetRenderDrawColor(m_pSdlRenderer, 0, 0, 0, 120);
 		//EngineMaster::getInstance()->setWindowSize(m_screenHeight, m_screenWidth);
@@ -59,12 +59,6 @@ namespace DsdlEngine{
 			SDL_Log("SDL_image could not initialize! SDL_image Error %s\n", IMG_GetError());
 		}
 		SDL_Log("Image Flag Init ok");
-
-		//Set up our OpenGL context
-		//SDL_GLContext glContext = SDL_GL_CreateContext(m_pSdlWindow);
-
-		//Set VSYNC
-		//SDL_GL_SetSwapInterval(0);
 
 		return 0;
 	}

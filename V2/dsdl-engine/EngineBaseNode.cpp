@@ -17,7 +17,6 @@ namespace DsdlEngine {
 		m_objectBoundingBox = new SDL_Rect();
 
 		updateTextureInfo = false;
-
 	}
 
 	//Deconstructor
@@ -27,18 +26,11 @@ namespace DsdlEngine {
 
 
 
-	//Render Node
+	//Render Node by type
 	void EngineBaseNode::render(SDL_Renderer* r) {
 		if (nodeType == NodeType::SPRITE) {
-			//if (m_numFrames > 1) {
-				renderAnimation(r);
-			/*}
-			else {
-				m_engineTexture->setAlpha(m_opacity);
-				m_engineTexture->render(m_position, m_size, r, m_currentFrame);
-			}*/
+			renderAnimation(r);
 		}
-
 		else if (nodeType == NodeType::LABEL) {
 			m_engineTexture->render(m_position, m_size, r);
 		}
@@ -46,7 +38,7 @@ namespace DsdlEngine {
 			m_engineTexture->render(m_position, m_size, r);
 		}
 		else if (nodeType == NodeType::PARTICLE) {
-			
+
 		}
 
 	}
@@ -56,12 +48,12 @@ namespace DsdlEngine {
 	void EngineBaseNode::renderAnimation(SDL_Renderer* r) {
 		m_currentFrame = &m_gSpriteClips[m_frame / m_numFrames];
 		m_engineTexture->setAlpha(m_opacity);
-	/*	if (m_CollisionShape != NULL) {
-			renderCollisionShape(r, m_CollisionShape);
-		}*/
-		SDL_SetRenderDrawColor(r, 255, 0, 0, 255);
+
+		//Draw Bounding Box
+		SDL_SetRenderDrawColor(r, 0, 255, 255, 255);
 		SDL_RenderDrawRect(r, m_objectBoundingBox);
 
+		//render texture
 		m_engineTexture->render(m_position, m_size, r, m_currentFrame);
 		++m_frame;
 
@@ -75,6 +67,7 @@ namespace DsdlEngine {
 	bool EngineBaseNode::load(SDL_Renderer * r) {
 
 		m_engineTexture = new ResourceTexture();
+		m_objectBoundingBox = new SDL_Rect();
 
 		if (nodeType == NodeType::SPRITE || nodeType == NodeType::BUTTON) {
 
@@ -82,7 +75,6 @@ namespace DsdlEngine {
 				SDL_Log("Faild to load sprite");
 
 			else {
-				//SDL_Log("Loaded sprite");
 
 				int temp = 0;
 
@@ -94,12 +86,11 @@ namespace DsdlEngine {
 
 					temp += m_size.x_;
 				}
-
-				m_objectBoundingBox->x = m_position.x_;
-				m_objectBoundingBox->y = m_position.y_;
-				m_objectBoundingBox->w = m_size.x_;
-				m_objectBoundingBox->h = m_size.y_;
-
+					m_objectBoundingBox->x = m_position.x_;
+					m_objectBoundingBox->y = m_position.y_;
+					m_objectBoundingBox->w = m_size.x_;
+					m_objectBoundingBox->h = m_size.y_;
+				
 			}
 			return true;
 		}
@@ -141,8 +132,16 @@ namespace DsdlEngine {
 			return false;
 	}
 
+	void EngineBaseNode::setBoundingBox(Vec2 pos, Vec2 size) {
+		m_objectBoundingBox = new SDL_Rect();
+		m_objectBoundingBox->x = pos.x_; 
+		m_objectBoundingBox->y = pos.y_; 
+		m_objectBoundingBox->w = size.x_; 
+		m_objectBoundingBox->h = size.y_; 
+	}
+
 	void EngineBaseNode::updateLabelText(std::string text) {
-		m_labelText = text; 
+		m_labelText = text;
 	}
 
 
@@ -151,6 +150,12 @@ namespace DsdlEngine {
 	}
 
 	void EngineBaseNode::destroy() {
+		m_engineTexture->destroy();
+		m_objectBoundingBox = nullptr;
+		m_size = Vec2(0, 0);
+	}
+
+	void EngineBaseNode::cleanup() {
 		m_engineTexture->destroy();
 	}
 

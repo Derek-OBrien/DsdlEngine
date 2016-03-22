@@ -36,6 +36,7 @@ namespace DsdlEngine{
 
 	//Load Sprite from file
 	bool ResourceTexture::loadFromFile(std::string texturePath, SDL_Renderer* r){
+		
 		std::string temp = FileIO::getInstance()->getWritablePath() + texturePath;
 
 		auto it = m_TextureMap.find(temp);
@@ -51,7 +52,6 @@ namespace DsdlEngine{
 			if (loadedSurface == NULL)
 				DEBUG_MSG("SDL_image Error : " + std::string(IMG_GetError()));
 			else{
-				//SDL_Log("Flie loaded");
 				//Color key image
 				SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0xFF, 0xFF));
 
@@ -76,18 +76,16 @@ namespace DsdlEngine{
 		}
 		//Return success
 		m_Texture = newTexture;
-		return newTexture != NULL;
+		return m_Texture != NULL;
 	}
 
 
 	//Load ttf
 	bool ResourceTexture::loadTTF(std::string text, SDL_Color color, TTF_Font* myfont, SDL_Renderer* r){
 
-		destroy();
+		this->destroy();
 
 		SDL_Surface* textSurface = TTF_RenderText_Blended(myfont, text.c_str(), color);
-
-		//m_Texture = nullptr;
 
 		if (textSurface == NULL){
 			DEBUG_MSG("TTF_RenderText_Blended Error : " + std::string(TTF_GetError()));
@@ -104,8 +102,7 @@ namespace DsdlEngine{
 
 			SDL_FreeSurface(textSurface);
 		}
-		//m_Texture = newTexture;
-
+		
 		return m_Texture != NULL;
 	}
 
@@ -116,15 +113,9 @@ namespace DsdlEngine{
 		SDL_Rect renderQuad;
 		if (s.x_ != NULL && s.y_ != NULL) {//For Sprites
 			renderQuad = { p.x_, p.y_, s.x_, s.y_ };
-
-			///SDL_SetRenderDrawColor(r, 255, 0, 0, 255);
-			///SDL_RenderDrawRect(r, &renderQuad);
 		}
 		else {	//For TTf Labels 
 			renderQuad = { p.x_, p.y_, m_iWidth, m_iHeight };
-
-			///SDL_SetRenderDrawColor(r, 0, 0, 255, 255);
-			///SDL_RenderDrawRect(r, &renderQuad);
 		}
 		
 		//Set clip rendering dimensions
@@ -140,7 +131,7 @@ namespace DsdlEngine{
 
 	//Clean up 
 	void ResourceTexture::destroy(){
-		if (m_Texture != NULL){
+		if (m_Texture != NULL) {
 			SDL_DestroyTexture(m_Texture);
 			m_Texture = NULL;
 			m_iWidth = 0;

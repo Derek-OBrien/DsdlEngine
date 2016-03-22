@@ -5,48 +5,48 @@
 #include "IScene.h"
 
 
-namespace DsdlEngine{
+namespace DsdlEngine {
 
 	/*
-	*Added template version of make_unique as Ndk did not support it in its version of STL 
+	*Added template version of make_unique as Ndk did not support it in its version of STL
 	*Error was make_unique not part of std::
 	*After research this was the easiest solution to solve error
 	*Ndk-build now builds apk as of 26/01/2016
 	*/
 	template<typename T, typename ...Args>
-	std::unique_ptr<T> make_unique(Args&& ...args){
+	std::unique_ptr<T> make_unique(Args&& ...args) {
 		return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
 	}
 
 
-	IMainGame::IMainGame(){
+	IMainGame::IMainGame() {
 		m_pSceneManager = DsdlEngine::make_unique<SceneManager>(this);
 	}
 
-	IMainGame::~IMainGame(){
+	IMainGame::~IMainGame() {
 		//Empty
 	}
-	
+
 
 	/*
 		Main engine Game Loop
 	*/
-	void IMainGame::run(){
+	void IMainGame::run() {
 
 		if (!init()) return;
 		FpsLimiter fpsLimit;
 		fpsLimit.setMaxFPS(m_fFps);
 
-	
+
 		setRunning();
-		while (m_bIsRunning){
+		while (m_bIsRunning) {
 			fpsLimit.begin();
-	
+
 			m_pCurrentRunning->onInput();
 
 			update();
 			draw();
-			
+
 			while (m_bIsPaused == true) {
 				m_pCurrentRunning->onInput();
 			}
@@ -59,7 +59,7 @@ namespace DsdlEngine{
 		Main Inputmanager control
 	*/
 
-	void IMainGame::onSDLEvent(SDL_Event& evnt){
+	void IMainGame::onSDLEvent(SDL_Event& evnt) {
 		m_InputManager.update();
 		//Will keep looping until there are no more events to process
 		switch (evnt.type) {
@@ -114,18 +114,15 @@ namespace DsdlEngine{
 
 
 	/*
-	
+
 		Init all Engine elements
 	*/
-	bool IMainGame::init(){
+	bool IMainGame::init() {
 		DsdlEngine::init();
 		m_audioManager.init();
-		
-		//call game's on init method
 
-		SDL_Log("Before onInit() Called");
+		//call game's on init method
 		onInit();
-		SDL_Log("After onInit() Called");
 
 		//If window creation fails exit
 		if (!initSystems()) {
@@ -133,18 +130,16 @@ namespace DsdlEngine{
 			return false;
 		}
 
-		SDL_Log("Before Add Scenes Called");
 		//Add all Scenes
 		addScenes();
-		SDL_Log("After Add Scenes Called");
-		
+
 		//Load up First Scene
 		m_pCurrentRunning = m_pSceneManager->getCurrentScene();
 		m_pCurrentRunning->setSceneRunning();
 		m_pCurrentRunning->onEntryScene();
 
 		//Load all scene Children nodes for first scene on init of game
-		for (size_t i = 0; i < m_pCurrentRunning->sceneLayers.size(); i++){
+		for (size_t i = 0; i < m_pCurrentRunning->sceneLayers.size(); i++) {
 			m_pCurrentRunning->loadScene(m_pGameRenderer);
 		}
 
@@ -157,10 +152,10 @@ namespace DsdlEngine{
 	}
 
 	/*
-		InitSystem 
+		InitSystem
 		Create window and get window render
 	*/
-	bool IMainGame::initSystems(){
+	bool IMainGame::initSystems() {
 		m_Window.createWindow(windowtitle, m_windowWidth, m_windowHeight, windowFlag);
 		m_pGameRenderer = m_Window.getRenderer();
 		return true;
@@ -172,18 +167,18 @@ namespace DsdlEngine{
 		Handel switching between scenes
 	*/
 
-	void IMainGame::update(){
-		if (m_pCurrentRunning){
-			switch (m_pCurrentRunning->getSceneState()){
+	void IMainGame::update() {
+		if (m_pCurrentRunning) {
+			switch (m_pCurrentRunning->getSceneState()) {
 			case SceneState::RUNNING:
 				m_pCurrentRunning->updateScene();
 				break;
 			case SceneState::CHANGE_NEXT:
 				m_pCurrentRunning->onExitScene();
 				m_pCurrentRunning = m_pSceneManager->moveNext();
-				if (m_pCurrentRunning){
+				if (m_pCurrentRunning) {
 					m_pCurrentRunning->setSceneRunning();
-					m_pCurrentRunning->onEntryScene(); 
+					m_pCurrentRunning->onEntryScene();
 					//Load all scene Children nodes for next scene
 					for (size_t i = 0; i < m_pCurrentRunning->sceneLayers.size(); i++) {
 						m_pCurrentRunning->loadScene(m_pGameRenderer);
@@ -193,7 +188,7 @@ namespace DsdlEngine{
 			case SceneState::CHANGE_PREVIOUS:
 				m_pCurrentRunning->onExitScene();
 				m_pCurrentRunning = m_pSceneManager->movePrevious();
-				if (m_pCurrentRunning){
+				if (m_pCurrentRunning) {
 					m_pCurrentRunning->setSceneRunning();
 					m_pCurrentRunning->onEntryScene();
 					//Load all scene Children nodes for previous scene
@@ -209,21 +204,21 @@ namespace DsdlEngine{
 				break;
 			}
 		}
-		else{
+		else {
 			exitGame();
 		}
 	}
-	
+
 
 	/*
 		Render all Scene nodes to screen
-	
+
 	*/
 
-	void IMainGame::draw(){
-		if (m_pCurrentRunning && m_pCurrentRunning->getSceneState() == SceneState::RUNNING){
+	void IMainGame::draw() {
+		if (m_pCurrentRunning && m_pCurrentRunning->getSceneState() == SceneState::RUNNING) {
 			SDL_RenderClear(m_pGameRenderer);
-			
+
 			//for running scene render each node that is in the child vector
 			for (size_t i = 0; i < m_pCurrentRunning->sceneLayers.size(); i++) {
 				m_pCurrentRunning->drawScene(m_pGameRenderer);
@@ -237,9 +232,9 @@ namespace DsdlEngine{
 	/*
 		Exit Game
 	*/
-	void IMainGame::exitGame(){
+	void IMainGame::exitGame() {
 		m_pCurrentRunning->onExitScene();
-		if (m_pSceneManager){
+		if (m_pSceneManager) {
 			m_pSceneManager->destroy();
 			m_pSceneManager.reset();
 		}

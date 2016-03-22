@@ -31,4 +31,4 @@ namespace DsdlEngine{
 	};
 }
 
-#endif
+#endif // !_RESOURCETEXTURE_

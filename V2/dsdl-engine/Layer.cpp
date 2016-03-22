@@ -1,11 +1,11 @@
 #include "Layer.h"
 #include "Sprite.h"
 
-namespace DsdlEngine{
+namespace DsdlEngine {
 
 
 
-	Layer::Layer(){
+	Layer::Layer() {
 		//Empty
 	}
 
@@ -14,23 +14,15 @@ namespace DsdlEngine{
 
 
 	/*
-		Destroy layer nodes 
+		Destroy layer nodes
 		and cleanup
 	*/
-	void Layer::destroy(){
-
+	void Layer::destroy() {
 		for (size_t i = 0; i < layerNodes.size(); i++) {
 			layerNodes[i]->destroy();
 			delete layerNodes[i];
 		}
 		layerNodes.resize(0);
-		for (size_t i = 0; i < box2dNodes.size(); i++) {
-			box2dNodes[i]->DestroyFixture(box2dNodes[i]->GetFixtureList());
-		}
-		box2dNodes.resize(0);
-		
-		m_LayerTexture.destroy();
-
 	}
 
 	/*
@@ -41,10 +33,19 @@ namespace DsdlEngine{
 	}
 
 	/*
+		Remove Node from sceen Vector
+		Remove node form memory
+	*/
+	void Layer::removeNodeFromLayer(EngineBaseNode* node) {
+		layerNodes.erase(std::remove(layerNodes.begin(), layerNodes.end(), node), layerNodes.end());
+		node->destroy();
+	}
+
+	/*
 		Load all nodes added to layer
 	*/
 	void Layer::loadNodes(SDL_Renderer* r) {
-		for (size_t i = 0; i < layerNodes.size(); i++){
+		for (size_t i = 0; i < layerNodes.size(); i++) {
 			layerNodes.at(i)->load(r);
 		}
 	}
@@ -53,57 +54,30 @@ namespace DsdlEngine{
 		Render all nodes added to layer
 	*/
 	void Layer::drawNodes(SDL_Renderer* r) {
-		for (size_t i = 0; i < layerNodes.size(); i++){
+		for (size_t i = 0; i < layerNodes.size(); i++) {
 
 			if (layerNodes.at(i)->getNodeType() == NodeType::SPRITE) {
 
+				/*
+				Reload texture if the texture has been changed
+				*/
 				if (layerNodes.at(i)->isTextureChanged() == true) {
-
-					layerNodes.at(i)->destroy();
+					layerNodes.at(i)->cleanup();
 					layerNodes.at(i)->load(r);
 					layerNodes.at(i)->setUpdateTextureTrue(false);
 				}
 				layerNodes.at(i)->render(r);
 			}
-			
+
 			/*
 			Reload labels for update each tick for changes to take effect
 			old label destroyed first to realease its memory so no extra memory been taking up
 			*/
 			if (layerNodes.at(i)->getNodeType() == NodeType::LABEL) {
-						
-				layerNodes.at(i)->destroy();
+				layerNodes.at(i)->cleanup();
 				layerNodes.at(i)->load(r);
 				layerNodes.at(i)->render(r);
 			}
-
-			
-			
-		}
-	}
-
-
-
-	void Layer::addBox2dNodes(b2Body* body) {
-		box2dNodes.push_back(body);
-	}
-
-
-	void Layer::drawBox2dNodes(SDL_Renderer* r) {
-		for (size_t i = 0; i < box2dNodes.size(); i++) {
-		
-			int x = box2dNodes.at(i)->GetTransform().p.x;
-			int y = box2dNodes.at(i)->GetTransform().p.y;
-
-			bodyWidth = y - x;
-
-			box2dRect.x = box2dNodes.at(i)->GetPosition().x;
-			box2dRect.y = box2dNodes.at(i)->GetPosition().y;
-			box2dRect.h = 100;
-			box2dRect.w = 100;
-
-			SDL_SetRenderDrawColor(r, 255, 0, 0, 255);
-			SDL_RenderDrawRect(r, &box2dRect);
 		}
 	}
 

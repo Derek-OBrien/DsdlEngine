@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="App" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAIBAABAAAACAAAgAAAAAwAAA=</HashCode>
+      <FileName>C:\Users\Derek\Desktop\FYP SDL Engine\V2\classes\Example\App.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Character" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAkQIAAAAAAgAAAIAAIhAAAEAAAEKAA=</HashCode>
+      <FileName>C:\Users\Derek\Desktop\FYP SDL Engine\V2\classes\Example\Character.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coins" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAgAQAABCIAAAAAAEEAgQAAAAAAEAAA=</HashCode>
+      <FileName>C:\Users\Derek\Desktop\FYP SDL Engine\V2\classes\Example\Coins.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CollisionManager" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAwAABAAAAgAAAAAAAAAAAEAAAAAGAAAA=</HashCode>
+      <FileName>C:\Users\Derek\Desktop\FYP SDL Engine\V2\classes\Example\CollisionManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Enemy" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAIAgAAAIIAAAAAAAAAAIAAAAAAEEAgAAAAAAAEAAA=</HashCode>
+      <FileName>C:\Users\Derek\Desktop\FYP SDL Engine\V2\classes\Example\Enemy.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Factory" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAYAABAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\Derek\Desktop\FYP SDL Engine\V2\classes\Example\EnemyFactory.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spawner" Collapsed="true">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAUgAACAAIAAAEIABgQAIAgAAACAAAAEAEI=</HashCode>
+      <FileName>C:\Users\Derek\Desktop\FYP SDL Engine\V2\classes\Example\EnemyManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameOverScene" Collapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAgAAEwAAAAACAAAAACAEAAEAAIAABAAAAAA=</HashCode>
+      <FileName>C:\Users\Derek\Desktop\FYP SDL Engine\V2\classes\Example\GameOverScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GamePlayScene" Collapsed="true">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAgMQgAAgAB8xYAAACEAAAAAIQEAAAyAAAAFigAgAY=</HashCode>
+      <FileName>C:\Users\Derek\Desktop\FYP SDL Engine\V2\classes\Example\GamePlayScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HudLayer" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAABgAAAAAQAEDACIAAgAAAIBAEAAAEAIAAAAAAE=</HashCode>
+      <FileName>C:\Users\Derek\Desktop\FYP SDL Engine\V2\classes\Example\HudLayer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainMenuScene" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIABAIgABEwAAAACAAAAAAAAEAAEAAIAABwgAAAA=</HashCode>
+      <FileName>C:\Users\Derek\Desktop\FYP SDL Engine\V2\classes\Example\MainMenuScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PauseScene" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAgAAEwAAAAAAAAAACCAEAAAAAJAABAgAAAA=</HashCode>
+      <FileName>C:\Users\Derek\Desktop\FYP SDL Engine\V2\classes\Example\PauseScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ScrollingBg" Collapsed="true">
+    <Position X="9.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAMAAABAAAAAAAABAAEQEAAA=</HashCode>
+      <FileName>C:\Users\Derek\Desktop\FYP SDL Engine\V2\classes\Example\ScrollingBg.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SimpleBoxCollision" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAABAAIAAAAAAAAAAEAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\Derek\Desktop\FYP SDL Engine\V2\classes\Example\SimpleBoxCollision.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SplashScene" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAgAAE0AAAAAAAAAAACAEAAAAAIAABAgAAAA=</HashCode>
+      <FileName>C:\Users\Derek\Desktop\FYP SDL Engine\V2\classes\Example\SplashScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Typedef Name="EPlayerState" Collapsed="true">
+    <Position X="1.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\Derek\Desktop\FYP SDL Engine\V2\classes\Example\GameDefines.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Enum Name="__unnamed_enum_000f_1" Collapsed="true">
+    <Position X="1.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAIAAAAAAAAgAAAAAAgEAQAAAAA=</HashCode>
+      <FileName>C:\Users\Derek\Desktop\FYP SDL Engine\V2\classes\Example\GameDefines.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

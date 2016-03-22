@@ -23,7 +23,10 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/$(BOX2D_PATH)/
 ENGINE_FILE_LIST := $(wildcard $(LOCAL_PATH)/../../../dsdl-engine/*.cpp)
 
 #Include all Example game cpp files
-GAME_FILE_LIST := $(wildcard $(LOCAL_PATH)/../../../classes/Example/*.cpp)
+GAME_FILE_LIST_RUNNER := $(wildcard $(LOCAL_PATH)/../../../classes/Example/*.cpp)
+
+#Include all Breakout game cpp files
+GAME_FILE_LIST_BREAKOUT := $(wildcard $(LOCAL_PATH)/../../../classes/BreakOut/*.cpp)
 
 #Include Tinyxml
 XML_FILE_LIST := $(wildcard $(LOCAL_PATH)/../../../dependencies/tinyxml/*.cpp)
@@ -32,7 +35,7 @@ XML_FILE_LIST := $(wildcard $(LOCAL_PATH)/../../../dependencies/tinyxml/*.cpp)
 LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.c\
 	$(XML_FILE_LIST:$(LOCAL_PATH)/%=%)\
 	$(ENGINE_FILE_LIST:$(LOCAL_PATH)/%=%)\
-	$(GAME_FILE_LIST:$(LOCAL_PATH)/%=%)\
+	$(GAME_FILE_LIST_BREAKOUT:$(LOCAL_PATH)/%=%)\
 	../../../classes/main.cpp
 	
 

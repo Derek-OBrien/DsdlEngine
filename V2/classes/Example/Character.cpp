@@ -35,16 +35,6 @@ void Character::init(b2World* world){
 		);
 
 	setPlayerState(ALIVE);
-
-	if (currentState == ALIVE) {
-		m_sprite->setAssetPath(XmlLocalStorage::getInstance()->getStringForKey(player.c_str()));
-	}
-	if (currentState == JUMPING) {
-		m_sprite->setAssetPath(XmlLocalStorage::getInstance()->getStringForKey("player2jump"));
-	}
-	if (currentState == SLIDING) {
-		m_sprite->setAssetPath(XmlLocalStorage::getInstance()->getStringForKey("player2slide"));
-	}
 }
 
 

@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\classes\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\classes\Example\App.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -54,6 +51,16 @@
     <ClCompile Include="..\..\classes\Example\HudLayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\classes\Example\Coins.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\classes\Example\CollisionManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\classes\Example\SimpleBoxCollision.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\classes\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\classes\Example\App.h">
@@ -95,5 +102,17 @@
     <ClInclude Include="..\..\classes\Example\HudLayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\classes\Example\Coins.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\classes\Example\CollisionManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\classes\Example\SimpleBoxCollision.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

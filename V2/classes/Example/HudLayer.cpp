@@ -68,7 +68,7 @@ Layer* HudLayer::createHud() {
 	return gui;
 }
 
-void HudLayer::onInput(IMainGame* game, Character* player) {
+void HudLayer::onInput(IMainGame* game, Character* player, Music bg) {
 	SDL_Event evnt;
 
 	while (SDL_PollEvent(&evnt)) {
@@ -81,7 +81,8 @@ void HudLayer::onInput(IMainGame* game, Character* player) {
 				if (gui->GUIElements.at(i)->m_eCurrentState == ButtonState::PRESSED) {
 
 					if (gui->GUIElements.at(i)->getButtonName() == "pause") {
-						pauseGame(game);
+						
+						pauseGame(game, bg);
 					}
 					if (gui->GUIElements.at(i)->getButtonName() == "up") {
 						player->jump();
@@ -91,19 +92,23 @@ void HudLayer::onInput(IMainGame* game, Character* player) {
 					}
 				}
 			}
-			break;
+			//break;
 		default:
 			break;
 		}
 	}
 }
 
-void HudLayer::pauseGame(IMainGame* game) {
+void HudLayer::pauseGame(IMainGame* game, Music music) {
 	SDL_Log("Game Paused");
-	if (game->checkPaused() == false)
+	if (game->checkPaused() == false) {
 		game->setPaused();
-	else
+		music.audioPauseBG();
+	}
+	else {
 		game->setRunning();
+		music.audioResumeBG();
+	}
 }
 
 
@@ -116,10 +121,26 @@ void HudLayer::updateScore() {
 }
 
 
-void HudLayer::updateCoinCount() {
-	coinCount = coinCount + 1;
+void HudLayer::updateCoinCount(int x) {
+	coinCount = coinCount + x;
 	coinDisplay.str(" ");
 	coinDisplay << coinCount;
 
 	coinLabel->updateLabelText(coinDisplay.str().c_str());
+}
+
+
+
+void HudLayer::saveScore() {
+	XmlLocalStorage::getInstance()->setIntegerForKey(score, "score");
+}
+
+void HudLayer::checkHighScore() {
+	int curScore = XmlLocalStorage::getInstance()->getIntegerForKey("score");
+	int newScore = score;
+	
+	if (newScore > score) {
+		XmlLocalStorage::getInstance()->setIntegerForKey(newScore, "highscore");
+	}
+
 }

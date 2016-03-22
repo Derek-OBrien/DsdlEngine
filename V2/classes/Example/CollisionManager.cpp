@@ -16,7 +16,9 @@ void CollisionManager::BeginContact(b2Contact* contact, HudLayer* hud) {
 	uint16  data1 = fixtureA->GetFilterData().maskBits;
 	uint16  data2 = fixtureB->GetFilterData().maskBits;
 
-	Sprite* actorA = (Sprite*)bodyA->GetUserData();	Sprite* actorB = (Sprite*)bodyB->GetUserData();
+	Sprite* actorA = (Sprite*)bodyA->GetUserData();
+	Sprite* actorB = (Sprite*)bodyB->GetUserData();
+
 	coinCollide = false;
 
 	if (data1 == PLAYER_FILTER && data2 == COIN_FILTER || data1 == COIN_FILTER && data2 == PLAYER_FILTER) {
@@ -45,7 +47,7 @@ void CollisionManager::EndContact(b2Contact* contact, HudLayer* hud) {
 void CollisionManager::PreSolve(b2Contact* contact, const b2Manifold* oldManifold, HudLayer* hud)
 { /* handle pre-solve event */
 
-	hud->updateCoinCount();
+	hud->updateCoinCount(1);
 
 	b2WorldManifold worldManifold;
 	contact->GetWorldManifold(&worldManifold);
@@ -59,7 +61,7 @@ void CollisionManager::PreSolve(b2Contact* contact, const b2Manifold* oldManifol
 		b2Vec2 vA = bodyA->GetLinearVelocityFromWorldPoint(point);
 		b2Vec2 vB = bodyB->GetLinearVelocityFromWorldPoint(point);
 		
-			hud->updateCoinCount();
+			hud->updateCoinCount(1);
 		
 	}
 }

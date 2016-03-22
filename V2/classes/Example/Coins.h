@@ -16,7 +16,7 @@ public:
 	void resetPosition();
 
 	Sprite* m_coinSprite;
-	int pos;
+	Vec2 pos;
 
 	b2Body* m_body;
 	b2BodyDef m_bodyDef;

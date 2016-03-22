@@ -30,4 +30,5 @@
     <bgmusic>DemoGame/sounds/Severe_Tire_Damage.wav</bgmusic>
     <sfx>DemoGame/sounds/sfx.wav</sfx>
     <buttonpress>DemoGame/sounds/buttonPress.wav</buttonpress>
+    <score>1186</score>
 </DefaultRoot>

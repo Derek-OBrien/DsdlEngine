@@ -54,20 +54,12 @@ namespace DsdlEngine{
 		bool checkPaused() { return m_bIsPaused; }
 
 	protected:
-		unsigned int windowFlag;
-		int m_windowWidth;
-		int m_windowHeight;
-		std::string windowtitle;
-		std::string mainAssetsPath;
-
-
 		std::unique_ptr<SceneManager> m_pSceneManager;
 
 		IScene* m_pCurrentRunning;
 		bool m_bIsRunning;
 		bool m_bIsPaused;
-		float m_fFps;
-
+		
 		Window m_Window;
 		SDL_Renderer* m_pGameRenderer;
 
@@ -75,6 +67,17 @@ namespace DsdlEngine{
 		ResourceTexture m_resourceManager;
 
 	private:
+
+		float m_fFps;
+
+		unsigned int windowFlag;
+		int m_windowWidth;
+		int m_windowHeight;
+		std::string windowtitle;
+		std::string mainAssetsPath;
+
+
+
 		void exitGame();
 
 		void update();

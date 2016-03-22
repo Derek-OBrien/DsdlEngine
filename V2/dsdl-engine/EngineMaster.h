@@ -1,9 +1,13 @@
 #ifndef _ENGINEMASTER_
 #define _ENGINEMASTER_
+/*
+	Author:: Derek O Brien K00105572
+	File:: EngineMaster
+	Description:: Engine master class is a singleton helper class
+*/
 
 #include "EngineDefines.h"
 #include "../dependencies/tinyxml/tinyxml2.h"
-#include "EngineMath.h"
 
 namespace DsdlEngine{
 
@@ -42,4 +46,4 @@ namespace DsdlEngine{
 }
 
 
-#endif
+#endif // !_ENGINEMASTER_

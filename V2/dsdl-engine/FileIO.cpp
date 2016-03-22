@@ -5,9 +5,6 @@
 
 #include <fstream>
 
-using namespace tinyxml2;
-using namespace std;
-
 namespace DsdlEngine{
 	/*
 	Create As Singleton
@@ -65,7 +62,7 @@ namespace DsdlEngine{
 #ifdef __WIN32__
 		m_path;
 #endif
-		//If Android version running file path is empty as SDL_Rwops() points to assets folder by default
+		//If Android version running file path is empty as SDL_RWops() points to assets folder by default
 		//The only problem this provides is file must be stored in the assets folder in order to work in android
 #ifdef __ANDROID__
 		m_path = "";
@@ -197,15 +194,6 @@ namespace DsdlEngine{
 			return;
 		}
 
-/**
-#ifdef __WIN32__
-		path = "../../assets/Default.xml";
-#endif
-#ifdef __ANDROID__
-		path = "Default.xml";
-#endif
-*/
-
 		path = getWritablePath() + "Default.xml";
 
 		//Check if node exists allready
@@ -268,28 +256,12 @@ namespace DsdlEngine{
 		doc->LinkEndChild(pRootEle);
 
 		std::string path;
-/*#ifdef __WIN32__
-		path = "../../assets/Default.xml";
-#endif
-#ifdef __ANDROID__
-		path = "assets/Default.xml";
-#endif*/
+
 		path = getWritablePath() + "Default.xml";
 
 
 		bRet = XML_SUCCESS == doc->SaveFile(FileIO::getInstance()->getSuitableFOpen(path).c_str());
 		DEBUG_MSG("XML File Created");
-
-		// attach printer to the document you want to convert in to a std::string 
-		//doc->Accept(&printer);
-
-		// Create a std::string and copy your document data in to the string    
-		//const char* buffer = printer.CStr();
-
-		//Write back to file and save file
-		//if (FileIO::getInstance()->writeDocument(path.c_str(), &buffer)) {
-		//	bRet = true;
-		//}
 
 		if (doc) delete doc;
 

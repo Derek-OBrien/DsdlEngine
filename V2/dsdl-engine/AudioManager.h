@@ -1,17 +1,20 @@
 /*
-
-
-
+	Author: Derek O Brien
+	File : AudioManager.h
+	Description: Engine Audio Manger handles loading, playing and stoping of audio files
 
 */
 #ifndef _AUDIOMANAGER_
 #define _AUDIOMANAGER_
 
 #include "EngineDefines.h"
+//Name Space Wrapper
+namespace DsdlEngine {
 
-namespace DsdlEngine{
-	
-	class SFX{
+	/*
+		Sound Effect Sub Class
+	*/
+	class SFX {
 	public:
 		friend class AudioManager;
 		//@param loops == -1 : loop forever, 0 : loop once, 1+ : loop that many times
@@ -20,28 +23,34 @@ namespace DsdlEngine{
 		Mix_Chunk* m_Chunk;
 	};
 
-	class Music{
+	/*
+		Music Sub Class
+	*/
+	class Music {
 	public:
 		friend class AudioManager;
 		//@param loops == -1 : loop forever, 0 : loop once, 1+ : loop that many times
-		void play(int loop = -1){ Mix_PlayMusic(m_Music, loop); };
-		void audioPauseBG(){ Mix_PauseMusic(); };
-		void audioResumeBG(){ Mix_ResumeMusic(); };
-		void audioStopBG(){ Mix_HaltMusic(); };
+		void play(int loop = -1) { Mix_PlayMusic(m_Music, loop); };
+		void audioPauseBG() { Mix_PauseMusic(); };
+		void audioResumeBG() { Mix_ResumeMusic(); };
+		void audioStopBG() { Mix_HaltMusic(); };
 
 	private:
 		Mix_Music* m_Music;
 	};
 
-
-	class AudioManager{
+	/*
+		Audio Manger Class
+	*/
+	class AudioManager {
 	public:
-		AudioManager(){ init(); };
-		~AudioManager(){ destroy(); };
+		AudioManager() { init(); };
+		~AudioManager() { destroy(); };
 
 		void init();
 		void destroy();
-		
+
+		//load Audio
 		SFX loadSFX(std::string audioPath);
 		Music loadMusic(std::string audioPath);
 

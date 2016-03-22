@@ -1,10 +1,11 @@
 
 #include "AudioManager.h"
+#include "FileIO.h"
 
-namespace DsdlEngine{
+namespace DsdlEngine {
 
 	//init audio manager
-	void AudioManager::init(){
+	void AudioManager::init() {
 
 		if (Mix_Init(MIX_INIT_MP3 | MIX_INIT_OGG) == -1) {
 			DEBUG_MSG("Mix_Init error: " + std::string(Mix_GetError()));
@@ -17,21 +18,23 @@ namespace DsdlEngine{
 		m_bisInitialized = true;
 	}
 
-	void AudioManager::destroy(){
+	//Clean Up Aduio
+	void AudioManager::destroy() {
 		if (m_bisInitialized)
 			m_bisInitialized = false;
-
-		for (auto& it : m_sfxAudioMap){
+		//Loop Through maps and free audio
+		for (auto& it : m_sfxAudioMap) {
 			Mix_FreeChunk(it.second);
 		}
 
-		for (auto& it : m_bgAudioMap){
+		for (auto& it : m_bgAudioMap) {
 			Mix_FreeMusic(it.second);
 		}
-
+		//Clear maps
 		m_bgAudioMap.clear();
 		m_sfxAudioMap.clear();
 
+		//Close and Quit Audio
 		Mix_CloseAudio();
 		Mix_Quit();
 	}
@@ -45,27 +48,24 @@ namespace DsdlEngine{
 		}
 	}
 
-	//load sound effect
-	SFX AudioManager::loadSFX(std::string audioPath){
+	//Load Sound effect file
+	//@parma : string audioPath ( path to file)
+	SFX AudioManager::loadSFX(std::string audioPath) {
 
 		std::string temp;
-#ifdef __WIN32__
-		temp = "../../assets/" + audioPath;
-#endif
+		temp = FileIO::getInstance()->getWritablePath() + audioPath;
 
-#ifdef __ANDROID__
-		temp = audioPath;
-#endif
 
 		//Load SFX music (Mix_Chunk)
 		SFX sfx;
 		Mix_Chunk* sfxChunk = nullptr;
+
 		//Check if allready cached
 		auto it = m_sfxAudioMap.find(temp);
 
 		//Not cached so load and cahe it
-		if (it == m_sfxAudioMap.end()){
-			if ((sfxChunk = Mix_LoadWAV(temp.c_str())) == NULL){
+		if (it == m_sfxAudioMap.end()) {
+			if ((sfxChunk = Mix_LoadWAV(temp.c_str())) == NULL) {
 				DEBUG_MSG("Mix_LoadWAV: Failed to load Audio" + std::string(Mix_GetError()));
 				SDL_Log("Failed to load Audio Wav");
 			}
@@ -73,23 +73,19 @@ namespace DsdlEngine{
 			m_sfxAudioMap[temp] = sfxChunk;
 		}
 		//it is cached 
-		else{
+		else {
 			sfx.m_Chunk = it->second;
 		}
 		return sfx;
 	}
 
-	//load music
-	Music AudioManager::loadMusic(std::string audioPath){
+
+	//Load Music file
+	//@parma : string audioPath ( path to file)
+	Music AudioManager::loadMusic(std::string audioPath) {
 
 		std::string temp;
-#ifdef __WIN32__
-		temp = "../../assets/" + audioPath;
-#endif
-
-#ifdef __ANDROID__
-		temp = audioPath;
-#endif
+		temp = FileIO::getInstance()->getWritablePath() + audioPath;
 
 
 		//Check if allready cached
@@ -98,8 +94,8 @@ namespace DsdlEngine{
 		Music music;
 		Mix_Music* mix = nullptr;
 		//Not cached so load and cahe it
-		if (it == m_bgAudioMap.end()){
-			if ((mix = Mix_LoadMUS(temp.c_str())) == NULL){
+		if (it == m_bgAudioMap.end()) {
+			if ((mix = Mix_LoadMUS(temp.c_str())) == NULL) {
 				DEBUG_MSG("Mix_LoadMUS: Failed to load Audio" + std::string(Mix_GetError()));
 				SDL_Log("Failed to load Audio");
 			}
@@ -107,7 +103,7 @@ namespace DsdlEngine{
 			m_bgAudioMap[temp] = mix;
 		}
 		//it is cached 
-		else{
+		else {
 			music.m_Music = it->second;
 		}
 		return music;

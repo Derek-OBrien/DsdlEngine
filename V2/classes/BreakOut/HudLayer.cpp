@@ -14,27 +14,23 @@ HudLayer::~HudLayer() {
 Layer* HudLayer::createHud() {
 
 	scoreLabel = new Label();
-
+	livesLabel = new Label();
+	
 	gui = new DsdlEngine::DsdlGui();
 	score = 0;
 	scoreText = "0";
+	lives = 5;
+	livesText = "5";
 
+	gui->addLabel(LableType::LABEL_STATIC, Vec2(GAME_WIDTH / 2 - 100, 10), " Score : ", 30, SDL_Color{ 0,255,255 }, "fonts/font.ttf");
+	gui->addLabel(LableType::LABEL_STATIC, Vec2(50, 10), " Lives : ", 30, SDL_Color{ 0,255,255 }, "fonts/font.ttf");
 
-	
-	scoreLabel->create(Vec2(GAME_WIDTH / 2, 50), scoreText.c_str(), 70, SDL_Color{ 0,255,255 }, "fonts/font.ttf");
+	livesLabel->create(Vec2(170, 10), livesText.c_str(), 30, SDL_Color{ 0,255,255 }, "fonts/font.ttf");
+	gui->addPreDefineLabel(livesLabel, LableType::LABEL_DYNAMIC);
+
+	scoreLabel->create(Vec2(GAME_WIDTH / 2 + 50 , 10), scoreText.c_str(), 30, SDL_Color{ 0,255,255 }, "fonts/font.ttf");
 	gui->addPreDefineLabel(scoreLabel, LableType::LABEL_DYNAMIC);
 
-	/*gui->addButton(
-		ButtonType::SPRITE_BTN,
-		"pause",
-		Vec2(GAME_WIDTH - 300, 60),
-		Vec2(64, 64),
-		XmlLocalStorage::getInstance()->getStringForKey("pause"),
-		SDL_Color{ NULL },
-		SDL_Color{ NULL },
-		NULL
-		);
-	*/
 
 	return gui;
 }
@@ -78,5 +74,14 @@ void HudLayer::updateScore() {
 	scoreDisplay << score;
 	
 	scoreLabel->updateLabelText(scoreDisplay.str().c_str());
+}
+
+
+void HudLayer::updateLives() {
+	lives -= 1;
+	livesDisplay.str(" ");
+	livesDisplay << lives;
+
+	livesLabel->updateLabelText(livesDisplay.str().c_str());
 }
 

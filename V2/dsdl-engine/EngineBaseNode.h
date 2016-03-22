@@ -11,32 +11,29 @@
 
 namespace DsdlEngine {
 
-	class EngineBaseNode{
+	class EngineBaseNode {
 	public:
 
-		///Constructor
+		//Constructor
 		EngineBaseNode();
 
-		///Virtual Deconstructor
+		//Virtual Deconstructor
 		virtual ~EngineBaseNode();
 
-		///Virtual destroy
+		//Virtual destroy
 		virtual void destroy();
-
-		///Load Node
+		virtual void cleanup();
+		//Load Node
 		bool load(SDL_Renderer* r);
 
-
-		/*
-		*Render Node
-		*/
+		//Render Node
 		void render(SDL_Renderer* r);
-		///Render Node as animation of frames
+		//Render Node as animation of frames
 		void renderAnimation(SDL_Renderer* r);
-		///Render box2d collision shape
+		//Render box2d collision shape
 		void renderCollisionShape(SDL_Renderer* r, CollisionShape* shape);
-		
-		///Set position of node
+
+		//Set position of node
 		void setPosition(const Vec2& pos) { m_position.x_ = pos.x_, m_position.y_ = pos.y_; };
 		void setPositionX(int x) { m_position.x_ = x; }
 		void setPositionY(int y) { m_position.y_ = y; }
@@ -50,12 +47,15 @@ namespace DsdlEngine {
 
 		const Vec2 getContentSize() const { return m_size; }
 
+		//Set Anchor Point
+		//TODO
+
 		//Rotate Node
 		//TODO
 
 		//Scale Node
 		//TODO
-		void scaleWidth(float scale) { m_size.x_ =m_size.x_ * scale; }
+		void scaleWidth(float scale) { m_size.x_ = m_size.x_ * scale; }
 		void scaleHeight(float scale) { m_size.y_ = m_size.y_ * scale; }
 
 
@@ -71,7 +71,7 @@ namespace DsdlEngine {
 
 		//Set Opacity of texture 0 - 255
 		void setOpacity(int opacity);
-		
+
 		//Get Node texture
 		ResourceTexture* getEngineTexture() { return m_engineTexture; }
 
@@ -81,16 +81,17 @@ namespace DsdlEngine {
 
 		//Get Node Bounding box
 		SDL_Rect* getBoundingBox() { return m_objectBoundingBox; }
-		void setBoundingBox(Vec2 pos, Vec2 size) { m_objectBoundingBox->x = pos.x_; m_objectBoundingBox->y = pos.y_; m_objectBoundingBox->w = size.x_; m_objectBoundingBox->h = size.y_; }
-	
-	
+		void setBoundingBox(Vec2 pos, Vec2 size);
+
+		//Change Texture for node
 		void setUpdateTextureTrue(bool value) { updateTextureInfo = value; }
 		bool isTextureChanged() { return updateTextureInfo; }
+	
 	protected:
 
-		std::string m_assetPath;
-
 		EngineBaseNode* m_node;
+
+		std::string m_assetPath;
 
 		NodeType nodeType = NodeType::BASENODE;
 
@@ -110,19 +111,21 @@ namespace DsdlEngine {
 
 
 		// For labels
+		TTF_Font* m_font;
+		std::map<std::string, TTF_Font*> m_FontMap;
+
 		std::string m_labelText;
 		int m_textSize;
 		SDL_Color m_textColor;
 
+		//For  Button
 		SDL_Color m_buttonbg;
 		SDL_Surface* m_btnbg;
 		SDL_Rect m_rect;
 
-		TTF_Font* m_font;
-		std::map<std::string, TTF_Font*> m_FontMap;
-
+		//Node Collision shape
 		CollisionShape* m_CollisionShape;
 	};
 }
 
-#endif
+#endif // !_ENGINEBASENODE_

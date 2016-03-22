@@ -13,6 +13,8 @@
   <ItemGroup>
     <ClCompile Include="..\..\classes\Example\App.cpp" />
     <ClCompile Include="..\..\classes\Example\Character.cpp" />
+    <ClCompile Include="..\..\classes\Example\Coins.cpp" />
+    <ClCompile Include="..\..\classes\Example\CollisionManager.cpp" />
     <ClCompile Include="..\..\classes\Example\Enemy.cpp" />
     <ClCompile Include="..\..\classes\Example\EnemyFactory.cpp" />
     <ClCompile Include="..\..\classes\Example\EnemyManager.cpp" />
@@ -22,12 +24,15 @@
     <ClCompile Include="..\..\classes\Example\MainMenuScene.cpp" />
     <ClCompile Include="..\..\classes\Example\PauseScene.cpp" />
     <ClCompile Include="..\..\classes\Example\ScrollingBg.cpp" />
+    <ClCompile Include="..\..\classes\Example\SimpleBoxCollision.cpp" />
     <ClCompile Include="..\..\classes\Example\SplashScene.cpp" />
     <ClCompile Include="..\..\classes\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\classes\Example\App.h" />
     <ClInclude Include="..\..\classes\Example\Character.h" />
+    <ClInclude Include="..\..\classes\Example\Coins.h" />
+    <ClInclude Include="..\..\classes\Example\CollisionManager.h" />
     <ClInclude Include="..\..\classes\Example\Enemy.h" />
     <ClInclude Include="..\..\classes\Example\EnemyFactory.h" />
     <ClInclude Include="..\..\classes\Example\EnemyManager.h" />
@@ -38,7 +43,11 @@
     <ClInclude Include="..\..\classes\Example\MainMenuScene.h" />
     <ClInclude Include="..\..\classes\Example\PauseScene.h" />
     <ClInclude Include="..\..\classes\Example\ScrollingBg.h" />
+    <ClInclude Include="..\..\classes\Example\SimpleBoxCollision.h" />
     <ClInclude Include="..\..\classes\Example\SplashScene.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{8B364CE5-3F01-4088-83C2-A19A425E4A18}</ProjectGuid>
@@ -69,7 +78,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)..\dsdl-engine\;$(SolutionDir)..\dependencies\include;$(SolutionDir)..\dependenciesSDL2\SDL_ttf\include;$(SolutionDir)..\dependenciesSDL2\SDL_mixer\include;$(SolutionDir)..\dependenciesSDL2\SDL_image\include;$(SolutionDir)..\dependencies\SDL2\SDL\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\dsdl-engine\;$(SolutionDir)..\dependencies\include;$(SolutionDir)..\dependencies\SDL2\SDL_ttf\include;$(SolutionDir)..\dependencies\SDL2\SDL_mixer\include;$(SolutionDir)..\dependencies\SDL2\SDL_image\include;$(SolutionDir)..\dependencies\SDL2\SDL\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)..\dsdl-engine\lib;$(SolutionDir)..\dependencies\lib\Debug\;$(SolutionDir)..\dependencies\SDL2\SDL_mixer\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL_ttf\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL_image\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -81,12 +90,17 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <DisableSpecificWarnings>4244</DisableSpecificWarnings>
+      <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>DsdlEngine.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -95,6 +109,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <DisableSpecificWarnings>4244</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

@@ -28,5 +28,9 @@ namespace DsdlEngine{
 		EngineBaseNode::destroy();
 	}
 
+	void Label::cleanup() {
+		EngineBaseNode::cleanup();
+	}
+
 
 }

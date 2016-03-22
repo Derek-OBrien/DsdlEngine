@@ -18,18 +18,19 @@ public:
 	void pauseGame(IMainGame* game);
 
 	void updateScore();
-	
+	void updateLives();
 	
 	Label* scoreLabel;
-	
+	Label* livesLabel;
 private:
 
 	DsdlGui* gui;
-	int score;
+	int score, lives;
 
 	std::string scoreText;	
-	
 	std::stringstream scoreDisplay;	
-	
+
+	std::string livesText;
+	std::stringstream livesDisplay;
 };
 

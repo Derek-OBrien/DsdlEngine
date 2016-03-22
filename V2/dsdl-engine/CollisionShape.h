@@ -33,7 +33,7 @@ namespace DsdlEngine {
 		//Get the Dimensions
 		//return Vec2 m_dimensions
 		const Vec2 getDimensions() const { return m_dimensions; }
-		
+
 	protected:
 		b2Body* m_body = nullptr;
 		b2Fixture* m_fixtures[1];

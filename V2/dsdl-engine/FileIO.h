@@ -7,8 +7,12 @@
 
 
 namespace DsdlEngine{
-	class FileIO
-	{
+
+	using namespace tinyxml2;
+	using namespace std;
+
+	class FileIO{
+
 	public:
 		static FileIO* getInstance();
 
@@ -24,7 +28,7 @@ namespace DsdlEngine{
 
 
 		/*
-			Get and set file to open { For Xml only}
+			Get and set file to open { For Xml only }
 		*/
 		std::string getFileToOpen() { return m_fileName; }
 		void setFileToOpen(std::string file) { m_fileName = file; }
@@ -35,7 +39,7 @@ namespace DsdlEngine{
 		bool writeDocument(const char* filepath, const char** doc_contents);
 
 		//get xml node 
-		tinyxml2::XMLElement* getXMLNodeForKey(const char*pKey, tinyxml2::XMLElement** rootNode, tinyxml2::XMLDocument** doc);
+		XMLElement* getXMLNodeForKey(const char*pKey, XMLElement** rootNode, XMLDocument** doc);
 
 		//set value for giving xml node
 		void setValueForKey(const char* value, const char* key);
@@ -46,6 +50,7 @@ namespace DsdlEngine{
 
 		FileIO(){};
 		virtual ~FileIO(){};
+
 	private:
 
 		std::string m_path;		//path to folder which contains file
@@ -54,4 +59,4 @@ namespace DsdlEngine{
 	};
 }
 
-#endif
+#endif // !_FILEIO_

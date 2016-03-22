@@ -4,16 +4,12 @@
 
 #include "../../dsdl-engine/DsdlEngine.h"
 
-/*
-*Added template version of make_unique as Ndk did not support it in its version of STL
-*Error was make_unique not part of std::
-*After research this was the easiest solution to solve error
-*Ndk-build now builds apk as of 26/01/2016
-*/
+#ifdef __ANDROID__
 template<typename T, typename ...Args>
-std::unique_ptr<T> make_unique(Args&& ...args){
+std::unique_ptr<T> make_unique(Args&& ...args) {
 	return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
 }
+#endif
 
 
 App::App() {
@@ -24,9 +20,9 @@ App::App() {
 App::~App() {}
 
 void App::onInit() {
-	setupWindow(GAME_WIDTH, GAME_HEIGHT, "BreakOut", "../assets/", 2);
+	setupWindow(GAME_WIDTH, GAME_HEIGHT, "BreakOut", "../assets/", SDL_WINDOW_OPENGL);
 
-	setFps(60);
+	setFps(550);
 }
 
 void App::addScenes() {
@@ -39,7 +35,7 @@ void App::addScenes() {
 	m_pSceneManager->addScene(m_gamePlayScene.get());
 
 	//Set initial sceen to load
-	m_pSceneManager->setScene(m_mainMenuScene->getSceneIndex());
+	m_pSceneManager->setScene(m_gamePlayScene->getSceneIndex());
 }
 
 

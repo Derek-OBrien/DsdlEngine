@@ -27,8 +27,7 @@ int GamePlayScene::getPreviousSceneIndex() const{
 void GamePlayScene::destroyScene(){
 	//Destroy Layer and all its nodes
 	layer->destroy();
-	Spawner::GetInstance()->destroy();
-
+	music.audioStopBG();
 }
 
 void GamePlayScene::onEntryScene(){
@@ -115,14 +114,10 @@ void GamePlayScene::updateScene(){
 	bg->update();
 	mg->update();
 	fg->update();
-
-
 	
 	///update enemy and coin positions
 	Spawner::GetInstance()->update();
 	
-	//collisionManager.BeginContact(world->GetContactList() ,hud);
-	//collisionManager.EndContact(world->GetContactList(), hud);
 }
 
 
@@ -131,7 +126,7 @@ void GamePlayScene::onInput() {
 
 	while (SDL_PollEvent(&evnt)) {
 
-		hud->onInput(m_game, m_player);
+		hud->onInput(m_game, m_player,music);
 		m_game->onSDLEvent(evnt);
 		
 	}
@@ -146,14 +141,24 @@ void GamePlayScene::checkCollision() {
 			m_player->m_sprite->getBoundingBox(), 
 			spawner->getEnemyVec().at(i)->m_enemySprite->getBoundingBox())) {
 
+			hud->checkHighScore();
+
+			hud->saveScore();
+
+		//	m_sceneIndex = SCENE_INDEX_OVER;
+		//	m_eCurrentState = DsdlEngine::SceneState::CHANGE_NEXT;
+		
+
 		}
 
 		if (SimpleBoxCollision::getInstance()->check(
 			m_player->m_sprite->getBoundingBox(), 
 			spawner->getCoinVec().at(i)->m_coinSprite->getBoundingBox())) {
 
-			spawner->getCoinVec().at(i)->resetPosition();
-			hud->updateCoinCount();
+			layer->removeNodeFromLayer(spawner->getCoinVec().at(i)->m_coinSprite);
+			
+			hud->updateCoinCount(1);
+
 			break;
 		}
 	}

@@ -5,6 +5,7 @@
 
 #include "AudioManager.h"
 #include "Button.h"
+#include "CollisionShape.h"
 #include "EngineBaseNode.h"
 #include "EngineDefines.h"
 #include "EngineMaster.h"

@@ -4,11 +4,6 @@
 
 namespace DsdlEngine {
 
-
-#define DEFAULT_ROOT_NAME "DefaultRoot"
-#define XML_FILE "Default.xml"
-
-
 	using namespace tinyxml2;
 	using namespace std;
 
@@ -23,16 +18,7 @@ namespace DsdlEngine {
 	static EngineMaster* Instance = nullptr;
 	EngineMaster* EngineMaster::getInstance() {
 		if (!Instance) {
-			//Init Xml File Path
-			//initXMLFilePath();
-			//DEBUG_MSG(getXMLFilePath());
-			//Check if file allready exists
-			//if ((!isXMLFileExist()) && (!createXMLFile())) {
-			//	return nullptr;
-			//}
-
 			Instance = new (std::nothrow) EngineMaster();
-
 		}
 		return Instance;
 	}

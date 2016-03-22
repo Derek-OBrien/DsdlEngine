@@ -14,26 +14,26 @@
 #include "InputManager.h"
 #include "Layer.h"
 
-namespace DsdlEngine{
+namespace DsdlEngine {
 
 	class IMainGame;
 
-	enum class SceneState{
+	enum class SceneState {
 		NONE,
 		RUNNING,
 		EXIT_APP,
 		CHANGE_NEXT,
 		CHANGE_PREVIOUS
 	};
-	 
 
-	class IScene{
+
+	class IScene {
 	public:
-	
-		IScene(){
+
+		IScene() {
 			//Empty
 		};
-		virtual ~IScene(){
+		virtual ~IScene() {
 			//Empty
 		};
 
@@ -47,85 +47,47 @@ namespace DsdlEngine{
 
 		// Called while in focus
 		virtual void updateScene() = 0;
-		
+
 		//Destroy scene on clean up
 		virtual void destroyScene() = 0;
 
 
-		int getSceneIndex() const{ return m_iSceneIndex; }
+		int getSceneIndex() const { return m_iSceneIndex; }
 		SceneState getSceneState() const { return m_eCurrentState; }
-		void setSceneRunning(){ m_eCurrentState = SceneState::RUNNING; }
+		void setSceneRunning() { m_eCurrentState = SceneState::RUNNING; }
 
 		// Sets m_game to the parent game
 		void setParentGame(IMainGame* game) { m_game = game; }
 
-		
-		virtual void onInput() {
-			SDL_Event evnt;
-			m_inputManager.update();
 
-			while (SDL_PollEvent(&evnt)) {
+		virtual void onInput();
 
-				switch (evnt.type) {
-				case SDL_QUIT:
-					exit(1);
-					break;
-				case SDL_MOUSEMOTION:
-					m_inputManager.setMouseCoords(evnt.motion.x, evnt.motion.y);
-					break;
-				case SDL_KEYDOWN:
-					m_inputManager.pressKey(evnt.key.keysym.sym);
-					break;
-				case SDL_KEYUP:
-					m_inputManager.releaseKey(evnt.key.keysym.sym);
-					break;
-				case SDL_MOUSEBUTTONDOWN:
-					m_inputManager.pressKey(evnt.button.button);
-					break;
-				case SDL_MOUSEBUTTONUP:
-					m_inputManager.releaseKey(evnt.button.button);
-					break;
-					//Touch down
-				case SDL_FINGERDOWN:
-					m_inputManager.pressKey(evnt.button.button);
-					break;
-				case SDL_FINGERMOTION:
-					m_inputManager.setMouseCoords((float)evnt.motion.x, (float)evnt.motion.y);
-					break;
-				case SDL_FINGERUP:
-					m_inputManager.releaseKey(evnt.button.button);
-					break;
-				default:
-					break;
-				}
-			}
-		}
 		//Vector to hold Game Layers
 		//Each Layer Contains Vector of game nodes
 		std::vector<Layer*> sceneLayers;
 
+		/*
+			Add Layers to the scene
+		*/
 		void addLayerToScene(Layer* layer) {
 			sceneLayers.push_back(layer);
 		}
 
 
-		//Load nodes in current Scene
+		//Load nodes in layer for current scene
 		void loadScene(SDL_Renderer* r) {
 			for (size_t i = 0; i < sceneLayers.size(); i++) {
 				sceneLayers.at(i)->loadNodes(r);
 			}
 		}
 
-		//Draw Nodes in current scene
+		//Draw nodes in layer for current scene
 		void drawScene(SDL_Renderer* r) {
 			for (size_t i = 0; i < sceneLayers.size(); i++) {
 				sceneLayers.at(i)->drawNodes(r);
 			}
-			/*for (size_t i = 0; i < sceneLayers.size(); i++) {
-				sceneLayers.at(i)->drawBox2dNodes(r);
-			}*/
 		}
-		
+
 	protected:
 
 		friend class SceneManager;
@@ -135,7 +97,7 @@ namespace DsdlEngine{
 		IMainGame* m_game = nullptr;
 		int m_iSceneIndex = SCENE_INDEX_NO_SCENE;
 		InputManager m_inputManager;
-		
+
 	};
 }
 

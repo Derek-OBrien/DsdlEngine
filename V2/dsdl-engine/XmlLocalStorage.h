@@ -1,5 +1,5 @@
-#ifndef XMLLOCALSTORAGE
-#define XMLLOCALSTORAGE
+#ifndef _XMLLOCALSTORAGE_
+#define _XMLLOCALSTORAGE_
 
 
 #include "DsdlEngine.h"
@@ -18,7 +18,6 @@ namespace DsdlEngine {
 		* @param value A bool value to set to the key.
 		* @js NA
 		*/
-		//void setValueForKey(const char* value, const char* key);
 		void setIntegerForKey(int value, const char* key);
 		void setBoolForKey(bool value, const char* key);
 		void setDoubleForKey(double value, const char* key);
@@ -42,7 +41,6 @@ namespace DsdlEngine {
 
 		void deleteValueForKey(const char* key);
 
-
 	protected:
 
 		XmlLocalStorage() {};
@@ -51,4 +49,4 @@ namespace DsdlEngine {
 	private:
 	};
 }
-#endif // !XMLLOCALSTORAGE
+#endif // !_XMLLOCALSTORAGE_

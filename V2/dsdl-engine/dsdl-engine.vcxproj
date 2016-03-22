@@ -144,6 +144,7 @@
     <ClCompile Include="Layer.cpp" />
     <ClCompile Include="Particles.cpp" />
     <ClCompile Include="ResourceTexture.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Timing.cpp" />

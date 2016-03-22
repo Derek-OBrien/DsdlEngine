@@ -7,14 +7,6 @@
 #include "../dependencies/SDL2/SDL_image/SDL_image.h"
 #include "../dependencies/SDL2/SDL_ttf/SDL_ttf.h"
 #include "../dependencies/SDL2/SDL_mixer/SDL_mixer.h"
-//#include <SDL_image.h>
-//#include <SDL_ttf.h>
-//#include <SDL_mixer.h>
-
-
-
-#include <Box2D\Box2D.h>
-//#include "../dependencies/include/Box2D/Box2D.h"
 
 #include <string>
 #include <iostream>
@@ -60,11 +52,6 @@ enum class LableType {
 	LABEL_DYNAMIC
 };
 
-///Callback Functions
-typedef void(*func)() ;
-typedef void(*func_type)(void);
-typedef std::function<void(func*)> dsdlCallBack;
-
 
 ///Set callback
 typedef SDL_TimerID CallBackTimer;
@@ -79,6 +66,8 @@ typedef SDL_TimerCallback CallBack;
 #define TOTAL_PARTICLES 30
 
 ///Box2D scaling defines
+#include <Box2D\Box2D.h>
+
 #define METRESTOPIXELS 30
 #define PIXELSTOMETRES 1/30.0f
 #define RADTODEG  (-180/3.1415926536f)  
