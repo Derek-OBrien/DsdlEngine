@@ -23,7 +23,6 @@ private:
 	std::unique_ptr<SplashScene> m_splashScene;
 	std::unique_ptr<MainMenuScene> m_mainMenuScene;
 	std::unique_ptr<GamePlayScene> m_gamePlayScene;
-	//std::unique_ptr<PauseScene> m_pauseScene;
 	std::unique_ptr<GameOverScene> m_gameOverScene;
 
 };

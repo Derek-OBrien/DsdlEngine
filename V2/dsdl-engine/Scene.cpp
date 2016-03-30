@@ -1,4 +1,9 @@
 #include "IScene.h"
+/*
+	Base Scene Class
+	author: @Derek O Brien
+	Description: Interface for base scene in game.
+*/
 
 
 namespace DsdlEngine {

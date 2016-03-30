@@ -1,9 +1,3 @@
-/*
-	Base Scene Class
-	author: @Derek O Brien
-	Description: Interface for base scene in game.
-*/
-
 #ifndef _ISCENE_
 #define _ISCENE_
 
@@ -14,10 +8,18 @@
 #include "InputManager.h"
 #include "Layer.h"
 
+/*
+	Base Scene Class
+	author: @Derek O Brien
+	Description: Interface for base scene in game.
+*/
+
 namespace DsdlEngine {
 
 	class IMainGame;
 
+	// SceneState Enum. 
+	//Used in controling the switching between scenes
 	enum class SceneState {
 		NONE,
 		RUNNING,
@@ -51,24 +53,26 @@ namespace DsdlEngine {
 		//Destroy scene on clean up
 		virtual void destroyScene() = 0;
 
-
+		//Get current scene index
 		int getSceneIndex() const { return m_iSceneIndex; }
+
+		//Get Scene State
 		SceneState getSceneState() const { return m_eCurrentState; }
+
+		//Set a scene to running state
 		void setSceneRunning() { m_eCurrentState = SceneState::RUNNING; }
 
 		// Sets m_game to the parent game
 		void setParentGame(IMainGame* game) { m_game = game; }
-
-
+		
+		//Handle input for a scene
 		virtual void onInput();
 
 		//Vector to hold Game Layers
 		//Each Layer Contains Vector of game nodes
 		std::vector<Layer*> sceneLayers;
 
-		/*
-			Add Layers to the scene
-		*/
+		//Add Layers to the scene
 		void addLayerToScene(Layer* layer) {
 			sceneLayers.push_back(layer);
 		}
@@ -102,4 +106,4 @@ namespace DsdlEngine {
 }
 
 
-#endif
+#endif //!_ISCENE_

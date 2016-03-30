@@ -1,17 +1,21 @@
-
 #include "AudioManager.h"
 #include "FileIO.h"
 
+/*
+Author: Derek O Brien
+File : AudioManager.h
+Description: Engine Audio Manger handles loading, playing and stoping of audio files
+*/
 namespace DsdlEngine {
 
 	//init audio manager
 	void AudioManager::init() {
-
+		//init audio
 		if (Mix_Init(MIX_INIT_MP3 | MIX_INIT_OGG) == -1) {
 			DEBUG_MSG("Mix_Init error: " + std::string(Mix_GetError()));
 		}
-
-		if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 1024) == -1) {
+		//open audio defaults
+		if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 2048) == -1) {
 			DEBUG_MSG("Mix_OpenAudio error: " + std::string(Mix_GetError()));
 		}
 
@@ -22,6 +26,7 @@ namespace DsdlEngine {
 	void AudioManager::destroy() {
 		if (m_bisInitialized)
 			m_bisInitialized = false;
+
 		//Loop Through maps and free audio
 		for (auto& it : m_sfxAudioMap) {
 			Mix_FreeChunk(it.second);

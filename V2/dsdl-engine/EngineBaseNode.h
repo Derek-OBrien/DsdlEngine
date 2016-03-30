@@ -29,7 +29,7 @@ namespace DsdlEngine {
 		//Render Node
 		void render(SDL_Renderer* r);
 		//Render Node as animation of frames
-		void renderAnimation(SDL_Renderer* r);
+		//void renderAnimation(SDL_Renderer* r);
 		//Render box2d collision shape
 		void renderCollisionShape(SDL_Renderer* r, CollisionShape* shape);
 
@@ -92,6 +92,8 @@ namespace DsdlEngine {
 		EngineBaseNode* m_node;
 
 		std::string m_assetPath;
+
+		std::map<std::string, SDL_Texture*> m_TextureMap;
 
 		NodeType nodeType = NodeType::BASENODE;
 

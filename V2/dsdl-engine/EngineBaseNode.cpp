@@ -29,7 +29,20 @@ namespace DsdlEngine {
 	//Render Node by type
 	void EngineBaseNode::render(SDL_Renderer* r) {
 		if (nodeType == NodeType::SPRITE) {
-			renderAnimation(r);
+			m_currentFrame = &m_gSpriteClips[m_frame / m_numFrames];
+			m_engineTexture->setAlpha(m_opacity);
+
+			//Draw Bounding Box
+			SDL_SetRenderDrawColor(r, 0, 255, 255, 255);
+			SDL_RenderDrawRect(r, m_objectBoundingBox);
+
+			//render texture
+			m_engineTexture->render(m_position, m_size, r, m_currentFrame);
+			++m_frame;
+
+			if (m_frame / m_numFrames >= m_numFrames) {
+				m_frame = 0;
+			}
 		}
 		else if (nodeType == NodeType::LABEL) {
 			m_engineTexture->render(m_position, m_size, r);
@@ -45,22 +58,9 @@ namespace DsdlEngine {
 
 
 	//Render Node as Animation
-	void EngineBaseNode::renderAnimation(SDL_Renderer* r) {
-		m_currentFrame = &m_gSpriteClips[m_frame / m_numFrames];
-		m_engineTexture->setAlpha(m_opacity);
-
-		//Draw Bounding Box
-		SDL_SetRenderDrawColor(r, 0, 255, 255, 255);
-		SDL_RenderDrawRect(r, m_objectBoundingBox);
-
-		//render texture
-		m_engineTexture->render(m_position, m_size, r, m_currentFrame);
-		++m_frame;
-
-		if (m_frame / m_numFrames >= m_numFrames) {
-			m_frame = 0;
-		}
-	}
+	/*void EngineBaseNode::renderAnimation(SDL_Renderer* r) {
+		
+	}*/
 
 
 	//Load Node as engine texture
@@ -70,8 +70,7 @@ namespace DsdlEngine {
 		m_objectBoundingBox = new SDL_Rect();
 
 		if (nodeType == NodeType::SPRITE || nodeType == NodeType::BUTTON) {
-
-			if (!m_engineTexture->loadFromFile(m_assetPath, r))
+			if (!m_engineTexture->loadTexture(m_assetPath, r))
 				SDL_Log("Faild to load sprite");
 
 			else {

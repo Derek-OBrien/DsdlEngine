@@ -4,7 +4,6 @@
 
 namespace DsdlEngine{
 
-	XmlLocalStorage* xmlLocal = XmlLocalStorage::getInstance();
 
 	//Defaults to position of (0 , 0)
 	Vec2::Vec2() : x_(0), y_(0){
@@ -26,12 +25,7 @@ namespace DsdlEngine{
 		SDL Window Coordintes 
 		origin is top left corner
 	*/
-
-
 	const Vec2 Vec2::ZERO(0, 0);
-	//const Vec2 Vec2::MIDTOP(xmlLocal->getIntegerForKey("windowWidth")/2, 0);
-	//const Vec2 Vec2::BOTTOM(0, Em->returnWindowHeight());
-	//const Vec2 Vec2::RIGHT(Em->returnWindowWidth(), 0);
 }
 
 namespace DsdlEngine{

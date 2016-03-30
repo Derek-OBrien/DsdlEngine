@@ -12,33 +12,32 @@
 #include "EngineError.h"
 #include "FileIO.h"
 
+/*
+	FIle : ResourcTexture
+	Author: Derek O Brien
+	Description: Load & Render Image and TTf media into Sdl Texture
+*/
 
 namespace DsdlEngine{
 
+	//Constructor
 	ResourceTexture::ResourceTexture(){
 		m_Texture = NULL;
 		m_iHeight = 0;
 		m_iWidth = 0;
 	}
+
+	//Deconstructor
 	ResourceTexture::~ResourceTexture(){
 		destroy();
 	}
 
-	//Load Texture
-	ResourceTexture ResourceTexture::loadTexture(std::string texturePath, SDL_Renderer* r){
-		ResourceTexture texture;
-		if (!texture.loadFromFile(texturePath, r))
-			SDL_Log("Texture load failed");
-
-		return texture;
-	}
-
 
 	//Load Sprite from file
-	bool ResourceTexture::loadFromFile(std::string texturePath, SDL_Renderer* r){
+	bool ResourceTexture::loadTexture(std::string texturePath, SDL_Renderer* r){
 		
 		std::string temp = FileIO::getInstance()->getWritablePath() + texturePath;
-
+		//Store in map for loading 
 		auto it = m_TextureMap.find(temp);
 
 		SDL_Texture* newTexture = NULL;
@@ -50,7 +49,7 @@ namespace DsdlEngine{
 
 
 			if (loadedSurface == NULL)
-				DEBUG_MSG("SDL_image Error : " + std::string(IMG_GetError()));
+				SDL_Log("SDL_image Error : %s ",  std::string(IMG_GetError()));
 			else{
 				//Color key image
 				SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0xFF, 0xFF));
@@ -58,7 +57,7 @@ namespace DsdlEngine{
 				//Create texture from surface pixels
 				newTexture = SDL_CreateTextureFromSurface(r, loadedSurface);
 				if (newTexture == NULL){
-					DEBUG_MSG("SDL_CreateTextureFromSurface Error : " + std::string(IMG_GetError()));
+					SDL_Log("SDL_CreateTextureFromSurface Error : %s ", std::string(IMG_GetError()));
 				}
 				else{
 					//Get image dimensions
@@ -68,7 +67,7 @@ namespace DsdlEngine{
 				//Get rid of old loaded surface
 				SDL_FreeSurface(loadedSurface);
 			}
-			 
+			 //Add to map
 			m_TextureMap[temp] = newTexture;
 		}
 		else{
@@ -80,17 +79,17 @@ namespace DsdlEngine{
 	}
 
 
-	//Load ttf
+	//Load ttf to sdl texture
 	bool ResourceTexture::loadTTF(std::string text, SDL_Color color, TTF_Font* myfont, SDL_Renderer* r){
 
 		this->destroy();
-
+		//Create font as surface
 		SDL_Surface* textSurface = TTF_RenderText_Blended(myfont, text.c_str(), color);
 
 		if (textSurface == NULL){
 			DEBUG_MSG("TTF_RenderText_Blended Error : " + std::string(TTF_GetError()));
 		}
-		else{
+		else{//COnvert Surface to the Texture
 			m_Texture = SDL_CreateTextureFromSurface(r, textSurface);
 			if (m_Texture == NULL){
 				DEBUG_MSG("TTF_RenderText_Blended Error : " + std::string(TTF_GetError()));
@@ -99,10 +98,10 @@ namespace DsdlEngine{
 				m_iWidth = textSurface->w;
 				m_iHeight = textSurface->h;
 			}
-
+			//Free surface as no longer needed
 			SDL_FreeSurface(textSurface);
 		}
-		
+		//Return it
 		return m_Texture != NULL;
 	}
 
@@ -152,7 +151,6 @@ namespace DsdlEngine{
 		@parma alpha value of texture alpha 0 to 255
 	*/
 	void ResourceTexture::setAlpha(Uint8 alpha){
-		//Modulate texture alpha
 		SDL_SetTextureAlphaMod(m_Texture, alpha);
 	}
 

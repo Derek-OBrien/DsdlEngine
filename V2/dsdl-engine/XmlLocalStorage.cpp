@@ -1,13 +1,18 @@
 #include "XmlLocalStorage.h"
 #include "FileIO.h"
 
+/*
+	File: XmlLocalStorage
+	Author: Derek O Brien
+	Description: For loading and saving values to XML file
+*/
+
 using namespace tinyxml2;
 using namespace std;
 
 namespace DsdlEngine {
-	/*
-	Create As Singleton
-	*/
+	
+	//Create As Singleton static instance
 	static XmlLocalStorage* Instance = nullptr;
 	XmlLocalStorage* XmlLocalStorage::getInstance() {
 		if (!Instance) {
@@ -18,7 +23,7 @@ namespace DsdlEngine {
 
 
 
-
+	//get integet value for key passed in
 	int XmlLocalStorage::getIntegerForKey(const char* key) {
 
 		const char* value = nullptr;
@@ -26,15 +31,16 @@ namespace DsdlEngine {
 		XMLDocument* doc;
 		XMLElement* node;
 
+		//Get node from xml file
 		node = FileIO::getInstance()->getXMLNodeForKey(key, &rootNode, &doc);
 
-		// find the node
+		//Get the value from the node
 		if (node && node->FirstChild()) {
 			value = (const char*)(node->FirstChild()->Value());
 		}
 
+		//Convert value to type needed
 		int temp = 0;
-
 		if (value) {
 			temp = SDL_atoi(value);
 		}
@@ -45,18 +51,23 @@ namespace DsdlEngine {
 	}
 
 
+	//Get bool Value for key
 	bool XmlLocalStorage::getBoolForKey(const char* key) {
+	
 		const char* value = nullptr;
 		XMLElement* rootNode;
 		XMLDocument* doc;
 		XMLElement* node;
 
+		//Get node from xml file
 		node = FileIO::getInstance()->getXMLNodeForKey(key, &rootNode, &doc);
 
-		// find the node
+		//Get the value from the node
 		if (node && node->FirstChild()) {
 			value = (const char*)(node->FirstChild()->Value());
 		}
+
+		//Convert value to type needed
 
 		bool temp = true;
 		if (value) {
@@ -68,25 +79,28 @@ namespace DsdlEngine {
 		return temp;
 	}
 
-
+	
+	//Get Double  Value for key passed in
 	double XmlLocalStorage::getDoubleForKey(const char* key) {
+
 		const char* value = nullptr;
 		XMLElement* rootNode;
 		XMLDocument* doc;
 		XMLElement* node;
 
+		//Get node from xml file
 		node = FileIO::getInstance()->getXMLNodeForKey(key, &rootNode, &doc);
 
-		// find the node
+		//Get the value from the node
 		if (node && node->FirstChild()) {
 			value = (const char*)(node->FirstChild()->Value());
 		}
 
+		//Convert value to type needed
 		double temp = 0.0;
 
 		if (value) {
 			temp = SDL_atof(value);
-
 		}
 
 		if (doc) delete doc;
@@ -94,26 +108,29 @@ namespace DsdlEngine {
 		return temp;
 	};
 
-
+	//Get float value for key passed in
 	float XmlLocalStorage::getFloatForKey(const char* key) {
 		float temp = (float)getDoubleForKey(key);
 		return temp;
 	};
 
-
+	//Get String value for key passed in 
 	std::string XmlLocalStorage::getStringForKey(const char* key) {
 
 		const char* value = nullptr;
 		XMLElement* rootNode;
-		XMLElement* node;
 		XMLDocument* doc;
+		XMLElement* node;
 
+		//Get node from xml file
 		node = FileIO::getInstance()->getXMLNodeForKey(key, &rootNode, &doc);
 
+		//Get the value from the node
 		if (node && node->FirstChild()) {
 			value = (const char*)(node->FirstChild()->Value());
 		}
 
+		//Convert value to type needed
 		string temp = "No Value Found";
 
 		if (value) {
@@ -123,14 +140,14 @@ namespace DsdlEngine {
 		return temp;
 	}
 
-
+	//Set a string value for the key 
 	void XmlLocalStorage::setIntegerForKey(int value, const char* key) {
 		// check key
 		if (!key) {
 			return;
 		}
 
-		// format the value
+		// format the value as char for saving
 		char tmp[50];
 		memset(tmp, 0, 50);
 #ifdef __WIN32__
@@ -141,11 +158,11 @@ namespace DsdlEngine {
 		sprintf(tmp, "%d", value);
 #endif
 
+		//Save the Value and key
 		FileIO::getInstance()->setValueForKey(tmp, key);
-
 	}
 
-
+	//Set bool value for key passed in
 	void XmlLocalStorage::setBoolForKey(bool value, const char* key) {
 		if (value == true) {
 			setStringForKey("true", key);
@@ -155,32 +172,34 @@ namespace DsdlEngine {
 		}
 	}
 
-
+	//Set double value for key passed in
 	void XmlLocalStorage::setDoubleForKey(double value, const char* key) {
 		// check key
 		if (!key) {
 			return;
 		}
 
-		// format the value
+		// format the value as char for saving
 		char tmp[50];
 		memset(tmp, 0, 50);
-
 #ifdef __WIN32__
 		sprintf_s(tmp, "%f", value);
 #endif
 
 #ifdef __ANDROID__
-		std::sprintf(tmp, "%f", value);
+		sprintf(tmp, "%f", value);
 #endif
 
+		//Save the value and key
 		FileIO::getInstance()->setValueForKey(tmp, key);
-
 	}
 
+	//Set float value for key
 	void XmlLocalStorage::setFloatForKey(float value, const char* key) {
 		setDoubleForKey(value, key);
 	}
+	
+	//Set String value for key
 	void XmlLocalStorage::setStringForKey(std::string value, const char* key) {
 		if (!key) return;
 
@@ -188,7 +207,7 @@ namespace DsdlEngine {
 	}
 
 
-
+	//Delete value fo node
 	void XmlLocalStorage::deleteValueForKey(const char* key) {
 
 		XMLElement* rootNode;
@@ -209,9 +228,8 @@ namespace DsdlEngine {
 			return;
 		}
 
-		// save file and free doc
-		if (doc)
-		{
+		if (doc){
+			//Delete Node
 			doc->DeleteNode(node);
 			std::string path;
 			path = FileIO::getInstance()->getWritablePath() + "Default.xml";

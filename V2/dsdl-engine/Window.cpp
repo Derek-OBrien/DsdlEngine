@@ -1,22 +1,28 @@
 #include "Window.h"
-
 #include "EngineError.h"
-
-
+/*
+	File : Window.h
+	Author: Derek O Brien
+	Description: set up and create Window and render for sdl window
+*/
 namespace DsdlEngine{
 
-	Window::Window(){}
-	Window::~Window() { destroy(); }
+	Window::Window(){
+		//Empty
+	}
 
+	Window::~Window() { 
+		destroy(); 
+	}
+
+	//Create Sdl Window
 	int Window::createWindow(std::string windowName, int screenWidth, int screenHeight, unsigned int flag){
 
 		m_screenHeight = screenHeight;
 		m_screenWidth = screenWidth;
-
 		
 		//Screen dimensions
 		SDL_Rect gScreenRect = { 0, 0, 320, 240 };
-
 		SDL_DisplayMode displayMode;
 		if (SDL_GetCurrentDisplayMode(0, &displayMode) == 0)
 		{
@@ -24,16 +30,12 @@ namespace DsdlEngine{
 			gScreenRect.h = displayMode.h;
 		}
 
-		SDL_Log("Width %d :", gScreenRect.w);
-
-		SDL_Log("height %d :", gScreenRect.h);
 		//Load Window for windows using size passed in
 #ifdef __WIN32__
 		SDL_Log("Windows Created for Windows Platform");
 		m_pSdlWindow = SDL_CreateWindow(windowName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screenWidth, screenHeight, flag);
 		m_pSdlRenderer = SDL_CreateRenderer(m_pSdlWindow, -1, SDL_RENDERER_TARGETTEXTURE | SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 		SDL_SetRenderDrawColor(m_pSdlRenderer, 0, 0, 0, 120);
-		//EngineMaster::getInstance()->setWindowSize(m_screenHeight, m_screenWidth);
 #endif
 
 		//Load Window for Android using device screen Size
@@ -42,37 +44,39 @@ namespace DsdlEngine{
 		m_pSdlWindow = SDL_CreateWindow(windowName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, gScreenRect.w, gScreenRect.h, SDL_WINDOW_ALLOW_HIGHDPI);
 		m_pSdlRenderer = SDL_CreateRenderer(m_pSdlWindow, -1, SDL_RENDERER_TARGETTEXTURE | SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 		SDL_SetRenderDrawColor(m_pSdlRenderer, 0, 0, 0, 120);
-		//EngineMaster::getInstance()->setWindowSize(gScreenRect.h, gScreenRect.w);
 #endif
 
 
 		if (m_pSdlWindow == nullptr){
-			DEBUG_MSG("SDL_CreateWindow Error : " + std::string(SDL_GetError()));
 			SDL_Log("Window could not be created! SDL Error: %s\n", SDL_GetError());
+			SDL_Quit();
 		}
 		
 
 		//Initialize PNG loading
 		int imgFlags = IMG_INIT_PNG;
 		if (!(IMG_Init(imgFlags) & imgFlags)){
-			DEBUG_MSG("SDL_image could not initialize! SDL_image Error:" + std::string(IMG_GetError()));
 			SDL_Log("SDL_image could not initialize! SDL_image Error %s\n", IMG_GetError());
+			SDL_Quit();
 		}
-		SDL_Log("Image Flag Init ok");
+
+		SDL_Log("Window Created");
 
 		return 0;
 	}
 
-
+	//Swap Window Buffer
 	void Window::swapBuffer(){
 		SDL_GL_SwapWindow(m_pSdlWindow);
 	}
 
+	//Destroy Window and Renderer
 	void Window::destroy() {
 		SDL_DestroyRenderer(m_pSdlRenderer);
 		SDL_DestroyWindow(m_pSdlWindow);
 		m_pScreenSurface = nullptr;
 		SDL_Quit();
+		exit(1);
 	}
 
 }

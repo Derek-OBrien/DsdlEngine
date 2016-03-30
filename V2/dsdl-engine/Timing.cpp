@@ -1,24 +1,35 @@
-
 #include "EngineDefines.h"
 #include "Timing.h"
 
+/*
+	File: timimg.cpp
+	Author: Derek O Brien
+*/
 namespace DsdlEngine{
 
-	FpsLimiter::FpsLimiter() {}
+	FpsLimiter::FpsLimiter() {
+		//Empty
+	}
+	FpsLimiter::~FpsLimiter() {
+		//Empty
+	}
 
-
+	//Initilaze frame rate
 	void FpsLimiter::init(float maxFPS) {
 		setMaxFPS(maxFPS);
 	}
 
+	//Set Max Frame Rate
 	void FpsLimiter::setMaxFPS(float maxFPS) {
 		m_fMaxFPS = maxFPS;
 	}
 
+	//Get start timer
 	void FpsLimiter::begin() {
 		m_iStartTicks = SDL_GetTicks();
 	}
 
+	//End timer 
 	float FpsLimiter::end() {
 		calculateFPS();
 
@@ -74,7 +85,7 @@ namespace DsdlEngine{
 			m_fFps = 1000.0f / frameTimeAverage;
 		}
 		else {
-			m_fFps = 60.0f;	//MAX ALLOWED 
+			m_fFps = 120.0f;	//MAX ALLOWED 
 		}
 	}
 }

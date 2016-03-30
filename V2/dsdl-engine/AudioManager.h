@@ -1,13 +1,12 @@
-/*
-	Author: Derek O Brien
-	File : AudioManager.h
-	Description: Engine Audio Manger handles loading, playing and stoping of audio files
-
-*/
 #ifndef _AUDIOMANAGER_
 #define _AUDIOMANAGER_
 
 #include "EngineDefines.h"
+/*
+Author: Derek O Brien
+File : AudioManager.h
+Description: Engine Audio Manger handles loading, playing and stoping of audio files
+*/
 //Name Space Wrapper
 namespace DsdlEngine {
 

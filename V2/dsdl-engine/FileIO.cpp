@@ -1,14 +1,16 @@
-
 #include "FileIO.h"
-
-#include <sys/stat.h>
-
 #include <fstream>
 
+/*
+File: FileIO
+Author: Derek O Brien
+Description: FileIO class handles open and cllosing of xml files in the framework.
+Handles XML parsing and Saveing
+*/
+
 namespace DsdlEngine{
-	/*
-	Create As Singleton
-	*/
+
+	//Create As Singleton
 	static FileIO* Instance = nullptr;
 
 	FileIO* FileIO::getInstance(){
@@ -18,10 +20,7 @@ namespace DsdlEngine{
 		return Instance;
 	}
 
-
-	/*
-		Check if file exists first
-	*/
+	//Check if file exists first
 	inline bool fileExists(const std::string name) {
 		std::ifstream f(name);
 		if (f.good()) {
@@ -36,6 +35,7 @@ namespace DsdlEngine{
 	}
 
 
+	//Check if file exists first
 	bool FileIO::fileExists2(const std::string& name) {
 		struct stat buffer;
 		return (stat(name.c_str(), &buffer) == 0);
@@ -58,71 +58,66 @@ namespace DsdlEngine{
 	*/
 
 	std::string FileIO::getWritablePath(){
-		//If win32 version running file is path passed in
+	//For Windows 
 #ifdef __WIN32__
 		m_path;
 #endif
-		//If Android version running file path is empty as SDL_RWops() points to assets folder by default
-		//The only problem this provides is file must be stored in the assets folder in order to work in android
+
+		//For Android
 #ifdef __ANDROID__
 		m_path = "";
 #endif
 		return m_path;
 	}
 
-
-	/*
-		Loads complete file into memory
-	*/
+	
+	
+	//Loads complete file into memory
 	bool FileIO::loadDocument(const char* filepath, char** doc_contents) {
 
-		SDL_RWops *file;
+		//Open file
+		SDL_RWops *file = SDL_RWFromFile(filepath, "rb");
+		if (file != nullptr) {
 
-		file = SDL_RWFromFile(filepath, "rb");
+			//Get length of file
+			size_t file_length = SDL_RWseek(file, 0, SEEK_END);
+			(*doc_contents) = new char[file_length + 1];
+			SDL_RWseek(file, 0, SEEK_SET);
 
-		size_t file_length = SDL_RWseek(file, 0, SEEK_END);
-		(*doc_contents) = new char[file_length + 1]; // allow an extra character for '\0'
+			//Read File into buffer
+			int n_blocks = SDL_RWread(file, (*doc_contents), 1, file_length);
 
-		SDL_RWseek(file, 0, SEEK_SET);
-		int n_blocks = SDL_RWread(file, (*doc_contents), 1, file_length);
+			//Close file
+			SDL_RWclose(file);
 
-		SDL_RWclose(file);
-
-		(*doc_contents)[file_length] = '\0';
-
-		return true;
+			//add null terminator to end of file
+			(*doc_contents)[file_length] = '\0';
+			return true;
+		}
+		return false;
 	}
 
-	/*
-		Write contents of buffer to file and save.
-	*/
 
+	//Write contents of buffer to file and save.
 	bool FileIO::writeDocument(const char* filepath, const char** doc_contents) {
 
-		SDL_RWops *file;
+		SDL_RWops *file = SDL_RWFromFile(filepath, "w");
+		if (file != nullptr) {
+			//Length of data to write	
+			size_t len = SDL_strlen(*doc_contents);
 
-		//Open file
-		file = SDL_RWFromFile(filepath, "w");
+			//Write the data
+			SDL_RWwrite(file, *doc_contents, 1, len);
 
-		//Length of data to write	
-		size_t len = SDL_strlen(*doc_contents);
-		
-		//Write the data
-		SDL_RWwrite(file, *doc_contents, 1, len);
-		
-		//close file
-		SDL_RWclose(file);
+			//close file
+			SDL_RWclose(file);
 
-		return true;
-
+			return true;
+		}
+		return false;
 	}
 
-
-	/*
-
-	Parse Xml for Element for Key and return Element node if found
-
-	*/
+	//Parse Xml for Element for Key and return Element node if found
 	XMLElement* FileIO::getXMLNodeForKey(const char*pKey, XMLElement** rootNode, XMLDocument** doc) {
 
 		XMLElement* curNode = nullptr;
@@ -189,7 +184,7 @@ namespace DsdlEngine{
 		XMLPrinter printer;
 		std::string path;
 
-
+		
 		if (!key || !value) {
 			return;
 		}
@@ -231,7 +226,7 @@ namespace DsdlEngine{
 		delete doc;
 	}
 
-
+	//Create XML File
 	bool FileIO::createXMLFile() {
 		bool bRet = false;
 

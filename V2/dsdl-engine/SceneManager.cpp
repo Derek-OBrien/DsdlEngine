@@ -1,9 +1,15 @@
 #include "SceneManager.h"
 #include "IScene.h"
-
+/*
+name:	SceneManager
+author: @Derek O Brien
+Description: Scene Manager for handling all in game scenes
+holds vector of all scenes,
+*/
 
 namespace DsdlEngine{
 
+	//Constructor sets links scene manager and ImainGame
 	SceneManager::SceneManager(IMainGame* game) : 
 		m_pGame(game){
 		//Empty
