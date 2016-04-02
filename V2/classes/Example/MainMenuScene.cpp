@@ -51,7 +51,6 @@ void MainMenuScene::onEntryScene(){
 		XmlLocalStorage::getInstance()->getStringForKey("player1btn"),
 		SDL_Color{ NULL },
 		SDL_Color{ NULL },
-		//dsdlCallBack(&MainMenuScene::onNewGameClicked, this),
 		NULL
 		);
 
@@ -63,7 +62,6 @@ void MainMenuScene::onEntryScene(){
 		XmlLocalStorage::getInstance()->getStringForKey("player2btn"),
 		SDL_Color{ NULL },
 		SDL_Color{ NULL },
-		//dsdlCallBack(&MainMenuScene::onNewGameClicked, this),
 		NULL
 		);
 

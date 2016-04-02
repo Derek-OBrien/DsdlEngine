@@ -22,42 +22,44 @@
 #include "EngineMath.h"
 #include "EngineMaster.h"
 
+
+#include <Box2D\Box2D.h>
+
+
 //Set Macro Defines for Namespace
 #define USING_NS_DSDL	using namespace DsdlEngine
 #define NS_DSDL_START	namespace DsdlEngine{
 #define NS_DSDL_END		}
 
+namespace DsdlEngine {
 
-enum class NodeType{
-	BASENODE,
-	SPRITE,
-	LABEL,
-	BUTTON,
-	PARTICLE
-};
+	enum class NodeType {
+		BASENODE,
+		SPRITE,
+		LABEL,
+		BUTTON,
+		PARTICLE
+	};
 
-enum class ButtonState{
-	NORMAL,
-	PRESSED,
-	HOVERING
-};
+	enum class ButtonState {
+		NORMAL,
+		PRESSED,
+		HOVERING
+	};
 
-enum class ButtonType {
-	LABEL_BTN,
-	SPRITE_BTN
-};
+	enum class ButtonType {
+		LABEL_BTN,
+		SPRITE_BTN
+	};
 
-enum class LableType {
-	LABEL_STATIC,
-	LABEL_DYNAMIC
-};
+	enum class LableType {
+		LABEL_STATIC,
+		LABEL_DYNAMIC
+	};
 
-
-///Set callback
-typedef SDL_TimerID CallBackTimer;
-typedef SDL_TimerCallback CallBack;
-
-
+	///Set callback
+	typedef SDL_TimerID CallBackTimer;
+	typedef SDL_TimerCallback CallBack;
 
 #define DEFAULT_ROOT_NAME "DefaultRoot"
 #define XML_FILE "Default.xml"
@@ -65,8 +67,7 @@ typedef SDL_TimerCallback CallBack;
 
 #define TOTAL_PARTICLES 30
 
-///Box2D scaling defines
-#include <Box2D\Box2D.h>
+	///Box2D scaling defines
 
 #define METRESTOPIXELS 30
 #define PIXELSTOMETRES 1/30.0f
@@ -74,5 +75,7 @@ typedef SDL_TimerCallback CallBack;
 #define DEGTORAD -0.0174532925199432957f
 
 #define GRAVITYSCALE 9.0f
+
+}
 
 #endif //!_ENGINEDEFINES_

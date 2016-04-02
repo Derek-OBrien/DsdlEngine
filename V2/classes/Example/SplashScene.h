@@ -5,7 +5,8 @@
 #include "GameDefines.h"
 
 #include "ScrollingBg.h"
-USING_NS_DSDL;
+//USING_NS_DSDL;
+using namespace DsdlEngine;
 
 class SplashScene : public IScene
 {

@@ -1,11 +1,8 @@
 #include "FileIO.h"
 #include <fstream>
 
-/*
-File: FileIO
-Author: Derek O Brien
-Description: FileIO class handles open and cllosing of xml files in the framework.
-Handles XML parsing and Saveing
+/**
+*	@author Derek O Brien
 */
 
 namespace DsdlEngine{
@@ -20,26 +17,6 @@ namespace DsdlEngine{
 		return Instance;
 	}
 
-	//Check if file exists first
-	inline bool fileExists(const std::string name) {
-		std::ifstream f(name);
-		if (f.good()) {
-			f.close();
-			return true;
-		}
-		else {
-			f.close();
-
-			return false;
-		}
-	}
-
-
-	//Check if file exists first
-	bool FileIO::fileExists2(const std::string& name) {
-		struct stat buffer;
-		return (stat(name.c_str(), &buffer) == 0);
-	}
 
 
 	std::string FileIO::getSuitableFOpen(const std::string& filenameUtf8) const{
@@ -256,8 +233,7 @@ namespace DsdlEngine{
 
 
 		bRet = XML_SUCCESS == doc->SaveFile(FileIO::getInstance()->getSuitableFOpen(path).c_str());
-		DEBUG_MSG("XML File Created");
-
+		
 		if (doc) delete doc;
 
 		return bRet;

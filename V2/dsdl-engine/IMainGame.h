@@ -9,102 +9,160 @@
 #include "AudioManager.h"
 #include "ResourceTexture.h"
 #include "Layer.h"
-
+/**
+*	@author Derek O Brien
+*/
 
 namespace DsdlEngine{
 	
-	//Forward Declare Classes
+	///Forward Declare Classes
 	class SceneManager;
 	class IScene;
 
+	/**
+	*	IMainGame is the heart of the engine as it contians the mian game loop and ties all the engine together with the game.
+	*	Users must inherit from this class to make their application entry point.
+	*/
 	class IMainGame{
 
-		//Public functions for user to call when creating a game
 	public:
-		//Constructor 
+		/**
+		*	Constructor
+		*/
 		IMainGame();
 
-		//Deconstructor
+		/**
+		*	Deconstructor
+		*/
 		virtual ~IMainGame();
 		
-		
-		//Calls Main Loop
+		/**
+		*	run, called in main file, runs the main game loop.
+		*/
 		void run();
 
-		//Set window defaults
+		/**
+		*	setupWindow, sets up the window defaults for Windows Platform.
+		*	@parma w as int width of the window.
+		*	@parma h as int height of the window.
+		*	@parma windowName as a std::string name of the window.
+		*	@parma path as std::string path to the windows root assets folder.
+		*	@parma flag as int SDL window creation flag
+		*/
 		void setupWindow(int w, int h, std::string windowName, std::string path, int flag);
-		//Set Game frame rate
+		
+		/**
+		*	setFps, Set the desired frame rate for the game.
+		*	@parma fps as a float value
+		*/
 		void setFps(float fps){ m_fFps = fps; }
 
-
-		//Pure Virtual For Custom logic by user
+		/**
+		*	onInit, pure virtual function for user custom logic
+		*	should be used to setup window and fps as it is called before window is created.
+		*/
 		virtual void onInit() = 0;
+
+		/**
+		*	addScenes, pure virtual function for user custom logic.
+		*	this is where the user can add their scenes to the game scene manager (m_pSceneManager)
+		*	it is called at start of main loop.
+		*/
 		virtual void addScenes() = 0;
+
+		/**
+		*	onExit, pure virtual function for user custom logic.
+		*	called when exiting the game, so user should implement any cleaup they want to do in here.
+		*/
 		virtual void onExit() = 0;
 
-		//Main event loop
+		/**
+		*	onSDLEvent, the games main Event listner
+		*	@parma envt as an SDL_Event
+		*/
 		void onSDLEvent(SDL_Event& evnt);
 
-		//Pause Game
+		/**
+		*	setPaused, Pauses the main game loop.
+		*/
 		void setPaused() { m_bIsPaused = true; }
 
-		//Set Game Running 
+		/**
+		*	setRunning, Starts the game loop running if paused.
+		*/
 		void setRunning() { m_bIsPaused = false; m_bIsRunning = true; }
 
-		//Check if Game is Paused 
+		/**
+		*	checkPaused, check if the game is currently paused.
+		*	@return bool
+		*/
 		bool checkPaused() { return m_bIsPaused; }
 
-		InputManager m_InputManager;
-
+		InputManager m_InputManager;		/**< Main games inputmanage object*/
 	protected:
 		//Scene Manager
-		std::unique_ptr<SceneManager> m_pSceneManager;
+		std::unique_ptr<SceneManager> m_pSceneManager;	/**< Main Scene Manager for the Engine*/
 
 		//Current Scene
-		IScene* m_pCurrentRunning;
-		bool m_bIsRunning, m_bIsPaused;
+		IScene* m_pCurrentRunning;						/**< current running scene*/
+		bool m_bIsRunning, m_bIsPaused;					/**< bool variables for control*/
 
-		//Game Window		
-		Window m_Window;
-		//Game Renderer
-		SDL_Renderer* m_pGameRenderer;
-		//Game Audio Manager
-		AudioManager m_audioManager;
+		Window m_Window;								/**< the main window variable */
+		SDL_Renderer* m_pGameRenderer;					/**< the engine renderer*/
 		
-		//Game Resource manager
-		//ResourceTexture m_resourceManager;
-
+		AudioManager m_audioManager;					/**< the main AudioManager*/
+		
 	private:
 
 		//Game frame rate
-		float m_fFps;
+		float m_fFps;									/**< engines fps*/
 
 		//Game Windows details
-		unsigned int windowFlag;
-		int m_windowWidth;
-		int m_windowHeight;
-		std::string windowtitle;
-		std::string mainAssetsPath;
+		unsigned int windowFlag;						/**< windowFlag variable*/
+		int m_windowWidth;								/**< window width variabel*/
+		int m_windowHeight;								/**< window height variable*/
+		std::string windowtitle;						/**< window title variable*/
+		std::string mainAssetsPath;						/**< asset path to windows assets folder*/
 
-		//Get Game Frame Rate
+
+		/**
+		*	getFps, Get the running Frame Rate.
+		*	@return float fps,
+		*/
 		const float getFps() const { return m_fFps; }
 
-		//Game Main Running Loop
+		/**
+		*	mainLoop The main game loop for the engine and game.
+		*/
 		void mainLoop();
 
-		//Game Main Update Function
+		/**
+		*	update, the main update function, called once every loop cycle
+		*	updates any node that needs updating
+		*/
 		void update();
 
-		//Game Main Draw Function
+		/**
+		*	draw, the main draw function, called once every loop cycle.
+		*	calls all nodes draw functions and display the node to window
+		*/
 		void draw();
 
-		//Init Game Subsystems
+		/**
+		*	init, Initilazie the engine subsystems.
+		*	@return bool.
+		*/
 		bool init();
 
-		//Create game window and renderer
+		/**
+		*	initSystems. Create the SDL window and Renderer.
+		*	@return bool.
+		*/
 		bool initSystems();
 
-		//Exit Game 
+		/**
+		*	exitGame. Cleans up and exits the game.
+		*/
 		void exitGame();
 
 	};

@@ -24,7 +24,7 @@ void ScrollingBg::create(std::string path) {
 void ScrollingBg::update() {
 
 	pos -= 3;
-	if (pos < -scrollingImage->getContentSize().x_){
+	if (pos < -scrollingImage->getContentSize().x_ / 2){
 		pos = 0;
 	}
 	scrollingImage->setPositionX(pos);

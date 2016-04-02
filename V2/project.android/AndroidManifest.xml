@@ -59,9 +59,7 @@
         </activity>
     </application>
 
-	<supports-screens android:anyDensity="true"
-                      android:smallScreens="true"
-                      android:normalScreens="true"
+	<supports-screens android:normalScreens="true"
                       android:largeScreens="true"
                       android:xlargeScreens="true"/>
 

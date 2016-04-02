@@ -1,10 +1,7 @@
 #include "SceneManager.h"
 #include "IScene.h"
-/*
-name:	SceneManager
-author: @Derek O Brien
-Description: Scene Manager for handling all in game scenes
-holds vector of all scenes,
+/**
+*	@author Derek O Brien
 */
 
 namespace DsdlEngine{

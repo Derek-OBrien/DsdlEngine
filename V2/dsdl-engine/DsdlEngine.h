@@ -1,7 +1,4 @@
-
-#pragma once
-//Include all engine files in one place
-
+#ifndef _DSDLENGINE_
 
 #include "AudioManager.h"
 #include "Button.h"
@@ -26,12 +23,15 @@
 #include "XmlLocalStorage.h"
 
 #include "Window.h"
-
-
-
-
-
-
-namespace DsdlEngine{
+/**
+*	@author Derek O Brien
+*/
+namespace DsdlEngine {
+	/**
+	*	init, Initalize SDL
+	*/
 	extern int init();
 }
+
+#endif // !_DSDLENGINE_
+

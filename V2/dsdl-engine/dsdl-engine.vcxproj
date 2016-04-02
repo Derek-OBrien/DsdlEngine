@@ -15,6 +15,7 @@
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>dsdlengine</RootNamespace>
     <ProjectName>DsdlEngine</ProjectName>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -24,11 +25,11 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -46,9 +47,9 @@
     <OutDir>.\lib\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)..\dependencies\SDL2\SDL_ttf\include;$(SolutionDir)..\dependencies\SDL2\SDL_mixer\include;$(SolutionDir)..\dependencies\SDL2\SDL_image\include;$(SolutionDir)..\dependencies\SDL2\SDL\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\dependencies\include;$(SolutionDir)..\dependencies\SDL2\SDL_ttf\include;$(SolutionDir)..\dependencies\SDL2\SDL_mixer\include;$(SolutionDir)..\dependencies\SDL2\SDL_image\include;$(SolutionDir)..\dependencies\SDL2\SDL\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)..\dependencies\lib\Release\;$(SolutionDir)..\dependencies\SDL2\SDL_ttf\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL_mixer\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL_image\lib\x86;$(SolutionDir)..\dependencies\SDL2\SDL\lib\x86;$(LibraryPath)</LibraryPath>
-    <OutDir>.\lib</OutDir>
+    <OutDir>.\lib\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

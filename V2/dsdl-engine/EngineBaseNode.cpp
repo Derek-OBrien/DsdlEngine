@@ -1,9 +1,9 @@
 
 #include "EngineBaseNode.h"
 #include "FileIO.h"
-
-
-
+/**
+*	@author Derek O Brien
+*/
 namespace DsdlEngine {
 
 	//Constructor
@@ -57,12 +57,6 @@ namespace DsdlEngine {
 	}
 
 
-	//Render Node as Animation
-	/*void EngineBaseNode::renderAnimation(SDL_Renderer* r) {
-		
-	}*/
-
-
 	//Load Node as engine texture
 	bool EngineBaseNode::load(SDL_Renderer * r) {
 
@@ -113,7 +107,7 @@ namespace DsdlEngine {
 				//open font
 				m_font = TTF_OpenFont(temp.c_str(), m_textSize);
 				if (m_font == NULL) {
-					DEBUG_MSG("TTF_OpenFont Error : " + std::string(TTF_GetError()));
+					SDL_Log("TTF_OpenFont Error : %s" , std::string(TTF_GetError()));
 				}
 
 				m_engineTexture->loadTTF(m_labelText, m_textColor, m_font, r);
@@ -145,7 +139,13 @@ namespace DsdlEngine {
 
 
 	void EngineBaseNode::setOpacity(int op) {
-		m_opacity = op;
+		if (op > 255 || op < 0) {
+			SDL_Log("Invalid opacity value passed in.");
+			m_opacity = 255;
+		}
+		else {
+			m_opacity = op;
+		}
 	}
 
 	void EngineBaseNode::destroy() {

@@ -10,7 +10,7 @@ namespace DsdlEngine {
 
 	Button::~Button() { destroy(); }
 
-
+	//create button as label
 	void Button::createTextButton(Vec2 pos, Size btnsize, std::string buttonText, std::string fontPath, SDL_Color color, SDL_Color bgColor) {
 
 		m_size.y_ = btnsize.h_;
@@ -30,7 +30,7 @@ namespace DsdlEngine {
 		m_label->create(pos, m_labelText, m_textSize, m_textColor, fontPath);
 	}
 
-
+	//create button as sprite
 	void Button::createSpriteButton(Vec2 spriteSize, Vec2 position, std::string imagePath, std::string name) {
 		m_size.x_ = spriteSize.x_;
 		m_size.y_ = spriteSize.y_;

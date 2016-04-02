@@ -5,10 +5,8 @@
 #include "Layer.h"
 #include "IScene.h"
 
-/*
-	File: Gui
-	Author: Derek O Brien
-	Description: GUi Layer templtate for creating an a UI Layer. Inherits from layer
+/**
+*	@author Derek O Brien
 */
 namespace DsdlEngine{
 
@@ -16,35 +14,74 @@ namespace DsdlEngine{
 	class Button;
 	class Label;
 
+	/**
+	*	 GUi Layer templtate for creating an a UI Layer. Inherits from layer
+	*/
 	class DsdlGui : public Layer{
 	public:
-		//Constructor
+		/**
+		*	Constructor
+		*/
 		DsdlGui();
-		//Deconstructor
+
+		/**
+		*	Deconstructor
+		*/
 		virtual ~DsdlGui();
 		
-		//Create and Add button to a gui layer
+		/**
+		*	addButton, Creates and adds a button to the UI layer.
+		*	@parma type, type of button as a ButtonType
+		*	@parma name, std::string name of the button
+		*	@parma pos, Vec2 position of the button
+		*	@parma size, Vec2 size of the button
+		*	@parma path, path to texture to load.
+		*	@parma color, SDL_color of the button. for label type
+		*	@parma bgColor, background color of the button. for label type.
+		*	@parma text, text to display. for label type.
+		*/
 		void addButton(ButtonType type, std::string name, Vec2 pos, Vec2 size, std::string path, SDL_Color color, SDL_Color bgColor, const char* text = NULL);
 
-		//Create and Add label to a gui layer
+		/**
+		*	addLabel, Creates and adds a Label to the UI layer.
+		*	@parma type, type of labe as a LabelType
+		*	@parma pos, Vec2 position of the label
+		*	@parma text, text to display. for label type.
+		*	@parma fontsize, as int size of font.
+		*	@parma color, SDL_color of the label.
+		*	@parma fontFilePath, file path to the font.
+		*/
 		void addLabel(LableType type, Vec2 pos, std::string text, int fontSize, SDL_Color color, std::string fontFilePath);
 
-		//Add A label allready created to the layer
+		/**
+		*	addPredefinedLabel, add a pre made label to the UI layer,
+		*	@parma label, the Label to be added.
+		*	@parma type, the type of label.
+		*/
 		void addPreDefineLabel(Label* label, LableType type);
 
-		//Set position of layer
+		/**
+		*	setGUIPos, set the GUI position
+		*/
 		void setGUIPos();
 
-		//Event manager for layer buttons
+		/**
+		*	onSDLEvent, evnet listener for GUI buttons.
+		*	@param e, evnent to listen on.
+		*/
 		void onSDLEvent(SDL_Event& e);
 
-		//Destroy
+		/**
+		*	destroy, Clean up when left scope.
+		*/
 		void destroy();
 
-		//Vector to hold layer buttons
-		std::vector<Button*> GUIElements;
+		std::vector<Button*> GUIElements;		/**< Vector to hold GUI Elements*/
 
-		//Get each button added to layer
+		/**
+		*	getButton, Get button from the UIElemets vector
+		*	@return Button.
+		*/
 		Button* getButton() { return m_btn; }
 
 	protected:

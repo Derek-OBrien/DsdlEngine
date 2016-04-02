@@ -1,6 +1,8 @@
 #include "EngineMath.h"
 #include "XmlLocalStorage.h"
-
+/**
+*	@author Derek O Brien
+*/
 
 namespace DsdlEngine{
 
@@ -10,7 +12,7 @@ namespace DsdlEngine{
 	}
 
 	//Set position to values passed in (x , y)
-	Vec2::Vec2(int x, int y) : x_(x), y_(y){
+	Vec2::Vec2(float x, float y) : x_(x), y_(y){
 	}
 
 	Vec2::Vec2(const Vec2& v){
@@ -33,7 +35,7 @@ namespace DsdlEngine{
 
 	Size::Size() : w_(0), h_(0){}
 	
-	Size::Size(int w, int h) : w_(w), h_(h){}
+	Size::Size(float w, float h) : w_(w), h_(h){}
 
 	Size::Size(const Size& s){
 		this->h_ = s.h_;

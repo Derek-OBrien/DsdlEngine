@@ -4,37 +4,59 @@
 #include "EngineBaseNode.h"
 #include "ResourceTexture.h"
 
-/*
-	Base Layer Class
-	author: Derek O Brien
-	Description: Layer base class for all layers in game.
+/**
+*	@author Derek O Brien
 */
 
 namespace DsdlEngine {
+	/***
+	*	Base layer class for the engine
+	*/
 	class Layer {
 	public:
 		//Add Gui Class As friend class
 		friend class Gui;
 
+		/**
+		*	Constructor
+		*/
 		Layer();
+
+		/**
+		*	Deconstructor
+		*/
 		virtual ~Layer();
 
+		/**
+		*	Destroy the layer and all its contents
+		*/
 		void destroy();
 
-		//Load all engine nodes added to the layer
+		/**
+		*	Load all nodes in the layer
+		*	@parma r, SDL_Renderer to be used when loading
+		*/
 		void loadNodes(SDL_Renderer* r);
 
-		//Draw all engine nodes added to the layer
+		/**
+		*	Draw all nodes in the layer
+		*	@parma r, SDL_Renderer to be used when rendering
+		*/
 		void drawNodes(SDL_Renderer* r);
 
-		//Add node to layer 
+		/**
+		*	Add A node to the layer. 
+		*	@parma node, EngineBaseNode to add to the Layer
+		*/
 		void addNodeToLayer(EngineBaseNode* node);
 
-		//Remove node form layer
+		/**
+		*	Remove a node from the layer.
+		*	@parma node, EngineBaseNode to be removed from the layer
+		*/
 		void removeNodeFromLayer(EngineBaseNode* node);
 	
-		//Vector to hold layer nodes
-		std::vector<EngineBaseNode*> layerNodes;
+		std::vector<EngineBaseNode*> layerNodes;		/**< vector to hold layer nodes*/
 	private:
 
 	};

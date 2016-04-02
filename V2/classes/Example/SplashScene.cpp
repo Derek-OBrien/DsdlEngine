@@ -37,8 +37,11 @@ bool SplashScene::changeNext() {
 }
 
 void SplashScene::onEntryScene(){
-	//Create Layer
+	
+	//Create Game Layer
 	layer = new Layer();
+
+	//Create Gui Layer
 	auto gui = new DsdlGui();
 
 	//Create Label	
@@ -47,13 +50,10 @@ void SplashScene::onEntryScene(){
 	//Create Background Sprite
 	auto bg = new Sprite();
 	bg->create(Vec2(1980, 1080), Vec2::ZERO,  XmlLocalStorage::getInstance()->getStringForKey("menubg"));
-	//bg->setPosition(Vec2::ZERO);
-
-
+	
 	//Set callback
 	CallBackTimer timerID = SDL_AddTimer(3 * 1000, callback, this);
 	
-
 	//Add Nodes to Layer
 	layer->addNodeToLayer(bg);
 	

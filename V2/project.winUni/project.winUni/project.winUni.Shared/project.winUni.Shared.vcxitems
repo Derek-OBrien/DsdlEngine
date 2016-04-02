@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{c0fffd27-0d5a-4d18-a0f2-ce3d0d1c6420}</ItemsProjectGuid>
+    <ItemsRootNamespace>project_winUni</ItemsRootNamespace>
+    <ItemsProjectName>project.winUni.Shared</ItemsProjectName>
+    <SharedGUID>463225b6-bbf4-4a1c-bb3a-28695e92aa4d</SharedGUID>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Common\SDL_winrt_main_NonXAML.cpp">
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)main.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+</Project>

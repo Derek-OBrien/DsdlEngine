@@ -1,47 +1,38 @@
 #ifndef _ENGINEMASTER_
 #define _ENGINEMASTER_
-/*
-	Author:: Derek O Brien K00105572
-	File:: EngineMaster
-	Description:: Engine master class is a singleton helper class
-*/
 
 #include "EngineDefines.h"
-#include "../dependencies/tinyxml/tinyxml2.h"
+
+/**
+*	@author Derek O Brien
+*/
 
 namespace DsdlEngine{
-
+	/**
+	*	EngineMaster is a stactic singleton helper class 
+	*/
 	class EngineMaster{
 	public:
 
 		/**
-		*	Returns the singleton.
+		*	getInstace, create EngineMaster as a Static instance.
+		*	@retutn static instance of EngineMaster
 		*/
 		static EngineMaster* getInstance();
 
-		void setAssetsPath(std::string s){ rootAssetsPath = s; };
-		std::string getAssetsPath(){ return rootAssetsPath;  };
-
 	protected:
+		/**
+		*	Constructor
+		*/
 		EngineMaster(){};
+
+		/**
+		*	Deconstructor
+		*/
 		virtual ~EngineMaster(){};
 
 	private:
 
-
-		static bool isXMLFileExist();
-		static void initXMLFilePath();
-		static const std::string getXMLFilePath();
-
-		
-		static std::string _filePath;
-		static bool _isFilePathInitialized;
-
-
-		std::string rootAssetsPath;
-		int windowHeight;
-		int windowWidth;
-	//	Size windowSize;
 	};
 }
 

@@ -1,37 +1,57 @@
 #ifndef _TIMING_
 #define _TIMING_
-/*
-	File: Timing.h
-	Author: Derek O Brien
-	Description: timming file handles setting up of caluclating and controlling frame rate
+/**
+*	@author Derek O Brien
 */
 
 namespace DsdlEngine{
 
+	/**
+	*	Timming file handles setting up of caluclating and controlling frame rate of the engine.
+	*/
 	class FpsLimiter {
 	public:
-		//Constructor
+		/**
+		*	Constructor
+		*/
 		FpsLimiter();
+
+		/**
+		*	Deconstructor
+		*/
 		~FpsLimiter();
 
-		// Initializes the FPS limiter.
+		/**
+		*	Initializes the FPS limiter.
+		*	@parma maxFPS, the max frame rate allowed.
+		*/
 		void init(float maxFPS);
 
-		// Sets the desired max FPS
+		/**
+		*	Sets the desired max FPS
+		*	@parma maxFPS, the desired Frame Rate.
+		*/
 		void setMaxFPS(float maxFPS);
 
-		//Start timer
+		/**
+		*	Start the Frame Rate Timer
+		*/
 		void begin();
 
-		// end() will return the current FPS as a float
+		/**
+		*	End the frame rate timer
+		*	@return float, the current fps vlaue.
+		*/
 		float end();
 
 	private:
-		// Calculates the current FPS
+		/**
+		*	Calculate the running fps and keep it under control
+		*/
 		void calculateFPS();
 
-		float m_fFps, m_fMaxFPS, m_fFrameTime;
-		unsigned int m_iStartTicks;
+		float m_fFps, m_fMaxFPS, m_fFrameTime;		/**< float values for claculations*/
+		unsigned int m_iStartTicks;					/**< starting timestamp*/
 	};
 }
 

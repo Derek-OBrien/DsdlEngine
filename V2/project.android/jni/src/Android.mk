@@ -35,7 +35,7 @@ XML_FILE_LIST := $(wildcard $(LOCAL_PATH)/../../../dependencies/tinyxml/*.cpp)
 LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.c\
 	$(XML_FILE_LIST:$(LOCAL_PATH)/%=%)\
 	$(ENGINE_FILE_LIST:$(LOCAL_PATH)/%=%)\
-	$(GAME_FILE_LIST_BREAKOUT:$(LOCAL_PATH)/%=%)\
+	$(GAME_FILE_LIST_RUNNER:$(LOCAL_PATH)/%=%)\
 	../../../classes/main.cpp
 	
 

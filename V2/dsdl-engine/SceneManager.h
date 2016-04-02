@@ -3,11 +3,8 @@
 
 #include "EngineDefines.h"
 
-/*
-	name:	SceneManager
-	author: @Derek O Brien
-	Description: Scene Manager for handling all in game scenes
-	holds vector of all scenes,
+/**
+*	@author Derek O Brien
 */
 
 namespace DsdlEngine{
@@ -16,39 +13,65 @@ namespace DsdlEngine{
 	class IMainGame;
 	class IScene;
 
+	/**
+	*	Scene Manager for handling all in game scenes, holds vector of all scenes,
+	*/
 	class SceneManager{
 	public:
-	
+		
+		/**
+		*	Constructor.
+		*	@parma game, the IMainGame the manager belongs to
+		*/
 		SceneManager(IMainGame* game);
+
+		/**
+		*	Deconstructor.
+		*/
 		~SceneManager(){ destroy(); };
 
-		//Move to next scene
+		/**
+		*	Move to Next scene in vector
+		*	@return IScene, the scene to move to.
+		*/
 		IScene* moveNext();
 
-		//Move to previous scene
+		/**
+		*	Move to Previous scene in vector
+		*	@return IScene, the scene to move to.
+		*/
 		IScene* movePrevious();
 
-		//Set scene
+		/**
+		*	Sets the current Scene
+		*	@parma nextScene, the current scene.
+		*/
 		void setScene(int nextScene);
 
-		//Add a scene to the manager
+		/**
+		*	Add a Scene to the Scene Manager.
+		*	@parma newScene, the IScene to add to the Manager.
+		*/
 		void addScene(IScene* newScene);
 
-		//Destroy scene manager
+		/**
+		*	Destroy the SceneManager and all of its Scenes
+		*/
 		void destroy();
 
-		//Get current loaded scene
+		/**
+		*	Get the Current Scene been managed
+		*	@return IScene, the current scene.
+		*/
 		IScene* getCurrentScene();
 	
 	protected:
-		//Main Game which scenemanager belongs too
-		IMainGame* m_pGame;
 		
-		//Vector to hold scenes
-		std::vector<IScene*> m_pScenes;
+		IMainGame* m_pGame;					/**< Main Game which scenemanager belongs too*/
+		
+		std::vector<IScene*> m_pScenes;		/**< Vector to hold the game scenes*/
 
-		//Current Scene index
-		int m_iCurrentSceneIndex;
+		int m_iCurrentSceneIndex;			/**< index for the current Scene*/
 	};
 }
 #endif	//!_SCREENMANAGER_

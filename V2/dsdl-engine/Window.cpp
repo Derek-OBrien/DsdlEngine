@@ -76,7 +76,6 @@ namespace DsdlEngine{
 		SDL_DestroyWindow(m_pSdlWindow);
 		m_pScreenSurface = nullptr;
 		SDL_Quit();
-		exit(1);
 	}
 
 }

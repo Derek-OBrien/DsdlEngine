@@ -87,12 +87,12 @@ namespace DsdlEngine{
 		SDL_Surface* textSurface = TTF_RenderText_Blended(myfont, text.c_str(), color);
 
 		if (textSurface == NULL){
-			DEBUG_MSG("TTF_RenderText_Blended Error : " + std::string(TTF_GetError()));
+			SDL_Log("TTF_RenderText_Blended Error : %s" , std::string(TTF_GetError()));
 		}
 		else{//COnvert Surface to the Texture
 			m_Texture = SDL_CreateTextureFromSurface(r, textSurface);
 			if (m_Texture == NULL){
-				DEBUG_MSG("TTF_RenderText_Blended Error : " + std::string(TTF_GetError()));
+				SDL_Log("TTF_RenderText_Blended Error : %s" , std::string(TTF_GetError()));
 			}
 			else{
 				m_iWidth = textSurface->w;
