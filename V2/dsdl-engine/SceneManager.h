@@ -21,7 +21,7 @@ namespace DsdlEngine{
 		
 		/**
 		*	Constructor.
-		*	@parma game, the IMainGame the manager belongs to
+		*	@param game, the IMainGame the manager belongs to
 		*/
 		SceneManager(IMainGame* game);
 
@@ -44,13 +44,13 @@ namespace DsdlEngine{
 
 		/**
 		*	Sets the current Scene
-		*	@parma nextScene, the current scene.
+		*	@param nextScene, the current scene.
 		*/
 		void setScene(int nextScene);
 
 		/**
 		*	Add a Scene to the Scene Manager.
-		*	@parma newScene, the IScene to add to the Manager.
+		*	@param newScene, the IScene to add to the Manager.
 		*/
 		void addScene(IScene* newScene);
 

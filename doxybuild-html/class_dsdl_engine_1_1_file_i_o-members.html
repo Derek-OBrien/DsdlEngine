@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -69,6 +77,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_dsdl_engine_1_1_file_i_o.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -83,11 +106,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespace_dsdl_engine.html">DsdlEngine</a></li><li class="navelem"><a class="el" href="class_dsdl_engine_1_1_file_i_o.html">FileIO</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">DsdlEngine::FileIO Member List</div>  </div>
@@ -104,17 +122,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <tr><td class="entry"><a class="el" href="class_dsdl_engine_1_1_file_i_o.html#a7a20bf600b419217787aa3562cb3126d">getWritablePath</a>()</td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_file_i_o.html">DsdlEngine::FileIO</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_dsdl_engine_1_1_file_i_o.html#a72230fbf3586c8ee1fa29aacb5daefaf">getXMLNodeForKey</a>(const char *pKey, XMLElement **rootNode, XMLDocument **doc)</td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_file_i_o.html">DsdlEngine::FileIO</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_dsdl_engine_1_1_file_i_o.html#a068de3de19dbc2b3dd86c715d41e6e13">loadDocument</a>(const char *filepath, char **doc_contents)</td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_file_i_o.html">DsdlEngine::FileIO</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_dsdl_engine_1_1_file_i_o.html#ab432a22adc60546e5a9e1da9a88b6189">m_fileName</a></td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_file_i_o.html">DsdlEngine::FileIO</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_dsdl_engine_1_1_file_i_o.html#add7741b552a99aa0e996367f37ef0967">m_path</a></td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_file_i_o.html">DsdlEngine::FileIO</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_dsdl_engine_1_1_file_i_o.html#af391e1f4a81173e5b73ee6848055df85">setAssetsPath</a>(std::string assetsPath)</td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_file_i_o.html">DsdlEngine::FileIO</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_dsdl_engine_1_1_file_i_o.html#a841f86122694bbcf14b4609eafe7fe75">setFileToOpen</a>(std::string file)</td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_file_i_o.html">DsdlEngine::FileIO</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_dsdl_engine_1_1_file_i_o.html#a50ef49329abdb859f71a1b92682d9b49">setValueForKey</a>(const char *value, const char *key)</td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_file_i_o.html">DsdlEngine::FileIO</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_dsdl_engine_1_1_file_i_o.html#a3cf095da3973fb3a7b89d879cbdd15e3">writeDocument</a>(const char *filepath, const char **doc_contents)</td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_file_i_o.html">DsdlEngine::FileIO</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_dsdl_engine_1_1_file_i_o.html#ae298886f57f03d52d3d6655913540e79">~FileIO</a>()</td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_file_i_o.html">DsdlEngine::FileIO</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></td></tr>
 </table></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.11
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+  </ul>
+</div>
 </body>
 </html>

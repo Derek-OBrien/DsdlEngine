@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -79,6 +87,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow4" class="tabs3">
     <ul class="tablist">
+      <li><a href="#index__"><span>_</span></a></li>
+      <li><a href="#index_a"><span>a</span></a></li>
+      <li><a href="#index_e"><span>e</span></a></li>
+      <li><a href="#index_f"><span>f</span></a></li>
       <li><a href="#index_g"><span>g</span></a></li>
       <li><a href="#index_h"><span>h</span></a></li>
       <li><a href="#index_l"><span>l</span></a></li>
@@ -93,6 +105,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     </ul>
   </div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('functions_vars.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -109,6 +135,40 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div class="contents">
 &#160;
+
+<h3><a class="anchor" id="index__"></a>- _ -</h3><ul>
+<li>_keyMap
+: <a class="el" href="class_dsdl_engine_1_1_input_manager.html#a51f5309f8a5973d268ffc26dea1d9966">DsdlEngine::InputManager</a>
+</li>
+<li>_previousKeyMap
+: <a class="el" href="class_dsdl_engine_1_1_input_manager.html#aa1bc0d6c7a45f5981dd9a9b681983f2e">DsdlEngine::InputManager</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_a"></a>- a -</h3><ul>
+<li>angle
+: <a class="el" href="class_dsdl_engine_1_1_particles.html#a8b869f85c411fe9b12b0ab0c355c1300">DsdlEngine::Particles</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_e"></a>- e -</h3><ul>
+<li>endtime
+: <a class="el" href="class_dsdl_engine_1_1_particles.html#a72b56eef088804cd51073c9c27fa3edb">DsdlEngine::Particles</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_f"></a>- f -</h3><ul>
+<li>fingerDown
+: <a class="el" href="class_dsdl_engine_1_1_input_manager.html#af8b31c454edfb04f2fb559db9ba86900">DsdlEngine::InputManager</a>
+</li>
+<li>fingerUp
+: <a class="el" href="class_dsdl_engine_1_1_input_manager.html#a6427686b30b364021871e9b4f902d71b">DsdlEngine::InputManager</a>
+</li>
+</ul>
+
 
 <h3><a class="anchor" id="index_g"></a>- g -</h3><ul>
 <li>GUIElements
@@ -128,6 +188,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>layerNodes
 : <a class="el" href="class_dsdl_engine_1_1_layer.html#a2052e02439229135ca7417bfd73d81c8">DsdlEngine::Layer</a>
 </li>
+<li>life
+: <a class="el" href="class_dsdl_engine_1_1_particles.html#a8559187a6e9ba79dbc22134e653286cc">DsdlEngine::Particles</a>
+</li>
 </ul>
 
 
@@ -137,6 +200,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>m_audioManager
 : <a class="el" href="class_dsdl_engine_1_1_i_main_game.html#acec5a25042eac8e6524adcd1bc95a66b">DsdlEngine::IMainGame</a>
+</li>
+<li>m_bgAudioMap
+: <a class="el" href="class_dsdl_engine_1_1_audio_manager.html#a102346080a6b428e66712b25ad2a9830">DsdlEngine::AudioManager</a>
+</li>
+<li>m_bisInitialized
+: <a class="el" href="class_dsdl_engine_1_1_audio_manager.html#a65be00f5b7cf55cf71e54ae2dc2bcd4b">DsdlEngine::AudioManager</a>
 </li>
 <li>m_bIsPaused
 : <a class="el" href="class_dsdl_engine_1_1_i_main_game.html#a3bc305567df4830540c2771299ce0994">DsdlEngine::IMainGame</a>
@@ -156,6 +225,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>m_buttonbg
 : <a class="el" href="class_dsdl_engine_1_1_engine_base_node.html#a6216cb6978a661f868529beb540c84aa">DsdlEngine::EngineBaseNode</a>
 </li>
+<li>m_buttonName
+: <a class="el" href="class_dsdl_engine_1_1_button.html#a868c365e3e17f55d9a9806e582632a53">DsdlEngine::Button</a>
+</li>
+<li>m_Chunk
+: <a class="el" href="class_dsdl_engine_1_1_s_f_x.html#a1d25f498b4290c1c8f8fa68be2668fff">DsdlEngine::SFX</a>
+</li>
 <li>m_CollisionShape
 : <a class="el" href="class_dsdl_engine_1_1_engine_base_node.html#a17d80e7e5930d3f67ae1ebfd5b6e402b">DsdlEngine::EngineBaseNode</a>
 </li>
@@ -172,8 +247,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>m_engineTexture
 : <a class="el" href="class_dsdl_engine_1_1_engine_base_node.html#ad2dcab1adfe64c28ea2c5644b20a3dd4">DsdlEngine::EngineBaseNode</a>
 </li>
+<li>m_fFps
+: <a class="el" href="class_dsdl_engine_1_1_fps_limiter.html#ae0f7997c653f9489d73de46071f1be0b">DsdlEngine::FpsLimiter</a>
+, <a class="el" href="class_dsdl_engine_1_1_i_main_game.html#ae469dea3581a7675bc8fc5c82c71ba2a">DsdlEngine::IMainGame</a>
+</li>
+<li>m_fFrameTime
+: <a class="el" href="class_dsdl_engine_1_1_fps_limiter.html#a36bbe1db639dea8cea4b454e5b1326f0">DsdlEngine::FpsLimiter</a>
+</li>
+<li>m_fileName
+: <a class="el" href="class_dsdl_engine_1_1_file_i_o.html#ab432a22adc60546e5a9e1da9a88b6189">DsdlEngine::FileIO</a>
+</li>
 <li>m_fixtures
 : <a class="el" href="class_dsdl_engine_1_1_collision_shape.html#aa9f3dd970bac87c70ad467ed0251e41e">DsdlEngine::CollisionShape</a>
+</li>
+<li>m_fMaxFPS
+: <a class="el" href="class_dsdl_engine_1_1_fps_limiter.html#a0703d9dc1de925f8921b7a16011b4c5a">DsdlEngine::FpsLimiter</a>
 </li>
 <li>m_font
 : <a class="el" href="class_dsdl_engine_1_1_engine_base_node.html#adfe3d8594d9d4bf1bc185ea88981a3ab">DsdlEngine::EngineBaseNode</a>
@@ -193,6 +281,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>m_iCurrentSceneIndex
 : <a class="el" href="class_dsdl_engine_1_1_scene_manager.html#ad45274f382410b180241112b3aaa8f5a">DsdlEngine::SceneManager</a>
 </li>
+<li>m_iHeight
+: <a class="el" href="class_dsdl_engine_1_1_resource_texture.html#a87edcc55eb2bdf7f14afcd5853fab035">DsdlEngine::ResourceTexture</a>
+</li>
 <li>m_InputManager
 : <a class="el" href="class_dsdl_engine_1_1_i_main_game.html#a60114cae9ca7fe488f0818eeb34c480f">DsdlEngine::IMainGame</a>
 </li>
@@ -202,14 +293,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>m_iSceneIndex
 : <a class="el" href="class_dsdl_engine_1_1_i_scene.html#a9054b85709135a8d4b47b71ab25dc7b1">DsdlEngine::IScene</a>
 </li>
+<li>m_iStartTicks
+: <a class="el" href="class_dsdl_engine_1_1_fps_limiter.html#aee0c0c9d7af0413ef50bdd6a76b560aa">DsdlEngine::FpsLimiter</a>
+</li>
+<li>m_iWidth
+: <a class="el" href="class_dsdl_engine_1_1_resource_texture.html#a9e11384174acc1ffa81045606210e32e">DsdlEngine::ResourceTexture</a>
+</li>
 <li>m_label
-: <a class="el" href="class_dsdl_engine_1_1_dsdl_gui.html#a22442d1b68033532c75a1373e6426a3e">DsdlEngine::DsdlGui</a>
+: <a class="el" href="class_dsdl_engine_1_1_button.html#a342c462425678af1c05d511550733336">DsdlEngine::Button</a>
+, <a class="el" href="class_dsdl_engine_1_1_dsdl_gui.html#a22442d1b68033532c75a1373e6426a3e">DsdlEngine::DsdlGui</a>
 </li>
 <li>m_labelText
 : <a class="el" href="class_dsdl_engine_1_1_engine_base_node.html#ab8f60a40d4b9438b155d315a7a2eac3a">DsdlEngine::EngineBaseNode</a>
 </li>
 <li>m_labelType
 : <a class="el" href="class_dsdl_engine_1_1_label.html#aaa9b4b113a958a7cb2f642f3ac400788">DsdlEngine::Label</a>
+</li>
+<li>m_Music
+: <a class="el" href="class_dsdl_engine_1_1_music.html#a8e0a2ca3b3c0987378240014906280c3">DsdlEngine::Music</a>
 </li>
 <li>m_node
 : <a class="el" href="class_dsdl_engine_1_1_engine_base_node.html#af9b17f9a84201d1c69944606d2bd50ef">DsdlEngine::EngineBaseNode</a>
@@ -222,6 +323,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>m_opacity
 : <a class="el" href="class_dsdl_engine_1_1_engine_base_node.html#a338a688f3c1bea2862a16729ed5c9ad0">DsdlEngine::EngineBaseNode</a>
+</li>
+<li>m_path
+: <a class="el" href="class_dsdl_engine_1_1_file_i_o.html#add7741b552a99aa0e996367f37ef0967">DsdlEngine::FileIO</a>
 </li>
 <li>m_pCurrentRunning
 : <a class="el" href="class_dsdl_engine_1_1_i_main_game.html#ab3e9c4d30672a51aa320c84ae281bb51">DsdlEngine::IMainGame</a>
@@ -241,11 +345,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>m_pScenes
 : <a class="el" href="class_dsdl_engine_1_1_scene_manager.html#afe09de896dd9275caec5d40560d58e6f">DsdlEngine::SceneManager</a>
 </li>
+<li>m_pScreenSurface
+: <a class="el" href="class_dsdl_engine_1_1_window.html#a9b4db13a21d9a9227327c0f2f9d7aeac">DsdlEngine::Window</a>
+</li>
+<li>m_pSdlRenderer
+: <a class="el" href="class_dsdl_engine_1_1_window.html#ac7341cdb869129fce5c7bc4205d8c2a1">DsdlEngine::Window</a>
+</li>
+<li>m_pSdlWindow
+: <a class="el" href="class_dsdl_engine_1_1_window.html#aa57b7472203e4cb0236263167c224e56">DsdlEngine::Window</a>
+</li>
 <li>m_rect
 : <a class="el" href="class_dsdl_engine_1_1_engine_base_node.html#a716ee517cb4aa78708aed3adb1b7defb">DsdlEngine::EngineBaseNode</a>
 </li>
+<li>m_screenHeight
+: <a class="el" href="class_dsdl_engine_1_1_window.html#a6d93066e5c6312c2cdd3fb43cd834c90">DsdlEngine::Window</a>
+</li>
+<li>m_screenWidth
+: <a class="el" href="class_dsdl_engine_1_1_window.html#ad69b566f6fe89d73dbbc717d01374d56">DsdlEngine::Window</a>
+</li>
+<li>m_sfxAudioMap
+: <a class="el" href="class_dsdl_engine_1_1_audio_manager.html#a33561fd2a774f4157356a58e08cb2463">DsdlEngine::AudioManager</a>
+</li>
 <li>m_size
 : <a class="el" href="class_dsdl_engine_1_1_engine_base_node.html#ad0ba708de7683b95d3d79fb96078a562">DsdlEngine::EngineBaseNode</a>
+</li>
+<li>m_spriteBtn
+: <a class="el" href="class_dsdl_engine_1_1_button.html#a8336ab1c633eb420246d2894dfe4caf6">DsdlEngine::Button</a>
 </li>
 <li>m_textColor
 : <a class="el" href="class_dsdl_engine_1_1_engine_base_node.html#a0fe698ac8aca3d11e684722c6e47292c">DsdlEngine::EngineBaseNode</a>
@@ -253,11 +378,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>m_textSize
 : <a class="el" href="class_dsdl_engine_1_1_engine_base_node.html#ae9b64a98ed7f3dbbbd64c6908c9a5e8e">DsdlEngine::EngineBaseNode</a>
 </li>
+<li>m_Texture
+: <a class="el" href="class_dsdl_engine_1_1_resource_texture.html#a6ca8b199398cf4cbdef63c04692b35cd">DsdlEngine::ResourceTexture</a>
+</li>
 <li>m_TextureMap
 : <a class="el" href="class_dsdl_engine_1_1_engine_base_node.html#ac6229474278c688882b94dcd70e13d18">DsdlEngine::EngineBaseNode</a>
+, <a class="el" href="class_dsdl_engine_1_1_resource_texture.html#a587a55db122eded83cb4166c2902d0d3">DsdlEngine::ResourceTexture</a>
 </li>
 <li>m_Window
 : <a class="el" href="class_dsdl_engine_1_1_i_main_game.html#a46f9735378815e79eb571bcab8282a51">DsdlEngine::IMainGame</a>
+</li>
+<li>m_windowHeight
+: <a class="el" href="class_dsdl_engine_1_1_i_main_game.html#a2393d48b13bb20afa543e2e723e8f0dd">DsdlEngine::IMainGame</a>
+</li>
+<li>m_windowWidth
+: <a class="el" href="class_dsdl_engine_1_1_i_main_game.html#ab330a7535b5f2aa7739759a9cbc619f3">DsdlEngine::IMainGame</a>
+</li>
+<li>mainAssetsPath
+: <a class="el" href="class_dsdl_engine_1_1_i_main_game.html#af744b863ebf3481742b8d34f0f880215">DsdlEngine::IMainGame</a>
+</li>
+<li>mPosX
+: <a class="el" href="class_dsdl_engine_1_1_particles.html#a613ebdb31bfdd3989b026dce9bd2df83">DsdlEngine::Particles</a>
+</li>
+<li>mPosY
+: <a class="el" href="class_dsdl_engine_1_1_particles.html#adc24448b1c40c168d460f70a3b7834ab">DsdlEngine::Particles</a>
 </li>
 </ul>
 
@@ -273,6 +417,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>sceneLayers
 : <a class="el" href="class_dsdl_engine_1_1_i_scene.html#a4dcda06720eaa0f35346256d9ae0fef5">DsdlEngine::IScene</a>
 </li>
+<li>size
+: <a class="el" href="class_dsdl_engine_1_1_particles.html#a50f7ebfa0d3448a38b3b52bba37c28cc">DsdlEngine::Particles</a>
+</li>
+<li>swipedown
+: <a class="el" href="class_dsdl_engine_1_1_input_manager.html#a4a93bd5cb855498065b650db96f004be">DsdlEngine::InputManager</a>
+</li>
+<li>swipeleft
+: <a class="el" href="class_dsdl_engine_1_1_input_manager.html#adb3dfc3c4a5acb0ace726f9b6f6d0260">DsdlEngine::InputManager</a>
+</li>
+<li>swiperight
+: <a class="el" href="class_dsdl_engine_1_1_input_manager.html#a58382c4f1774e54006ed74eef9e9464a">DsdlEngine::InputManager</a>
+</li>
+<li>swipeup
+: <a class="el" href="class_dsdl_engine_1_1_input_manager.html#a5cd445179133641c62e475a73ec099c7">DsdlEngine::InputManager</a>
+</li>
 </ul>
 
 
@@ -287,6 +446,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>w_
 : <a class="el" href="class_dsdl_engine_1_1_size.html#a09e249aa0599ec10d3af32a201298f22">DsdlEngine::Size</a>
 </li>
+<li>windowFlag
+: <a class="el" href="class_dsdl_engine_1_1_i_main_game.html#a3cffaf3b860a945d50376ea6348cf618">DsdlEngine::IMainGame</a>
+</li>
+<li>windowtitle
+: <a class="el" href="class_dsdl_engine_1_1_i_main_game.html#a81acdf6398a24bba0a3c0633248faf0f">DsdlEngine::IMainGame</a>
+</li>
 </ul>
 
 
@@ -294,12 +459,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>x_
 : <a class="el" href="class_dsdl_engine_1_1_vec2.html#a8ad0f6f8ec547554851c5ec2720eef72">DsdlEngine::Vec2</a>
 </li>
+<li>xvel
+: <a class="el" href="class_dsdl_engine_1_1_particles.html#a93ad350e320228c0100b559e393c1b5a">DsdlEngine::Particles</a>
+</li>
 </ul>
 
 
 <h3><a class="anchor" id="index_y"></a>- y -</h3><ul>
 <li>y_
 : <a class="el" href="class_dsdl_engine_1_1_vec2.html#ad5ba0c33d7cd9fa3e2ed9de078a31bbd">DsdlEngine::Vec2</a>
+</li>
+<li>yvel
+: <a class="el" href="class_dsdl_engine_1_1_particles.html#a2035ce2ae1234b3dca45a1ac9c528088">DsdlEngine::Particles</a>
 </li>
 </ul>
 
@@ -310,11 +481,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.11
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+  </ul>
+</div>
 </body>
 </html>

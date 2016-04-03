@@ -29,7 +29,7 @@ namespace DsdlEngine{
 		
 		/**
 		*	getSuitableFopen, the the filename of the path to open
-		*	@parma std::string file path.
+		*	@param std::string file path.
 		*	@return std::string file path to open.
 		*/
 		std::string getSuitableFOpen(const std::string& filenameUtf8) const;
@@ -42,7 +42,7 @@ namespace DsdlEngine{
 
 		/**
 		*	setAssetsPath, set the path to the file root ( only applies to windows platform)
-		*	@parma std::string path for file.
+		*	@param std::string path for file.
 		*/
 		void setAssetsPath(  std::string assetsPath)  { m_path = assetsPath; }
 
@@ -55,39 +55,39 @@ namespace DsdlEngine{
 
 		/**
 		*	setFileToOpen, set the name of the file to open.
-		*	@parma std::string file name.
+		*	@param std::string file name.
 		*/
 		void setFileToOpen(std::string file) { m_fileName = file; }
 
 		/**
 		*	loadDocument, load the contents of a file into memory for parsing,
-		*	@parma filepath const char path to file,
-		*	@parma doc_contents buffer to hold the file contents.
+		*	@param filepath const char path to file,
+		*	@param doc_contents buffer to hold the file contents.
 		*	@return bool.
 		*/
 		bool loadDocument(const char* filepath, char** doc_contents);
 	
 		/**
 		*	writeDocument. Write the file contents from memory buffer to file and save.
-		*	@parma filepath const char path to file,
-		*	@parma doc_contents buffer cotaining the file contents.
+		*	@param filepath const char path to file,
+		*	@param doc_contents buffer cotaining the file contents.
 		*	@return bool.
 		*/
 		bool writeDocument(const char* filepath, const char** doc_contents);
 
 		/**
 		*	getXMLNodeForKey, parses the file contents in the memory buffer for a xml element that matches the key.
-		*	@parma pKey key to search for in the file.
-		*	@parma rootNode XML node to use for search.
-		*	@parma doc XML doc to hold the contents.
+		*	@param pKey key to search for in the file.
+		*	@param rootNode XML node to use for search.
+		*	@param doc XML doc to hold the contents.
 		*	@return XMLElement the element matching the key.
 		*/
 		XMLElement* getXMLNodeForKey(const char*pKey, XMLElement** rootNode, XMLDocument** doc);
 
 		/**
 		*	setValueForKey, Set or update the value of an XML element that matches the key.
-		*	@parma vlaue the value to be set.
-		*	@parma key the key to look for.
+		*	@param vlaue the value to be set.
+		*	@param key the key to look for.
 		*/
 		void setValueForKey(const char* value, const char* key);
 

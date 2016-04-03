@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -69,6 +77,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_dsdl_engine_1_1_sprite.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -83,11 +106,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespace_dsdl_engine.html">DsdlEngine</a></li><li class="navelem"><a class="el" href="class_dsdl_engine_1_1_sprite.html">Sprite</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -313,7 +331,14 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Create basic sprite with one frame.  spriteSize, <a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a> <a class="el" href="class_dsdl_engine_1_1_size.html">Size</a> of the sprite.  position, <a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a> position of sprite.  path, std::string path to sprite asset. </p>
+<p>Create basic sprite with one frame. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">spriteSize,<a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a></td><td><a class="el" href="class_dsdl_engine_1_1_size.html">Size</a> of the sprite. </td></tr>
+    <tr><td class="paramname">position,<a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a></td><td>position of sprite. </td></tr>
+    <tr><td class="paramname">path,std::string</td><td>path to sprite asset. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="_sprite_8cpp_source.html#l00022">22</a> of file <a class="el" href="_sprite_8cpp_source.html">Sprite.cpp</a>.</p>
 
@@ -354,7 +379,15 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Create basic sprite with more then one frame.  spriteSize, <a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a> <a class="el" href="class_dsdl_engine_1_1_size.html">Size</a> of the sprite.  position, <a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a> position of sprite.  path, std::string path to sprite asset.  numFrames, int number of frames. </p>
+<p>Create basic sprite with more then one frame. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">spriteSize,<a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a></td><td><a class="el" href="class_dsdl_engine_1_1_size.html">Size</a> of the sprite. </td></tr>
+    <tr><td class="paramname">position,<a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a></td><td>position of sprite. </td></tr>
+    <tr><td class="paramname">path,std::string</td><td>path to sprite asset. </td></tr>
+    <tr><td class="paramname">numFrames,int</td><td>number of frames. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="_sprite_8cpp_source.html#l00037">37</a> of file <a class="el" href="_sprite_8cpp_source.html">Sprite.cpp</a>.</p>
 
@@ -419,7 +452,19 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Create basic sprite with one frame.  world, b2World to add the sprite body to.  spriteSize, <a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a> <a class="el" href="class_dsdl_engine_1_1_size.html">Size</a> of the sprite.  position, <a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a> position of sprite.  path, std::string path to sprite asset.  numFrames, int number of frames.  den, float value for body dentisty.  fri, float value for body friction.  fixedRotation, bool value. </p>
+<p>Create basic sprite with one frame. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world,b2World</td><td>to add the sprite body to. </td></tr>
+    <tr><td class="paramname">spriteSize,<a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a></td><td><a class="el" href="class_dsdl_engine_1_1_size.html">Size</a> of the sprite. </td></tr>
+    <tr><td class="paramname">position,<a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a></td><td>position of sprite. </td></tr>
+    <tr><td class="paramname">path,std::string</td><td>path to sprite asset. </td></tr>
+    <tr><td class="paramname">numFrames,int</td><td>number of frames. </td></tr>
+    <tr><td class="paramname">den,float</td><td>value for body dentisty. </td></tr>
+    <tr><td class="paramname">fri,float</td><td>value for body friction. </td></tr>
+    <tr><td class="paramname">fixedRotation,bool</td><td>value. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="_sprite_8cpp_source.html#l00053">53</a> of file <a class="el" href="_sprite_8cpp_source.html">Sprite.cpp</a>.</p>
 
@@ -514,7 +559,15 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Change the sprite texture of a sprite that is all ready loaded  spriteSize, <a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a> <a class="el" href="class_dsdl_engine_1_1_size.html">Size</a> of the sprite.  position, <a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a> position of sprite.  path, std::string path to sprite asset.  numFrames, int number of frames. </p>
+<p>Change the sprite texture of a sprite that is all ready loaded </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">spriteSize,<a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a></td><td><a class="el" href="class_dsdl_engine_1_1_size.html">Size</a> of the sprite. </td></tr>
+    <tr><td class="paramname">position,<a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a></td><td>position of sprite. </td></tr>
+    <tr><td class="paramname">path,std::string</td><td>path to sprite asset. </td></tr>
+    <tr><td class="paramname">numFrames,int</td><td>number of frames. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="_sprite_8cpp_source.html#l00078">78</a> of file <a class="el" href="_sprite_8cpp_source.html">Sprite.cpp</a>.</p>
 
@@ -525,11 +578,15 @@ Additional Inherited Members</h2></td></tr>
 <li><a class="el" href="_sprite_8cpp_source.html">Sprite.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.11
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_dsdl_engine.html">DsdlEngine</a></li><li class="navelem"><a class="el" href="class_dsdl_engine_1_1_sprite.html">Sprite</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+  </ul>
+</div>
 </body>
 </html>

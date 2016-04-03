@@ -34,25 +34,25 @@ namespace DsdlEngine {
 
 		/**
 		*	Load all nodes in the layer
-		*	@parma r, SDL_Renderer to be used when loading
+		*	@param r, SDL_Renderer to be used when loading
 		*/
 		void loadNodes(SDL_Renderer* r);
 
 		/**
 		*	Draw all nodes in the layer
-		*	@parma r, SDL_Renderer to be used when rendering
+		*	@param r, SDL_Renderer to be used when rendering
 		*/
 		void drawNodes(SDL_Renderer* r);
 
 		/**
 		*	Add A node to the layer. 
-		*	@parma node, EngineBaseNode to add to the Layer
+		*	@param node, EngineBaseNode to add to the Layer
 		*/
 		void addNodeToLayer(EngineBaseNode* node);
 
 		/**
 		*	Remove a node from the layer.
-		*	@parma node, EngineBaseNode to be removed from the layer
+		*	@param node, EngineBaseNode to be removed from the layer
 		*/
 		void removeNodeFromLayer(EngineBaseNode* node);
 	

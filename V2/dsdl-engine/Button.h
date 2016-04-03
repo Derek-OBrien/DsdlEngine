@@ -36,28 +36,28 @@ namespace DsdlEngine {
 
 		/**
 		*	Create button as Label node.
-		*	@parma pos as a Vec2 position argument.
-		*	@parma size as a Size content size argument.
-		*	@parma buttonText as a std::string argument.
-		*	@parma fontPath as a std::string argument.
-		*	@parma textColor as a SDL_Color argument.
-		*	@parma bgColor as a SDL_Color argument.
+		*	@param pos as a Vec2 position argument.
+		*	@param size as a Size content size argument.
+		*	@param buttonText as a std::string argument.
+		*	@param fontPath as a std::string argument.
+		*	@param textColor as a SDL_Color argument.
+		*	@param bgColor as a SDL_Color argument.
 		*/
 		void createTextButton(Vec2 pos, Size size, std::string buttonText, std::string fontPath, SDL_Color textColor, SDL_Color bgColor);
 
 		/**
 		*	Create button as a Sprite node.
-		*	@parma spriteSize as a Vec2 argument.
-		*	@parma position as a Vec2 position argument
-		*	@parma imagePath as a std::string path to image
-		*	@parma name as a std::string name of button
+		*	@param spriteSize as a Vec2 argument.
+		*	@param position as a Vec2 position argument
+		*	@param imagePath as a std::string path to image
+		*	@param name as a std::string name of button
 		*/
 		void createSpriteButton(Vec2 spriteSize, Vec2 position, std::string imagePath, std::string name);
 
 		/**
 		*	checkInput.
 		*	Check for input event on the current button.
-		*	@parma e as SDL_Event argument.
+		*	@param e as SDL_Event argument.
 		*/
 		void checkInput(SDL_Event& e);
 

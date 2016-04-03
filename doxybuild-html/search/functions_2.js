@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['calculatefps',['calculateFPS',['../class_dsdl_engine_1_1_fps_limiter.html#a071ae39dbb34ee2a888c5f336d05fbc3',1,'DsdlEngine::FpsLimiter']]],
   ['checkinput',['checkInput',['../class_dsdl_engine_1_1_button.html#a81c0dfa0eb02bc3909d25c37783c2c8a',1,'DsdlEngine::Button']]],
   ['checkpaused',['checkPaused',['../class_dsdl_engine_1_1_i_main_game.html#a0d970d01be57ea6eafc37ae93c569676',1,'DsdlEngine::IMainGame']]],
   ['cleanup',['cleanup',['../class_dsdl_engine_1_1_engine_base_node.html#a0d9bf88248c7fea5b3ae55ba1a3ef2a0',1,'DsdlEngine::EngineBaseNode::cleanup()'],['../class_dsdl_engine_1_1_label.html#ad7505512a3ce7aa7c88da968073100fe',1,'DsdlEngine::Label::cleanup()']]],

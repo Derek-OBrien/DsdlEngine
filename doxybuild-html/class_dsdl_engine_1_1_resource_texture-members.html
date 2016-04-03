@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -69,6 +77,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_dsdl_engine_1_1_resource_texture.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -83,11 +106,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespace_dsdl_engine.html">DsdlEngine</a></li><li class="navelem"><a class="el" href="class_dsdl_engine_1_1_resource_texture.html">ResourceTexture</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">DsdlEngine::ResourceTexture Member List</div>  </div>
@@ -99,17 +117,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <tr class="even"><td class="entry"><a class="el" href="class_dsdl_engine_1_1_resource_texture.html#a38709fec8c180c1041f7aa59963b64cb">destroy</a>()</td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_resource_texture.html">DsdlEngine::ResourceTexture</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_dsdl_engine_1_1_resource_texture.html#a03cee412dfebd9c2af345153fc2bc495">loadTexture</a>(std::string texturePath, SDL_Renderer *r)</td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_resource_texture.html">DsdlEngine::ResourceTexture</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_dsdl_engine_1_1_resource_texture.html#a2666eab97150d155961bc55875190512">loadTTF</a>(std::string text, SDL_Color color, TTF_Font *myFont, SDL_Renderer *r)</td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_resource_texture.html">DsdlEngine::ResourceTexture</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_dsdl_engine_1_1_resource_texture.html#a87edcc55eb2bdf7f14afcd5853fab035">m_iHeight</a></td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_resource_texture.html">DsdlEngine::ResourceTexture</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_dsdl_engine_1_1_resource_texture.html#a9e11384174acc1ffa81045606210e32e">m_iWidth</a></td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_resource_texture.html">DsdlEngine::ResourceTexture</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_dsdl_engine_1_1_resource_texture.html#a6ca8b199398cf4cbdef63c04692b35cd">m_Texture</a></td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_resource_texture.html">DsdlEngine::ResourceTexture</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_dsdl_engine_1_1_resource_texture.html#a587a55db122eded83cb4166c2902d0d3">m_TextureMap</a></td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_resource_texture.html">DsdlEngine::ResourceTexture</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_dsdl_engine_1_1_resource_texture.html#a55688608f1f2466a1df1501ac30bf60b">render</a>(Vec2 p, Vec2 s, SDL_Renderer *r, SDL_Rect *clip=NULL)</td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_resource_texture.html">DsdlEngine::ResourceTexture</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_dsdl_engine_1_1_resource_texture.html#ab85b2452ea23c10e71f9082a05c4a399">ResourceTexture</a>()</td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_resource_texture.html">DsdlEngine::ResourceTexture</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_dsdl_engine_1_1_resource_texture.html#ae673e2b800716804434d0b073ce3dcd7">setAlpha</a>(Uint8 alpha)</td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_resource_texture.html">DsdlEngine::ResourceTexture</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_dsdl_engine_1_1_resource_texture.html#a48d607fb6d7cd596b90d63bb282a6985">setBlendMode</a>(SDL_BlendMode blending)</td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_resource_texture.html">DsdlEngine::ResourceTexture</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_dsdl_engine_1_1_resource_texture.html#ae036dce8f35a0166d974995bf3050762">~ResourceTexture</a>()</td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_resource_texture.html">DsdlEngine::ResourceTexture</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.11
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+  </ul>
+</div>
 </body>
 </html>

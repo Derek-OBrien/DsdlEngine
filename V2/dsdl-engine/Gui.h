@@ -31,32 +31,32 @@ namespace DsdlEngine{
 		
 		/**
 		*	addButton, Creates and adds a button to the UI layer.
-		*	@parma type, type of button as a ButtonType
-		*	@parma name, std::string name of the button
-		*	@parma pos, Vec2 position of the button
-		*	@parma size, Vec2 size of the button
-		*	@parma path, path to texture to load.
-		*	@parma color, SDL_color of the button. for label type
-		*	@parma bgColor, background color of the button. for label type.
-		*	@parma text, text to display. for label type.
+		*	@param type, type of button as a ButtonType
+		*	@param name, std::string name of the button
+		*	@param pos, Vec2 position of the button
+		*	@param size, Vec2 size of the button
+		*	@param path, path to texture to load.
+		*	@param color, SDL_color of the button. for label type
+		*	@param bgColor, background color of the button. for label type.
+		*	@param text, text to display. for label type.
 		*/
 		void addButton(ButtonType type, std::string name, Vec2 pos, Vec2 size, std::string path, SDL_Color color, SDL_Color bgColor, const char* text = NULL);
 
 		/**
 		*	addLabel, Creates and adds a Label to the UI layer.
-		*	@parma type, type of labe as a LabelType
-		*	@parma pos, Vec2 position of the label
-		*	@parma text, text to display. for label type.
-		*	@parma fontsize, as int size of font.
-		*	@parma color, SDL_color of the label.
-		*	@parma fontFilePath, file path to the font.
+		*	@param type, type of labe as a LabelType
+		*	@param pos, Vec2 position of the label
+		*	@param text, text to display. for label type.
+		*	@param fontsize, as int size of font.
+		*	@param color, SDL_color of the label.
+		*	@param fontFilePath, file path to the font.
 		*/
 		void addLabel(LableType type, Vec2 pos, std::string text, int fontSize, SDL_Color color, std::string fontFilePath);
 
 		/**
 		*	addPredefinedLabel, add a pre made label to the UI layer,
-		*	@parma label, the Label to be added.
-		*	@parma type, the type of label.
+		*	@param label, the Label to be added.
+		*	@param type, the type of label.
 		*/
 		void addPreDefineLabel(Label* label, LableType type);
 

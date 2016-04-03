@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -67,6 +75,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('_gui_8cpp_source.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -81,11 +104,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_e6bb53534ac0e427887cf7a94c0c004e.html">C:</a></li><li class="navelem"><a class="el" href="dir_8ceffd4ee35c3518d4e8bdc7e638efe8.html">Users</a></li><li class="navelem"><a class="el" href="dir_cbd4d32671b407f2ace049b7e000050d.html">Derek</a></li><li class="navelem"><a class="el" href="dir_667beef2d6e417690e01c36d241f2f49.html">Desktop</a></li><li class="navelem"><a class="el" href="dir_38a9647846a094bf524949d62a5d2fe1.html">FYP SDL Engine</a></li><li class="navelem"><a class="el" href="dir_15f7a5c53317d8b6c4ca9627089cfbf9.html">V2</a></li><li class="navelem"><a class="el" href="dir_b211fe200b3d5a1659a98d81223dfeb6.html">dsdl-engine</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Gui.cpp</div>  </div>
@@ -95,7 +113,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="namespace_dsdl_engine_html_a37801d421ba45cacb2b96c613d40fa2aa2a3389b1d8bc619aed964477ec7b1a2d"><div class="ttname"><a href="namespace_dsdl_engine.html#a37801d421ba45cacb2b96c613d40fa2aa2a3389b1d8bc619aed964477ec7b1a2d">DsdlEngine::NodeType::SPRITE</a></div></div>
 <div class="ttc" id="class_dsdl_engine_1_1_dsdl_gui_html_a5611cc697d2e8f9cddad10d47da07e94"><div class="ttname"><a href="class_dsdl_engine_1_1_dsdl_gui.html#a5611cc697d2e8f9cddad10d47da07e94">DsdlEngine::DsdlGui::onSDLEvent</a></div><div class="ttdeci">void onSDLEvent(SDL_Event &amp;e)</div><div class="ttdef"><b>Definition:</b> <a href="_gui_8cpp_source.html#l00068">Gui.cpp:68</a></div></div>
 <div class="ttc" id="_button_8h_html"><div class="ttname"><a href="_button_8h.html">Button.h</a></div></div>
-<div class="ttc" id="namespace_dsdl_engine_html_aab14cac47ca1dfc06491369fca40572d"><div class="ttname"><a href="namespace_dsdl_engine.html#aab14cac47ca1dfc06491369fca40572d">DsdlEngine::ButtonType</a></div><div class="ttdeci">ButtonType</div><div class="ttdef"><b>Definition:</b> <a href="_engine_defines_8h_source.html#l00050">EngineDefines.h:50</a></div></div>
+<div class="ttc" id="namespace_dsdl_engine_html_aab14cac47ca1dfc06491369fca40572d"><div class="ttname"><a href="namespace_dsdl_engine.html#aab14cac47ca1dfc06491369fca40572d">DsdlEngine::ButtonType</a></div><div class="ttdeci">ButtonType</div><div class="ttdef"><b>Definition:</b> <a href="_engine_defines_8h_source.html#l00058">EngineDefines.h:58</a></div></div>
 <div class="ttc" id="namespace_dsdl_engine_html_aab14cac47ca1dfc06491369fca40572da578320dc999a9b81fe1f620227a41260"><div class="ttname"><a href="namespace_dsdl_engine.html#aab14cac47ca1dfc06491369fca40572da578320dc999a9b81fe1f620227a41260">DsdlEngine::ButtonType::LABEL_BTN</a></div></div>
 <div class="ttc" id="namespace_dsdl_engine_html_aab14cac47ca1dfc06491369fca40572da5b0e0297f7251123260b2d23a606e5d3"><div class="ttname"><a href="namespace_dsdl_engine.html#aab14cac47ca1dfc06491369fca40572da5b0e0297f7251123260b2d23a606e5d3">DsdlEngine::ButtonType::SPRITE_BTN</a></div></div>
 <div class="ttc" id="namespace_dsdl_engine_html"><div class="ttname"><a href="namespace_dsdl_engine.html">DsdlEngine</a></div><div class="ttdef"><b>Definition:</b> <a href="_audio_manager_8cpp_source.html#l00007">AudioManager.cpp:7</a></div></div>
@@ -117,7 +135,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="class_dsdl_engine_1_1_vec2_html"><div class="ttname"><a href="class_dsdl_engine_1_1_vec2.html">DsdlEngine::Vec2</a></div><div class="ttdef"><b>Definition:</b> <a href="_engine_math_8h_source.html#l00011">EngineMath.h:11</a></div></div>
 <div class="ttc" id="_label_8h_html"><div class="ttname"><a href="_label_8h.html">Label.h</a></div></div>
 <div class="ttc" id="class_dsdl_engine_1_1_dsdl_gui_html_acf0419c775545cb4c938e196ac3cb98d"><div class="ttname"><a href="class_dsdl_engine_1_1_dsdl_gui.html#acf0419c775545cb4c938e196ac3cb98d">DsdlEngine::DsdlGui::m_btn</a></div><div class="ttdeci">Button * m_btn</div><div class="ttdef"><b>Definition:</b> <a href="_gui_8h_source.html#l00090">Gui.h:90</a></div></div>
-<div class="ttc" id="namespace_dsdl_engine_html_a0b5b880d7bde72a5d3a6249a668fbb2e"><div class="ttname"><a href="namespace_dsdl_engine.html#a0b5b880d7bde72a5d3a6249a668fbb2e">DsdlEngine::LableType</a></div><div class="ttdeci">LableType</div><div class="ttdef"><b>Definition:</b> <a href="_engine_defines_8h_source.html#l00055">EngineDefines.h:55</a></div></div>
+<div class="ttc" id="namespace_dsdl_engine_html_a0b5b880d7bde72a5d3a6249a668fbb2e"><div class="ttname"><a href="namespace_dsdl_engine.html#a0b5b880d7bde72a5d3a6249a668fbb2e">DsdlEngine::LableType</a></div><div class="ttdeci">LableType</div><div class="ttdef"><b>Definition:</b> <a href="_engine_defines_8h_source.html#l00066">EngineDefines.h:66</a></div></div>
 <div class="ttc" id="class_dsdl_engine_1_1_button_html"><div class="ttname"><a href="class_dsdl_engine_1_1_button.html">DsdlEngine::Button</a></div><div class="ttdef"><b>Definition:</b> <a href="_button_8h_source.html#l00019">Button.h:19</a></div></div>
 <div class="ttc" id="class_dsdl_engine_1_1_dsdl_gui_html_aa130f64573e5e16d2efb51c50b8070f1"><div class="ttname"><a href="class_dsdl_engine_1_1_dsdl_gui.html#aa130f64573e5e16d2efb51c50b8070f1">DsdlEngine::DsdlGui::setGUIPos</a></div><div class="ttdeci">void setGUIPos()</div><div class="ttdef"><b>Definition:</b> <a href="_gui_8cpp_source.html#l00063">Gui.cpp:63</a></div></div>
 <div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_a859f7bc40e982b15340a20b65ca9b6fa"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#a859f7bc40e982b15340a20b65ca9b6fa">DsdlEngine::EngineBaseNode::setPosition</a></div><div class="ttdeci">void setPosition(const Vec2 &amp;pos)</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8h_source.html#l00065">EngineBaseNode.h:65</a></div></div>
@@ -126,11 +144,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="class_dsdl_engine_1_1_button_html_a1ff8be1223afa4f5a5386adb263f984c"><div class="ttname"><a href="class_dsdl_engine_1_1_button.html#a1ff8be1223afa4f5a5386adb263f984c">DsdlEngine::Button::createTextButton</a></div><div class="ttdeci">void createTextButton(Vec2 pos, Size size, std::string buttonText, std::string fontPath, SDL_Color textColor, SDL_Color bgColor)</div><div class="ttdef"><b>Definition:</b> <a href="_button_8cpp_source.html#l00014">Button.cpp:14</a></div></div>
 <div class="ttc" id="class_dsdl_engine_1_1_dsdl_gui_html_ac6a086b7f13a808a0613a56938953659"><div class="ttname"><a href="class_dsdl_engine_1_1_dsdl_gui.html#ac6a086b7f13a808a0613a56938953659">DsdlEngine::DsdlGui::addPreDefineLabel</a></div><div class="ttdeci">void addPreDefineLabel(Label *label, LableType type)</div><div class="ttdef"><b>Definition:</b> <a href="_gui_8cpp_source.html#l00057">Gui.cpp:57</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.11
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_e6bb53534ac0e427887cf7a94c0c004e.html">C:</a></li><li class="navelem"><a class="el" href="dir_8ceffd4ee35c3518d4e8bdc7e638efe8.html">Users</a></li><li class="navelem"><a class="el" href="dir_cbd4d32671b407f2ace049b7e000050d.html">Derek</a></li><li class="navelem"><a class="el" href="dir_667beef2d6e417690e01c36d241f2f49.html">Desktop</a></li><li class="navelem"><a class="el" href="dir_38a9647846a094bf524949d62a5d2fe1.html">FYP SDL Engine</a></li><li class="navelem"><a class="el" href="dir_15f7a5c53317d8b6c4ca9627089cfbf9.html">V2</a></li><li class="navelem"><a class="el" href="dir_b211fe200b3d5a1659a98d81223dfeb6.html">dsdl-engine</a></li><li class="navelem"><a class="el" href="_gui_8cpp.html">Gui.cpp</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+  </ul>
+</div>
 </body>
 </html>

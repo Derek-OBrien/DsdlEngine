@@ -15,6 +15,7 @@ var searchData=
   ['getfiletoopen',['getFileToOpen',['../class_dsdl_engine_1_1_file_i_o.html#ad36db8b62be95e9999a91268cc04473f',1,'DsdlEngine::FileIO']]],
   ['getfixture',['getFixture',['../class_dsdl_engine_1_1_collision_shape.html#ae134caa0fd6f889696506fc7fb276f9f',1,'DsdlEngine::CollisionShape']]],
   ['getfloatforkey',['getFloatForKey',['../class_dsdl_engine_1_1_xml_local_storage.html#a91539a2e078017adb58df6f7a94a05c5',1,'DsdlEngine::XmlLocalStorage']]],
+  ['getfps',['getFps',['../class_dsdl_engine_1_1_i_main_game.html#a25b28dd89059e96687b8c6e647a3a64d',1,'DsdlEngine::IMainGame']]],
   ['getinstance',['getInstance',['../class_dsdl_engine_1_1_engine_master.html#aafe4ee1c6012a45423d0ca38114f6a9d',1,'DsdlEngine::EngineMaster::getInstance()'],['../class_dsdl_engine_1_1_file_i_o.html#a85b208d83c32242d047a24f51af9d9b7',1,'DsdlEngine::FileIO::getInstance()'],['../class_dsdl_engine_1_1_xml_local_storage.html#a5baaa60848fda80baa629fc1e619fa3c',1,'DsdlEngine::XmlLocalStorage::getInstance()']]],
   ['getintegerforkey',['getIntegerForKey',['../class_dsdl_engine_1_1_xml_local_storage.html#a231296a0e576f0966eacc51f071ec66d',1,'DsdlEngine::XmlLocalStorage']]],
   ['getnextsceneindex',['getNextSceneIndex',['../class_dsdl_engine_1_1_i_scene.html#a3aa9eb7c338a5b6a8ba00745680b9b08',1,'DsdlEngine::IScene']]],

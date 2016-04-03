@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -69,6 +77,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_dsdl_engine_1_1_input_manager.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -83,11 +106,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespace_dsdl_engine.html">DsdlEngine</a></li><li class="navelem"><a class="el" href="class_dsdl_engine_1_1_input_manager.html">InputManager</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">DsdlEngine::InputManager Member List</div>  </div>
@@ -96,6 +114,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>This is the complete list of members for <a class="el" href="class_dsdl_engine_1_1_input_manager.html">DsdlEngine::InputManager</a>, including all inherited members.</p>
 <table class="directory">
+  <tr class="even"><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html#a51f5309f8a5973d268ffc26dea1d9966">_keyMap</a></td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html">DsdlEngine::InputManager</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html#aa1bc0d6c7a45f5981dd9a9b681983f2e">_previousKeyMap</a></td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html">DsdlEngine::InputManager</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html#af8b31c454edfb04f2fb559db9ba86900">fingerDown</a></td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html">DsdlEngine::InputManager</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html#a6427686b30b364021871e9b4f902d71b">fingerUp</a></td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html">DsdlEngine::InputManager</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html#abd90a23f1b0e1418393d0850973185c4">InputManager</a>()</td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html">DsdlEngine::InputManager</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html#ab5c9b282097acf5adb8c0ae516afed60">isKeyDown</a>(unsigned int keyID)</td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html">DsdlEngine::InputManager</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html#a721791f102687bcac9b45b021c78eadc">isKeyPressed</a>(unsigned int keyID)</td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html">DsdlEngine::InputManager</a></td><td class="entry"></td></tr>
@@ -109,14 +131,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <tr class="even"><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html#a0ae80f595dec0de036f978f6fcb2714a">pressKey</a>(unsigned int keyID)</td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html">DsdlEngine::InputManager</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html#ac96f513d5b631a9c1ef15bdd4b7ea30a">releaseKey</a>(unsigned int keyID)</td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html">DsdlEngine::InputManager</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html#a02f01ffae8c3fcdbcf5f879b354bc72e">setMouseCoords</a>(float x, float y)</td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html">DsdlEngine::InputManager</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html#a4a93bd5cb855498065b650db96f004be">swipedown</a></td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html">DsdlEngine::InputManager</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html#adb3dfc3c4a5acb0ace726f9b6f6d0260">swipeleft</a></td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html">DsdlEngine::InputManager</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html#a58382c4f1774e54006ed74eef9e9464a">swiperight</a></td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html">DsdlEngine::InputManager</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html#a5cd445179133641c62e475a73ec099c7">swipeup</a></td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html">DsdlEngine::InputManager</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html#ac9304a4f170dacc3eb47f6cde6b6e4fa">update</a>()</td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html">DsdlEngine::InputManager</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html#ad02f874ffda63771e2c7ae99f33e5570">~InputManager</a>()</td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html">DsdlEngine::InputManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html#af69c51a9d34af094d03cd0a19d8644b3">wasKeyDown</a>(unsigned int keyID)</td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html">DsdlEngine::InputManager</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html#ad02f874ffda63771e2c7ae99f33e5570">~InputManager</a>()</td><td class="entry"><a class="el" href="class_dsdl_engine_1_1_input_manager.html">DsdlEngine::InputManager</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.11
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -69,6 +77,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_dsdl_engine_1_1_resource_texture.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -83,14 +106,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespace_dsdl_engine.html">DsdlEngine</a></li><li class="navelem"><a class="el" href="class_dsdl_engine_1_1_resource_texture.html">ResourceTexture</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_dsdl_engine_1_1_resource_texture-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">DsdlEngine::ResourceTexture Class Reference</div>  </div>
@@ -117,6 +136,17 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae673e2b800716804434d0b073ce3dcd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a38709fec8c180c1041f7aa59963b64cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dsdl_engine_1_1_resource_texture.html#a38709fec8c180c1041f7aa59963b64cb">destroy</a> ()</td></tr>
 <tr class="separator:a38709fec8c180c1041f7aa59963b64cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a6ca8b199398cf4cbdef63c04692b35cd"><td class="memItemLeft" align="right" valign="top">SDL_Texture *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dsdl_engine_1_1_resource_texture.html#a6ca8b199398cf4cbdef63c04692b35cd">m_Texture</a></td></tr>
+<tr class="separator:a6ca8b199398cf4cbdef63c04692b35cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a587a55db122eded83cb4166c2902d0d3"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, SDL_Texture * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dsdl_engine_1_1_resource_texture.html#a587a55db122eded83cb4166c2902d0d3">m_TextureMap</a></td></tr>
+<tr class="separator:a587a55db122eded83cb4166c2902d0d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e11384174acc1ffa81045606210e32e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dsdl_engine_1_1_resource_texture.html#a9e11384174acc1ffa81045606210e32e">m_iWidth</a></td></tr>
+<tr class="separator:a9e11384174acc1ffa81045606210e32e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87edcc55eb2bdf7f14afcd5853fab035"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dsdl_engine_1_1_resource_texture.html#a87edcc55eb2bdf7f14afcd5853fab035">m_iHeight</a></td></tr>
+<tr class="separator:a87edcc55eb2bdf7f14afcd5853fab035"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="class_dsdl_engine_1_1_resource_texture.html">ResourceTexture</a> is responsible for loading and rendering all textures in the game. it is the base class for all textures. </p>
@@ -201,7 +231,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>LoadTexture loads in sprite texture from the giving asset path.  texturePath, std::string to the asset.  r, the Renderer to use in loading </p><dl class="section return"><dt>Returns</dt><dd>bool </dd></dl>
+<p>LoadTexture loads in sprite texture from the giving asset path. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">texturePath,std::string</td><td>to the asset. </td></tr>
+    <tr><td class="paramname">r,the</td><td>Renderer to use in loading </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool </dd></dl>
 
 <p>Definition at line <a class="el" href="_resource_texture_8cpp_source.html#l00037">37</a> of file <a class="el" href="_resource_texture_8cpp_source.html">ResourceTexture.cpp</a>.</p>
 
@@ -242,7 +279,16 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>LoadTTF loads in a texture created from a TTF font file.  text, text to display onthe texture  color, the SDL_COlor to use for the texture.  myFont, the TTF_Font to use.  r, the SDL_Renderer to use. </p><dl class="section return"><dt>Returns</dt><dd>bool. </dd></dl>
+<p>LoadTTF loads in a texture created from a TTF font file. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">text,text</td><td>to display onthe texture </td></tr>
+    <tr><td class="paramname">color,the</td><td>SDL_COlor to use for the texture. </td></tr>
+    <tr><td class="paramname">myFont,the</td><td>TTF_Font to use. </td></tr>
+    <tr><td class="paramname">r,the</td><td>SDL_Renderer to use. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool. </dd></dl>
 
 <p>Definition at line <a class="el" href="_resource_texture_8cpp_source.html#l00083">83</a> of file <a class="el" href="_resource_texture_8cpp_source.html">ResourceTexture.cpp</a>.</p>
 
@@ -283,7 +329,15 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Render a texture to the window  p, <a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a> postion to render too.  s, <a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a> size of texture to render.  r, SDL_Renderer to use.  clip, the <a class="el" href="class_dsdl_engine_1_1_sprite.html">Sprite</a> texture clip frame to use. </p>
+<p>Render a texture to the window </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p,<a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a></td><td>postion to render too. </td></tr>
+    <tr><td class="paramname">s,<a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a></td><td>size of texture to render. </td></tr>
+    <tr><td class="paramname">r,SDL_Renderer</td><td>to use. </td></tr>
+    <tr><td class="paramname">clip,the</td><td><a class="el" href="class_dsdl_engine_1_1_sprite.html">Sprite</a> texture clip frame to use. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="_resource_texture_8cpp_source.html#l00110">110</a> of file <a class="el" href="_resource_texture_8cpp_source.html">ResourceTexture.cpp</a>.</p>
 
@@ -302,7 +356,12 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Set the Alpha for a texture  alpha, UNit8 value of Alpha to use. </p>
+<p>Set the Alpha for a texture </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">alpha,UNit8</td><td>value of Alpha to use. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="_resource_texture_8cpp_source.html#l00153">153</a> of file <a class="el" href="_resource_texture_8cpp_source.html">ResourceTexture.cpp</a>.</p>
 
@@ -321,9 +380,106 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Set the blend mode of the texture.  blending. Blendmode to use. </p>
+<p>Set the blend mode of the texture. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">blending.</td><td>Blendmode to use. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="_resource_texture_8cpp_source.html#l00144">144</a> of file <a class="el" href="_resource_texture_8cpp_source.html">ResourceTexture.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a87edcc55eb2bdf7f14afcd5853fab035"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int DsdlEngine::ResourceTexture::m_iHeight</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>widht and height of the SDL_Texture </p>
+
+<p>Definition at line <a class="el" href="_resource_texture_8h_source.html#l00075">75</a> of file <a class="el" href="_resource_texture_8h_source.html">ResourceTexture.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9e11384174acc1ffa81045606210e32e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int DsdlEngine::ResourceTexture::m_iWidth</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_resource_texture_8h_source.html#l00075">75</a> of file <a class="el" href="_resource_texture_8h_source.html">ResourceTexture.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6ca8b199398cf4cbdef63c04692b35cd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SDL_Texture* DsdlEngine::ResourceTexture::m_Texture</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The SDL_Texture to use when loading and rendering </p>
+
+<p>Definition at line <a class="el" href="_resource_texture_8h_source.html#l00072">72</a> of file <a class="el" href="_resource_texture_8h_source.html">ResourceTexture.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a587a55db122eded83cb4166c2902d0d3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;std::string, SDL_Texture*&gt; DsdlEngine::ResourceTexture::m_TextureMap</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>std::Map to cache the textures </p>
+
+<p>Definition at line <a class="el" href="_resource_texture_8h_source.html#l00073">73</a> of file <a class="el" href="_resource_texture_8h_source.html">ResourceTexture.h</a>.</p>
 
 </div>
 </div>
@@ -332,11 +488,15 @@ Public Member Functions</h2></td></tr>
 <li><a class="el" href="_resource_texture_8cpp_source.html">ResourceTexture.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.11
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_dsdl_engine.html">DsdlEngine</a></li><li class="navelem"><a class="el" href="class_dsdl_engine_1_1_resource_texture.html">ResourceTexture</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+  </ul>
+</div>
 </body>
 </html>

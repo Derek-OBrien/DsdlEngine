@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -69,6 +77,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_dsdl_engine_1_1_file_i_o.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -83,16 +106,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespace_dsdl_engine.html">DsdlEngine</a></li><li class="navelem"><a class="el" href="class_dsdl_engine_1_1_file_i_o.html">FileIO</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_dsdl_engine_1_1_file_i_o-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">DsdlEngine::FileIO Class Reference</div>  </div>
@@ -135,6 +154,13 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:a002df7aacff8d1e930dfcd584bdf42c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae298886f57f03d52d3d6655913540e79"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dsdl_engine_1_1_file_i_o.html#ae298886f57f03d52d3d6655913540e79">~FileIO</a> ()</td></tr>
 <tr class="separator:ae298886f57f03d52d3d6655913540e79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:add7741b552a99aa0e996367f37ef0967"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dsdl_engine_1_1_file_i_o.html#add7741b552a99aa0e996367f37ef0967">m_path</a></td></tr>
+<tr class="separator:add7741b552a99aa0e996367f37ef0967"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab432a22adc60546e5a9e1da9a88b6189"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dsdl_engine_1_1_file_i_o.html#ab432a22adc60546e5a9e1da9a88b6189">m_fileName</a></td></tr>
+<tr class="separator:ab432a22adc60546e5a9e1da9a88b6189"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="class_dsdl_engine_1_1_file_i_o.html">FileIO</a> class handles open and cllosing of xml files in the framework. Handles XML parsing and Saveing </p>
@@ -277,7 +303,13 @@ Protected Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>getSuitableFopen, the the filename of the path to open  std::string file path. </p><dl class="section return"><dt>Returns</dt><dd>std::string file path to open. </dd></dl>
+<p>getSuitableFopen, the the filename of the path to open </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">std::string</td><td>file path. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::string file path to open. </dd></dl>
 
 <p>Definition at line <a class="el" href="_file_i_o_8cpp_source.html#l00022">22</a> of file <a class="el" href="_file_i_o_8cpp_source.html">FileIO.cpp</a>.</p>
 
@@ -330,7 +362,15 @@ Protected Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>getXMLNodeForKey, parses the file contents in the memory buffer for a xml element that matches the key.  pKey key to search for in the file.  rootNode XML node to use for search.  doc XML doc to hold the contents. </p><dl class="section return"><dt>Returns</dt><dd>XMLElement the element matching the key. </dd></dl>
+<p>getXMLNodeForKey, parses the file contents in the memory buffer for a xml element that matches the key. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pKey</td><td>key to search for in the file. </td></tr>
+    <tr><td class="paramname">rootNode</td><td>XML node to use for search. </td></tr>
+    <tr><td class="paramname">doc</td><td>XML doc to hold the contents. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>XMLElement the element matching the key. </dd></dl>
 
 <p>Definition at line <a class="el" href="_file_i_o_8cpp_source.html#l00098">98</a> of file <a class="el" href="_file_i_o_8cpp_source.html">FileIO.cpp</a>.</p>
 
@@ -359,7 +399,14 @@ Protected Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>loadDocument, load the contents of a file into memory for parsing,  filepath const char path to file,  doc_contents buffer to hold the file contents. </p><dl class="section return"><dt>Returns</dt><dd>bool. </dd></dl>
+<p>loadDocument, load the contents of a file into memory for parsing, </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filepath</td><td>const char path to file, </td></tr>
+    <tr><td class="paramname">doc_contents</td><td>buffer to hold the file contents. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool. </dd></dl>
 
 <p>Definition at line <a class="el" href="_file_i_o_8cpp_source.html#l00053">53</a> of file <a class="el" href="_file_i_o_8cpp_source.html">FileIO.cpp</a>.</p>
 
@@ -386,7 +433,12 @@ Protected Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>setAssetsPath, set the path to the file root ( only applies to windows platform)  std::string path for file. </p>
+<p>setAssetsPath, set the path to the file root ( only applies to windows platform) </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">std::string</td><td>path for file. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="_file_i_o_8h_source.html#l00047">47</a> of file <a class="el" href="_file_i_o_8h_source.html">FileIO.h</a>.</p>
 
@@ -413,7 +465,12 @@ Protected Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>setFileToOpen, set the name of the file to open.  std::string file name. </p>
+<p>setFileToOpen, set the name of the file to open. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">std::string</td><td>file name. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="_file_i_o_8h_source.html#l00060">60</a> of file <a class="el" href="_file_i_o_8h_source.html">FileIO.h</a>.</p>
 
@@ -442,7 +499,13 @@ Protected Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>setValueForKey, Set or update the value of an XML element that matches the key.  vlaue the value to be set.  key the key to look for. </p>
+<p>setValueForKey, Set or update the value of an XML element that matches the key. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vlaue</td><td>the value to be set. </td></tr>
+    <tr><td class="paramname">key</td><td>the key to look for. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="_file_i_o_8cpp_source.html#l00156">156</a> of file <a class="el" href="_file_i_o_8cpp_source.html">FileIO.cpp</a>.</p>
 
@@ -471,9 +534,63 @@ Protected Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>writeDocument. Write the file contents from memory buffer to file and save.  filepath const char path to file,  doc_contents buffer cotaining the file contents. </p><dl class="section return"><dt>Returns</dt><dd>bool. </dd></dl>
+<p>writeDocument. Write the file contents from memory buffer to file and save. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filepath</td><td>const char path to file, </td></tr>
+    <tr><td class="paramname">doc_contents</td><td>buffer cotaining the file contents. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool. </dd></dl>
 
 <p>Definition at line <a class="el" href="_file_i_o_8cpp_source.html#l00079">79</a> of file <a class="el" href="_file_i_o_8cpp_source.html">FileIO.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="ab432a22adc60546e5a9e1da9a88b6189"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string DsdlEngine::FileIO::m_fileName</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>name of xml file to load </p>
+
+<p>Definition at line <a class="el" href="_file_i_o_8h_source.html#l00114">114</a> of file <a class="el" href="_file_i_o_8h_source.html">FileIO.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="add7741b552a99aa0e996367f37ef0967"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string DsdlEngine::FileIO::m_path</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>path to folder which contains file </p>
+
+<p>Definition at line <a class="el" href="_file_i_o_8h_source.html#l00109">109</a> of file <a class="el" href="_file_i_o_8h_source.html">FileIO.h</a>.</p>
 
 </div>
 </div>
@@ -482,11 +599,15 @@ Protected Member Functions</h2></td></tr>
 <li><a class="el" href="_file_i_o_8cpp_source.html">FileIO.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.11
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_dsdl_engine.html">DsdlEngine</a></li><li class="navelem"><a class="el" href="class_dsdl_engine_1_1_file_i_o.html">FileIO</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+  </ul>
+</div>
 </body>
 </html>

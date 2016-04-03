@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -69,6 +77,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_dsdl_engine_1_1_button.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -83,15 +106,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespace_dsdl_engine.html">DsdlEngine</a></li><li class="navelem"><a class="el" href="class_dsdl_engine_1_1_button.html">Button</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_dsdl_engine_1_1_button-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">DsdlEngine::Button Class Reference</div>  </div>
@@ -187,6 +207,24 @@ Public Member Functions</h2></td></tr>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a99d59ce13e140d80b4d6189615c6fc81"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_dsdl_engine.html#a4f78952d0dd18e9da290940ccaa1d14d">ButtonState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dsdl_engine_1_1_button.html#a99d59ce13e140d80b4d6189615c6fc81">m_eCurrentState</a></td></tr>
 <tr class="separator:a99d59ce13e140d80b4d6189615c6fc81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:afae7ea56c1da38f7bf7940f89541e0f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dsdl_engine_1_1_button.html#afae7ea56c1da38f7bf7940f89541e0f5">onMouseEnters</a> ()</td></tr>
+<tr class="separator:afae7ea56c1da38f7bf7940f89541e0f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af22840274de708da51d4eeac27a7d911"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dsdl_engine_1_1_button.html#af22840274de708da51d4eeac27a7d911">onMouseLeaves</a> ()</td></tr>
+<tr class="separator:af22840274de708da51d4eeac27a7d911"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a601d44d55b8adf46f75e2e0911edd0cf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dsdl_engine_1_1_button.html#a601d44d55b8adf46f75e2e0911edd0cf">onClicked</a> ()</td></tr>
+<tr class="separator:a601d44d55b8adf46f75e2e0911edd0cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a342c462425678af1c05d511550733336"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_dsdl_engine_1_1_label.html">Label</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dsdl_engine_1_1_button.html#a342c462425678af1c05d511550733336">m_label</a></td></tr>
+<tr class="separator:a342c462425678af1c05d511550733336"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8336ab1c633eb420246d2894dfe4caf6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_dsdl_engine_1_1_sprite.html">Sprite</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dsdl_engine_1_1_button.html#a8336ab1c633eb420246d2894dfe4caf6">m_spriteBtn</a></td></tr>
+<tr class="separator:a8336ab1c633eb420246d2894dfe4caf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a868c365e3e17f55d9a9806e582632a53"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dsdl_engine_1_1_button.html#a868c365e3e17f55d9a9806e582632a53">m_buttonName</a></td></tr>
+<tr class="separator:a868c365e3e17f55d9a9806e582632a53"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -301,7 +339,12 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>checkInput. Check for input event on the current button.  e as SDL_Event argument. </p>
+<p>checkInput. Check for input event on the current button. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">e</td><td>as SDL_Event argument. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="_button_8cpp_source.html#l00076">76</a> of file <a class="el" href="_button_8cpp_source.html">Button.cpp</a>.</p>
 
@@ -342,7 +385,15 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Create button as a <a class="el" href="class_dsdl_engine_1_1_sprite.html">Sprite</a> node.  spriteSize as a <a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a> argument.  position as a <a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a> position argument  imagePath as a std::string path to image  name as a std::string name of button </p>
+<p>Create button as a <a class="el" href="class_dsdl_engine_1_1_sprite.html">Sprite</a> node. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">spriteSize</td><td>as a <a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a> argument. </td></tr>
+    <tr><td class="paramname">position</td><td>as a <a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a> position argument </td></tr>
+    <tr><td class="paramname">imagePath</td><td>as a std::string path to image </td></tr>
+    <tr><td class="paramname">name</td><td>as a std::string name of button </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="_button_8cpp_source.html#l00034">34</a> of file <a class="el" href="_button_8cpp_source.html">Button.cpp</a>.</p>
 
@@ -395,7 +446,17 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Create button as <a class="el" href="class_dsdl_engine_1_1_label.html">Label</a> node.  pos as a <a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a> position argument.  size as a <a class="el" href="class_dsdl_engine_1_1_size.html">Size</a> content size argument.  buttonText as a std::string argument.  fontPath as a std::string argument.  textColor as a SDL_Color argument.  bgColor as a SDL_Color argument. </p>
+<p>Create button as <a class="el" href="class_dsdl_engine_1_1_label.html">Label</a> node. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td>as a <a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a> position argument. </td></tr>
+    <tr><td class="paramname">size</td><td>as a <a class="el" href="class_dsdl_engine_1_1_size.html">Size</a> content size argument. </td></tr>
+    <tr><td class="paramname">buttonText</td><td>as a std::string argument. </td></tr>
+    <tr><td class="paramname">fontPath</td><td>as a std::string argument. </td></tr>
+    <tr><td class="paramname">textColor</td><td>as a SDL_Color argument. </td></tr>
+    <tr><td class="paramname">bgColor</td><td>as a SDL_Color argument. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="_button_8cpp_source.html#l00014">14</a> of file <a class="el" href="_button_8cpp_source.html">Button.cpp</a>.</p>
 
@@ -455,7 +516,108 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a601d44d55b8adf46f75e2e0911edd0cf"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DsdlEngine::Button::onClicked </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>onCLicked. Set button state to CLICKED. </p>
+
+<p>Definition at line <a class="el" href="_button_8cpp_source.html#l00070">70</a> of file <a class="el" href="_button_8cpp_source.html">Button.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afae7ea56c1da38f7bf7940f89541e0f5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DsdlEngine::Button::onMouseEnters </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>onMouseEnters. Set button state to HOVERING. </p>
+
+<p>Definition at line <a class="el" href="_button_8cpp_source.html#l00059">59</a> of file <a class="el" href="_button_8cpp_source.html">Button.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af22840274de708da51d4eeac27a7d911"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DsdlEngine::Button::onMouseLeaves </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>onMouseLeaves. Set button state to NORMAL. </p>
+
+<p>Definition at line <a class="el" href="_button_8cpp_source.html#l00065">65</a> of file <a class="el" href="_button_8cpp_source.html">Button.cpp</a>.</p>
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a868c365e3e17f55d9a9806e582632a53"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string DsdlEngine::Button::m_buttonName</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>std::string button name variable. </p>
+
+<p>Definition at line <a class="el" href="_button_8h_source.html#l00111">111</a> of file <a class="el" href="_button_8h_source.html">Button.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a99d59ce13e140d80b4d6189615c6fc81"></a>
 <div class="memitem">
 <div class="memproto">
@@ -471,16 +633,66 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a342c462425678af1c05d511550733336"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_dsdl_engine_1_1_label.html">Label</a>* DsdlEngine::Button::m_label</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="class_dsdl_engine_1_1_label.html">Label</a> varaible for creating label buttons. </p>
+
+<p>Definition at line <a class="el" href="_button_8h_source.html#l00101">101</a> of file <a class="el" href="_button_8h_source.html">Button.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8336ab1c633eb420246d2894dfe4caf6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_dsdl_engine_1_1_sprite.html">Sprite</a>* DsdlEngine::Button::m_spriteBtn</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="class_dsdl_engine_1_1_sprite.html">Sprite</a> variable for creating sprite button. </p>
+
+<p>Definition at line <a class="el" href="_button_8h_source.html#l00106">106</a> of file <a class="el" href="_button_8h_source.html">Button.h</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_button_8h_source.html">Button.h</a></li>
 <li><a class="el" href="_button_8cpp_source.html">Button.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.11
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_dsdl_engine.html">DsdlEngine</a></li><li class="navelem"><a class="el" href="class_dsdl_engine_1_1_button.html">Button</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+  </ul>
+</div>
 </body>
 </html>

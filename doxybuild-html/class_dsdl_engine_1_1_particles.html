@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -69,6 +77,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_dsdl_engine_1_1_particles.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -83,15 +106,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespace_dsdl_engine.html">DsdlEngine</a></li><li class="navelem"><a class="el" href="class_dsdl_engine_1_1_particles.html">Particles</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_dsdl_engine_1_1_particles-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">DsdlEngine::Particles Class Reference</div>  </div>
@@ -179,8 +198,27 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:af60916aec67ba15424347b7a99d8accf"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dsdl_engine_1_1_particles.html#af60916aec67ba15424347b7a99d8accf">torad</a> (float angle)</td></tr>
+<tr class="memitem:af60916aec67ba15424347b7a99d8accf"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dsdl_engine_1_1_particles.html#af60916aec67ba15424347b7a99d8accf">torad</a> (float <a class="el" href="class_dsdl_engine_1_1_particles.html#a8b869f85c411fe9b12b0ab0c355c1300">angle</a>)</td></tr>
 <tr class="separator:af60916aec67ba15424347b7a99d8accf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a8559187a6e9ba79dbc22134e653286cc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dsdl_engine_1_1_particles.html#a8559187a6e9ba79dbc22134e653286cc">life</a></td></tr>
+<tr class="separator:a8559187a6e9ba79dbc22134e653286cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a613ebdb31bfdd3989b026dce9bd2df83"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dsdl_engine_1_1_particles.html#a613ebdb31bfdd3989b026dce9bd2df83">mPosX</a></td></tr>
+<tr class="separator:a613ebdb31bfdd3989b026dce9bd2df83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc24448b1c40c168d460f70a3b7834ab"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dsdl_engine_1_1_particles.html#adc24448b1c40c168d460f70a3b7834ab">mPosY</a></td></tr>
+<tr class="separator:adc24448b1c40c168d460f70a3b7834ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93ad350e320228c0100b559e393c1b5a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dsdl_engine_1_1_particles.html#a93ad350e320228c0100b559e393c1b5a">xvel</a></td></tr>
+<tr class="separator:a93ad350e320228c0100b559e393c1b5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2035ce2ae1234b3dca45a1ac9c528088"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dsdl_engine_1_1_particles.html#a2035ce2ae1234b3dca45a1ac9c528088">yvel</a></td></tr>
+<tr class="separator:a2035ce2ae1234b3dca45a1ac9c528088"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b869f85c411fe9b12b0ab0c355c1300"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dsdl_engine_1_1_particles.html#a8b869f85c411fe9b12b0ab0c355c1300">angle</a></td></tr>
+<tr class="separator:a8b869f85c411fe9b12b0ab0c355c1300"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50f7ebfa0d3448a38b3b52bba37c28cc"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dsdl_engine_1_1_particles.html#a50f7ebfa0d3448a38b3b52bba37c28cc">size</a></td></tr>
+<tr class="separator:a50f7ebfa0d3448a38b3b52bba37c28cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72b56eef088804cd51073c9c27fa3edb"><td class="memItemLeft" align="right" valign="top">Uint32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dsdl_engine_1_1_particles.html#a72b56eef088804cd51073c9c27fa3edb">endtime</a></td></tr>
+<tr class="separator:a72b56eef088804cd51073c9c27fa3edb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -326,16 +364,197 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a8b869f85c411fe9b12b0ab0c355c1300"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float DsdlEngine::Particles::angle</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_particles_8h_source.html#l00026">26</a> of file <a class="el" href="_particles_8h_source.html">Particles.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a72b56eef088804cd51073c9c27fa3edb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Uint32 DsdlEngine::Particles::endtime</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_particles_8h_source.html#l00027">27</a> of file <a class="el" href="_particles_8h_source.html">Particles.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8559187a6e9ba79dbc22134e653286cc"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int DsdlEngine::Particles::life</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_particles_8h_source.html#l00025">25</a> of file <a class="el" href="_particles_8h_source.html">Particles.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a613ebdb31bfdd3989b026dce9bd2df83"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float DsdlEngine::Particles::mPosX</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_particles_8h_source.html#l00026">26</a> of file <a class="el" href="_particles_8h_source.html">Particles.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="adc24448b1c40c168d460f70a3b7834ab"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float DsdlEngine::Particles::mPosY</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_particles_8h_source.html#l00026">26</a> of file <a class="el" href="_particles_8h_source.html">Particles.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a50f7ebfa0d3448a38b3b52bba37c28cc"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float DsdlEngine::Particles::size</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_particles_8h_source.html#l00026">26</a> of file <a class="el" href="_particles_8h_source.html">Particles.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a93ad350e320228c0100b559e393c1b5a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float DsdlEngine::Particles::xvel</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_particles_8h_source.html#l00026">26</a> of file <a class="el" href="_particles_8h_source.html">Particles.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2035ce2ae1234b3dca45a1ac9c528088"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float DsdlEngine::Particles::yvel</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_particles_8h_source.html#l00026">26</a> of file <a class="el" href="_particles_8h_source.html">Particles.h</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_particles_8h_source.html">Particles.h</a></li>
 <li><a class="el" href="_particles_8cpp_source.html">Particles.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.11
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_dsdl_engine.html">DsdlEngine</a></li><li class="navelem"><a class="el" href="class_dsdl_engine_1_1_particles.html">Particles</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+  </ul>
+</div>
 </body>
 </html>

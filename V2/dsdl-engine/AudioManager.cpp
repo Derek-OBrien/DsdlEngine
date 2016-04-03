@@ -10,11 +10,11 @@ namespace DsdlEngine {
 	void AudioManager::init() {
 		//init audio
 		if (Mix_Init(MIX_INIT_MP3 | MIX_INIT_OGG) == -1) {
-		//	SDL_Log("Mix_Init error: %s ", std::string(Mix_GetError()));
+			SDL_Log("Mix_Init error: %s " ,Mix_GetError());
 		}
 		//open audio defaults
 		if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 2048) == -1) {
-		//	SDL_Log("Mix_OpenAudio error: %s ", std::string(Mix_GetError()));
+			SDL_Log("Mix_OpenAudio error: %s " ,Mix_GetError());
 		}
 
 		m_bisInitialized = true;
@@ -46,7 +46,7 @@ namespace DsdlEngine {
 	void SFX::play(int loop) {
 		if (Mix_PlayChannel(-1, m_Chunk, loop) == -1) {
 			if (Mix_PlayChannel(0, m_Chunk, loop) == -1) {
-			//	SDL_Log("Mix_PlayChannel error: %s", std::string(Mix_GetError()));
+			SDL_Log("Mix_PlayChannel error: %s", Mix_GetError());
 			}
 		}
 	}
@@ -69,7 +69,7 @@ namespace DsdlEngine {
 		//Not cached so load and cahe it
 		if (it == m_sfxAudioMap.end()) {
 			if ((sfxChunk = Mix_LoadWAV(temp.c_str())) == NULL) {
-			//	SDL_Log("Mix_LoadWAV: Failed to load Audio %s", std::string(Mix_GetError()));
+				SDL_Log("Mix_LoadWAV: Failed to load Audio %s", Mix_GetError());
 			}
 			sfx.m_Chunk = sfxChunk;
 			m_sfxAudioMap[temp] = sfxChunk;
@@ -98,7 +98,7 @@ namespace DsdlEngine {
 		//Not cached so load and cahe it
 		if (it == m_bgAudioMap.end()) {
 			if ((mix = Mix_LoadMUS(temp.c_str())) == NULL) {
-			//	SDL_Log("Mix_LoadMUS: Failed to load Audio %s", std::string(Mix_GetError()));
+				SDL_Log("Mix_LoadMUS: Failed to load Audio %s", Mix_GetError());
 			}
 			music.m_Music = mix;
 			m_bgAudioMap[temp] = mix;

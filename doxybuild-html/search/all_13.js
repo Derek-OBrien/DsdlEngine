@@ -1,9 +1,5 @@
 var searchData=
 [
-  ['w_5f',['w_',['../class_dsdl_engine_1_1_size.html#a09e249aa0599ec10d3af32a201298f22',1,'DsdlEngine::Size']]],
-  ['window',['Window',['../class_dsdl_engine_1_1_window.html',1,'DsdlEngine']]],
-  ['window',['Window',['../class_dsdl_engine_1_1_window.html#a98d963ada4538f33be86e71793bfebae',1,'DsdlEngine::Window']]],
-  ['window_2ecpp',['Window.cpp',['../_window_8cpp.html',1,'']]],
-  ['window_2eh',['Window.h',['../_window_8h.html',1,'']]],
-  ['writedocument',['writeDocument',['../class_dsdl_engine_1_1_file_i_o.html#a3cf095da3973fb3a7b89d879cbdd15e3',1,'DsdlEngine::FileIO']]]
+  ['vec2',['Vec2',['../class_dsdl_engine_1_1_vec2.html',1,'DsdlEngine']]],
+  ['vec2',['Vec2',['../class_dsdl_engine_1_1_vec2.html#a4fa946394b60456900ac399408d872a0',1,'DsdlEngine::Vec2::Vec2()'],['../class_dsdl_engine_1_1_vec2.html#a0011640264ee1878d4d9b0aac661c76b',1,'DsdlEngine::Vec2::Vec2(float x, float y)'],['../class_dsdl_engine_1_1_vec2.html#ac77566f7e9a738c51d353062c0a009ba',1,'DsdlEngine::Vec2::Vec2(const Vec2 &amp;v)']]]
 ];

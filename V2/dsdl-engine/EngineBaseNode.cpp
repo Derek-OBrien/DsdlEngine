@@ -98,6 +98,9 @@ namespace DsdlEngine {
 
 			temp = FileIO::getInstance()->getWritablePath() + m_assetPath;
 
+			//Using getWritablePath
+			FileIO::getInstance()->getWritablePath() + m_assetPath;
+
 			//Check if font in chache
 			auto it = m_FontMap.find(temp);
 
@@ -107,7 +110,7 @@ namespace DsdlEngine {
 				//open font
 				m_font = TTF_OpenFont(temp.c_str(), m_textSize);
 				if (m_font == NULL) {
-					SDL_Log("TTF_OpenFont Error : %s" , std::string(TTF_GetError()));
+					SDL_Log("TTF_OpenFont Error : %s",TTF_GetError());
 				}
 
 				m_engineTexture->loadTTF(m_labelText, m_textColor, m_font, r);

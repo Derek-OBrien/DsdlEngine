@@ -43,17 +43,17 @@ namespace DsdlEngine{
 
 		/**
 		*	setupWindow, sets up the window defaults for Windows Platform.
-		*	@parma w as int width of the window.
-		*	@parma h as int height of the window.
-		*	@parma windowName as a std::string name of the window.
-		*	@parma path as std::string path to the windows root assets folder.
-		*	@parma flag as int SDL window creation flag
+		*	@param w as int width of the window.
+		*	@param h as int height of the window.
+		*	@param windowName as a std::string name of the window.
+		*	@param path as std::string path to the windows root assets folder.
+		*	@param flag as int SDL window creation flag
 		*/
 		void setupWindow(int w, int h, std::string windowName, std::string path, int flag);
 		
 		/**
 		*	setFps, Set the desired frame rate for the game.
-		*	@parma fps as a float value
+		*	@param fps as a float value
 		*/
 		void setFps(float fps){ m_fFps = fps; }
 
@@ -78,7 +78,7 @@ namespace DsdlEngine{
 
 		/**
 		*	onSDLEvent, the games main Event listner
-		*	@parma envt as an SDL_Event
+		*	@param envt as an SDL_Event
 		*/
 		void onSDLEvent(SDL_Event& evnt);
 

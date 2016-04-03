@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -69,6 +77,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_dsdl_engine_1_1_engine_base_node.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -83,11 +106,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespace_dsdl_engine.html">DsdlEngine</a></li><li class="navelem"><a class="el" href="class_dsdl_engine_1_1_engine_base_node.html">EngineBaseNode</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -296,7 +314,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Reimplemented in <a class="el" href="class_dsdl_engine_1_1_label.html#ad7505512a3ce7aa7c88da968073100fe">DsdlEngine::Label</a>.</p>
 
-<p>Definition at line <a class="el" href="_engine_base_node_8cpp_source.html#l00157">157</a> of file <a class="el" href="_engine_base_node_8cpp_source.html">EngineBaseNode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_engine_base_node_8cpp_source.html#l00160">160</a> of file <a class="el" href="_engine_base_node_8cpp_source.html">EngineBaseNode.cpp</a>.</p>
 
 </div>
 </div>
@@ -324,7 +342,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Reimplemented in <a class="el" href="class_dsdl_engine_1_1_sprite.html#aa6102656eb8b799cbab73a1a42ec4b5b">DsdlEngine::Sprite</a>, <a class="el" href="class_dsdl_engine_1_1_label.html#abbcd02d22832fd08331303cd147fc09e">DsdlEngine::Label</a>, and <a class="el" href="class_dsdl_engine_1_1_button.html#a670c56e0739c31b1b964dc1d8fa2575a">DsdlEngine::Button</a>.</p>
 
-<p>Definition at line <a class="el" href="_engine_base_node_8cpp_source.html#l00151">151</a> of file <a class="el" href="_engine_base_node_8cpp_source.html">EngineBaseNode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_engine_base_node_8cpp_source.html#l00154">154</a> of file <a class="el" href="_engine_base_node_8cpp_source.html">EngineBaseNode.cpp</a>.</p>
 
 </div>
 </div>
@@ -523,7 +541,13 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>load, load node as SDL_Texture.  r as SDL_Renderer argument. </p><dl class="section return"><dt>Returns</dt><dd>bool. </dd></dl>
+<p>load, load node as SDL_Texture. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>as SDL_Renderer argument. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool. </dd></dl>
 
 <p>Definition at line <a class="el" href="_engine_base_node_8cpp_source.html#l00061">61</a> of file <a class="el" href="_engine_base_node_8cpp_source.html">EngineBaseNode.cpp</a>.</p>
 
@@ -542,7 +566,12 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>render, Render node to window.  r as SDL_Renderer argument </p>
+<p>render, Render node to window. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>as SDL_Renderer argument </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="_engine_base_node_8cpp_source.html#l00030">30</a> of file <a class="el" href="_engine_base_node_8cpp_source.html">EngineBaseNode.cpp</a>.</p>
 
@@ -571,9 +600,15 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>rendereCollisionShape, Render collision shape for node.  r as a SDL_Rendere argumnet.  shape as a <a class="el" href="class_dsdl_engine_1_1_collision_shape.html">CollisionShape</a> pointer argument. </p>
+<p>rendereCollisionShape, Render collision shape for node. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>as a SDL_Rendere argumnet. </td></tr>
+    <tr><td class="paramname">shape</td><td>as a <a class="el" href="class_dsdl_engine_1_1_collision_shape.html">CollisionShape</a> pointer argument. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="_engine_base_node_8cpp_source.html#l00162">162</a> of file <a class="el" href="_engine_base_node_8cpp_source.html">EngineBaseNode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_engine_base_node_8cpp_source.html#l00165">165</a> of file <a class="el" href="_engine_base_node_8cpp_source.html">EngineBaseNode.cpp</a>.</p>
 
 </div>
 </div>
@@ -598,7 +633,12 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>scaleHeight, Scale the height of the node.  scale as a float argument </p>
+<p>scaleHeight, Scale the height of the node. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">scale</td><td>as a float argument </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="_engine_base_node_8h_source.html#l00131">131</a> of file <a class="el" href="_engine_base_node_8h_source.html">EngineBaseNode.h</a>.</p>
 
@@ -625,7 +665,12 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>scaleNode, Scale the node size by value passed in.  scale as a float argument </p>
+<p>scaleNode, Scale the node size by value passed in. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">scale</td><td>as a float argument </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="_engine_base_node_8h_source.html#l00119">119</a> of file <a class="el" href="_engine_base_node_8h_source.html">EngineBaseNode.h</a>.</p>
 
@@ -679,7 +724,12 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>setAssetPath, set the path to the asset to be loaded.  path as a std::string argument. </p>
+<p>setAssetPath, set the path to the asset to be loaded. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>as a std::string argument. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="_engine_base_node_8h_source.html#l00138">138</a> of file <a class="el" href="_engine_base_node_8h_source.html">EngineBaseNode.h</a>.</p>
 
@@ -708,9 +758,15 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>setBoundingBox, the the bounding box for the node.  pos as a <a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a> argument.  size as a <a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a> argument. </p>
+<p>setBoundingBox, the the bounding box for the node. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td>as a <a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a> argument. </td></tr>
+    <tr><td class="paramname">size</td><td>as a <a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a> argument. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="_engine_base_node_8cpp_source.html#l00128">128</a> of file <a class="el" href="_engine_base_node_8cpp_source.html">EngineBaseNode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_engine_base_node_8cpp_source.html#l00131">131</a> of file <a class="el" href="_engine_base_node_8cpp_source.html">EngineBaseNode.cpp</a>.</p>
 
 </div>
 </div>
@@ -735,7 +791,12 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>setEngineNodeType, set the type for a specific node.  type as a NodeType argument. </p>
+<p>setEngineNodeType, set the type for a specific node. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>as a NodeType argument. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="_engine_base_node_8h_source.html#l00156">156</a> of file <a class="el" href="_engine_base_node_8h_source.html">EngineBaseNode.h</a>.</p>
 
@@ -762,7 +823,12 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>setHeight, Set height of the node.  h as a const int argument </p>
+<p>setHeight, Set height of the node. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">h</td><td>as a const int argument </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="_engine_base_node_8h_source.html#l00101">101</a> of file <a class="el" href="_engine_base_node_8h_source.html">EngineBaseNode.h</a>.</p>
 
@@ -781,9 +847,14 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>setOpacity, set the opacity value of a node, defaults to 255 if out of bounds value passed in.  opacity as an int argument between 0 - 255 </p>
+<p>setOpacity, set the opacity value of a node, defaults to 255 if out of bounds value passed in. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">opacity</td><td>as an int argument between 0 - 255 </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="_engine_base_node_8cpp_source.html#l00141">141</a> of file <a class="el" href="_engine_base_node_8cpp_source.html">EngineBaseNode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_engine_base_node_8cpp_source.html#l00144">144</a> of file <a class="el" href="_engine_base_node_8cpp_source.html">EngineBaseNode.cpp</a>.</p>
 
 </div>
 </div>
@@ -808,7 +879,12 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>setPosition, Set position of the node.  pos as a const <a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a> argument </p>
+<p>setPosition, Set position of the node. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td>as a const <a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a> argument </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="_engine_base_node_8h_source.html#l00065">65</a> of file <a class="el" href="_engine_base_node_8h_source.html">EngineBaseNode.h</a>.</p>
 
@@ -835,7 +911,12 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>setPositionX, Set X position of the node.  x as a const int argument </p>
+<p>setPositionX, Set X position of the node. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>as a const int argument </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="_engine_base_node_8h_source.html#l00071">71</a> of file <a class="el" href="_engine_base_node_8h_source.html">EngineBaseNode.h</a>.</p>
 
@@ -862,7 +943,12 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>setPositionY, Set Y position of the node.  Y as a const int argument </p>
+<p>setPositionY, Set Y position of the node. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Y</td><td>as a const int argument </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="_engine_base_node_8h_source.html#l00077">77</a> of file <a class="el" href="_engine_base_node_8h_source.html">EngineBaseNode.h</a>.</p>
 
@@ -889,7 +975,12 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>setSize, Set size of the node.  si as a const <a class="el" href="class_dsdl_engine_1_1_size.html">Size</a> argument </p>
+<p>setSize, Set size of the node. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">si</td><td>as a const <a class="el" href="class_dsdl_engine_1_1_size.html">Size</a> argument </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="_engine_base_node_8h_source.html#l00089">89</a> of file <a class="el" href="_engine_base_node_8h_source.html">EngineBaseNode.h</a>.</p>
 
@@ -916,7 +1007,12 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>setUpdateTextureTrue, control if node texture was changed after initial load.  value as a bool argument. </p>
+<p>setUpdateTextureTrue, control if node texture was changed after initial load. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>as a bool argument. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="_engine_base_node_8h_source.html#l00194">194</a> of file <a class="el" href="_engine_base_node_8h_source.html">EngineBaseNode.h</a>.</p>
 
@@ -943,7 +1039,12 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>setWidth, Set width of the node.  w as a const int argument </p>
+<p>setWidth, Set width of the node. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">w</td><td>as a const int argument </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="_engine_base_node_8h_source.html#l00095">95</a> of file <a class="el" href="_engine_base_node_8h_source.html">EngineBaseNode.h</a>.</p>
 
@@ -962,9 +1063,14 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>updateLabelText, change the display text of a label.  text as a std::string argument. </p>
+<p>updateLabelText, change the display text of a label. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">text</td><td>as a std::string argument. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="_engine_base_node_8cpp_source.html#l00136">136</a> of file <a class="el" href="_engine_base_node_8cpp_source.html">EngineBaseNode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_engine_base_node_8cpp_source.html#l00139">139</a> of file <a class="el" href="_engine_base_node_8cpp_source.html">EngineBaseNode.cpp</a>.</p>
 
 </div>
 </div>
@@ -1501,11 +1607,15 @@ Protected Attributes</h2></td></tr>
 <li><a class="el" href="_engine_base_node_8cpp_source.html">EngineBaseNode.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.11
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_dsdl_engine.html">DsdlEngine</a></li><li class="navelem"><a class="el" href="class_dsdl_engine_1_1_engine_base_node.html">EngineBaseNode</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+  </ul>
+</div>
 </body>
 </html>

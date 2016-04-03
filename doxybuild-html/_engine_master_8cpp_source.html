@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -67,6 +75,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('_engine_master_8cpp_source.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -81,27 +104,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_e6bb53534ac0e427887cf7a94c0c004e.html">C:</a></li><li class="navelem"><a class="el" href="dir_8ceffd4ee35c3518d4e8bdc7e638efe8.html">Users</a></li><li class="navelem"><a class="el" href="dir_cbd4d32671b407f2ace049b7e000050d.html">Derek</a></li><li class="navelem"><a class="el" href="dir_667beef2d6e417690e01c36d241f2f49.html">Desktop</a></li><li class="navelem"><a class="el" href="dir_38a9647846a094bf524949d62a5d2fe1.html">FYP SDL Engine</a></li><li class="navelem"><a class="el" href="dir_15f7a5c53317d8b6c4ca9627089cfbf9.html">V2</a></li><li class="navelem"><a class="el" href="dir_b211fe200b3d5a1659a98d81223dfeb6.html">dsdl-engine</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">EngineMaster.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="_engine_master_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_engine_master_8h.html">EngineMaster.h</a>&quot;</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_dsdl_engine.html">DsdlEngine</a> {</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    <span class="comment">//Create As Singleton</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="keyword">static</span> EngineMaster* Instance = <span class="keyword">nullptr</span>;</div><div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="class_dsdl_engine_1_1_engine_master.html#aafe4ee1c6012a45423d0ca38114f6a9d">    7</a></span>&#160;    <a class="code" href="class_dsdl_engine_1_1_engine_master.html">EngineMaster</a>* <a class="code" href="class_dsdl_engine_1_1_engine_master.html#aafe4ee1c6012a45423d0ca38114f6a9d">EngineMaster::getInstance</a>() {</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        <span class="keywordflow">if</span> (!Instance) {</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;            Instance = <span class="keyword">new</span> (std::nothrow) <a class="code" href="class_dsdl_engine_1_1_engine_master.html#a13f71da66076be8a99b86338cbc5fef2">EngineMaster</a>();</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        }</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <span class="keywordflow">return</span> Instance;</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    }</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;}</div><div class="ttc" id="namespace_dsdl_engine_html"><div class="ttname"><a href="namespace_dsdl_engine.html">DsdlEngine</a></div><div class="ttdef"><b>Definition:</b> <a href="_audio_manager_8cpp_source.html#l00007">AudioManager.cpp:7</a></div></div>
+<a href="_engine_master_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_engine_master_8h.html">EngineMaster.h</a>&quot;</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_dsdl_engine.html">DsdlEngine</a> {</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    <span class="comment">//Create As Singleton</span></div><div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="namespace_dsdl_engine.html#a1326fc29ce011a7be6179913e08fc46d">    6</a></span>&#160;    <span class="keyword">static</span> <a class="code" href="class_dsdl_engine_1_1_engine_master.html">EngineMaster</a>* <a class="code" href="namespace_dsdl_engine.html#a1326fc29ce011a7be6179913e08fc46d">Instance</a> = <span class="keyword">nullptr</span>;</div><div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="class_dsdl_engine_1_1_engine_master.html#aafe4ee1c6012a45423d0ca38114f6a9d">    7</a></span>&#160;    <a class="code" href="class_dsdl_engine_1_1_engine_master.html">EngineMaster</a>* <a class="code" href="class_dsdl_engine_1_1_engine_master.html#aafe4ee1c6012a45423d0ca38114f6a9d">EngineMaster::getInstance</a>() {</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        <span class="keywordflow">if</span> (!Instance) {</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;            Instance = <span class="keyword">new</span> (std::nothrow) <a class="code" href="class_dsdl_engine_1_1_engine_master.html#a13f71da66076be8a99b86338cbc5fef2">EngineMaster</a>();</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        }</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="namespace_dsdl_engine.html#a1326fc29ce011a7be6179913e08fc46d">Instance</a>;</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    }</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;}</div><div class="ttc" id="namespace_dsdl_engine_html"><div class="ttname"><a href="namespace_dsdl_engine.html">DsdlEngine</a></div><div class="ttdef"><b>Definition:</b> <a href="_audio_manager_8cpp_source.html#l00007">AudioManager.cpp:7</a></div></div>
 <div class="ttc" id="class_dsdl_engine_1_1_engine_master_html_a13f71da66076be8a99b86338cbc5fef2"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_master.html#a13f71da66076be8a99b86338cbc5fef2">DsdlEngine::EngineMaster::EngineMaster</a></div><div class="ttdeci">EngineMaster()</div><div class="ttdef"><b>Definition:</b> <a href="_engine_master_8h_source.html#l00027">EngineMaster.h:27</a></div></div>
 <div class="ttc" id="class_dsdl_engine_1_1_engine_master_html_aafe4ee1c6012a45423d0ca38114f6a9d"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_master.html#aafe4ee1c6012a45423d0ca38114f6a9d">DsdlEngine::EngineMaster::getInstance</a></div><div class="ttdeci">static EngineMaster * getInstance()</div><div class="ttdef"><b>Definition:</b> <a href="_engine_master_8cpp_source.html#l00007">EngineMaster.cpp:7</a></div></div>
 <div class="ttc" id="_engine_master_8h_html"><div class="ttname"><a href="_engine_master_8h.html">EngineMaster.h</a></div></div>
+<div class="ttc" id="namespace_dsdl_engine_html_a1326fc29ce011a7be6179913e08fc46d"><div class="ttname"><a href="namespace_dsdl_engine.html#a1326fc29ce011a7be6179913e08fc46d">DsdlEngine::Instance</a></div><div class="ttdeci">static EngineMaster * Instance</div><div class="ttdef"><b>Definition:</b> <a href="_engine_master_8cpp_source.html#l00006">EngineMaster.cpp:6</a></div></div>
 <div class="ttc" id="class_dsdl_engine_1_1_engine_master_html"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_master.html">DsdlEngine::EngineMaster</a></div><div class="ttdef"><b>Definition:</b> <a href="_engine_master_8h_source.html#l00014">EngineMaster.h:14</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.11
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_e6bb53534ac0e427887cf7a94c0c004e.html">C:</a></li><li class="navelem"><a class="el" href="dir_8ceffd4ee35c3518d4e8bdc7e638efe8.html">Users</a></li><li class="navelem"><a class="el" href="dir_cbd4d32671b407f2ace049b7e000050d.html">Derek</a></li><li class="navelem"><a class="el" href="dir_667beef2d6e417690e01c36d241f2f49.html">Desktop</a></li><li class="navelem"><a class="el" href="dir_38a9647846a094bf524949d62a5d2fe1.html">FYP SDL Engine</a></li><li class="navelem"><a class="el" href="dir_15f7a5c53317d8b6c4ca9627089cfbf9.html">V2</a></li><li class="navelem"><a class="el" href="dir_b211fe200b3d5a1659a98d81223dfeb6.html">dsdl-engine</a></li><li class="navelem"><a class="el" href="_engine_master_8cpp.html">EngineMaster.cpp</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+  </ul>
+</div>
 </body>
 </html>

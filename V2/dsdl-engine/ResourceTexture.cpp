@@ -49,7 +49,7 @@ namespace DsdlEngine{
 
 
 			if (loadedSurface == NULL)
-				SDL_Log("SDL_image Error : %s ",  std::string(IMG_GetError()));
+				SDL_Log("SDL_image Error : %s ", IMG_GetError());
 			else{
 				//Color key image
 				SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0xFF, 0xFF));
@@ -57,7 +57,7 @@ namespace DsdlEngine{
 				//Create texture from surface pixels
 				newTexture = SDL_CreateTextureFromSurface(r, loadedSurface);
 				if (newTexture == NULL){
-					SDL_Log("SDL_CreateTextureFromSurface Error : %s ", std::string(IMG_GetError()));
+					SDL_Log("SDL_CreateTextureFromSurface Error : %s ",IMG_GetError());
 				}
 				else{
 					//Get image dimensions
@@ -87,12 +87,12 @@ namespace DsdlEngine{
 		SDL_Surface* textSurface = TTF_RenderText_Blended(myfont, text.c_str(), color);
 
 		if (textSurface == NULL){
-			SDL_Log("TTF_RenderText_Blended Error : %s" , std::string(TTF_GetError()));
+			SDL_Log("TTF_RenderText_Blended Error : %s", TTF_GetError());
 		}
 		else{//COnvert Surface to the Texture
 			m_Texture = SDL_CreateTextureFromSurface(r, textSurface);
 			if (m_Texture == NULL){
-				SDL_Log("TTF_RenderText_Blended Error : %s" , std::string(TTF_GetError()));
+				SDL_Log("TTF_RenderText_Blended Error : %s" , TTF_GetError());
 			}
 			else{
 				m_iWidth = textSurface->w;

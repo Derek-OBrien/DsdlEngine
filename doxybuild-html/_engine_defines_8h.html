@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -67,6 +75,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('_engine_defines_8h.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -81,11 +104,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_e6bb53534ac0e427887cf7a94c0c004e.html">C:</a></li><li class="navelem"><a class="el" href="dir_8ceffd4ee35c3518d4e8bdc7e638efe8.html">Users</a></li><li class="navelem"><a class="el" href="dir_cbd4d32671b407f2ace049b7e000050d.html">Derek</a></li><li class="navelem"><a class="el" href="dir_667beef2d6e417690e01c36d241f2f49.html">Desktop</a></li><li class="navelem"><a class="el" href="dir_38a9647846a094bf524949d62a5d2fe1.html">FYP SDL Engine</a></li><li class="navelem"><a class="el" href="dir_15f7a5c53317d8b6c4ca9627089cfbf9.html">V2</a></li><li class="navelem"><a class="el" href="dir_b211fe200b3d5a1659a98d81223dfeb6.html">dsdl-engine</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#namespaces">Namespaces</a> &#124;
@@ -148,7 +166,6 @@ Macros</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:a861b5b1a4cee2ebf10e82ecd2d3f1b7d"><td class="memItemLeft" align="right" valign="top">typedef SDL_TimerID&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_dsdl_engine.html#a861b5b1a4cee2ebf10e82ecd2d3f1b7d">DsdlEngine::CallBackTimer</a></td></tr>
-<tr class="memdesc:a861b5b1a4cee2ebf10e82ecd2d3f1b7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set callback.  <a href="namespace_dsdl_engine.html#a861b5b1a4cee2ebf10e82ecd2d3f1b7d">More...</a><br /></td></tr>
 <tr class="separator:a861b5b1a4cee2ebf10e82ecd2d3f1b7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21c1037507c500464da607682e76c1af"><td class="memItemLeft" align="right" valign="top">typedef SDL_TimerCallback&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_dsdl_engine.html#a21c1037507c500464da607682e76c1af">DsdlEngine::CallBack</a></td></tr>
 <tr class="separator:a21c1037507c500464da607682e76c1af"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -190,7 +207,7 @@ Enumerations</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_engine_defines_8h_source.html#l00064">64</a> of file <a class="el" href="_engine_defines_8h_source.html">EngineDefines.h</a>.</p>
+<p>Definition at line <a class="el" href="_engine_defines_8h_source.html#l00077">77</a> of file <a class="el" href="_engine_defines_8h_source.html">EngineDefines.h</a>.</p>
 
 </div>
 </div>
@@ -204,7 +221,7 @@ Enumerations</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_engine_defines_8h_source.html#l00075">75</a> of file <a class="el" href="_engine_defines_8h_source.html">EngineDefines.h</a>.</p>
+<p>Definition at line <a class="el" href="_engine_defines_8h_source.html#l00088">88</a> of file <a class="el" href="_engine_defines_8h_source.html">EngineDefines.h</a>.</p>
 
 </div>
 </div>
@@ -218,7 +235,7 @@ Enumerations</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_engine_defines_8h_source.html#l00077">77</a> of file <a class="el" href="_engine_defines_8h_source.html">EngineDefines.h</a>.</p>
+<p>Definition at line <a class="el" href="_engine_defines_8h_source.html#l00090">90</a> of file <a class="el" href="_engine_defines_8h_source.html">EngineDefines.h</a>.</p>
 
 </div>
 </div>
@@ -234,7 +251,7 @@ Enumerations</h2></td></tr>
 
 <p>Box2D scaling defines. </p>
 
-<p>Definition at line <a class="el" href="_engine_defines_8h_source.html#l00072">72</a> of file <a class="el" href="_engine_defines_8h_source.html">EngineDefines.h</a>.</p>
+<p>Definition at line <a class="el" href="_engine_defines_8h_source.html#l00085">85</a> of file <a class="el" href="_engine_defines_8h_source.html">EngineDefines.h</a>.</p>
 
 </div>
 </div>
@@ -276,7 +293,7 @@ Enumerations</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_engine_defines_8h_source.html#l00073">73</a> of file <a class="el" href="_engine_defines_8h_source.html">EngineDefines.h</a>.</p>
+<p>Definition at line <a class="el" href="_engine_defines_8h_source.html#l00086">86</a> of file <a class="el" href="_engine_defines_8h_source.html">EngineDefines.h</a>.</p>
 
 </div>
 </div>
@@ -290,7 +307,7 @@ Enumerations</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_engine_defines_8h_source.html#l00074">74</a> of file <a class="el" href="_engine_defines_8h_source.html">EngineDefines.h</a>.</p>
+<p>Definition at line <a class="el" href="_engine_defines_8h_source.html#l00087">87</a> of file <a class="el" href="_engine_defines_8h_source.html">EngineDefines.h</a>.</p>
 
 </div>
 </div>
@@ -304,7 +321,7 @@ Enumerations</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_engine_defines_8h_source.html#l00068">68</a> of file <a class="el" href="_engine_defines_8h_source.html">EngineDefines.h</a>.</p>
+<p>Definition at line <a class="el" href="_engine_defines_8h_source.html#l00081">81</a> of file <a class="el" href="_engine_defines_8h_source.html">EngineDefines.h</a>.</p>
 
 </div>
 </div>
@@ -332,16 +349,20 @@ Enumerations</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_engine_defines_8h_source.html#l00065">65</a> of file <a class="el" href="_engine_defines_8h_source.html">EngineDefines.h</a>.</p>
+<p>Definition at line <a class="el" href="_engine_defines_8h_source.html#l00078">78</a> of file <a class="el" href="_engine_defines_8h_source.html">EngineDefines.h</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.11
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_e6bb53534ac0e427887cf7a94c0c004e.html">C:</a></li><li class="navelem"><a class="el" href="dir_8ceffd4ee35c3518d4e8bdc7e638efe8.html">Users</a></li><li class="navelem"><a class="el" href="dir_cbd4d32671b407f2ace049b7e000050d.html">Derek</a></li><li class="navelem"><a class="el" href="dir_667beef2d6e417690e01c36d241f2f49.html">Desktop</a></li><li class="navelem"><a class="el" href="dir_38a9647846a094bf524949d62a5d2fe1.html">FYP SDL Engine</a></li><li class="navelem"><a class="el" href="dir_15f7a5c53317d8b6c4ca9627089cfbf9.html">V2</a></li><li class="navelem"><a class="el" href="dir_b211fe200b3d5a1659a98d81223dfeb6.html">dsdl-engine</a></li><li class="navelem"><a class="el" href="_engine_defines_8h.html">EngineDefines.h</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+  </ul>
+</div>
 </body>
 </html>

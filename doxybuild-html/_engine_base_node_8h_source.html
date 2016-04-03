@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -67,6 +75,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('_engine_base_node_8h_source.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -81,11 +104,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_e6bb53534ac0e427887cf7a94c0c004e.html">C:</a></li><li class="navelem"><a class="el" href="dir_8ceffd4ee35c3518d4e8bdc7e638efe8.html">Users</a></li><li class="navelem"><a class="el" href="dir_cbd4d32671b407f2ace049b7e000050d.html">Derek</a></li><li class="navelem"><a class="el" href="dir_667beef2d6e417690e01c36d241f2f49.html">Desktop</a></li><li class="navelem"><a class="el" href="dir_38a9647846a094bf524949d62a5d2fe1.html">FYP SDL Engine</a></li><li class="navelem"><a class="el" href="dir_15f7a5c53317d8b6c4ca9627089cfbf9.html">V2</a></li><li class="navelem"><a class="el" href="dir_b211fe200b3d5a1659a98d81223dfeb6.html">dsdl-engine</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">EngineBaseNode.h</div>  </div>
@@ -95,11 +113,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_a16f98c4017b095f045c0918475fbe85c"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#a16f98c4017b095f045c0918475fbe85c">DsdlEngine::EngineBaseNode::m_assetPath</a></div><div class="ttdeci">std::string m_assetPath</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8h_source.html#l00205">EngineBaseNode.h:205</a></div></div>
 <div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_a6dbaf78de547237157c69995a2b68768"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#a6dbaf78de547237157c69995a2b68768">DsdlEngine::EngineBaseNode::setUpdateTextureTrue</a></div><div class="ttdeci">void setUpdateTextureTrue(bool value)</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8h_source.html#l00194">EngineBaseNode.h:194</a></div></div>
 <div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_a5fc16769453b79470c89b98962ad0fa1"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#a5fc16769453b79470c89b98962ad0fa1">DsdlEngine::EngineBaseNode::~EngineBaseNode</a></div><div class="ttdeci">virtual ~EngineBaseNode()</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8cpp_source.html#l00023">EngineBaseNode.cpp:23</a></div></div>
-<div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_a9871b72034e5cb334b2818383468420a"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#a9871b72034e5cb334b2818383468420a">DsdlEngine::EngineBaseNode::renderCollisionShape</a></div><div class="ttdeci">void renderCollisionShape(SDL_Renderer *r, CollisionShape *shape)</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8cpp_source.html#l00162">EngineBaseNode.cpp:162</a></div></div>
+<div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_a9871b72034e5cb334b2818383468420a"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#a9871b72034e5cb334b2818383468420a">DsdlEngine::EngineBaseNode::renderCollisionShape</a></div><div class="ttdeci">void renderCollisionShape(SDL_Renderer *r, CollisionShape *shape)</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8cpp_source.html#l00165">EngineBaseNode.cpp:165</a></div></div>
 <div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_a8bd22b73a9d4ab7b090010719c8daed7"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#a8bd22b73a9d4ab7b090010719c8daed7">DsdlEngine::EngineBaseNode::m_frame</a></div><div class="ttdeci">int m_frame</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8h_source.html#l00215">EngineBaseNode.h:215</a></div></div>
 <div class="ttc" id="_resource_texture_8h_html"><div class="ttname"><a href="_resource_texture_8h.html">ResourceTexture.h</a></div></div>
 <div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_ad0ba708de7683b95d3d79fb96078a562"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#ad0ba708de7683b95d3d79fb96078a562">DsdlEngine::EngineBaseNode::m_size</a></div><div class="ttdeci">Vec2 m_size</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8h_source.html#l00213">EngineBaseNode.h:213</a></div></div>
-<div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_abec49952166250ea24a074b3fa6b92ca"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#abec49952166250ea24a074b3fa6b92ca">DsdlEngine::EngineBaseNode::updateLabelText</a></div><div class="ttdeci">void updateLabelText(std::string text)</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8cpp_source.html#l00136">EngineBaseNode.cpp:136</a></div></div>
+<div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_abec49952166250ea24a074b3fa6b92ca"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#abec49952166250ea24a074b3fa6b92ca">DsdlEngine::EngineBaseNode::updateLabelText</a></div><div class="ttdeci">void updateLabelText(std::string text)</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8cpp_source.html#l00139">EngineBaseNode.cpp:139</a></div></div>
 <div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_acb86c29cc860ffade448d50d7065316c"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#acb86c29cc860ffade448d50d7065316c">DsdlEngine::EngineBaseNode::setWidth</a></div><div class="ttdeci">void setWidth(int w)</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8h_source.html#l00095">EngineBaseNode.h:95</a></div></div>
 <div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_a9ae96772bdc03c4b45ff469f0cbb154f"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#a9ae96772bdc03c4b45ff469f0cbb154f">DsdlEngine::EngineBaseNode::getBoundingBox</a></div><div class="ttdeci">SDL_Rect * getBoundingBox()</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8h_source.html#l00180">EngineBaseNode.h:180</a></div></div>
 <div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_a2bae1ece2f18d70350653f9601696e11"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#a2bae1ece2f18d70350653f9601696e11">DsdlEngine::EngineBaseNode::getEngineTexture</a></div><div class="ttdeci">ResourceTexture * getEngineTexture()</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8h_source.html#l00168">EngineBaseNode.h:168</a></div></div>
@@ -116,7 +134,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="class_dsdl_engine_1_1_vec2_html_ad5ba0c33d7cd9fa3e2ed9de078a31bbd"><div class="ttname"><a href="class_dsdl_engine_1_1_vec2.html#ad5ba0c33d7cd9fa3e2ed9de078a31bbd">DsdlEngine::Vec2::y_</a></div><div class="ttdeci">float y_</div><div class="ttdef"><b>Definition:</b> <a href="_engine_math_8h_source.html#l00047">EngineMath.h:47</a></div></div>
 <div class="ttc" id="class_dsdl_engine_1_1_size_html_a9fd890ee56e71b12c1a6fb4c01eb18ad"><div class="ttname"><a href="class_dsdl_engine_1_1_size.html#a9fd890ee56e71b12c1a6fb4c01eb18ad">DsdlEngine::Size::h_</a></div><div class="ttdeci">float h_</div><div class="ttdef"><b>Definition:</b> <a href="_engine_math_8h_source.html#l00087">EngineMath.h:87</a></div></div>
 <div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_a5891009b9d0b6167a498ad87a220714e"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#a5891009b9d0b6167a498ad87a220714e">DsdlEngine::EngineBaseNode::scaleHeight</a></div><div class="ttdeci">void scaleHeight(float scale)</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8h_source.html#l00131">EngineBaseNode.h:131</a></div></div>
-<div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_a0d9bf88248c7fea5b3ae55ba1a3ef2a0"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#a0d9bf88248c7fea5b3ae55ba1a3ef2a0">DsdlEngine::EngineBaseNode::cleanup</a></div><div class="ttdeci">virtual void cleanup()</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8cpp_source.html#l00157">EngineBaseNode.cpp:157</a></div></div>
+<div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_a0d9bf88248c7fea5b3ae55ba1a3ef2a0"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#a0d9bf88248c7fea5b3ae55ba1a3ef2a0">DsdlEngine::EngineBaseNode::cleanup</a></div><div class="ttdeci">virtual void cleanup()</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8cpp_source.html#l00160">EngineBaseNode.cpp:160</a></div></div>
 <div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_ab23c01c70e4901d1e3616e6024a706e9"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#ab23c01c70e4901d1e3616e6024a706e9">DsdlEngine::EngineBaseNode::setPositionY</a></div><div class="ttdeci">void setPositionY(int y)</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8h_source.html#l00077">EngineBaseNode.h:77</a></div></div>
 <div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_af32750961dcbf0efd02d5695017a0df3"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#af32750961dcbf0efd02d5695017a0df3">DsdlEngine::EngineBaseNode::m_numFrames</a></div><div class="ttdeci">int m_numFrames</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8h_source.html#l00215">EngineBaseNode.h:215</a></div></div>
 <div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_a3ededbaf17cf046e7cdaa9fd3a3f4506"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#a3ededbaf17cf046e7cdaa9fd3a3f4506">DsdlEngine::EngineBaseNode::m_objectBoundingBox</a></div><div class="ttdeci">SDL_Rect * m_objectBoundingBox</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8h_source.html#l00209">EngineBaseNode.h:209</a></div></div>
@@ -126,7 +144,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_ad854199b212236454237a4cb775cc009"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#ad854199b212236454237a4cb775cc009">DsdlEngine::EngineBaseNode::m_currentFrame</a></div><div class="ttdeci">SDL_Rect * m_currentFrame</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8h_source.html#l00220">EngineBaseNode.h:220</a></div></div>
 <div class="ttc" id="class_dsdl_engine_1_1_vec2_html_a8ad0f6f8ec547554851c5ec2720eef72"><div class="ttname"><a href="class_dsdl_engine_1_1_vec2.html#a8ad0f6f8ec547554851c5ec2720eef72">DsdlEngine::Vec2::x_</a></div><div class="ttdeci">float x_</div><div class="ttdef"><b>Definition:</b> <a href="_engine_math_8h_source.html#l00046">EngineMath.h:46</a></div></div>
 <div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_a80536d1b24ceccb596aaaaf833b9f9b4"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#a80536d1b24ceccb596aaaaf833b9f9b4">DsdlEngine::EngineBaseNode::getContentSize</a></div><div class="ttdeci">const Vec2 getContentSize() const </div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8h_source.html#l00107">EngineBaseNode.h:107</a></div></div>
-<div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_a69f62f8caff667843c4faed3402ef892"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#a69f62f8caff667843c4faed3402ef892">DsdlEngine::EngineBaseNode::destroy</a></div><div class="ttdeci">virtual void destroy()</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8cpp_source.html#l00151">EngineBaseNode.cpp:151</a></div></div>
+<div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_a69f62f8caff667843c4faed3402ef892"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#a69f62f8caff667843c4faed3402ef892">DsdlEngine::EngineBaseNode::destroy</a></div><div class="ttdeci">virtual void destroy()</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8cpp_source.html#l00154">EngineBaseNode.cpp:154</a></div></div>
 <div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_af9b17f9a84201d1c69944606d2bd50ef"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#af9b17f9a84201d1c69944606d2bd50ef">DsdlEngine::EngineBaseNode::m_node</a></div><div class="ttdeci">EngineBaseNode * m_node</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8h_source.html#l00204">EngineBaseNode.h:204</a></div></div>
 <div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_a834542517a1ea91d19fde9ded86846ee"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#a834542517a1ea91d19fde9ded86846ee">DsdlEngine::EngineBaseNode::isTextureChanged</a></div><div class="ttdeci">bool isTextureChanged()</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8h_source.html#l00200">EngineBaseNode.h:200</a></div></div>
 <div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_a0fe698ac8aca3d11e684722c6e47292c"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#a0fe698ac8aca3d11e684722c6e47292c">DsdlEngine::EngineBaseNode::m_textColor</a></div><div class="ttdeci">SDL_Color m_textColor</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8h_source.html#l00229">EngineBaseNode.h:229</a></div></div>
@@ -138,7 +156,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_aa8dc50258d17b7b783ef376bfc37b7d9"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#aa8dc50258d17b7b783ef376bfc37b7d9">DsdlEngine::EngineBaseNode::m_FontMap</a></div><div class="ttdeci">std::map&lt; std::string, TTF_Font * &gt; m_FontMap</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8h_source.html#l00225">EngineBaseNode.h:225</a></div></div>
 <div class="ttc" id="class_dsdl_engine_1_1_vec2_html"><div class="ttname"><a href="class_dsdl_engine_1_1_vec2.html">DsdlEngine::Vec2</a></div><div class="ttdef"><b>Definition:</b> <a href="_engine_math_8h_source.html#l00011">EngineMath.h:11</a></div></div>
 <div class="ttc" id="_collision_shape_8h_html"><div class="ttname"><a href="_collision_shape_8h.html">CollisionShape.h</a></div></div>
-<div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_a66291ee110aa3188a45e621dddde4362"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#a66291ee110aa3188a45e621dddde4362">DsdlEngine::EngineBaseNode::setOpacity</a></div><div class="ttdeci">void setOpacity(int opacity)</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8cpp_source.html#l00141">EngineBaseNode.cpp:141</a></div></div>
+<div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_a66291ee110aa3188a45e621dddde4362"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#a66291ee110aa3188a45e621dddde4362">DsdlEngine::EngineBaseNode::setOpacity</a></div><div class="ttdeci">void setOpacity(int opacity)</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8cpp_source.html#l00144">EngineBaseNode.cpp:144</a></div></div>
 <div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_a4ce60a97ddf6a40703f3223338eee0c2"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#a4ce60a97ddf6a40703f3223338eee0c2">DsdlEngine::EngineBaseNode::setAssetPath</a></div><div class="ttdeci">void setAssetPath(std::string path)</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8h_source.html#l00138">EngineBaseNode.h:138</a></div></div>
 <div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_a467c6c08c60e37f281f063b43b012597"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#a467c6c08c60e37f281f063b43b012597">DsdlEngine::EngineBaseNode::m_gSpriteClips</a></div><div class="ttdeci">SDL_Rect m_gSpriteClips[14]</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8h_source.html#l00219">EngineBaseNode.h:219</a></div></div>
 <div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_a851129fc912a317c56eff79d2a4c352f"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#a851129fc912a317c56eff79d2a4c352f">DsdlEngine::EngineBaseNode::scaleWidth</a></div><div class="ttdeci">void scaleWidth(float scale)</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8h_source.html#l00125">EngineBaseNode.h:125</a></div></div>
@@ -154,16 +172,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="_engine_defines_8h_html"><div class="ttname"><a href="_engine_defines_8h.html">EngineDefines.h</a></div></div>
 <div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_ad2dcab1adfe64c28ea2c5644b20a3dd4"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#ad2dcab1adfe64c28ea2c5644b20a3dd4">DsdlEngine::EngineBaseNode::m_engineTexture</a></div><div class="ttdeci">ResourceTexture * m_engineTexture</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8h_source.html#l00208">EngineBaseNode.h:208</a></div></div>
 <div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_a338a688f3c1bea2862a16729ed5c9ad0"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#a338a688f3c1bea2862a16729ed5c9ad0">DsdlEngine::EngineBaseNode::m_opacity</a></div><div class="ttdeci">int m_opacity</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8h_source.html#l00215">EngineBaseNode.h:215</a></div></div>
-<div class="ttc" id="namespace_dsdl_engine_html_a37801d421ba45cacb2b96c613d40fa2a"><div class="ttname"><a href="namespace_dsdl_engine.html#a37801d421ba45cacb2b96c613d40fa2a">DsdlEngine::NodeType</a></div><div class="ttdeci">NodeType</div><div class="ttdef"><b>Definition:</b> <a href="_engine_defines_8h_source.html#l00036">EngineDefines.h:36</a></div></div>
-<div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_aaa673795351efe71ed7122fd7c45090a"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#aaa673795351efe71ed7122fd7c45090a">DsdlEngine::EngineBaseNode::setBoundingBox</a></div><div class="ttdeci">void setBoundingBox(Vec2 pos, Vec2 size)</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8cpp_source.html#l00128">EngineBaseNode.cpp:128</a></div></div>
+<div class="ttc" id="namespace_dsdl_engine_html_a37801d421ba45cacb2b96c613d40fa2a"><div class="ttname"><a href="namespace_dsdl_engine.html#a37801d421ba45cacb2b96c613d40fa2a">DsdlEngine::NodeType</a></div><div class="ttdeci">NodeType</div><div class="ttdef"><b>Definition:</b> <a href="_engine_defines_8h_source.html#l00038">EngineDefines.h:38</a></div></div>
+<div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_aaa673795351efe71ed7122fd7c45090a"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#aaa673795351efe71ed7122fd7c45090a">DsdlEngine::EngineBaseNode::setBoundingBox</a></div><div class="ttdeci">void setBoundingBox(Vec2 pos, Vec2 size)</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8cpp_source.html#l00131">EngineBaseNode.cpp:131</a></div></div>
 <div class="ttc" id="class_dsdl_engine_1_1_resource_texture_html"><div class="ttname"><a href="class_dsdl_engine_1_1_resource_texture.html">DsdlEngine::ResourceTexture</a></div><div class="ttdef"><b>Definition:</b> <a href="_resource_texture_8h_source.html#l00015">ResourceTexture.h:15</a></div></div>
 <div class="ttc" id="class_dsdl_engine_1_1_engine_base_node_html_ac1a29faf59ca4bd3a43108cf869d107c"><div class="ttname"><a href="class_dsdl_engine_1_1_engine_base_node.html#ac1a29faf59ca4bd3a43108cf869d107c">DsdlEngine::EngineBaseNode::render</a></div><div class="ttdeci">void render(SDL_Renderer *r)</div><div class="ttdef"><b>Definition:</b> <a href="_engine_base_node_8cpp_source.html#l00030">EngineBaseNode.cpp:30</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.11
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_e6bb53534ac0e427887cf7a94c0c004e.html">C:</a></li><li class="navelem"><a class="el" href="dir_8ceffd4ee35c3518d4e8bdc7e638efe8.html">Users</a></li><li class="navelem"><a class="el" href="dir_cbd4d32671b407f2ace049b7e000050d.html">Derek</a></li><li class="navelem"><a class="el" href="dir_667beef2d6e417690e01c36d241f2f49.html">Desktop</a></li><li class="navelem"><a class="el" href="dir_38a9647846a094bf524949d62a5d2fe1.html">FYP SDL Engine</a></li><li class="navelem"><a class="el" href="dir_15f7a5c53317d8b6c4ca9627089cfbf9.html">V2</a></li><li class="navelem"><a class="el" href="dir_b211fe200b3d5a1659a98d81223dfeb6.html">dsdl-engine</a></li><li class="navelem"><a class="el" href="_engine_base_node_8h.html">EngineBaseNode.h</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+  </ul>
+</div>
 </body>
 </html>

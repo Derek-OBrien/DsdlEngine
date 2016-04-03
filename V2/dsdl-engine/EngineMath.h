@@ -21,15 +21,15 @@ namespace DsdlEngine{
 		/**
 		*	Constructor
 		*	Set values on creation.
-		*	@parma x as a float argument
-		*	@parma y as a float argument
+		*	@param x as a float argument
+		*	@param y as a float argument
 		*/
 		Vec2(float x, float y);
 		
 		/**
 		*	Constructor.
 		*	Create a Vec2 object with another Vec2
-		*	@parma v as a Vec2 argument
+		*	@param v as a Vec2 argument
 		*/
 		Vec2(const Vec2& v);
 		
@@ -64,8 +64,8 @@ namespace DsdlEngine{
 		/**
 		*	Constructor
 		*	Set values on creation.
-		*	@parma w as a float argument
-		*	@parma h as a float argument
+		*	@param w as a float argument
+		*	@param h as a float argument
 		*/
 		Size(float w, float h);
 
@@ -73,7 +73,7 @@ namespace DsdlEngine{
 		/**
 		*	Constructor.
 		*	Create a Size object with another Size
-		*	@parma s as a Size argument
+		*	@param s as a Size argument
 		*/
 		Size(const Size& s);
 

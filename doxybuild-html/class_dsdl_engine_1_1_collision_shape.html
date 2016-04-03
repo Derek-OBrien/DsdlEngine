@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -69,6 +77,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_dsdl_engine_1_1_collision_shape.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -83,11 +106,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespace_dsdl_engine.html">DsdlEngine</a></li><li class="navelem"><a class="el" href="class_dsdl_engine_1_1_collision_shape.html">CollisionShape</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -181,7 +199,12 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>destroy shape in the Box2D world.  world as a b2World pointer argument. </p>
+<p>destroy shape in the Box2D world. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world</td><td>as a b2World pointer argument. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="_collision_shane_8cpp_source.html#l00045">45</a> of file <a class="el" href="_collision_shane_8cpp_source.html">CollisionShane.cpp</a>.</p>
 
@@ -260,7 +283,13 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>getFixture, get the fixture for index passed in.  index as a int argument. </p><dl class="section return"><dt>Returns</dt><dd>b2Fixture pointer. </dd></dl>
+<p>getFixture, get the fixture for index passed in. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>as a int argument. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>b2Fixture pointer. </dd></dl>
 
 <p>Definition at line <a class="el" href="_collision_shape_8h_source.html#l00057">57</a> of file <a class="el" href="_collision_shape_8h_source.html">CollisionShape.h</a>.</p>
 
@@ -313,7 +342,16 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Initialize shape with arguments passed in.  position as a <a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a> position argument.  dimensions as a <a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a> size arguent.  density as a float argument.  friction as a float argument.  fixedRotation as a bool argument. </p>
+<p>Initialize shape with arguments passed in. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">position</td><td>as a <a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a> position argument. </td></tr>
+    <tr><td class="paramname">dimensions</td><td>as a <a class="el" href="class_dsdl_engine_1_1_vec2.html">Vec2</a> size arguent. </td></tr>
+    <tr><td class="paramname">density</td><td>as a float argument. </td></tr>
+    <tr><td class="paramname">friction</td><td>as a float argument. </td></tr>
+    <tr><td class="paramname">fixedRotation</td><td>as a bool argument. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="_collision_shane_8cpp_source.html#l00016">16</a> of file <a class="el" href="_collision_shane_8cpp_source.html">CollisionShane.cpp</a>.</p>
 
@@ -394,11 +432,15 @@ Protected Attributes</h2></td></tr>
 <li><a class="el" href="_collision_shane_8cpp_source.html">CollisionShane.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.11
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_dsdl_engine.html">DsdlEngine</a></li><li class="navelem"><a class="el" href="class_dsdl_engine_1_1_collision_shape.html">CollisionShape</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+  </ul>
+</div>
 </body>
 </html>
