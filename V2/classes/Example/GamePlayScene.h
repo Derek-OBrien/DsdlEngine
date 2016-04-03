@@ -33,6 +33,7 @@ private:
 	
 	AudioManager m_AudioManager;
 	Music music;
+	SFX sfx;
 
 	InputManager m_inputManager;
 	Layer* layer;

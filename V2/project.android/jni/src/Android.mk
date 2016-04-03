@@ -25,9 +25,6 @@ ENGINE_FILE_LIST := $(wildcard $(LOCAL_PATH)/../../../dsdl-engine/*.cpp)
 #Include all Example game cpp files
 GAME_FILE_LIST_RUNNER := $(wildcard $(LOCAL_PATH)/../../../classes/Example/*.cpp)
 
-#Include all Breakout game cpp files
-GAME_FILE_LIST_BREAKOUT := $(wildcard $(LOCAL_PATH)/../../../classes/BreakOut/*.cpp)
-
 #Include Tinyxml
 XML_FILE_LIST := $(wildcard $(LOCAL_PATH)/../../../dependencies/tinyxml/*.cpp)
 

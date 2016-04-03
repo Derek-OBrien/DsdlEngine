@@ -32,7 +32,9 @@
 #define NS_DSDL_END		}
 
 namespace DsdlEngine {
-
+	/**
+	*	Node Type Enum
+	*/
 	enum class NodeType {
 		BASENODE,
 		SPRITE,
@@ -41,23 +43,34 @@ namespace DsdlEngine {
 		PARTICLE
 	};
 
+	/**
+	*	Button State Enum
+	*/
 	enum class ButtonState {
 		NORMAL,
 		PRESSED,
 		HOVERING
 	};
 
+	/**
+	*	Button Type Enum
+	*/
 	enum class ButtonType {
 		LABEL_BTN,
 		SPRITE_BTN
 	};
 
+	/**
+	*	Label Type Enum
+	*/
 	enum class LableType {
 		LABEL_STATIC,
 		LABEL_DYNAMIC
 	};
 
-	///Set callback
+	/**
+	*	Timer Call Back
+	*/
 	typedef SDL_TimerID CallBackTimer;
 	typedef SDL_TimerCallback CallBack;
 

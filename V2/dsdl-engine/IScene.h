@@ -118,7 +118,7 @@ namespace DsdlEngine {
 
 		/**
 		*	Add a Layer to the current Scene.
-		*	@parma layer, Layer to add to the scene.
+		*	@param layer, Layer to add to the scene.
 		*/
 		void addLayerToScene(Layer* layer) {
 			sceneLayers.push_back(layer);
@@ -126,7 +126,7 @@ namespace DsdlEngine {
 
 		/**
 		*	Load the scene and its layers.
-		*	@parma r, SDL_Renderer to use when loading
+		*	@param r, SDL_Renderer to use when loading
 		*/
 		void loadScene(SDL_Renderer* r) {
 			for (size_t i = 0; i < sceneLayers.size(); i++) {
@@ -136,7 +136,7 @@ namespace DsdlEngine {
 
 		/**
 		*	Draw the current scenes layers to the window.
-		*	@parma r, SDL_Renderer to use when rendering.
+		*	@param r, SDL_Renderer to use when rendering.
 		*/
 		void drawScene(SDL_Renderer* r) {
 			for (size_t i = 0; i < sceneLayers.size(); i++) {

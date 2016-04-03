@@ -38,7 +38,8 @@ void GamePlayScene::onEntryScene(){
 
 	//Add Audio Manager
 	music = m_AudioManager.loadMusic(XmlLocalStorage::getInstance()->getStringForKey("bgmusic"));
-	
+	sfx = m_AudioManager.loadSFX(XmlLocalStorage::getInstance()->getStringForKey("sfx"));
+
 	// Define the gravity vector.
 	b2Vec2 gravity(0.0f, 0.0f);
 	
@@ -47,11 +48,11 @@ void GamePlayScene::onEntryScene(){
 
 	// Define the ground body.
 	groundBodyDef = new b2BodyDef();
-	groundBodyDef->position.Set(0.0, GAME_HEIGHT - 130);
+	groundBodyDef->position.Set(0.0, GAME_HEIGHT * PIXELSTOMETRES- 130);
 	groundBody = world->CreateBody(groundBodyDef);
 
 	groundBox = new b2PolygonShape();
-	groundBox->SetAsBox(GAME_WIDTH , 20.0f );
+	groundBox->SetAsBox(GAME_WIDTH * PIXELSTOMETRES, 20.0f * PIXELSTOMETRES );
 	groundBody->CreateFixture(groundBox, 0.0);
 
 	
@@ -148,7 +149,6 @@ void GamePlayScene::checkCollision() {
 		//	m_sceneIndex = SCENE_INDEX_OVER;
 		//	m_eCurrentState = DsdlEngine::SceneState::CHANGE_NEXT;
 		
-
 		}
 
 		if (SimpleBoxCollision::getInstance()->check(
@@ -158,7 +158,7 @@ void GamePlayScene::checkCollision() {
 			layer->removeNodeFromLayer(spawner->getCoinVec().at(i)->m_coinSprite);
 			
 			hud->updateCoinCount(1);
-
+			sfx.play(0);
 			break;
 		}
 	}

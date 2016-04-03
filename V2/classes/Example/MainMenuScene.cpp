@@ -29,7 +29,10 @@ void MainMenuScene::onEntryScene(){
 
 	//Add Audio Manager
 	music = m_AudioManager.loadMusic("Sound/XYZ.ogg");
+
+	sfx = m_AudioManager.loadSFX("DemoGame/sounds/sfx.wav");
 	music.play(-1);
+
 
 	//Add bg
 	auto bg = new Sprite();
@@ -97,11 +100,13 @@ void MainMenuScene::onInput() {
 						onNewGameClicked();
 						XmlLocalStorage* db = XmlLocalStorage::getInstance();
 						db->setStringForKey("player2", "selectedPlayer");
+						sfx.play(1);
 					}
 					if (gui->GUIElements.at(i)->getButtonName() == "player1") {
 						onNewGameClicked();
 						XmlLocalStorage* db = XmlLocalStorage::getInstance();
 						db->setStringForKey("player1", "selectedPlayer");
+						sfx.play(1);
 					}
 				}
 			}

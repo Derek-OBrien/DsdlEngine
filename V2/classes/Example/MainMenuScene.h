@@ -54,5 +54,5 @@ private:
 
 
 	Music music;
-
+	SFX sfx;
 };

@@ -23,13 +23,13 @@ namespace DsdlEngine{
 
 		/**
 		*	Initializes the FPS limiter.
-		*	@parma maxFPS, the max frame rate allowed.
+		*	@param maxFPS, the max frame rate allowed.
 		*/
 		void init(float maxFPS);
 
 		/**
 		*	Sets the desired max FPS
-		*	@parma maxFPS, the desired Frame Rate.
+		*	@param maxFPS, the desired Frame Rate.
 		*/
 		void setMaxFPS(float maxFPS);
 

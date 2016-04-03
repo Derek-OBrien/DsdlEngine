@@ -75,8 +75,9 @@ void Character::jump() {
 		Vec2(122, 112),
 		m_sprite->getPosition(),
 		XmlLocalStorage::getInstance()->getStringForKey("player2jump"), 2);
+	
+	int pos = x -= 50;
 
-		int pos = x -= 30;
 		m_sprite->setPositionY(pos);
 
 		m_sprite->setBoundingBox(m_sprite->getPosition(), m_sprite->getContentSize());

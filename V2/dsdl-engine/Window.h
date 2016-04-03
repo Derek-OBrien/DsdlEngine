@@ -28,10 +28,10 @@ namespace DsdlEngine{
 
 		/**
 		*	Create the SDL_Window with the arguments passed in.
-		*	@parma windowName, the name of the window.
-		*	@parma screenWidth, the width of the window.
-		*	@parma screenHeight, the height of the window.
-		*	@parma flag, SDL_Window flag to use upon creation
+		*	@param windowName, the name of the window.
+		*	@param screenWidth, the width of the window.
+		*	@param screenHeight, the height of the window.
+		*	@param flag, SDL_Window flag to use upon creation
 		*	@return int, 0 upon success,
 		*/
 		int createWindow(std::string windowNname, int screenWidth, int screenHeight, unsigned int flag);

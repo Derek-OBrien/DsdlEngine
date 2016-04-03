@@ -24,11 +24,11 @@ namespace DsdlEngine {
 
 		/**
 		*	Initialize shape with arguments passed in.	
-		*	@parma position as a Vec2 position argument.
-		*	@parma dimensions as a Vec2 size arguent.
-		*	@parma density as a float argument.
-		*	@parma friction as a float argument.
-		*	@parma fixedRotation as a bool argument.
+		*	@param position as a Vec2 position argument.
+		*	@param dimensions as a Vec2 size arguent.
+		*	@param density as a float argument.
+		*	@param friction as a float argument.
+		*	@param fixedRotation as a bool argument.
 		*/
 		void init(b2World* world,
 			Vec2 position,
@@ -39,7 +39,7 @@ namespace DsdlEngine {
 
 		/**
 		*	destroy shape in the Box2D world.
-		*	@parma world as a b2World pointer argument.
+		*	@param world as a b2World pointer argument.
 		*/
 		void destroy(b2World* world);
 
@@ -51,7 +51,7 @@ namespace DsdlEngine {
 
 		/**
 		*	getFixture, get the fixture for index passed in.
-		*	@parma index as a int argument.
+		*	@param index as a int argument.
 		*	@return b2Fixture pointer.
 		*/
 		b2Fixture* getFixture(int index) const { return m_fixtures[index]; }
