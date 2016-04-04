@@ -27,7 +27,10 @@ int GamePlayScene::getPreviousSceneIndex() const{
 void GamePlayScene::destroyScene(){
 	//Destroy Layer and all its nodes
 	layer->destroy();
+	hud->destroy();
 	music.audioStopBG();
+	m_AudioManager.destroy();
+	world->DestroyBody(groundBody);
 }
 
 void GamePlayScene::onEntryScene(){
@@ -90,6 +93,8 @@ void GamePlayScene::onEntryScene(){
 	
 	music.play(-1);
 
+
+	bgSpeed = 3;
 }
 
 void GamePlayScene::onExitScene(){
@@ -97,6 +102,7 @@ void GamePlayScene::onExitScene(){
 }
 
 void GamePlayScene::updateScene(){
+	
 	
 	///Physics world step
 	world->Step(timeStep, velocityIterations, positionIterations);
@@ -112,10 +118,17 @@ void GamePlayScene::updateScene(){
 	hud->updateScore();
 
 	///Update Game Elements
-	bg->update();
-	mg->update();
-	fg->update();
+	bg->update(bgSpeed * 2);
+	mg->update(bgSpeed);
+	fg->update(bgSpeed);
 	
+	if (m_player->getPlayerState() == EPlayerState::SLIDING) {
+		///Update Game Elements
+		bg->update(bgSpeed * 4);
+		mg->update(bgSpeed * 2);
+		fg->update(bgSpeed * 2);
+
+	}
 	///update enemy and coin positions
 	Spawner::GetInstance()->update();
 	
@@ -146,8 +159,8 @@ void GamePlayScene::checkCollision() {
 
 			hud->saveScore();
 
-		//	m_sceneIndex = SCENE_INDEX_OVER;
-		//	m_eCurrentState = DsdlEngine::SceneState::CHANGE_NEXT;
+			m_sceneIndex = SCENE_INDEX_OVER;
+			m_eCurrentState = DsdlEngine::SceneState::CHANGE_NEXT;
 		
 		}
 

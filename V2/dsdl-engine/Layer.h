@@ -30,7 +30,7 @@ namespace DsdlEngine {
 		/**
 		*	Destroy the layer and all its contents
 		*/
-		void destroy();
+		virtual void destroy();
 
 		/**
 		*	Load all nodes in the layer

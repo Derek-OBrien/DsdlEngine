@@ -20,6 +20,8 @@ int MainMenuScene::getPreviousSceneIndex() const{
 void MainMenuScene::destroyScene(){
 	//Destroy layer and all child nodes
 	layer->destroy();
+	gui->destroy();
+	m_AudioManager.destroy();
 }
 
 void MainMenuScene::onEntryScene(){
@@ -45,6 +47,16 @@ void MainMenuScene::onEntryScene(){
 	//Add Gui Elements
 	gui->addLabel(LableType::LABEL_STATIC, Vec2(GAME_WIDTH / 3, 50), "[ Select Your Runner ]", 50, SDL_Color{ 0, 255, 255 }, XmlLocalStorage::getInstance()->getStringForKey("font"));
 
+	gui->addButton(
+		ButtonType::SPRITE_BTN,
+		"close",
+		Vec2(GAME_WIDTH - 300, 60),
+		Vec2(64, 64),
+		XmlLocalStorage::getInstance()->getStringForKey("close"),
+		SDL_Color{ NULL },
+		SDL_Color{ NULL },
+		NULL
+		);
 
 	gui->addButton(
 		ButtonType::SPRITE_BTN,
@@ -74,8 +86,6 @@ void MainMenuScene::onEntryScene(){
 }
 
 void MainMenuScene::onExitScene(){
-	
-	m_AudioManager.destroy();
 	destroyScene();
 }
 
@@ -100,13 +110,18 @@ void MainMenuScene::onInput() {
 						onNewGameClicked();
 						XmlLocalStorage* db = XmlLocalStorage::getInstance();
 						db->setStringForKey("player2", "selectedPlayer");
-						sfx.play(1);
+						sfx.play(0);
 					}
 					if (gui->GUIElements.at(i)->getButtonName() == "player1") {
 						onNewGameClicked();
 						XmlLocalStorage* db = XmlLocalStorage::getInstance();
 						db->setStringForKey("player1", "selectedPlayer");
-						sfx.play(1);
+						sfx.play(0);
+					}
+					if (gui->GUIElements.at(i)->getButtonName() == "close") {
+
+						m_eCurrentState = DsdlEngine::SceneState::EXIT_APP;
+						onExitScene();
 					}
 				}
 			}

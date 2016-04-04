@@ -22,6 +22,7 @@ int SplashScene::getPreviousSceneIndex() const{
 
 void SplashScene::destroyScene(){
 	layer->destroy();
+	gui->destroy();
 }
 
 Uint32 callback(Uint32 interval, void* splashScene) {
@@ -42,7 +43,7 @@ void SplashScene::onEntryScene(){
 	layer = new Layer();
 
 	//Create Gui Layer
-	auto gui = new DsdlGui();
+	gui = new DsdlGui();
 
 	//Create Label	
 	gui->addLabel(LableType::LABEL_STATIC, Vec2(400, 300), "-[In The Smoke]-", 100, SDL_Color{ 0, 255, 255 }, XmlLocalStorage::getInstance()->getStringForKey("font"));

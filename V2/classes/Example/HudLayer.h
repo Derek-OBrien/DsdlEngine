@@ -22,7 +22,7 @@ public:
 	void saveScore();
 	void checkHighScore();
 
-
+	void destroy();
 	Label* scoreLabel;
 	Label* coinLabel;
 

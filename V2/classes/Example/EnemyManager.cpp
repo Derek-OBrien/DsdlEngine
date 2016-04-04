@@ -68,7 +68,6 @@ void Spawner::FillEnemyVec(b2World* world, Layer* layer){
 			enemy = factory->createEnemy(world, pos);
 			Spawner::GetInstance()->AddEnemy(enemy);
 			layer->addNodeToLayer(enemy->m_enemySprite);
-			//layer->addBox2dNodes(enemy->m_body);
 
 			break;
 		case 1:
@@ -78,7 +77,6 @@ void Spawner::FillEnemyVec(b2World* world, Layer* layer){
 
 			Spawner::GetInstance()->AddEnemy(enemy);
 			layer->addNodeToLayer(enemy->m_enemySprite);
-			//layer->addBox2dNodes(enemy->m_body);
 
 			break;
 		case 2:
@@ -88,7 +86,6 @@ void Spawner::FillEnemyVec(b2World* world, Layer* layer){
 
 			Spawner::GetInstance()->AddEnemy(enemy);
 			layer->addNodeToLayer(enemy->m_enemySprite);
-			//layer->addBox2dNodes(enemy->m_body);
 
 			break;
 		case 3:
@@ -98,7 +95,6 @@ void Spawner::FillEnemyVec(b2World* world, Layer* layer){
 
 			Spawner::GetInstance()->AddEnemy(enemy);
 			layer->addNodeToLayer(enemy->m_enemySprite);
-			//layer->addBox2dNodes(enemy->m_body);
 
 			break;
 		case 4:
@@ -109,7 +105,6 @@ void Spawner::FillEnemyVec(b2World* world, Layer* layer){
 
 			Spawner::GetInstance()->AddEnemy(enemy);
 			layer->addNodeToLayer(enemy->m_enemySprite);
-			//layer->addBox2dNodes(enemy->m_body);
 
 			break;
 		case 5:
@@ -120,7 +115,6 @@ void Spawner::FillEnemyVec(b2World* world, Layer* layer){
 
 			Spawner::GetInstance()->AddEnemy(enemy);
 			layer->addNodeToLayer(enemy->m_enemySprite);
-			//layer->addBox2dNodes(enemy->m_body);
 
 			break;
 		default:
@@ -139,7 +133,6 @@ void Spawner::FillEnemyVec(b2World* world, Layer* layer){
 
 			Spawner::GetInstance()->AddCoin(coin);
 			layer->addNodeToLayer(coin->m_coinSprite);
-			//layer->addBox2dNodes(coin->m_body);
 
 			break;
 		case 1:
@@ -151,7 +144,6 @@ void Spawner::FillEnemyVec(b2World* world, Layer* layer){
 
 			Spawner::GetInstance()->AddCoin(coin);
 			layer->addNodeToLayer(coin->m_coinSprite);
-			//layer->addBox2dNodes(coin->m_body);
 			break;
 		case 2:
 			pos.x_ = GAME_WIDTH + (GAME_WIDTH*0.4);
@@ -162,7 +154,6 @@ void Spawner::FillEnemyVec(b2World* world, Layer* layer){
 
 			Spawner::GetInstance()->AddCoin(coin);
 			layer->addNodeToLayer(coin->m_coinSprite);
-			//layer->addBox2dNodes(coin->m_body);
 			break;
 		case 3:
 			pos.x_ = GAME_WIDTH + (GAME_WIDTH*0.4);///slideunder
@@ -173,7 +164,6 @@ void Spawner::FillEnemyVec(b2World* world, Layer* layer){
 
 			Spawner::GetInstance()->AddCoin(coin);
 			layer->addNodeToLayer(coin->m_coinSprite);
-			//layer->addBox2dNodes(coin->m_body);
 			break;
 		case 4:
 			pos.x_ = GAME_WIDTH + (GAME_WIDTH*0.6);///slide under
@@ -184,7 +174,6 @@ void Spawner::FillEnemyVec(b2World* world, Layer* layer){
 
 			Spawner::GetInstance()->AddCoin(coin);
 			layer->addNodeToLayer(coin->m_coinSprite);
-			//layer->addBox2dNodes(coin->m_body);
 			break;
 		case 5:
 			pos.y_ = GAME_WIDTH + (GAME_WIDTH*0.6);///slide under
@@ -195,7 +184,6 @@ void Spawner::FillEnemyVec(b2World* world, Layer* layer){
 
 			Spawner::GetInstance()->AddCoin(coin);
 			layer->addNodeToLayer(coin->m_coinSprite);
-		//	layer->addBox2dNodes(coin->m_body);
 			break;
 		default:
 			break;

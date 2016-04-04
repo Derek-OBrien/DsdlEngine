@@ -19,8 +19,7 @@ namespace DsdlEngine {
 		m_position.x_ = pos.x_;
 		m_position.y_ = pos.y_;
 
-		m_buttonbg = bgColor;
-
+		
 		m_labelText = buttonText;
 		m_textSize = btnsize.h_;
 		m_textColor = color;
@@ -42,11 +41,6 @@ namespace DsdlEngine {
 		m_position.x_ = position.x_;
 		m_position.y_ = position.y_;
 		setPosition(position);
-
-		m_rect.h = m_size.y_;
-		m_rect.w = m_size.x_;
-		m_rect.x = m_position.x_;
-		m_rect.y = m_position.y_;
 
 		setEngineNodeType(NodeType::SPRITE);
 

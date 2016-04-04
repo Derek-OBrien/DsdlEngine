@@ -12,13 +12,17 @@ public:
 	~ScrollingBg();
 
 	void create(std::string path);
-	void update();
+	void update(int speed);
 	void destroy();
 
 	Sprite* scrollingImage;
 	int pos;
 
 	std::vector<Sprite*> bacgrounds;
+
+	int scrollSpeed;
+
+	int getScrollSpeed() { return scrollSpeed; }
 private:
 
 };

@@ -23,7 +23,6 @@ namespace DsdlEngine{
 	}
 
 	void InputManager::pressKey(unsigned int keyID) {
-		// Here we are treating _keyMap as an associative array.
 		// if keyID doesn't already exist in _keyMap, it will get added
 		_keyMap[keyID] = true;
 	}

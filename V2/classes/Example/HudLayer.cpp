@@ -12,6 +12,11 @@ HudLayer::~HudLayer() {
 }
 
 
+void HudLayer::destroy() {
+	gui->destroy();
+}
+
+
 Layer* HudLayer::createHud() {
 
 	coinLabel = new Label();
@@ -45,7 +50,7 @@ Layer* HudLayer::createHud() {
 	gui->addButton(
 		ButtonType::SPRITE_BTN,
 		"up",
-		Vec2(200, GAME_HEIGHT - 100),
+		Vec2(200, 200 ),
 		Vec2(64, 64),
 		XmlLocalStorage::getInstance()->getStringForKey("up"),
 		SDL_Color{ NULL },
@@ -56,7 +61,7 @@ Layer* HudLayer::createHud() {
 	gui->addButton(
 		ButtonType::SPRITE_BTN,
 		"down",
-		Vec2(GAME_WIDTH - 200, GAME_HEIGHT - 100),
+		Vec2( 200, GAME_HEIGHT - 200),
 		Vec2(64, 64),
 		XmlLocalStorage::getInstance()->getStringForKey("down"),
 		SDL_Color{ NULL },
@@ -64,6 +69,16 @@ Layer* HudLayer::createHud() {
 		NULL
 		);
 
+	gui->addButton(
+		ButtonType::SPRITE_BTN,
+		"slide",
+		Vec2(GAME_WIDTH - 200, GAME_HEIGHT - 200),
+		Vec2(64, 64),
+		XmlLocalStorage::getInstance()->getStringForKey("slide"),
+		SDL_Color{ NULL },
+		SDL_Color{ NULL },
+		NULL
+		);
 
 	return gui;
 }
@@ -80,14 +95,16 @@ void HudLayer::onInput(IMainGame* game, Character* player, Music bg) {
 			{
 				if (gui->GUIElements.at(i)->m_eCurrentState == ButtonState::PRESSED) {
 
-					if (gui->GUIElements.at(i)->getButtonName() == "pause") {
-						
+					if (gui->GUIElements.at(i)->getButtonName() == "pause") {					
 						pauseGame(game, bg);
 					}
 					if (gui->GUIElements.at(i)->getButtonName() == "up") {
 						player->jump();
 					}
 					if (gui->GUIElements.at(i)->getButtonName() == "down") {
+						player->fall();
+					}
+					if (gui->GUIElements.at(i)->getButtonName() == "slide") {
 						player->slide();
 					}
 				}

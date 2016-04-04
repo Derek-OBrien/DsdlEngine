@@ -15,7 +15,7 @@ namespace DsdlEngine {
 		m_numFrames = 1;
 		m_opacity = 255;
 		m_objectBoundingBox = new SDL_Rect();
-
+		
 		updateTextureInfo = false;
 	}
 
@@ -33,8 +33,8 @@ namespace DsdlEngine {
 			m_engineTexture->setAlpha(m_opacity);
 
 			//Draw Bounding Box
-			SDL_SetRenderDrawColor(r, 0, 255, 255, 255);
-			SDL_RenderDrawRect(r, m_objectBoundingBox);
+			//SDL_SetRenderDrawColor(r, 0, 255, 255, 255);
+			//SDL_RenderDrawRect(r, m_objectBoundingBox);
 
 			//render texture
 			m_engineTexture->render(m_position, m_size, r, m_currentFrame);
@@ -154,6 +154,11 @@ namespace DsdlEngine {
 	void EngineBaseNode::destroy() {
 		m_engineTexture->destroy();
 		m_objectBoundingBox = nullptr;
+		m_currentFrame = nullptr;
+		m_frame = 0;
+		m_numFrames = 0;
+		m_opacity = 0;
+		m_CollisionShape = nullptr;
 		m_size = Vec2(0, 0);
 	}
 

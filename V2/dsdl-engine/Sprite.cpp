@@ -10,6 +10,11 @@ namespace DsdlEngine{
 	//Constructor
 	Sprite::Sprite(){
 		setEngineNodeType(NodeType::SPRITE);
+		m_frame = 0;
+		m_numFrames = 1;
+		m_opacity = 255;
+		m_objectBoundingBox = new SDL_Rect();
+		m_engineTexture = new ResourceTexture();
 	}
 
 	//DeConstructor
@@ -29,6 +34,7 @@ namespace DsdlEngine{
 		m_position.y_ = position.y_;
 		setPosition(position);
 
+		m_numFrames = 1;
 		setBoundingBox(position, spriteSize);
 	}
 

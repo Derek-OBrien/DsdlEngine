@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <DefaultRoot>
-    <selectedPlayer>player2</selectedPlayer>
+    <selectedPlayer>player1</selectedPlayer>
     <!--BackGround Images-->
     <menubg>DemoGame/backgrounds/menu.png</menubg>
     <gamebg>DemoGame/backgrounds/bg_city.png</gamebg>
@@ -26,9 +26,10 @@
     <restart>DemoGame/menu_hud_items/playbutton.png</restart>
     <up>DemoGame/menu_hud_items/up.png</up>
     <down>DemoGame/menu_hud_items/down.png</down>
+    <slide>DemoGame/menu_hud_items/slide.png</slide>
     <!--Audio-->
     <bgmusic>DemoGame/sounds/Severe_Tire_Damage.wav</bgmusic>
     <sfx>DemoGame/sounds/sfx.wav</sfx>
     <buttonpress>DemoGame/sounds/buttonPress.wav</buttonpress>
-    <score>786</score>
+    <score>0</score>
 </DefaultRoot>

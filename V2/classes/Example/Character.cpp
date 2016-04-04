@@ -4,14 +4,14 @@
 
 
 
-Character::Character(){};
-Character::~Character(){};
+Character::Character() {};
+Character::~Character() {};
 
-void Character::init(b2World* world){
+void Character::init(b2World* world) {
 
 	m_sprite = new Sprite();
 	player = XmlLocalStorage::getInstance()->getStringForKey("selectedPlayer").c_str();
-	
+
 	m_sprite->createWithPhysics(
 		world,
 		Vec2(90, 125),
@@ -34,12 +34,13 @@ void Character::init(b2World* world){
 		0
 		);
 
+	playerPosY = m_sprite->getPosition().y_;
 	setPlayerState(ALIVE);
 }
 
 
 
-void Character::update(InputManager& inputManager, b2World* world){
+void Character::update(InputManager& inputManager, b2World* world) {
 
 #ifdef __WIN32__
 	if (inputManager.isKeyPressed(SDLK_UP)) {
@@ -63,43 +64,45 @@ void Character::update(InputManager& inputManager, b2World* world){
 #ifdef __ANDROID__
 	if (inputManager.isKeyPressed(SDL_FINGERDOWN)) {
 		jump();
-	}
+}
 #endif
 }
 
 void Character::jump() {
-	setPlayerState(JUMPING);
-	int x = m_sprite->getPosition().y_;
 
-	m_sprite->updateTexure(
-		Vec2(122, 112),
-		m_sprite->getPosition(),
-		XmlLocalStorage::getInstance()->getStringForKey("player2jump"), 2);
-	
-	int pos = x -= 50;
 
-		m_sprite->setPositionY(pos);
+		setPlayerState(JUMPING);
+
+		m_sprite->updateTexure(
+			Vec2(122, 112),
+			m_sprite->getPosition(),
+			XmlLocalStorage::getInstance()->getStringForKey("player2jump"), 2);
+
+		playerPosY -= 200;
+
+		m_sprite->setPositionY(playerPosY);
 
 		m_sprite->setBoundingBox(m_sprite->getPosition(), m_sprite->getContentSize());
 		m_body->SetTransform(
 			b2Vec2(m_sprite->getPosition().x_, m_sprite->getPosition().y_),
 			0
 			);
+
 }
 
 void Character::fall() {
 	setPlayerState(FALLING);
-	int x = m_sprite->getPosition().y_;
+	playerPosY = m_sprite->getPosition().y_;
 
 	m_sprite->updateTexure(
 		Vec2(90, 125),
 		m_sprite->getPosition(),
 		XmlLocalStorage::getInstance()->getStringForKey(player.c_str()), 14);
 
-	while (x < 820) {
+	while (playerPosY < 820) {
 
 
-		int pos = x += 30;
+		int pos = playerPosY += 30;
 		m_sprite->setPositionY(pos);
 
 		m_sprite->setBoundingBox(m_sprite->getPosition(), m_sprite->getContentSize());
@@ -116,6 +119,7 @@ void Character::slide() {
 
 	int pos = x += 30;
 	m_sprite->setPositionX(pos);
+	m_sprite->setPositionY(865);
 
 	m_body->SetTransform(
 		b2Vec2(m_sprite->getPosition().x_, m_sprite->getPosition().y_),
@@ -123,8 +127,8 @@ void Character::slide() {
 		);
 
 	m_sprite->updateTexure(
-		Vec2(130,75), 
-		m_sprite->getPosition(), 
+		Vec2(130, 75),
+		m_sprite->getPosition(),
 		XmlLocalStorage::getInstance()->getStringForKey("player2slide"), 1);
 }
 

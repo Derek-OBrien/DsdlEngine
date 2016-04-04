@@ -201,10 +201,10 @@ namespace DsdlEngine {
 	
 	protected:
 
-		EngineBaseNode* m_node;								/**< EngineBaseNode node*/
+		//EngineBaseNode* m_node;								/**< EngineBaseNode node*/
 		std::string m_assetPath;							/**< std::string asset path*/
-		std::map<std::string, SDL_Texture*> m_TextureMap;	/**< std::map for texture cacheing*/
 		NodeType nodeType = NodeType::BASENODE;				/**< NodeType for containing node type*/
+
 		ResourceTexture* m_engineTexture;					/**< ResourceTexture for the node*/
 		SDL_Rect* m_objectBoundingBox;						/**< SDL_Rect bounding box for the node*/
 
@@ -228,11 +228,7 @@ namespace DsdlEngine {
 		int m_textSize;										/**< int for size of font*/
 		SDL_Color m_textColor;								/**< color of the label*/
 
-		//For  Button
-		SDL_Color m_buttonbg;								/**< color of button background*/
-		SDL_Surface* m_btnbg;								/**< button surface*/
-		SDL_Rect m_rect;									/**< button rect*/
-
+		
 		//Node Collision shape
 		CollisionShape* m_CollisionShape;					/**< Box2D collision shape of the node*/
 	};

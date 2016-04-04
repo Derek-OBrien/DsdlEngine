@@ -11,7 +11,8 @@ namespace DsdlEngine {
 
 	//Constructor
 	Layer::Layer() {
-		//Empty
+		//Emptty
+		layerNodes.reserve(20);
 	}
 
 	//Deconstructor
@@ -21,11 +22,15 @@ namespace DsdlEngine {
 
 	//Destroy layer nodes and cleanup
 	void Layer::destroy() {
-		for (size_t i = 0; i < layerNodes.size(); i++) {
+ 		for (size_t i = 0; i < layerNodes.size(); i++) {
+			layerNodes.erase(std::remove(layerNodes.begin(), layerNodes.end(), layerNodes[i]), layerNodes.end());
+
 			layerNodes[i]->destroy();
-			delete layerNodes[i];
+
+			//layerNodes.shrink_to_fit();
+			//delete(layerNodes[i]);
 		}
-		layerNodes.resize(0);
+		layerNodes.clear();
 	}
 
 

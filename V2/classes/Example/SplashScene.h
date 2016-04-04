@@ -32,6 +32,8 @@ private:
 
 	InputManager m_inputManager;
 	Layer* layer;
+	DsdlGui* gui;
+
 
 private:
 

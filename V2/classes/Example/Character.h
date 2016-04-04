@@ -33,4 +33,5 @@ private:
 	
 	EPlayerState currentState;
 	std::string player;
+	int playerPosY;
 };

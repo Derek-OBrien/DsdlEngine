@@ -4,6 +4,8 @@
 #include "EngineDefines.h"
 /**
 *	@author Derek O Brien
+*
+*	Class Based of https://www.youtube.com/watch?v=Epyih-LEbig&list=PLSPw4ASQYyymu3PfG9gxywSPghnSMiOAW&index=26 tutorial 
 */
 
 namespace DsdlEngine{

@@ -31,6 +31,7 @@ private:
 	void checkCollision();
 	int m_sceneIndex = SCENE_INDEX_NO_SCENE;
 	
+	int bgSpeed;
 	AudioManager m_AudioManager;
 	Music music;
 	SFX sfx;

@@ -66,6 +66,10 @@ namespace DsdlEngine {
 	void IMainGame::onSDLEvent(SDL_Event& evnt) {
 		m_InputManager.update();
 		//Will keep looping until there are no more events to process
+		if (evnt.key.repeat == 0)
+		{
+
+
 			switch (evnt.type) {
 			case SDL_QUIT:
 				exitGame();
@@ -97,7 +101,7 @@ namespace DsdlEngine {
 			default:
 				break;
 			}
-		
+		}
 	}
 
 	/*

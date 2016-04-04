@@ -24,12 +24,16 @@ public:
 
 	virtual void updateScene() override;
 
+	virtual void onInput();
+
 	bool changeNext();
 
 private:
 
 	int m_nextScreenIndex = SCENE_INDEX_OVER;
 
+
+	DsdlGui* gui;
 	Layer* layer;
 
 };
